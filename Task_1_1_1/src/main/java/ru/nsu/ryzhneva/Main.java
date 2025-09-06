@@ -8,5 +8,8 @@ public class Main {
 
         System.out.println(Arrays.toString(res));
 
+        System.out.println("\nbenchmarks:");
+        Benchmark.bench();
+
     }
 }

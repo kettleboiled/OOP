@@ -1,13 +1,10 @@
 package ru.nsu.ryzhneva;
 
-import java.util.Arrays;
-
 public class HeapSort {
 
     private HeapSort() {};
 
     public static int[] heapsort(int[] arr) {
-        int[] a;
         int n = arr.length;
 
         for (int i = n/2 - 1; i >= 0; i--) {
@@ -43,8 +40,4 @@ public class HeapSort {
             heapify(arr, n, largest);
         }
     }
-
-
-
-
 }
