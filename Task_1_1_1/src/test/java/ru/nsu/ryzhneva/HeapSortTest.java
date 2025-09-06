@@ -44,4 +44,13 @@ class HeapSortTest {
         assertArrayEquals(new int[]{42}, HeapSort.heapsort(new int[]{42}));
     }
 
+    @Test
+    void testMainRuns() {
+        Main.main(new String[]{});
+    }
+
+    @Test
+    void testBenchmarkRuns() {
+        Benchmark.bench();
+    }
 }

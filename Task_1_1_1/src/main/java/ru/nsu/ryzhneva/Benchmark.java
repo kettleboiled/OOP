@@ -1,10 +1,15 @@
 package ru.nsu.ryzhneva;
+
 import java.util.Random;
 
+/**
+ * Класс для проверки асимптотики алгоритма heapsort.
+ * Генерирует массивы разного размера и измеряет время сортировки.
+ */
 public class Benchmark {
-
-    private Benchmark() {};
-
+    /**
+     * Точка входа для запуска бенчмарка.
+     */
     public static void bench() {
         int[] sizes = {1000, 2000, 4000, 8000, 16000};
         Random random = new Random();
@@ -19,8 +24,7 @@ public class Benchmark {
             HeapSort.heapsort(arr);
             long end = System.nanoTime();
 
-            System.out.printf("при n = %d, time = %.3f ms%n", n, (end - start) / 1e6);
+            System.out.printf("n = %d, time = %.3f ms%n", n, (end - start) / 1e6);
         }
     }
 }
-
