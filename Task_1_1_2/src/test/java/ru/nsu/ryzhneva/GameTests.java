@@ -1,17 +1,26 @@
 package ru.nsu.ryzhneva;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.lang.reflect.Method;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.*;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Тесты для класса Game.
+ */
 class GameTests {
 
-    private final ByteArrayOutputStream outContent= new ByteArrayOutputStream();
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
     private Game game;
 
@@ -21,7 +30,7 @@ class GameTests {
         game = new Game();
     }
 
-    @org.junit.jupiter.api.AfterEach
+    @AfterEach
     void restoreStreams() {
         System.setOut(originalOut);
     }
@@ -67,11 +76,11 @@ class GameTests {
     void testBlackjackDealer() {
         game.player = new Player();
         game.player.addCard(new Card(0, 5));
-        game.player.addCard(new Card(1, 7)); //not 21
+        game.player.addCard(new Card(1, 7)); // not 21
 
         game.dealer = new Player();
         game.dealer.addCard(new Card(2, 0));
-        game.dealer.addCard(new Card(3, 12)); //21
+        game.dealer.addCard(new Card(3, 12)); // 21
 
         game.checkBlackjack();
 
@@ -80,7 +89,6 @@ class GameTests {
         assertEquals(0, game.winPlayer);
         assertEquals(1, game.winDealer);
     }
-
 
     @Test
     void testPlayer21() {
@@ -100,7 +108,7 @@ class GameTests {
         game.player = new Player();
         game.player.addCard(new Card(0, 10));
         game.player.addCard(new Card(1, 10));
-        game.player.addCard(new Card(2, 5)); //>21
+        game.player.addCard(new Card(2, 5)); // >21
 
         game.checkBust();
 
@@ -171,7 +179,6 @@ class GameTests {
         assertTrue(out.contains("Final score"), "В конце должен быть итоговый счёт");
     }
 
-
     @Test
     void testPlayerBustLeadsToDealerWin() {
         // Игрок всегда берёт карты (введём несколько раз "1" и потом "0")
@@ -188,7 +195,7 @@ class GameTests {
 
     private Card invokeSafeDraw(Game game) {
         try {
-            var method = Game.class.getDeclaredMethod("safeDraw");
+            Method method = Game.class.getDeclaredMethod("safeDraw");
             method.setAccessible(true);
             return (Card) method.invoke(game);
         } catch (Exception e) {

@@ -3,6 +3,9 @@ package ru.nsu.ryzhneva;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Тесты для класса Card.
+ */
 public class CardTests {
 
     @Test

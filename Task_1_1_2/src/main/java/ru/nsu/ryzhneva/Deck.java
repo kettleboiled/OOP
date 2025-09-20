@@ -43,7 +43,9 @@ public class Deck {
      * @return верхняя карта колоды или null если колода пуста
      */
     public Card drawCard() {
-        if (cards.isEmpty()) return null;
+        if (cards.isEmpty()) {
+            return null;
+        }
         return cards.remove(cards.size() - 1);
     }
 

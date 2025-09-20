@@ -1,10 +1,17 @@
 package ru.nsu.ryzhneva;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DeckTests
-{
+/**
+ * Тесты для класса Deck.
+ */
+class DeckTests {
 
     @Test
     void testDeck() {
@@ -19,7 +26,6 @@ public class DeckTests
         Card c = d.drawCard();
         assertNotNull(c);
         assertEquals(size - 1, d.size());
-
     }
 
     @Test
@@ -41,5 +47,25 @@ public class DeckTests
         assertEquals(52, d.size());
         assertNotEquals(before, after);
     }
-}
 
+    @Test
+    void testIsEmpty() {
+        Deck deck = new Deck();
+        assertFalse(deck.isEmpty());
+
+        for (int i = 0; i < 52; i++) {
+            deck.drawCard();
+        }
+
+        assertTrue(deck.isEmpty());
+    }
+
+    @Test
+    void testSize() {
+        Deck deck = new Deck();
+        assertEquals(52, deck.size());
+
+        deck.drawCard();
+        assertEquals(51, deck.size());
+    }
+}

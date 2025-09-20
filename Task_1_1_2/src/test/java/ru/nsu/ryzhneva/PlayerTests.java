@@ -8,6 +8,10 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Тесты для класса Player.
+ */
+
 class PlayerTests{
 
     private Player player;

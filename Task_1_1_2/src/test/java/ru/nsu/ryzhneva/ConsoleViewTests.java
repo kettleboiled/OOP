@@ -1,16 +1,19 @@
 package ru.nsu.ryzhneva;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ConsoleViewTests{
+/**
+ * Тесты для класса ConsoleView.
+ */
+class ConsoleViewTests {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -59,7 +62,7 @@ class ConsoleViewTests{
     }
 
     @Test
-    void testShowCards_PlayerOpen() {
+    void testShowCardsPlayerOpen() {
         List<Card> cards = List.of(new Card(0, 0), new Card(1, 9)); // Ace Spades, Ten Hearts
         ConsoleView.showCards("player", cards, false, 21);
 
@@ -68,7 +71,7 @@ class ConsoleViewTests{
     }
 
     @Test
-    void testShowCards_DealerClosed() {
+    void testShowCardsDealerClosed() {
         List<Card> cards = List.of(new Card(0, 0), new Card(2, 5)); // Ace Spades, Six Diamonds
         ConsoleView.showCards("dealer", cards, true, 0);
 
