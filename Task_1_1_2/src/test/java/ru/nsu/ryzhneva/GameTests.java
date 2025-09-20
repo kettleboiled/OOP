@@ -1,19 +1,15 @@
 package ru.nsu.ryzhneva;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Тесты для класса Game.
@@ -189,7 +185,7 @@ class GameTests {
         game.start();
 
         String out = outContent.toString();
-        assertTrue(out.contains("You busted") || out.contains("Dealer wins"),
+        assertTrue(out.contains("You busted!") || out.contains("Dealer wins"),
                 "При переборе игрока дилер должен выиграть");
     }
 

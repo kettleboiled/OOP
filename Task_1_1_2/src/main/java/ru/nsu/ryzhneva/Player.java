@@ -10,7 +10,9 @@ import java.util.List;
  */
 
 public class Player {
-    /** Список карт на руке игрока */
+    /**
+     * Список карт на руке игрока
+     */
     List<Card> hand;
 
     /**
@@ -54,6 +56,7 @@ public class Player {
 
     /**
      * Вывод карт игрока или дилера через ConsoleView
+     *
      * @param participant true — игрок, false — дилер
      * @param closedCard  true — закрытая карта дилера
      */

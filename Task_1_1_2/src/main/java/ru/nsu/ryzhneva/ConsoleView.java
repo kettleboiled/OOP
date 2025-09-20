@@ -6,7 +6,7 @@ import java.util.List;
  * Класс для отображения игрового интерфейса в консоли.
  * Содержит статические методы для вывода различных сообщений и состояния игры.
  */
-public class ConsoleView{
+public class ConsoleView {
 
     /**
      * Выводит приветственное сообщение при запуске игры.
@@ -29,10 +29,10 @@ public class ConsoleView{
     /**
      * Отображает карты указанного участника игры.
      *
-     * @param owner "player" для игрока, "dealer" для дилера
-     * @param cards список карт для отображения
+     * @param owner  "player" для игрока, "dealer" для дилера
+     * @param cards  список карт для отображения
      * @param closed если true, скрывает вторую карту (используется для дилера)
-     * @param value текущее значение карт
+     * @param value  текущее значение карт
      */
     public static void showCards(String owner, List<Card> cards, boolean closed, int value) {
         if (owner.equals("player")) {

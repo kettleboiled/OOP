@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Тесты для класса Player.
  */
 
-class PlayerTests{
+class PlayerTests {
 
     private Player player;
 

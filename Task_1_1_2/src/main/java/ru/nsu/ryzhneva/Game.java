@@ -134,7 +134,7 @@ public class Game {
 
     /**
      * Безопасный розыгрыш: если колода пуста, создайте новую перетасованную колоду (правила использования одной колоды).
-     *  * Возвращает взятую карту (никогда не обнуляйте, если только что-то не пошло не так).
+     * * Возвращает взятую карту (никогда не обнуляйте, если только что-то не пошло не так).
      */
     private Card safeDraw() {
         if (deck.isEmpty()) {
@@ -143,7 +143,7 @@ public class Game {
         }
         return deck.drawCard();
     }
-    
+
     /**
      * Проводит один раунд игры Блэкджек.
      * Включает раздачу карт, ходы игрока и дилера, определение победителя.
@@ -167,15 +167,14 @@ public class Game {
 
         ConsoleView.playerTurn();
         while (true) {
-            if(checkBust()) return;
+            if (checkBust()) return;
             if (checkPlayerTurn()) return;
 
             ConsoleView.askAction();
             int input;
             try {
                 input = in.nextInt();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 in.nextLine();
                 ConsoleView.wrongAction();
                 continue;

@@ -20,9 +20,13 @@ public class Card {
         Spades, Hearts, Diamonds, Clubs
     }
 
-    /** Масть карты */
+    /**
+     * Масть карты
+     */
     Suit suit;
-    /** Достоинство карты */
+    /**
+     * Достоинство карты
+     */
     Rank rank;
 
     /**
