@@ -45,7 +45,6 @@ public class CardTests {
         assertDoesNotThrow(() -> card.print(false));
     }
 
-    // Тесты на неправильные индексы (конструктор выбрасывает IllegalArgumentException)
     @Test
     void testInvalidSuitNegative() {
         assertThrows(IllegalArgumentException.class, () -> new Card(-1, 0));

@@ -152,11 +152,9 @@ class GameTests {
     void testSafeDrawFromEmptyDeckCreatesNewDeck() {
         Game game = new Game();
 
-        // Обнулим колоду
         game.deck.cards.clear();
         assertTrue(game.deck.isEmpty());
 
-        // Вызовем safeDraw через reflection
         Card card = invokeSafeDraw(game);
 
         assertNotNull(card, "safeDraw должен вернуть карту даже из пустой колоды");
@@ -167,8 +165,7 @@ class GameTests {
 
     @Test
     void testStartAndFinalScorePrinted() {
-        // Подготовим ввод: сыграем 1 раунд и ответим "n"
-        String input = "0\nn\n"; // игрок сразу остановился, потом отказался от новой игры
+        String input = "0\nn\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
         Game game = new Game();
@@ -181,7 +178,6 @@ class GameTests {
 
     @Test
     void testPlayerBustLeadsToDealerWin() {
-        // Игрок всегда берёт карты (введём несколько раз "1" и потом "0")
         String input = "1\n1\n1\n0\nn\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 

@@ -2,14 +2,11 @@ package ru.nsu.ryzhneva;
 
 import java.util.Scanner;
 
-
 /**
  * Класс, управляющий логикой игры Блэкджек.
  * Содержит основную игровую логику, управление раундами и подсчет очков.
  */
-
 public class Game {
-
 
     Deck deck;
     Player player;
@@ -133,8 +130,10 @@ public class Game {
     }
 
     /**
-     * Безопасный розыгрыш: если колода пуста, создайте новую перетасованную колоду (правила использования одной колоды).
-     * * Возвращает взятую карту (никогда не обнуляйте, если только что-то не пошло не так).
+     * Безопасный розыгрыш.
+     * Если колода пуста, создается новая перетасованная колода.
+     *
+     * @return взятая карта
      */
     private Card safeDraw() {
         if (deck.isEmpty()) {
@@ -152,7 +151,7 @@ public class Game {
         player = new Player();
         dealer = new Player();
 
-        // первоначальная раздача: игроку 2 карты, дилеру 2 карты (одна закрытая).
+        // первоначальная раздача: игроку 2 карты, дилеру 2 карты (одна закрытая)
         player.addCard(safeDraw());
         player.addCard(safeDraw());
         dealer.addCard(safeDraw());
@@ -161,14 +160,19 @@ public class Game {
         player.printString(true, false);
         dealer.printString(false, true);
 
-
-        // Проверьте начальный блэкджек (сумма двух карт равна 21 очку)
-        if (checkBlackjack()) return;
+        // Проверьте начальный блэкджек
+        if (checkBlackjack()) {
+            return;
+        }
 
         ConsoleView.playerTurn();
         while (true) {
-            if (checkBust()) return;
-            if (checkPlayerTurn()) return;
+            if (checkBust()) {
+                return;
+            }
+            if (checkPlayerTurn()) {
+                return;
+            }
 
             ConsoleView.askAction();
             int input;
@@ -192,7 +196,7 @@ public class Game {
             dealer.printString(false, true);
         }
 
-        // Если игрок проиграл после последнего розыгрыша
+        // Проверка на перебор после последнего розыгрыша
         if (player.getValue() > 21) {
             ConsoleView.playerBust();
             winDealer++;
@@ -200,10 +204,9 @@ public class Game {
         }
 
         ConsoleView.dealerTurn();
-
         dealer.printString(false, false);
 
-        // дилер делает розыгрыш при значении < 17 (правило: делайте розыгрыш при <=16; остановитесь при >=17)
+        // Розыгрыш дилера при значении < 17
         while (dealer.getValue() < 17) {
             Card card = safeDraw();
             dealer.addCard(card);
@@ -219,5 +222,4 @@ public class Game {
 
         compareFinal(p, d);
     }
-
 }
