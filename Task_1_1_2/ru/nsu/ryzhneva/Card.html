@@ -149,10 +149,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Конструктор создает карту по числовым идентификаторам масти и достоинства.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>suit</code> - числовой идентификатор масти (0..3). 0 - Пики, 1 - Черви, 2 - Бубны, 3 - Трефы.</dd>
-<dd><code>rank</code> - числовой идентификатор достоинства (0..12). 0 - Туз, 1 - Двойка, ..., 12 - Король.</dd>
+<dd><code>suit</code> - числовой идентификатор масти (0..3).
+             0 - Пики, 1 - Черви, 2 - Бубны, 3 - Трефы.</dd>
+<dd><code>rank</code> - числовой идентификатор достоинства (0..12).
+             0 - Туз, 1 - Двойка, ..., 12 - Король.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если передан недопустимый идентификатор масти или достоинства.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - если передан недопустимый идентификатор масти
+                                  или достоинства.</dd>
 </dl>
 </section>
 </li>
@@ -170,11 +173,11 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">value</span><wbr><span class="parameters">(boolean&nbsp;flag)</span></div>
 <div class="block">Возвращает числовое значение карты в игре.
  Туз может иметь значение 1 или 11 в зависимости от флага.
- Карты с числовым достоинством (2-10) возвращают свое числовое значение.
+ Карты с числовым достоинством (2-10) возвращают свое значение.
  Карты с картинками (Валет, Дама, Король) возвращают 10.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>flag</code> - если true - туз считается за 1, если false - туз считается за 11.</dd>
+<dd><code>flag</code> - если true - туз считается за 1, если false - за 11.</dd>
 <dt>Returns:</dt>
 <dd>числовое значение карты.</dd>
 </dl>
