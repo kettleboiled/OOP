@@ -48,7 +48,9 @@ public class ConsoleView {
             boolean overflow = value > 21;
             for (int i = 0; i < cards.size(); i++) {
                 cards.get(i).print(overflow);
-                if (i < cards.size() - 1) System.out.print(", ");
+                if (i < cards.size() - 1) {
+                    System.out.print(", ");
+                }
             }
         }
 
@@ -211,4 +213,3 @@ public class ConsoleView {
         System.out.println("Deck is empty — creating a new one and shuffling.");
     }
 }
-

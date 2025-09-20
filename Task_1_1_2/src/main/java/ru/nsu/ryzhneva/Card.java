@@ -77,7 +77,8 @@ public class Card {
      * @param overflow если true - туз печатается как 1, если false - как 11.
      */
     public void print(boolean overflow) {
-        System.out.print(this.rank + " " + this.suit + " (" + this.value(overflow) + ")");
+        String s = String.format("%s %s (%d)", this.rank, this.suit, this.value(overflow));
+        System.out.print(s);
     }
 
     /**
@@ -87,6 +88,7 @@ public class Card {
      */
     @Override
     public String toString() {
-        return this.rank + " " + this.suit;
+        return String.format("%s %s", this.rank, this.suit);
     }
+
 }
