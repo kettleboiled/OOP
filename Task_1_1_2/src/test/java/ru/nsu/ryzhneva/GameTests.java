@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.List;
+import java.io.PrintStream;;
 
 import static org.junit.jupiter.api.Assertions.*;
 
