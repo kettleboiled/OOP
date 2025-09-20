@@ -1,21 +1,41 @@
 package ru.nsu.ryzhneva;
 
-import javax.swing.plaf.synth.SynthDesktopIconUI;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
 
+/**
+ * Класс, представляющий игрока в игре Блэкджек.
+ * Содержит коллекцию карт на руке и методы для работы с ними.
+ */
+
+public class Player {
+    /** Список карт на руке игрока */
     List<Card> hand;
 
+    /**
+     * Конструктор создает нового игрока с пустой рукой.
+     */
     public Player() {
         hand = new ArrayList<>();
     }
 
+    /**
+     * Добавляет карту в руку игрока.
+     *
+     * @param card карта для добавления
+     */
     public void addCard(Card card) {
         hand.add(card);
     }
 
+    /**
+     * Вычисляет текущее значение карт на руке игрока.
+     * Туз считается как 11, если это не приводит к перебору (больше 21),
+     * в противном случае туз считается как 1.
+     *
+     * @return суммарное значение карт на руке
+     */
     public int getValue() {
         int sum = 0;
 
@@ -35,7 +55,7 @@ public class Player {
     /**
      * Вывод карт игрока или дилера через ConsoleView
      * @param participant true — игрок, false — дилер
-     * @param closedCard  true — скрывать вторую карту дилера
+     * @param closedCard  true — закрытая карта дилера
      */
 
     public void printString(boolean participant, boolean closedCard) {
@@ -51,6 +71,11 @@ public class Player {
         }
     }
 
+    /**
+     * Возвращает список карт на руке игрока.
+     *
+     * @return список карт на руке
+     */
     public List<Card> getHand() {
         return hand;
     }

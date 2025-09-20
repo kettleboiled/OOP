@@ -1,22 +1,38 @@
 package ru.nsu.ryzhneva;
 
+/**
+ * Класс, представляющий игральную карту.
+ * Карта имеет масть (suit) и достоинство (rank).
+ */
 public class Card {
-
+    /**
+     * Перечисление возможных достоинств карт.
+     */
     enum Rank {
         Ace, Two, Three, Four, Five, Six, Seven,
         Eight, Nine, Ten, Jack, Queen, King
     }
 
+    /**
+     * Перечисление возможных мастей карт.
+     */
     enum Suit {
         Spades, Hearts, Diamonds, Clubs
     }
 
+    /** Масть карты */
     Suit suit;
+    /** Достоинство карты */
     Rank rank;
 
     /**
-     *  * Suit: 0..3 (Пики, Черви, Бубны, трефы)
-     *  * Rank: 0..12 (туз .. Король)
+     * Конструктор создает карту по числовым идентификаторам масти и достоинства.
+     *
+     * @param suit числовой идентификатор масти (0..3)
+     *             0 - Пики, 1 - Черви, 2 - Бубны, 3 - Трефы
+     * @param rank числовой идентификатор достоинства (0..12)
+     *             0 - Туз, 1 - Двойка, ..., 12 - Король
+     * @throws IllegalArgumentException если передан недопустимый идентификатор масти или достоинства
      */
     public Card(int suit, int rank) throws IllegalArgumentException {
         if (suit < 0 || suit >= Suit.values().length) {
@@ -30,7 +46,13 @@ public class Card {
     }
 
     /**
-     * Возвращает значение карты. Если флаг == true, то туз принимается за 1; в противном случае туз принимается за 11.
+     * Возвращает числовое значение карты в игре.
+     * Туз может иметь значение 1 или 11 в зависимости от флага.
+     * Карты с числовым достоинством (2-10) возвращают свое числовое значение.
+     * Карты с картинками (Валет, Дама, Король) возвращают значение 10.
+     *
+     * @param flag если true - туз считается за 1, если false - туз считается за 11
+     * @return числовое значение карты
      */
     public int value(boolean flag) {
         int r = this.rank.ordinal() + 1;
@@ -45,13 +67,20 @@ public class Card {
     }
 
     /**
-     * Print representation like: "Ace Spades (11)".
-     * overflow == true means Ace printed as 1 (value(overflow) used).
+     * Выводит текстовое представление карты в формате: "Достоинство Масть (значение)".
+     * Значение вычисляется с учетом переданного флага для туза.
+     *
+     * @param overflow если true - туз печатается со значением 1, если false - со значением 11
      */
     public void print(boolean overflow) {
         System.out.print(this.rank + " " + this.suit + " (" + this.value(overflow) + ")");
     }
 
+    /**
+     * Возвращает строковое представление карты в формате: "Достоинство Масть".
+     *
+     * @return строковое представление карты
+     */
     @Override
     public String toString() {
         return this.rank + " " + this.suit;

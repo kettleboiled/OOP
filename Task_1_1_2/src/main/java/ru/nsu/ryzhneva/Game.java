@@ -2,7 +2,14 @@ package ru.nsu.ryzhneva;
 
 import java.util.Scanner;
 
+
+/**
+ * Класс, управляющий логикой игры Блэкджек.
+ * Содержит основную игровую логику, управление раундами и подсчет очков.
+ */
+
 public class Game {
+
 
     Deck deck;
     Player player;
@@ -17,11 +24,18 @@ public class Game {
         newDeck();
     }
 
+    /**
+     * Создает новую колоду и перемешивает ее.
+     */
     private void newDeck() {
         deck = new Deck();
         deck.shuffle();
     }
 
+    /**
+     * Запускает основной игровой цикл.
+     * Управляет раундами игры, запрашивает повтор игры у пользователя.
+     */
     public void start() {
         ConsoleView.welcome();
 
@@ -41,6 +55,12 @@ public class Game {
         ConsoleView.finalScore(winPlayer, winDealer);
     }
 
+    /**
+     * Проверяет наличие блэкджека у игрока или дилера.
+     * Блэкджек - комбинация из двух карт общей стоимостью 21.
+     *
+     * @return true если у кого-то из участников блэкджек, иначе false
+     */
     boolean checkBlackjack() {
         boolean playerBlackjack = (player.getValue() == 21 && player.hand.size() == 2);
         boolean dealerBlackjack = (dealer.getValue() == 21 && dealer.hand.size() == 2);
@@ -64,6 +84,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * Проверяет, набрал ли игрок 21 очко.
+     *
+     * @return true если у игрока 21 очко, иначе false
+     */
     boolean checkPlayerTurn() {
         if (player.getValue() == 21) {
             ConsoleView.player21();
@@ -72,6 +97,11 @@ public class Game {
         return false;
     }
 
+    /**
+     * Проверяет, превысил ли игрок лимит в 21 очко (перебор).
+     *
+     * @return true если у игрока перебор, иначе false
+     */
     boolean checkBust() {
         if (player.getValue() > 21) {
             ConsoleView.playerBust();
@@ -81,6 +111,12 @@ public class Game {
         return false;
     }
 
+    /**
+     * Сравнивает итоговые очки игрока и дилера и определяет победителя.
+     *
+     * @param p очки игрока
+     * @param d очки дилера
+     */
     void compareFinal(int p, int d) {
         if (d > 21) {
             ConsoleView.dealerBust();
@@ -107,7 +143,11 @@ public class Game {
         }
         return deck.drawCard();
     }
-
+    
+    /**
+     * Проводит один раунд игры Блэкджек.
+     * Включает раздачу карт, ходы игрока и дилера, определение победителя.
+     */
     private void playRound() {
         player = new Player();
         dealer = new Player();
