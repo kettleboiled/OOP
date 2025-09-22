@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.gameinput;
 
 import ru.nsu.ryzhneva.cards.Card;
 

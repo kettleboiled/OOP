@@ -1,6 +1,6 @@
 package ru.nsu.ryzhneva.participants;
 
-import ru.nsu.ryzhneva.ConsoleView;
+import ru.nsu.ryzhneva.gameinput.ConsoleView;
 import ru.nsu.ryzhneva.cards.Card;
 import ru.nsu.ryzhneva.cards.Deck;
 

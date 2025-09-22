@@ -15,6 +15,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.cards.Card;
+import ru.nsu.ryzhneva.gameinput.Game;
 import ru.nsu.ryzhneva.participants.Player;
 import ru.nsu.ryzhneva.participants.Dealer;
 

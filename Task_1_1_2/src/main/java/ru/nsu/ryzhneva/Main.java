@@ -1,5 +1,7 @@
 package ru.nsu.ryzhneva;
 
+import ru.nsu.ryzhneva.gameinput.Game;
+
 /**
  * Точка входа в программу.
  * Запускает игру Блэкджек.
