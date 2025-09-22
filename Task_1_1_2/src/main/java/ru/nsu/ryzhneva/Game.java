@@ -12,6 +12,7 @@ import ru.nsu.ryzhneva.participants.Player;
  */
 public class Game {
 
+    private int numDecks = 1;
     public Deck deck;
     public Player player;
     public Dealer dealer;
@@ -29,7 +30,7 @@ public class Game {
      * Создает новую колоду и перемешивает ее.
      */
     private void newDeck() {
-        deck = new Deck();
+        deck = new Deck(numDecks);
         deck.shuffle();
     }
 

@@ -16,12 +16,17 @@ public class Deck {
      * Конструктор создает стандартную колоду из 52 карт.
      * Карты создаются в упорядоченном виде по мастям и достоинствам.
      */
-    public Deck() {
+    public Deck(int countDecks) {
+        if (countDecks <= 0) {
+            countDecks = 1;
+        }
         cards = new ArrayList<>();
 
-        for (int i = 0; i < 52; i++) {
-            Card temp = new Card(i / 13, i % 13);
-            cards.add(temp);
+        for (int k = 0; k < countDecks; k++) {
+            for (int i = 0; i < 52; i++) {
+                Card temp = new Card(i / 13, i % 13);
+                cards.add(temp);
+            }
         }
     }
 

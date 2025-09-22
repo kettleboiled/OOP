@@ -19,13 +19,13 @@ class DeckTests {
 
     @Test
     void testDeck() {
-        Deck deck = new Deck();
+        Deck deck = new Deck(1);
         assertEquals(52, deck.cards.size());
     }
 
     @Test
     void testDrawCard() {
-        Deck d = new Deck();
+        Deck d = new Deck(1);
         int size = d.size();
         Card c = d.drawCard();
         assertNotNull(c);
@@ -34,7 +34,7 @@ class DeckTests {
 
     @Test
     void emptyDeckTest() {
-        Deck d = new Deck();
+        Deck d = new Deck(1);
         for (int i = 0; i < 52; i++) {
             d.drawCard();
         }
@@ -44,7 +44,7 @@ class DeckTests {
 
     @Test
     void testShuffleChangesOrder() {
-        Deck d = new Deck();
+        Deck d = new Deck(1);
         String before = d.cards.toString();
         d.shuffle();
         String after = d.cards.toString();
@@ -54,7 +54,7 @@ class DeckTests {
 
     @Test
     void testIsEmpty() {
-        Deck deck = new Deck();
+        Deck deck = new Deck(1);
         assertFalse(deck.isEmpty());
 
         for (int i = 0; i < 52; i++) {
@@ -66,7 +66,7 @@ class DeckTests {
 
     @Test
     void testSize() {
-        Deck deck = new Deck();
+        Deck deck = new Deck(1);
         assertEquals(52, deck.size());
 
         deck.drawCard();
