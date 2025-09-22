@@ -31,6 +31,7 @@ loadScripts(document, 'script');</script>
 <div class="top-nav" id="navbar-top">
 <div class="skip-nav"><a href="#skip-navbar-top" title="Skip navigation links">Skip navigation links</a></div>
 <ul id="navbar-top-firstrow" class="nav-list" title="Navigation">
+<li><a href="../../../index.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="nav-bar-cell1-rev">Class</li>
 <li><a href="package-tree.html">Tree</a></li>
@@ -136,7 +137,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Сообщает о переборе у дилера (сумма карт превышает 21).</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#dealerDraw(ru.nsu.ryzhneva.Card)" class="member-name-link">dealerDraw</a><wbr>(<a href="Card.html" title="class in ru.nsu.ryzhneva">Card</a>&nbsp;card)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#dealerDraw(ru.nsu.ryzhneva.cards.Card)" class="member-name-link">dealerDraw</a><wbr>(<a href="cards/Card.html" title="class in ru.nsu.ryzhneva.cards">Card</a>&nbsp;card)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Сообщает о взятии карты дилером.</div>
 </div>
@@ -172,7 +173,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Сообщает о переборе у игрока (сумма карт превышает 21).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#playerDraw(ru.nsu.ryzhneva.Card)" class="member-name-link">playerDraw</a><wbr>(<a href="Card.html" title="class in ru.nsu.ryzhneva">Card</a>&nbsp;card)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#playerDraw(ru.nsu.ryzhneva.cards.Card)" class="member-name-link">playerDraw</a><wbr>(<a href="cards/Card.html" title="class in ru.nsu.ryzhneva.cards">Card</a>&nbsp;card)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Сообщает о взятии карты игроком.</div>
 </div>
@@ -188,7 +189,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#showCards(java.lang.String,java.util.List,boolean,int)" class="member-name-link">showCards</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;owner,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Card.html" title="class in ru.nsu.ryzhneva">Card</a>&gt;&nbsp;cards,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="cards/Card.html" title="class in ru.nsu.ryzhneva.cards">Card</a>&gt;&nbsp;cards,
  boolean&nbsp;closed,
  int&nbsp;value)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -273,7 +274,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="showCards(java.lang.String,java.util.List,boolean,int)">
 <h3>showCards</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">showCards</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;owner,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Card.html" title="class in ru.nsu.ryzhneva">Card</a>&gt;&nbsp;cards,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="cards/Card.html" title="class in ru.nsu.ryzhneva.cards">Card</a>&gt;&nbsp;cards,
  boolean&nbsp;closed,
  int&nbsp;value)</span></div>
 <div class="block">Отображает карты указанного участника игры.</div>
@@ -315,9 +316,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="playerDraw(ru.nsu.ryzhneva.Card)">
+<section class="detail" id="playerDraw(ru.nsu.ryzhneva.cards.Card)">
 <h3>playerDraw</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">playerDraw</span><wbr><span class="parameters">(<a href="Card.html" title="class in ru.nsu.ryzhneva">Card</a>&nbsp;card)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">playerDraw</span><wbr><span class="parameters">(<a href="cards/Card.html" title="class in ru.nsu.ryzhneva.cards">Card</a>&nbsp;card)</span></div>
 <div class="block">Сообщает о взятии карты игроком.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -326,9 +327,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="dealerDraw(ru.nsu.ryzhneva.Card)">
+<section class="detail" id="dealerDraw(ru.nsu.ryzhneva.cards.Card)">
 <h3>dealerDraw</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dealerDraw</span><wbr><span class="parameters">(<a href="Card.html" title="class in ru.nsu.ryzhneva">Card</a>&nbsp;card)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dealerDraw</span><wbr><span class="parameters">(<a href="cards/Card.html" title="class in ru.nsu.ryzhneva.cards">Card</a>&nbsp;card)</span></div>
 <div class="block">Сообщает о взятии карты дилером.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
