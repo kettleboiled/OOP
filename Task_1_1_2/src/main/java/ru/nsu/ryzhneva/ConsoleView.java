@@ -3,8 +3,6 @@ package ru.nsu.ryzhneva;
 import java.util.List;
 
 import ru.nsu.ryzhneva.cards.Card;
-
-
 /**
  * Класс для отображения игрового интерфейса в консоли.
  * Содержит статические методы для вывода различных сообщений и состояния игры.

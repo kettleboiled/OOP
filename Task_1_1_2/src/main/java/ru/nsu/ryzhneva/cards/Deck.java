@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
-
 /**
  * Формирует колоду из 52 карт и предоставляет методы для работы с этой колодой.
  */
