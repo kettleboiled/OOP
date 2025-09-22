@@ -14,6 +14,9 @@ import java.lang.reflect.Method;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.cards.Card;
+import ru.nsu.ryzhneva.participants.Player;
+import ru.nsu.ryzhneva.participants.Dealer;
 
 
 /**
@@ -42,7 +45,7 @@ class GameTests {
         game.player.addCard(new Card(0, 0));
         game.player.addCard(new Card(1, 12));
 
-        game.dealer = new Player();
+        game.dealer = new Dealer();
         game.dealer.addCard(new Card(2, 0));
         game.dealer.addCard(new Card(3, 12));
 
@@ -61,7 +64,7 @@ class GameTests {
         game.player.addCard(new Card(0, 0));
         game.player.addCard(new Card(1, 12));
 
-        game.dealer = new Player();
+        game.dealer = new Dealer();
         game.dealer.addCard(new Card(2, 5));
         game.dealer.addCard(new Card(3, 7));
 
@@ -79,7 +82,7 @@ class GameTests {
         game.player.addCard(new Card(0, 5));
         game.player.addCard(new Card(1, 7)); // not 21
 
-        game.dealer = new Player();
+        game.dealer = new Dealer();
         game.dealer.addCard(new Card(2, 0));
         game.dealer.addCard(new Card(3, 12)); // 21
 

@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.cards;
 
 /**
  * Класс, представляющий игральную карту.
@@ -7,29 +7,14 @@ package ru.nsu.ryzhneva;
 public class Card {
 
     /**
-     * Перечисление возможных достоинств карт.
-     */
-    enum Rank {
-        Ace, Two, Three, Four, Five, Six, Seven,
-        Eight, Nine, Ten, Jack, Queen, King
-    }
-
-    /**
-     * Перечисление возможных мастей карт.
-     */
-    enum Suit {
-        Spades, Hearts, Diamonds, Clubs
-    }
-
-    /**
      * Масть карты.
      */
-    Suit suit;
+    public Suit suit;
 
     /**
      * Достоинство карты.
      */
-    Rank rank;
+    public Rank rank;
 
     /**
      * Конструктор создает карту по числовым идентификаторам масти и достоинства.

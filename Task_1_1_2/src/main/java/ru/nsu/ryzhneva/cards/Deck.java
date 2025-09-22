@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.cards;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.Random;
  * Формирует колоду из 52 карт и предоставляет методы для работы с этой колодой.
  */
 public class Deck {
-    List<Card> cards;
+    public List<Card> cards;
     private final Random rand = new Random();
 
     /**

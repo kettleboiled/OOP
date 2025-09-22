@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.cards.Card;
+import ru.nsu.ryzhneva.cards.Deck;
 
 /**
  * Тесты для класса Deck.

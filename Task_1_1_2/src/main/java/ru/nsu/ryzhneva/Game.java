@@ -1,5 +1,10 @@
 package ru.nsu.ryzhneva;
 
+import ru.nsu.ryzhneva.cards.Card;
+import ru.nsu.ryzhneva.cards.Deck;
+import ru.nsu.ryzhneva.participants.Player;
+import ru.nsu.ryzhneva.participants.Dealer;
+
 import java.util.Scanner;
 
 /**
@@ -8,14 +13,14 @@ import java.util.Scanner;
  */
 public class Game {
 
-    Deck deck;
-    Player player;
-    Player dealer;
-    Scanner in = new Scanner(System.in);
+    public Deck deck;
+    public Player player;
+    public Dealer dealer;
+    public Scanner in = new Scanner(System.in);
 
-    int countRounds = 0;
-    int winPlayer = 0;
-    int winDealer = 0;
+    public int countRounds = 0;
+    public int winPlayer = 0;
+    public int winDealer = 0;
 
     public Game() {
         newDeck();
@@ -59,8 +64,8 @@ public class Game {
      * @return true если у кого-то из участников блэкджек, иначе false
      */
     boolean checkBlackjack() {
-        boolean playerBlackjack = (player.getValue() == 21 && player.hand.size() == 2);
-        boolean dealerBlackjack = (dealer.getValue() == 21 && dealer.hand.size() == 2);
+        boolean playerBlackjack = (player.getValue() == 21 && player.getHand().size() == 2);
+        boolean dealerBlackjack = (dealer.getValue() == 21 && dealer.getHand().size() == 2);
 
         if (playerBlackjack || dealerBlackjack) {
             System.out.println("\nDistribution result: ");
@@ -149,7 +154,7 @@ public class Game {
      */
     private void playRound() {
         player = new Player();
-        dealer = new Player();
+        dealer = new Dealer();
 
         // первоначальная раздача: игроку 2 карты, дилеру 2 карты (одна закрытая)
         player.addCard(safeDraw());
@@ -206,20 +211,9 @@ public class Game {
         ConsoleView.dealerTurn();
         dealer.printString(false, false);
 
-        // Розыгрыш дилера при значении < 17
-        while (dealer.getValue() < 17) {
-            Card card = safeDraw();
-            dealer.addCard(card);
-            ConsoleView.dealerDraw(card);
+        // теперь вместо ручного цикла — вызов метода Dealer
+        dealer.playTurn(deck);
 
-            player.printString(true, false);
-            dealer.printString(false, false);
-        }
-
-        // Результат
-        int p = player.getValue();
-        int d = dealer.getValue();
-
-        compareFinal(p, d);
+        compareFinal(player.getValue(), dealer.getValue());
     }
 }

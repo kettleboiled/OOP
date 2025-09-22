@@ -1,5 +1,7 @@
 package ru.nsu.ryzhneva;
 
+import ru.nsu.ryzhneva.cards.Card;
+
 import java.util.List;
 
 /**

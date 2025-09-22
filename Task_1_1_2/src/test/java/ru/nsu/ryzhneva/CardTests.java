@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.cards.Card;
+import ru.nsu.ryzhneva.cards.Rank;
+import ru.nsu.ryzhneva.cards.Suit;
 
 /**
  * Тесты для класса Card.
@@ -28,8 +31,8 @@ public class CardTests {
     @Test
     void testCard() {
         Card c = new Card(0, 0);
-        assertEquals(Card.Suit.Spades, c.suit);
-        assertEquals(Card.Rank.Ace, c.rank);
+        assertEquals(Suit.Spades, c.suit);
+        assertEquals(Rank.Ace, c.rank);
     }
 
     @Test

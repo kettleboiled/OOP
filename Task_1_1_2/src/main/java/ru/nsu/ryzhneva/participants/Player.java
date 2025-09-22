@@ -1,4 +1,7 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.participants;
+
+import ru.nsu.ryzhneva.ConsoleView;
+import ru.nsu.ryzhneva.cards.Card;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +15,7 @@ public class Player {
     /**
      * Список карт на руке игрока.
      */
-    List<Card> hand;
+    public List<Card> hand;
 
     /**
      * Конструктор создает нового игрока с пустой рукой.
