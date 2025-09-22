@@ -4,6 +4,7 @@ import ru.nsu.ryzhneva.ConsoleView;
 import ru.nsu.ryzhneva.cards.Card;
 import ru.nsu.ryzhneva.cards.Deck;
 
+
 /**
  * Класс, представляющий дилера.
  * Наследует Player и добавляет собственную игровую логику.

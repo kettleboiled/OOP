@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 import ru.nsu.ryzhneva.cards.Card;
 import ru.nsu.ryzhneva.cards.Deck;
-import ru.nsu.ryzhneva.participants.Player;
 import ru.nsu.ryzhneva.participants.Dealer;
+import ru.nsu.ryzhneva.participants.Player;
+
 
 /**
  * Класс, управляющий логикой игры Блэкджек.

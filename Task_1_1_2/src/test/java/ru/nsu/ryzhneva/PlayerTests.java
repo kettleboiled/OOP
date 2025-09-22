@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.cards.Card;
 import ru.nsu.ryzhneva.participants.Player;
 
+
 /**
  * Тесты для класса Player.
  */

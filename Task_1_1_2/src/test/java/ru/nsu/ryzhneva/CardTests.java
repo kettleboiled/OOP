@@ -10,6 +10,7 @@ import ru.nsu.ryzhneva.cards.Card;
 import ru.nsu.ryzhneva.cards.Rank;
 import ru.nsu.ryzhneva.cards.Suit;
 
+
 /**
  * Тесты для класса Card.
  */
