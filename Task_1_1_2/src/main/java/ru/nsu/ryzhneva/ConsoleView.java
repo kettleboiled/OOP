@@ -1,8 +1,8 @@
-package ru.nsu.ryzhneva.gameinput;
-
-import ru.nsu.ryzhneva.cards.Card;
+package ru.nsu.ryzhneva;
 
 import java.util.List;
+
+import ru.nsu.ryzhneva.cards.Card;
 
 /**
  * Класс для отображения игрового интерфейса в консоли.

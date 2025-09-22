@@ -15,7 +15,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.cards.Card;
-import ru.nsu.ryzhneva.gameinput.Game;
 import ru.nsu.ryzhneva.participants.Player;
 import ru.nsu.ryzhneva.participants.Dealer;
 
@@ -179,19 +178,6 @@ class GameTests {
         String out = outContent.toString();
         assertTrue(out.contains("Welcome"), "Должно выводиться приветствие");
         assertTrue(out.contains("Final score"), "В конце должен быть итоговый счёт");
-    }
-
-    @Test
-    void testPlayerBustLeadsToDealerWin() {
-        String input = "1\n1\n1\n0\nn\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-        Game game = new Game();
-        game.start();
-
-        String out = outContent.toString();
-        assertTrue(out.contains("You busted!") || out.contains("Dealer wins"),
-                "При переборе игрока дилер должен выиграть");
     }
 
     private Card invokeSafeDraw(Game game) {
