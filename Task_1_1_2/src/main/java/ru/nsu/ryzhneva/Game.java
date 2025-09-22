@@ -1,11 +1,11 @@
 package ru.nsu.ryzhneva;
 
 import java.util.Scanner;
-
 import ru.nsu.ryzhneva.cards.Card;
 import ru.nsu.ryzhneva.cards.Deck;
 import ru.nsu.ryzhneva.participants.Dealer;
 import ru.nsu.ryzhneva.participants.Player;
+
 /**
  * Класс, управляющий логикой игры Блэкджек.
  * Содержит основную игровую логику, управление раундами и подсчет очков.

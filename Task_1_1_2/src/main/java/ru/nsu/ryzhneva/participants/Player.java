@@ -2,9 +2,9 @@ package ru.nsu.ryzhneva.participants;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ru.nsu.ryzhneva.ConsoleView;
 import ru.nsu.ryzhneva.cards.Card;
+
 /**
  * Класс, представляющий игрока в игре Блэкджек.
  * Содержит коллекцию карт на руке и методы для работы с ними.

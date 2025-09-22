@@ -10,14 +10,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import ru.nsu.ryzhneva.cards.Card;
 import ru.nsu.ryzhneva.participants.Dealer;
 import ru.nsu.ryzhneva.participants.Player;
+
 /**
  * Тесты для класса Game.
  */
