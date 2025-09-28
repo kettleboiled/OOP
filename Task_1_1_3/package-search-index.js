@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.ryzhneva"},{"l":"ru.nsu.ryzhneva.operation"},{"l":"ru.nsu.ryzhneva.values"}];updateSearchResults();
