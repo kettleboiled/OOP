@@ -1,12 +1,15 @@
 package ru.nsu.ryzhneva;
 
 import java.util.Map;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.operation.Add;
 import ru.nsu.ryzhneva.values.Number;
 import ru.nsu.ryzhneva.values.Variable;
 
+/**
+ * Тесты Add.
+ */
 public class AddTests {
     private final Variable variableX = new Variable("x");
     private final Expression five = new Number(5);

@@ -1,9 +1,12 @@
 package ru.nsu.ryzhneva;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.values.Number;
 
+/**
+ * Тесты Number.
+ */
 public class NumberTests {
     @Test
     void testNumberEvaluation() {

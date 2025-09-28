@@ -13,13 +13,15 @@ import ru.nsu.ryzhneva.values.Variable;
 
 /**
  * Класс для парсинга математических выражений.
- * Реализует алгоритм Шунтинга для преобразования выражений в постфиксную нотацию (RPN),
+ * Реализует алгоритм Шунтинга для преобразования
+ * выражений в постфиксную нотацию (RPN),
  * а затем строит дерево выражений из полученной RPN.
  */
 public class ExpressionParser {
 
     /**
      * Метод для определения приоритета операторов.
+     *
      * @param operator Оператор.
      * @return Приоритет оператора.
      */
@@ -38,7 +40,9 @@ public class ExpressionParser {
 
     /**
      * Метод токенизации строки.
-     * Разбивает строку на отдельные токены (операторы, операнды и скобки).
+     * Разбивает строку на отдельные токены
+     * (операторы, операнды и скобки).
+     *
      * @param expression Строковое математическое выражение.
      * @return Список токенов.
      */
@@ -55,7 +59,9 @@ public class ExpressionParser {
     }
 
     /**
-     * Метод преобразования в постфиксную нотацию (RPN) с использованием алгоритма Шунтинга.
+     * Метод преобразования в постфиксную нотацию (RPN)
+     * с использованием алгоритма Шунтинга.
+     *
      * @param tokens Список токенов.
      * @return Список токенов в постфиксной нотации.
      */
@@ -64,7 +70,8 @@ public class ExpressionParser {
         Stack<String> operatorStack = new Stack<>();
 
         for (String token : tokens) {
-            if (token.matches("-?\\d+(\\.\\d+)?") || token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
+            if (token.matches("-?\\d+(\\.\\d+)?")
+                    || token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
                 outputQueue.add(token);
             } else if (token.equals("(")) {
                 operatorStack.push(token);
@@ -78,7 +85,8 @@ public class ExpressionParser {
                 }
                 operatorStack.pop(); // Выкидываем открывающую скобку
             } else { // Оператор
-                while (!operatorStack.isEmpty() && getPrecedence(operatorStack.peek()) >= getPrecedence(token)) {
+                while (!operatorStack.isEmpty() &&
+                        getPrecedence(operatorStack.peek()) >= getPrecedence(token)) {
                     outputQueue.add(operatorStack.pop());
                 }
                 operatorStack.push(token);
@@ -96,6 +104,7 @@ public class ExpressionParser {
 
     /**
      * Метод построения дерева выражений из постфиксной нотации (RPN).
+     *
      * @param rpn Список токенов в постфиксной нотации.
      * @return Корневой узел дерева выражений.
      */
@@ -108,7 +117,8 @@ public class ExpressionParser {
                 expressionStack.push(new Variable(token));
             } else { // Оператор
                 if (expressionStack.size() < 2) {
-                    throw new IllegalArgumentException("Ошибка в выражении: недостаточно операндов для оператора '" + token + "'.");
+                    throw new IllegalArgumentException("Ошибка в выражении: " +
+                            "недостаточно операндов для оператора '" + token + "'.");
                 }
                 Expression right = expressionStack.pop();
                 Expression left = expressionStack.pop();
@@ -133,6 +143,7 @@ public class ExpressionParser {
 
     /**
      * Главный публичный метод для парсинга выражения.
+     *
      * @param expressionString Входная строка, например "3 + 4 * x".
      * @return Корневой узел дерева выражений.
      */

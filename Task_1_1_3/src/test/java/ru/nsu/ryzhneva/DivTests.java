@@ -2,13 +2,16 @@ package ru.nsu.ryzhneva;
 
 import java.util.Collections;
 import java.util.Map;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.operation.Div;
 import ru.nsu.ryzhneva.values.Number;
 import ru.nsu.ryzhneva.values.Variable;
 
+/**
+ * Тесты Div.
+ */
 public class DivTests {
 
     private final Variable variableX = new Variable("x");

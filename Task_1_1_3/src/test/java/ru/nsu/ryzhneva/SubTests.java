@@ -1,13 +1,16 @@
 package ru.nsu.ryzhneva;
 
 import java.util.Map;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.operation.Mul;
-import ru.nsu.ryzhneva.values.Number;
 import ru.nsu.ryzhneva.operation.Sub;
+import ru.nsu.ryzhneva.values.Number;
 import ru.nsu.ryzhneva.values.Variable;
 
+/**
+ * Тесты Sub.
+ */
 public class SubTests {
 
     private final Variable variableX = new Variable("x");

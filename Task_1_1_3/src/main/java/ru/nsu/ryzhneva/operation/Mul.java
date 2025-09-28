@@ -38,7 +38,8 @@ public class Mul extends Operation {
      */
     @Override
     public Expression derivative(String varName) {
-        return new Add(new Mul(left.derivative(varName), right), new Mul(left, right.derivative(varName))
+        return new Add(new Mul(left.derivative(varName), right),
+                new Mul(left, right.derivative(varName))
         );
     }
 
@@ -53,8 +54,8 @@ public class Mul extends Operation {
         Expression simplifiedRight = right.funcSimple();
 
         // Умножение на 0
-        if ((simplifiedLeft instanceof Number && ((Number) simplifiedLeft).getValue() == 0) ||
-                (simplifiedRight instanceof Number && ((Number) simplifiedRight).getValue() == 0)) {
+        if ((simplifiedLeft instanceof Number && ((Number) simplifiedLeft).getValue() == 0)
+                || (simplifiedRight instanceof Number && ((Number) simplifiedRight).getValue() == 0)) {
             return new Number(0);
         }
         // Умножение на 1

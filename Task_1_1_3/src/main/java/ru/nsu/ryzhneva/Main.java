@@ -21,11 +21,13 @@ public class Main {
         ExpressionParser parser = new ExpressionParser();
         Expression parsedExpression = parser.parse(input);
 
-        System.out.println("Original Expression: " + parsedExpression.print()); // Вывод: ((x*1)+(5-5))
+        System.out.println("Original Expression: "
+                + parsedExpression.print()); // Вывод: ((x*1)+(5-5))
 
         // 2. Упрощение выражения
         Expression simplifiedExpression = parsedExpression.funcSimple();
 
-        System.out.println("Simplified Expression: " + simplifiedExpression.print()); // Вывод: x
+        System.out.println("Simplified Expression: "
+                + simplifiedExpression.print()); // Вывод: x
     }
 }

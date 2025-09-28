@@ -2,12 +2,15 @@ package ru.nsu.ryzhneva;
 
 import java.util.Collections;
 import java.util.Map;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.operation.Add;
 import ru.nsu.ryzhneva.values.Variable;
 
+/**
+ * Тесты Expression.
+ */
 public class ExpressionTests {
 
     @Test

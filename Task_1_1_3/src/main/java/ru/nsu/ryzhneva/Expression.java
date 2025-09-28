@@ -24,6 +24,7 @@ public abstract class Expression {
     public abstract double eval(Map<String, Double> variables);
 
     /**
+     * Вывод строки.
      *
      * @return Выражение в строковом представлении.
      */
