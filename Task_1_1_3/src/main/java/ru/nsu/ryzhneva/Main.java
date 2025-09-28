@@ -2,7 +2,15 @@ package ru.nsu.ryzhneva;
 
 import java.util.Scanner;
 
+/**
+ * Точка входа для программы.
+ */
 public class Main {
+    /**
+     * Запускает проект.
+     *
+     * @param args Аргументы.
+     */
     public static void main(String[] args) {
         Scanner sn = new Scanner(System.in);
 

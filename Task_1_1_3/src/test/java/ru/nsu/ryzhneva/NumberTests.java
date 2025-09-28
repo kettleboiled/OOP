@@ -1,9 +1,8 @@
 package ru.nsu.ryzhneva;
 
 import org.junit.jupiter.api.Test;
-import ru.nsu.ryzhneva.values.Number;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import ru.nsu.ryzhneva.values.Number;
 
 public class NumberTests {
     @Test

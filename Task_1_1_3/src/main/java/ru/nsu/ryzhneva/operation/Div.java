@@ -8,10 +8,23 @@ import ru.nsu.ryzhneva.values.Number;
  */
 public class Div extends Operation {
 
+    /**
+     * Конструктор класса.
+     *
+     * @param left Левый операнд.
+     * @param right Правый операнд.
+     */
     public Div(Expression left, Expression right) {
         super(left, right, "/");
     }
 
+    /**
+     * Операция деления двух выражений.
+     *
+     * @param left Делимое.
+     * @param right Делитель.
+     * @return Результат.
+     */
     @Override
     public double applyOperation(double left, double right) {
         // Защита от деления на ноль
@@ -22,7 +35,8 @@ public class Div extends Operation {
     }
 
     /**
-     * Выполняет дифференцирование по правилу частного: (f/g)' = (f'g - fg') / g^2
+     * Выполняет дифференцирование по правилу частного: (f/g)' = (f'g - fg') / g^2.
+     *
      * @param varName Имя переменной, по которой производится дифференцирование.
      * @return Новое выражение, представляющее собой производную.
      */
@@ -31,9 +45,9 @@ public class Div extends Operation {
         // f'g
         Expression fPrimeG = new Mul(left.derivative(varName), right);
         // fg'
-        Expression fGPrime = new Mul(left, right.derivative(varName));
+        Expression fgPrime = new Mul(left, right.derivative(varName));
         // f'g - fg'
-        Expression numerator = new Sub(fPrimeG, fGPrime);
+        Expression numerator = new Sub(fPrimeG, fgPrime);
         // g^2
         Expression denominator = new Mul(right, right);
 
@@ -42,6 +56,7 @@ public class Div extends Operation {
 
     /**
      * Упрощает выражение деления.
+     * 
      * @return Новое, упрощенное выражение.
      */
     @Override

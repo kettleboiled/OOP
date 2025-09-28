@@ -3,22 +3,50 @@ package ru.nsu.ryzhneva.operation;
 import ru.nsu.ryzhneva.Expression;
 import ru.nsu.ryzhneva.values.Number;
 
+/**
+ * Класс, представляющий операцию умножения двух выражений.
+ */
 public class Mul extends Operation {
+
+    /**
+     * Конструктор класса.
+     *
+     * @param left Левый операнд.
+     * @param right Правый операнд.
+     */
     public Mul(Expression left, Expression right) {
         super(left, right, "*");
     }
 
+    /**
+     * Операция умножения двух выражений.
+     *
+     * @param left Делимое.
+     * @param right Делитель.
+     * @return Результат.
+     */
     @Override
     protected double applyOperation(double left, double right) {
         return left * right;
     }
 
+    /**
+     * Выполняет дифференцирование по правилу произведения: (f*g)' = (f'g + fg').
+     *
+     * @param varName Имя переменной, по которой производится дифференцирование.
+     * @return Новое выражение, представляющее собой производную.
+     */
     @Override
     public Expression derivative(String varName) {
         return new Add(new Mul(left.derivative(varName), right), new Mul(left, right.derivative(varName))
         );
     }
 
+    /**
+     * Упрощает выражение умножения.
+     *
+     * @return Новое, упрощенное выражение.
+     */
     @Override
     public Expression funcSimple() {
         Expression simplifiedLeft = left.funcSimple();

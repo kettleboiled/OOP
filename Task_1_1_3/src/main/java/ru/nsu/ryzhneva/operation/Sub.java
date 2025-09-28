@@ -4,22 +4,57 @@ import ru.nsu.ryzhneva.Expression;
 import ru.nsu.ryzhneva.values.Number;
 import ru.nsu.ryzhneva.values.Variable;
 
+/**
+ * Класс, представляющий операцию вычитания двух выражений.
+ * Реализует операцию вычитания для выражений в виде дерева.
+ * Этот класс наследует от {@link Operation} и предоставляет реализацию
+ * для методов дифференцирования, упрощения и вычисления значения выражений.
+ */
 public class Sub extends Operation {
 
+    /**
+     * Конструктор для создания операции вычитания.
+     *
+     * @param left  Левое выражение (minuend).
+     * @param right Правое выражение (subtrahend).
+     */
     public Sub(Expression left, Expression right) {
         super(left, right, "-");
     }
 
+    /**
+     * Выполняет операцию вычитания для двух чисел.
+     *
+     * @param left  Число, из которого вычитается (minuend).
+     * @param right Число, которое вычитается (subtrahend).
+     * @return Результат вычитания (left - right).
+     */
     @Override
     public double applyOperation(double left, double right) {
         return left - right;
     }
 
+    /**
+     * Выполняет дифференцирование выражения по правилу дифференцирования для вычитания.
+     * Производная от выражения вида (f - g) вычисляется как (f' - g').
+     *
+     * @param varName Имя переменной, по которой производится дифференцирование.
+     * @return Новое выражение, представляющее собой производную.
+     */
     @Override
     public Expression derivative(String varName) {
         return new Sub(left.derivative(varName), right.derivative(varName));
     }
 
+    /**
+     * Упрощает выражение вычитания.
+     * Применяет базовые правила упрощения, такие как:
+     *  - Если выражения идентичны, результат равен 0.
+     *  - Если правое выражение равно 0, возвращаем левое.
+     *  - Если оба выражения - числа, производим их вычитание.
+     *
+     * @return Упрощенное выражение.
+     */
     @Override
     public Expression funcSimple() {
         Expression simpleLeft = left.funcSimple();
@@ -47,10 +82,11 @@ public class Sub extends Operation {
 
     /**
      * Проверяет равенство двух выражений.
+     * Равенство проверяется рекурсивно для всех типов выражений: числа, переменные, операции.
      *
-     * @param expr1 первое выражение
-     * @param expr2 второе выражение
-     * @return true если выражения равны
+     * @param expr1 Первое выражение.
+     * @param expr2 Второе выражение.
+     * @return true, если выражения равны, иначе false.
      */
     private boolean areExpressionsEqual(Expression expr1, Expression expr2) {
         if (expr1.getClass() != expr2.getClass()) {
@@ -95,5 +131,4 @@ public class Sub extends Operation {
 
         return false;
     }
-
 }
