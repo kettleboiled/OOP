@@ -104,7 +104,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.Expression)" class="member-name-link">Div</a><wbr>(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
  <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;right)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор класса.</div>
+</div>
 </div>
 </section>
 </li>
@@ -122,11 +124,13 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyOperation(double,double)" class="member-name-link">applyOperation</a><wbr>(double&nbsp;left,
  double&nbsp;right)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Операция деления двух выражений.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#derivative(java.lang.String)" class="member-name-link">derivative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;varName)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Выполняет дифференцирование по правилу частного: (f/g)' = (f'g - fg') / g^2</div>
+<div class="block">Выполняет дифференцирование по правилу частного: (f/g)' = (f'g - fg') / g^2.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#funcSimple()" class="member-name-link">funcSimple</a>()</code></div>
@@ -158,6 +162,12 @@ loadScripts(document, 'script');</script>
 <h3>Div</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Div</span><wbr><span class="parameters">(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
  <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;right)</span></div>
+<div class="block">Конструктор класса.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>left</code> - Левый операнд.</dd>
+<dd><code>right</code> - Правый операнд.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -173,9 +183,15 @@ loadScripts(document, 'script');</script>
 <h3>applyOperation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">applyOperation</span><wbr><span class="parameters">(double&nbsp;left,
  double&nbsp;right)</span></div>
+<div class="block">Операция деления двух выражений.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Operation.html#applyOperation(double,double)">applyOperation</a></code>&nbsp;in class&nbsp;<code><a href="Operation.html" title="class in ru.nsu.ryzhneva.operation">Operation</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>left</code> - Делимое.</dd>
+<dd><code>right</code> - Делитель.</dd>
+<dt>Returns:</dt>
+<dd>Результат.</dd>
 </dl>
 </section>
 </li>
@@ -183,7 +199,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="derivative(java.lang.String)">
 <h3>derivative</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;varName)</span></div>
-<div class="block">Выполняет дифференцирование по правилу частного: (f/g)' = (f'g - fg') / g^2</div>
+<div class="block">Выполняет дифференцирование по правилу частного: (f/g)' = (f'g - fg') / g^2.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>

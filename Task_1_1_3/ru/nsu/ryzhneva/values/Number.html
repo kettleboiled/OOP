@@ -79,6 +79,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Number</span>
 <span class="extends-implements">extends <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span></div>
+<div class="block">Класс, представляющий числовое значение в математическом выражении.
+ Число может быть использовано в вычислениях, дифференцировании и упрощении выражений.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -91,7 +93,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(double)" class="member-name-link">Number</a><wbr>(double&nbsp;value)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор для создания числа с указанным значением.</div>
+</div>
 </div>
 </section>
 </li>
@@ -109,24 +113,28 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#derivative(java.lang.String)" class="member-name-link">derivative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;varName)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Выполняет символьное дифференцирование по указанной переменной.</div>
+<div class="block">Выполняет дифференцирование числа.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eval(java.util.Map)" class="member-name-link">eval</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;variables)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Вычисляет значение выражения с заданными значениями переменных.</div>
+<div class="block">Вычисляет значение числа.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#funcSimple()" class="member-name-link">funcSimple</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Упрощает текущее выражение согласно заданным правилам.</div>
+<div class="block">Упрощает выражение для числа.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getValue()" class="member-name-link">getValue</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает значение числа.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#print()" class="member-name-link">print</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает строковое представление числа.</div>
+</div>
 </div>
 </div>
 </div>
@@ -148,6 +156,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(double)">
 <h3>Number</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Number</span><wbr><span class="parameters">(double&nbsp;value)</span></div>
+<div class="block">Конструктор для создания числа с указанным значением.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>value</code> - Значение числа.</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -162,19 +175,24 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getValue()">
 <h3>getValue</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getValue</span>()</div>
+<div class="block">Возвращает значение числа.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Значение числа.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="funcSimple()">
 <h3>funcSimple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span>&nbsp;<span class="element-name">funcSimple</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../Expression.html#funcSimple()">Expression</a></code></span></div>
-<div class="block">Упрощает текущее выражение согласно заданным правилам.</div>
+<div class="block">Упрощает выражение для числа.
+ Число не изменяется в процессе упрощения.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#funcSimple()">funcSimple</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Returns:</dt>
-<dd>Новое, упрощенное выражение.</dd>
+<dd>Само число, так как оно не может быть упрощено.</dd>
 </dl>
 </section>
 </li>
@@ -182,15 +200,15 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="derivative(java.lang.String)">
 <h3>derivative</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;varName)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../Expression.html#derivative(java.lang.String)">Expression</a></code></span></div>
-<div class="block">Выполняет символьное дифференцирование по указанной переменной.</div>
+<div class="block">Выполняет дифференцирование числа.
+ Производная от числа всегда равна нулю.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>varName</code> - Имя переменной.</dd>
+<dd><code>varName</code> - Имя переменной, по которой производится дифференцирование.</dd>
 <dt>Returns:</dt>
-<dd>Новое выражение, представляющее собой производную.</dd>
+<dd>Число, представляющее собой производную (всегда 0).</dd>
 </dl>
 </section>
 </li>
@@ -198,15 +216,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eval(java.util.Map)">
 <h3>eval</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;variables)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../Expression.html#eval(java.util.Map)">Expression</a></code></span></div>
-<div class="block">Вычисляет значение выражения с заданными значениями переменных.</div>
+<div class="block">Вычисляет значение числа. Число не зависит от переменных.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#eval(java.util.Map)">eval</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>variables</code> - Переменные со своими значениями.</dd>
+<dd><code>variables</code> - Карта, содержащая значения переменных.</dd>
 <dt>Returns:</dt>
-<dd>Результат вычисления.</dd>
+<dd>Значение числа.</dd>
 </dl>
 </section>
 </li>
@@ -214,11 +231,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="print()">
 <h3>print</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">print</span>()</div>
+<div class="block">Возвращает строковое представление числа.
+ Если число является целым, выводится без десятичной части.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#print()">print</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Returns:</dt>
-<dd>Выражение в строковом представлении.</dd>
+<dd>Строковое представление числа.</dd>
 </dl>
 </section>
 </li>

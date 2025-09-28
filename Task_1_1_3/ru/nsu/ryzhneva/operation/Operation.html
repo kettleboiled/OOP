@@ -83,6 +83,9 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Operation</span>
 <span class="extends-implements">extends <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span></div>
+<div class="block">Абстрактный класс, представляющий математическую операцию с двумя операндами.
+ Этот класс наследуется от <a href="../Expression.html" title="class in ru.nsu.ryzhneva"><code>Expression</code></a> и реализует базовые методы для работы с операциями,
+ такими как печать выражения, вычисление и выполнение операции над двумя выражениями.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -118,7 +121,9 @@ loadScripts(document, 'script');</script>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.Expression,java.lang.String)" class="member-name-link">Operation</a><wbr>(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
  <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;right,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operator)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор для создания операции с двумя операндами.</div>
+</div>
 </div>
 </section>
 </li>
@@ -136,21 +141,29 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#applyOperation(double,double)" class="member-name-link">applyOperation</a><wbr>(double&nbsp;left,
  double&nbsp;right)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Абстрактный метод для выполнения операции над двумя числовыми значениями.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eval(java.util.Map)" class="member-name-link">eval</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;variables)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Вычисляет значение выражения с заданными значениями переменных.</div>
+<div class="block">Вычисляет значение выражения с подставленными значениями переменных.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLeft()" class="member-name-link">getLeft</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает левый операнд операции.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRight()" class="member-name-link">getRight</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает правый операнд операции.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#print()" class="member-name-link">print</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Метод для вывода строки, представляющей операцию.</div>
+</div>
 </div>
 </div>
 </div>
@@ -203,6 +216,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Operation</span><wbr><span class="parameters">(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
  <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;right,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operator)</span></div>
+<div class="block">Конструктор для создания операции с двумя операндами.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>left</code> - Левый операнд.</dd>
+<dd><code>right</code> - Правый операнд.</dd>
+<dd><code>operator</code> - Оператор операции (например, "+" или "-").</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -217,23 +237,35 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getLeft()">
 <h3>getLeft</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span>&nbsp;<span class="element-name">getLeft</span>()</div>
+<div class="block">Возвращает левый операнд операции.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Левый операнд.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getRight()">
 <h3>getRight</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span>&nbsp;<span class="element-name">getRight</span>()</div>
+<div class="block">Возвращает правый операнд операции.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>Правый операнд.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="print()">
 <h3>print</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">print</span>()</div>
+<div class="block">Метод для вывода строки, представляющей операцию.
+ Форматирует выражение в виде "(левое выражение оператор правое выражение)".</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#print()">print</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Returns:</dt>
-<dd>Выражение в строковом представлении.</dd>
+<dd>Строковое представление операции.</dd>
 </dl>
 </section>
 </li>
@@ -242,21 +274,30 @@ loadScripts(document, 'script');</script>
 <h3>applyOperation</h3>
 <div class="member-signature"><span class="modifiers">protected abstract</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">applyOperation</span><wbr><span class="parameters">(double&nbsp;left,
  double&nbsp;right)</span></div>
+<div class="block">Абстрактный метод для выполнения операции над двумя числовыми значениями.
+ Этот метод должен быть реализован в подклассах для конкретных операций (например, сложение или вычитание).</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>left</code> - Число, представляющее левый операнд.</dd>
+<dd><code>right</code> - Число, представляющее правый операнд.</dd>
+<dt>Returns:</dt>
+<dd>Результат выполнения операции.</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="eval(java.util.Map)">
 <h3>eval</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;variables)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../Expression.html#eval(java.util.Map)">Expression</a></code></span></div>
-<div class="block">Вычисляет значение выражения с заданными значениями переменных.</div>
+<div class="block">Вычисляет значение выражения с подставленными значениями переменных.
+ Рекурсивно вычисляет значения левого и правого операндов и применяет операцию.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#eval(java.util.Map)">eval</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>variables</code> - Переменные со своими значениями.</dd>
+<dd><code>variables</code> - Карта с переменными и их значениями.</dd>
 <dt>Returns:</dt>
-<dd>Результат вычисления.</dd>
+<dd>Результат вычисления выражения.</dd>
 </dl>
 </section>
 </li>

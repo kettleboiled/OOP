@@ -81,6 +81,10 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Sub</span>
 <span class="extends-implements">extends <a href="Operation.html" title="class in ru.nsu.ryzhneva.operation">Operation</a></span></div>
+<div class="block">Класс, представляющий операцию вычитания двух выражений.
+ Реализует операцию вычитания для выражений в виде дерева.
+ Этот класс наследует от <a href="Operation.html" title="class in ru.nsu.ryzhneva.operation"><code>Operation</code></a> и предоставляет реализацию
+ для методов дифференцирования, упрощения и вычисления значения выражений.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -103,7 +107,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.Expression)" class="member-name-link">Sub</a><wbr>(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
  <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;right)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Конструктор для создания операции вычитания.</div>
+</div>
 </div>
 </section>
 </li>
@@ -121,16 +127,18 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#applyOperation(double,double)" class="member-name-link">applyOperation</a><wbr>(double&nbsp;left,
  double&nbsp;right)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Выполняет операцию вычитания для двух чисел.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#derivative(java.lang.String)" class="member-name-link">derivative</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;varName)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Выполняет символьное дифференцирование по указанной переменной.</div>
+<div class="block">Выполняет дифференцирование выражения по правилу дифференцирования для вычитания.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#funcSimple()" class="member-name-link">funcSimple</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Упрощает текущее выражение согласно заданным правилам.</div>
+<div class="block">Упрощает выражение вычитания.</div>
 </div>
 </div>
 </div>
@@ -157,6 +165,12 @@ loadScripts(document, 'script');</script>
 <h3>Sub</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Sub</span><wbr><span class="parameters">(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
  <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;right)</span></div>
+<div class="block">Конструктор для создания операции вычитания.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>left</code> - Левое выражение (minuend).</dd>
+<dd><code>right</code> - Правое выражение (subtrahend).</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -172,9 +186,15 @@ loadScripts(document, 'script');</script>
 <h3>applyOperation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">applyOperation</span><wbr><span class="parameters">(double&nbsp;left,
  double&nbsp;right)</span></div>
+<div class="block">Выполняет операцию вычитания для двух чисел.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Operation.html#applyOperation(double,double)">applyOperation</a></code>&nbsp;in class&nbsp;<code><a href="Operation.html" title="class in ru.nsu.ryzhneva.operation">Operation</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>left</code> - Число, из которого вычитается (minuend).</dd>
+<dd><code>right</code> - Число, которое вычитается (subtrahend).</dd>
+<dt>Returns:</dt>
+<dd>Результат вычитания (left - right).</dd>
 </dl>
 </section>
 </li>
@@ -182,13 +202,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="derivative(java.lang.String)">
 <h3>derivative</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;varName)</span></div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../Expression.html#derivative(java.lang.String)">Expression</a></code></span></div>
-<div class="block">Выполняет символьное дифференцирование по указанной переменной.</div>
+<div class="block">Выполняет дифференцирование выражения по правилу дифференцирования для вычитания.
+ Производная от выражения вида (f - g) вычисляется как (f' - g').</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>varName</code> - Имя переменной.</dd>
+<dd><code>varName</code> - Имя переменной, по которой производится дифференцирование.</dd>
 <dt>Returns:</dt>
 <dd>Новое выражение, представляющее собой производную.</dd>
 </dl>
@@ -198,13 +218,16 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="funcSimple()">
 <h3>funcSimple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span>&nbsp;<span class="element-name">funcSimple</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="../Expression.html#funcSimple()">Expression</a></code></span></div>
-<div class="block">Упрощает текущее выражение согласно заданным правилам.</div>
+<div class="block">Упрощает выражение вычитания.
+ Применяет базовые правила упрощения, такие как:
+  - Если выражения идентичны, результат равен 0.
+  - Если правое выражение равно 0, возвращаем левое.
+  - Если оба выражения - числа, производим их вычитание.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#funcSimple()">funcSimple</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Returns:</dt>
-<dd>Новое, упрощенное выражение.</dd>
+<dd>Упрощенное выражение.</dd>
 </dl>
 </section>
 </li>
