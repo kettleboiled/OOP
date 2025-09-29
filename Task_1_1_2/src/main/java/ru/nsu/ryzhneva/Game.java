@@ -12,7 +12,7 @@ import ru.nsu.ryzhneva.participants.Player;
  */
 public class Game {
 
-    private int numDecks = 1;
+    private int numDecks;
     public Deck deck;
     public Player player;
     public Dealer dealer;
@@ -23,15 +23,35 @@ public class Game {
     public int winDealer = 0;
 
     public Game() {
+        askNumDecks();
         newDeck();
+    }
+    /**
+     * Запрашивает у пользователя количество колод.
+     */
+    private void askNumDecks() {
+        System.out.println("Введите количество колод для игры: ");
+        while (true) {
+            try {
+                numDecks = in.nextInt();
+                if (numDecks < 1) {
+                    System.out.println("Количество колод должно быть больше 0.");
+                } else {
+                    break;  // Выход из цикла, если введено корректное число
+                }
+            } catch (Exception e) {
+                in.nextLine();  // Очищаем буфер ввода
+                System.out.println("Ошибка ввода.");
+            }
+        }
     }
 
     /**
      * Создает новую колоду и перемешивает ее.
      */
     private void newDeck() {
-        deck = new Deck(numDecks);
-        deck.shuffle();
+        deck = new Deck(numDecks);  // Создаем колоду с заданным количеством
+        deck.shuffle();  // Перемешиваем колоду
     }
 
     /**
