@@ -12,7 +12,7 @@ import ru.nsu.ryzhneva.participants.Player;
  */
 public class Game {
 
-    private int numDecks;
+    private int numDecks;  // Количество колод
     public Deck deck;
     public Player player;
     public Dealer dealer;
@@ -26,6 +26,7 @@ public class Game {
         askNumDecks();
         newDeck();
     }
+
     /**
      * Запрашивает у пользователя количество колод.
      */
@@ -37,10 +38,10 @@ public class Game {
                 if (numDecks < 1) {
                     System.out.println("Количество колод должно быть больше 0.");
                 } else {
-                    break;  // Выход из цикла, если введено корректное число
+                    break;
                 }
             } catch (Exception e) {
-                in.nextLine();  // Очищаем буфер ввода
+                in.nextLine();
                 System.out.println("Ошибка ввода.");
             }
         }

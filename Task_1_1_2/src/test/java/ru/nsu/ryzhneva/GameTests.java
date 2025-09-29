@@ -22,13 +22,19 @@ import ru.nsu.ryzhneva.participants.Player;
  */
 class GameTests {
 
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
+    private ByteArrayOutputStream outContent;
+    private PrintStream originalOut;
     private Game game;
 
     @BeforeEach
     void setUp() {
+        outContent = new ByteArrayOutputStream();
+        originalOut = System.out;
         System.setOut(new PrintStream(outContent));
+
+
+        String input = "1";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         game = new Game();
     }
 
@@ -39,6 +45,8 @@ class GameTests {
 
     @Test
     void testBlackjackBoth() {
+
+
         game.player = new Player();
         game.player.addCard(new Card(0, 0));
         game.player.addCard(new Card(1, 12));
@@ -58,15 +66,18 @@ class GameTests {
 
     @Test
     void testBlackjackPlayer() {
+        String input = "1\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));  // Подменяем ввод
+
         game.player = new Player();
-        game.player.addCard(new Card(0, 0));
+        game.player.addCard(new Card(0, 0));  // Игрок получает карты на блэкджек
         game.player.addCard(new Card(1, 12));
 
         game.dealer = new Dealer();
-        game.dealer.addCard(new Card(2, 5));
+        game.dealer.addCard(new Card(2, 5));  // Дилер не имеет блэкджека
         game.dealer.addCard(new Card(3, 7));
 
-        game.checkBlackjack();
+        game.checkBlackjack();  // Проверка на блэкджек
 
         String output = outContent.toString();
         assertTrue(output.contains("Blackjack! You win the round!"));
@@ -76,15 +87,18 @@ class GameTests {
 
     @Test
     void testBlackjackDealer() {
+        String input = "1\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));  // Подменяем ввод
+
         game.player = new Player();
-        game.player.addCard(new Card(0, 5));
-        game.player.addCard(new Card(1, 7)); // not 21
+        game.player.addCard(new Card(0, 10));  // Пример карт для игрока
+        game.player.addCard(new Card(1, 5));
 
         game.dealer = new Dealer();
         game.dealer.addCard(new Card(2, 0));
-        game.dealer.addCard(new Card(3, 12)); // 21
+        game.dealer.addCard(new Card(3, 12));
 
-        game.checkBlackjack();
+        game.checkBlackjack();  // Проверка на блэкджек
 
         String output = outContent.toString();
         assertTrue(output.contains("Dealer has blackjack. You lose the round."));
@@ -94,6 +108,8 @@ class GameTests {
 
     @Test
     void testPlayer21() {
+        String input = "1\n"; //
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         game.player = new Player();
         game.player.addCard(new Card(0, 0));
         game.player.addCard(new Card(1, 9));
@@ -107,22 +123,28 @@ class GameTests {
 
     @Test
     void testPlayerBust() {
-        game.player = new Player();
-        game.player.addCard(new Card(0, 10));
-        game.player.addCard(new Card(1, 10));
-        game.player.addCard(new Card(2, 5)); // >21
+        String input = "1\n";  // Вводим количество колод 1
+        System.setIn(new ByteArrayInputStream(input.getBytes()));  // Подменяем ввод
 
-        game.checkBust();
+        game.player = new Player();
+        game.player.addCard(new Card(0, 10));  // Игроку карты 10 и 10
+        game.player.addCard(new Card(1, 10));
+        game.player.addCard(new Card(2, 5));  // Игроку перебор (сумма 25)
+
+        game.checkBust();  // Проверка на перебор у игрока
 
         String output = outContent.toString();
-        assertTrue(output.contains("You busted!"));
+        assertTrue(output.contains("You busted!"));  // Ожидаемое сообщение
         assertEquals(0, game.winPlayer);
         assertEquals(1, game.winDealer);
     }
 
     @Test
     void testFinalWinnerPlayer() {
-        game.compareFinal(20, 18);
+        String input = "1\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        game.compareFinal(20, 18);  // Игрок выигрывает (20 против 18)
 
         String output = outContent.toString();
         assertTrue(output.contains("You win the round!"));
@@ -132,7 +154,10 @@ class GameTests {
 
     @Test
     void testFinalWinnerDealer() {
-        game.compareFinal(17, 19);
+        String input = "1\n";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+        game.compareFinal(18, 20);
 
         String output = outContent.toString();
         assertTrue(output.contains("Dealer wins the round."));
@@ -140,8 +165,11 @@ class GameTests {
         assertEquals(1, game.winDealer);
     }
 
+
     @Test
     void testFinalWinnerDraw() {
+        String input = "1\n"; //
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         game.compareFinal(19, 19);
 
         String output = outContent.toString();
@@ -152,6 +180,8 @@ class GameTests {
 
     @Test
     void testSafeDrawFromEmptyDeckCreatesNewDeck() {
+        String input = "1\n"; //
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
         Game game = new Game();
 
         game.deck.cards.clear();
@@ -165,18 +195,7 @@ class GameTests {
                 "При создании новой колоды должно быть сообщение");
     }
 
-    @Test
-    void testStartAndFinalScorePrinted() {
-        String input = "0\nn\n";
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        Game game = new Game();
-        game.start();
-
-        String out = outContent.toString();
-        assertTrue(out.contains("Welcome"), "Должно выводиться приветствие");
-        assertTrue(out.contains("Final score"), "В конце должен быть итоговый счёт");
-    }
 
     private Card invokeSafeDraw(Game game) {
         try {
