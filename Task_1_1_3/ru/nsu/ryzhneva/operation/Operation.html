@@ -78,7 +78,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="Add.html" title="class in ru.nsu.ryzhneva.operation">Add</a></code>, <code><a href="Div.html" title="class in ru.nsu.ryzhneva.operation">Div</a></code>, <code><a href="Mul.html" title="class in ru.nsu.ryzhneva.operation">Mul</a></code>, <code><a href="Sub.html" title="class in ru.nsu.ryzhneva.operation">Sub</a></code></dd>
+<dd><code><a href="types/Add.html" title="class in ru.nsu.ryzhneva.operation.types">Add</a></code>, <code><a href="types/Div.html" title="class in ru.nsu.ryzhneva.operation.types">Div</a></code>, <code><a href="types/Mul.html" title="class in ru.nsu.ryzhneva.operation.types">Mul</a></code>, <code><a href="types/Sub.html" title="class in ru.nsu.ryzhneva.operation.types">Sub</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Operation</span>
@@ -101,7 +101,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>protected <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second even-row-color"><code><a href="#left" class="member-name-link">left</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="Operator.html" title="enum class in ru.nsu.ryzhneva.operation">Operator</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#operator" class="member-name-link">operator</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
@@ -118,9 +118,9 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.Expression,java.lang.String)" class="member-name-link">Operation</a><wbr>(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.operation.Operator)" class="member-name-link">Operation</a><wbr>(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
  <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;right,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operator)</code></div>
+ <a href="Operator.html" title="enum class in ru.nsu.ryzhneva.operation">Operator</a>&nbsp;operator)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Конструктор для создания операции с двумя операндами.</div>
 </div>
@@ -169,7 +169,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-ru.nsu.ryzhneva.Expression">Methods inherited from class&nbsp;ru.nsu.ryzhneva.<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></h3>
-<code><a href="../Expression.html#derivative(java.lang.String)">derivative</a>, <a href="../Expression.html#funcSimple()">funcSimple</a></code></div>
+<code><a href="../Expression.html#derivative(java.lang.String)">derivative</a>, <a href="../Expression.html#eval(java.lang.String)">eval</a>, <a href="../Expression.html#funcSimple()">funcSimple</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -199,7 +199,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="operator">
 <h3>operator</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">operator</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="Operator.html" title="enum class in ru.nsu.ryzhneva.operation">Operator</a></span>&nbsp;<span class="element-name">operator</span></div>
 </section>
 </li>
 </ul>
@@ -211,17 +211,17 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.Expression,java.lang.String)">
+<section class="detail" id="&lt;init&gt;(ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.Expression,ru.nsu.ryzhneva.operation.Operator)">
 <h3>Operation</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Operation</span><wbr><span class="parameters">(<a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;left,
  <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a>&nbsp;right,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operator)</span></div>
+ <a href="Operator.html" title="enum class in ru.nsu.ryzhneva.operation">Operator</a>&nbsp;operator)</span></div>
 <div class="block">Конструктор для создания операции с двумя операндами.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>left</code> - Левый операнд.</dd>
 <dd><code>right</code> - Правый операнд.</dd>
-<dd><code>operator</code> - Оператор операции (например, "+" или "-").</dd>
+<dd><code>operator</code> - Оператор операции.</dd>
 </dl>
 </section>
 </li>
