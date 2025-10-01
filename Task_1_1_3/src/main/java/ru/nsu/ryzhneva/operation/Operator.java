@@ -1,12 +1,15 @@
 package ru.nsu.ryzhneva.operation;
 
-
 import ru.nsu.ryzhneva.Expression;
 import ru.nsu.ryzhneva.operation.types.Add;
 import ru.nsu.ryzhneva.operation.types.Div;
 import ru.nsu.ryzhneva.operation.types.Mul;
 import ru.nsu.ryzhneva.operation.types.Sub;
 
+/**
+ * Перечисление, представляющее математические операторы.
+ * Хранит символ оператора и логику для создания соответствующей операции.
+ */
 public enum Operator {
     ADD("+") {
         @Override
@@ -38,7 +41,7 @@ public enum Operator {
 
     public abstract Operation createOperation(Expression left, Expression right);
 
-    private String symbol;
+    private final String symbol;
 
     Operator(String symbol) {
         this.symbol = symbol;
@@ -50,11 +53,18 @@ public enum Operator {
 
     @Override
     public String toString() {
-        return getSymbol();
+        return this.symbol;
     }
 
-    public Operator fromString(String symbol) {
-        for(Operator operator: Operator.values()) {
+    /**
+     * Находит оператор по его строковому символу.
+     *
+     * @param symbol Символ для поиска (например, "+").
+     * @return Найденный элемент Operator.
+     * @throws IllegalArgumentException если оператор не найден.
+     */
+    public static Operator fromString(String symbol) {
+        for (Operator operator : Operator.values()) {
             if (operator.getSymbol().equals(symbol)) {
                 return operator;
             }

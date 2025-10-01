@@ -17,8 +17,8 @@ public abstract class Operation extends Expression {
     /**
      * Конструктор для создания операции с двумя операндами.
      *
-     * @param left Левый операнд.
-     * @param right Правый операнд.
+     * @param left     Левый операнд.
+     * @param right    Правый операнд.
      * @param operator Оператор операции.
      */
     public Operation(Expression left, Expression right, Operator operator) {
@@ -53,13 +53,13 @@ public abstract class Operation extends Expression {
      */
     @Override
     public String print() {
-
-        return "(" + " " + left.print() + " " + operator + " " + right.print() + " " + ")";
+        return "(" + left.print() + " " + operator + " " + right.print() + ")";
     }
 
     /**
      * Абстрактный метод для выполнения операции над двумя числовыми значениями.
-     * Этот метод должен быть реализован в подклассах для конкретных операций (например, сложение или вычитание).
+     * Этот метод должен быть реализован в подклассах для конкретных операций
+     * (например, сложение или вычитание).
      *
      * @param left  Число, представляющее левый операнд.
      * @param right Число, представляющее правый операнд.

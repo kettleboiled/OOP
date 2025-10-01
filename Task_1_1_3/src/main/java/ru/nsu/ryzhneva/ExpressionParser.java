@@ -36,7 +36,7 @@ public class ExpressionParser {
     }
 
     /**
-     * Разбивает строку на отдельные токены
+     * Разбивает строку на отдельные токены.
      *
      * @param expression Строковое математическое выражение.
      * @return Список токенов.
@@ -54,7 +54,7 @@ public class ExpressionParser {
     }
 
     /**
-     * Преобразование выражения.
+     * Преобразование выражения в постфиксную нотацию (RPN).
      *
      * @param tokens Список токенов.
      * @return Список токенов в постфиксной нотации.
@@ -67,11 +67,9 @@ public class ExpressionParser {
             if (token.matches("-?\\d+(\\.\\d+)?")
                     || token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
                 outputQueue.add(token);
-            }
-            else if (token.equals("(")) {
+            } else if (token.equals("(")) {
                 operatorStack.push(token);
-            }
-            else if (token.equals(")")) {
+            } else if (token.equals(")")) {
                 while (!operatorStack.isEmpty() && !operatorStack.peek().equals("(")) {
                     outputQueue.add(operatorStack.pop());
                 }
@@ -80,10 +78,9 @@ public class ExpressionParser {
                     throw new IllegalArgumentException("Ошибка в выражении: несогласованные скобки.");
                 }
                 operatorStack.pop();
-            }
-            else {
-                while (!operatorStack.isEmpty() &&
-                        getPrecedence(operatorStack.peek()) >= getPrecedence(token)) {
+            } else {
+                while (!operatorStack.isEmpty()
+                        && getPrecedence(operatorStack.peek()) >= getPrecedence(token)) {
                     outputQueue.add(operatorStack.pop());
                 }
                 operatorStack.push(token);
@@ -110,14 +107,12 @@ public class ExpressionParser {
         for (String token : rpn) {
             if (token.matches("-?\\d+(\\.\\d+)?")) {
                 expressionStack.push(new Number(Double.parseDouble(token)));
-            }
-            else if (token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
+            } else if (token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
                 expressionStack.push(new Variable(token));
-            }
-            else {
+            } else {
                 if (expressionStack.size() < 2) {
-                    throw new IllegalArgumentException("Ошибка в выражении: " +
-                            "недостаточно операндов для оператора '" + token + "'.");
+                    throw new IllegalArgumentException("Ошибка в выражении: "
+                            + "недостаточно операндов для оператора '" + token + "'.");
                 }
 
                 Expression right = expressionStack.pop();
@@ -135,6 +130,8 @@ public class ExpressionParser {
                     case "/":
                         expressionStack.push(new Div(left, right));
                         break;
+                    default:
+                        throw new IllegalArgumentException("Неизвестный оператор: " + token);
                 }
             }
         }
@@ -146,21 +143,27 @@ public class ExpressionParser {
 
     /**
      * Обрабатывает унарные минусы, объединяя их со следующим числом.
+     *
+     * @param tokens Входной список токенов.
+     * @return Обработанный список токенов.
      */
     private List<String> processUnaryMinus(List<String> tokens) {
         List<String> processed = new ArrayList<>();
         for (int i = 0; i < tokens.size(); i++) {
             String token = tokens.get(i);
-            if (token.equals("-") && (i == 0 || "(".equals(tokens.get(i - 1)) || "+-*/".contains(tokens.get(i - 1)))) {
+            boolean isUnary = (i == 0 || "(".equals(tokens.get(i - 1))
+                    || "+-*/".contains(tokens.get(i - 1)));
+
+            if (token.equals("-") && isUnary) {
                 processed.add("-" + tokens.get(i + 1));
                 i++;
-            }
-            else {
+            } else {
                 processed.add(token);
             }
         }
         return processed;
     }
+
     /**
      * Главный публичный метод для парсинга выражения.
      *
