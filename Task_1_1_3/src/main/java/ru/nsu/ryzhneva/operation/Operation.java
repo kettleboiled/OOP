@@ -53,7 +53,7 @@ public abstract class Operation extends Expression {
      */
     @Override
     public String print() {
-        return "(" + left.print() + " " + operator + " " + right.print() + ")";
+        return "(" + " " + left.print() + " " + operator + " " + right.print() + " " + ")";
     }
 
     /**
