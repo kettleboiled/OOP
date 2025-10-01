@@ -1,6 +1,8 @@
-package ru.nsu.ryzhneva.operation;
+package ru.nsu.ryzhneva.operation.types;
 
 import ru.nsu.ryzhneva.Expression;
+import ru.nsu.ryzhneva.operation.Operation;
+import ru.nsu.ryzhneva.operation.Operator;
 import ru.nsu.ryzhneva.values.Number;
 import ru.nsu.ryzhneva.values.Variable;
 
@@ -19,7 +21,7 @@ public class Sub extends Operation {
      * @param right Правое выражение (subtrahend).
      */
     public Sub(Expression left, Expression right) {
-        super(left, right, "-");
+        super(left, right, Operator.SUB);
     }
 
     /**
@@ -60,23 +62,19 @@ public class Sub extends Operation {
         Expression simpleLeft = left.funcSimple();
         Expression simpleRight = right.funcSimple();
 
-        // Если выражения идентичны, возвращаем 0
         if (areExpressionsEqual(simpleLeft, simpleRight)) {
             return new Number(0);
         }
 
-        // Если правая часть выражения равна 0, возвращаем левую часть
         if (simpleRight instanceof Number && ((Number) simpleRight).getValue() == 0) {
             return simpleLeft; // x - 0
         }
 
-        // Если обе части выражения - числа, вычитаем их
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
             double result = ((Number) simpleLeft).getValue() - ((Number) simpleRight).getValue();
             return new Number(result);
         }
 
-        // Если не удалось упростить выражение, возвращаем его как есть
         return new Sub(simpleLeft, simpleRight);
     }
 

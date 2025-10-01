@@ -15,19 +15,17 @@ public class Main {
         Scanner sn = new Scanner(System.in);
 
         System.out.print("Введите выражение: ");
-        // 1. Считывание выражения из строки
         String input = sn.nextLine();
         sn.close();
         ExpressionParser parser = new ExpressionParser();
         Expression parsedExpression = parser.parse(input);
 
         System.out.println("Original Expression: "
-                + parsedExpression.print()); // Вывод: ((x*1)+(5-5))
+                + parsedExpression.print());
 
-        // 2. Упрощение выражения
         Expression simplifiedExpression = parsedExpression.funcSimple();
 
         System.out.println("Simplified Expression: "
-                + simplifiedExpression.print()); // Вывод: x
+                + simplifiedExpression.print());
     }
 }

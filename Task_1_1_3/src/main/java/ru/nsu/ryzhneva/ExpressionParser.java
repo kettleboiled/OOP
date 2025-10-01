@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
-import ru.nsu.ryzhneva.operation.Add;
-import ru.nsu.ryzhneva.operation.Div;
-import ru.nsu.ryzhneva.operation.Mul;
-import ru.nsu.ryzhneva.operation.Sub;
+import ru.nsu.ryzhneva.operation.types.Add;
+import ru.nsu.ryzhneva.operation.types.Div;
+import ru.nsu.ryzhneva.operation.types.Mul;
+import ru.nsu.ryzhneva.operation.types.Sub;
 import ru.nsu.ryzhneva.values.Number;
 import ru.nsu.ryzhneva.values.Variable;
 
 /**
  * Класс для парсинга математических выражений.
- * Реализует алгоритм Шунтинга для преобразования
- * выражений в постфиксную нотацию (RPN),
- * а затем строит дерево выражений из полученной RPN.
  */
 public class ExpressionParser {
 
@@ -34,14 +31,12 @@ public class ExpressionParser {
             case "/":
                 return 2;
             default:
-                return 0; // Для скобок
+                return 0;
         }
     }
 
     /**
-     * Метод токенизации строки.
      * Разбивает строку на отдельные токены
-     * (операторы, операнды и скобки).
      *
      * @param expression Строковое математическое выражение.
      * @return Список токенов.
@@ -59,8 +54,7 @@ public class ExpressionParser {
     }
 
     /**
-     * Метод преобразования в постфиксную нотацию (RPN)
-     * с использованием алгоритма Шунтинга.
+     * Преобразование выражения.
      *
      * @param tokens Список токенов.
      * @return Список токенов в постфиксной нотации.
@@ -73,9 +67,11 @@ public class ExpressionParser {
             if (token.matches("-?\\d+(\\.\\d+)?")
                     || token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
                 outputQueue.add(token);
-            } else if (token.equals("(")) {
+            }
+            else if (token.equals("(")) {
                 operatorStack.push(token);
-            } else if (token.equals(")")) {
+            }
+            else if (token.equals(")")) {
                 while (!operatorStack.isEmpty() && !operatorStack.peek().equals("(")) {
                     outputQueue.add(operatorStack.pop());
                 }
@@ -83,8 +79,9 @@ public class ExpressionParser {
                 if (operatorStack.isEmpty()) {
                     throw new IllegalArgumentException("Ошибка в выражении: несогласованные скобки.");
                 }
-                operatorStack.pop(); // Выкидываем открывающую скобку
-            } else { // Оператор
+                operatorStack.pop();
+            }
+            else {
                 while (!operatorStack.isEmpty() &&
                         getPrecedence(operatorStack.peek()) >= getPrecedence(token)) {
                     outputQueue.add(operatorStack.pop());
@@ -113,13 +110,16 @@ public class ExpressionParser {
         for (String token : rpn) {
             if (token.matches("-?\\d+(\\.\\d+)?")) {
                 expressionStack.push(new Number(Double.parseDouble(token)));
-            } else if (token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
+            }
+            else if (token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
                 expressionStack.push(new Variable(token));
-            } else { // Оператор
+            }
+            else {
                 if (expressionStack.size() < 2) {
                     throw new IllegalArgumentException("Ошибка в выражении: " +
                             "недостаточно операндов для оператора '" + token + "'.");
                 }
+
                 Expression right = expressionStack.pop();
                 Expression left = expressionStack.pop();
                 switch (token) {
@@ -138,9 +138,29 @@ public class ExpressionParser {
                 }
             }
         }
+        if (expressionStack.size() != 1) {
+            throw new IllegalArgumentException("Ошибка в синтаксисе выражения.");
+        }
         return expressionStack.pop();
     }
 
+    /**
+     * Обрабатывает унарные минусы, объединяя их со следующим числом.
+     */
+    private List<String> processUnaryMinus(List<String> tokens) {
+        List<String> processed = new ArrayList<>();
+        for (int i = 0; i < tokens.size(); i++) {
+            String token = tokens.get(i);
+            if (token.equals("-") && (i == 0 || "(".equals(tokens.get(i - 1)) || "+-*/".contains(tokens.get(i - 1)))) {
+                processed.add("-" + tokens.get(i + 1));
+                i++;
+            }
+            else {
+                processed.add(token);
+            }
+        }
+        return processed;
+    }
     /**
      * Главный публичный метод для парсинга выражения.
      *
@@ -149,7 +169,8 @@ public class ExpressionParser {
      */
     public Expression parse(String expressionString) {
         List<String> tokens = tokenize(expressionString);
-        List<String> rpn = toRpn(tokens);
+        List<String> processedTokens = processUnaryMinus(tokens);
+        List<String> rpn = toRpn(processedTokens);
         return buildTree(rpn);
     }
 }

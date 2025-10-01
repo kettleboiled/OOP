@@ -1,6 +1,8 @@
-package ru.nsu.ryzhneva.operation;
+package ru.nsu.ryzhneva.operation.types;
 
 import ru.nsu.ryzhneva.Expression;
+import ru.nsu.ryzhneva.operation.Operation;
+import ru.nsu.ryzhneva.operation.Operator;
 import ru.nsu.ryzhneva.values.Number;
 
 /**
@@ -15,7 +17,7 @@ public class Add extends Operation {
      * @param right Правый операнд.
      */
     public Add(Expression left, Expression right) {
-        super(left, right, "+");
+        super(left, right, Operator.ADD);
     }
 
     /**
@@ -51,21 +53,20 @@ public class Add extends Operation {
         Expression simpleLeft = left.funcSimple();
         Expression simpleRight = right.funcSimple();
 
-        // Если левая часть выражения равна 0, возвращаем правую часть
         if (simpleLeft instanceof Number && ((Number) simpleLeft).getValue() == 0) {
             return simpleRight;
         }
-        // Если правая часть выражения равна 0, возвращаем левую часть
+
         if (simpleRight instanceof Number && ((Number) simpleRight).getValue() == 0) {
-            return simpleLeft; // x + 0 = x
+            return simpleLeft;
         }
-        // Если обе части выражения - числа, складываем их
+
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
             double leftValue = ((Number) simpleLeft).getValue();
             double rightValue = ((Number) simpleRight).getValue();
             return new Number(leftValue + rightValue);
         }
-        // Если не удалось упростить выражение, возвращаем его как есть
+
         return new Add(simpleLeft, simpleRight);
     }
 }

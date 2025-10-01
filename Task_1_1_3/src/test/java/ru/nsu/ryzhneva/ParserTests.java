@@ -2,7 +2,13 @@ package ru.nsu.ryzhneva;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Collections;
+import java.util.List;
+import java.lang.reflect.Method;
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.operation.types.Add;
+import ru.nsu.ryzhneva.values.Variable;
 
 /**
  * Тесты Parser.
@@ -13,24 +19,22 @@ public class ParserTests {
     @Test
     void testSimpleAddition() {
         Expression exp = parser.parse("3+5");
-        assertEquals(8.0, exp.eval(null));
-        assertEquals("(3+5)", exp.print());
+        assertEquals(8.0, exp.eval(Collections.emptyMap()));
+        assertEquals("( 3 + 5 )", exp.print());
     }
 
     @Test
     void testOperatorPrecedence() {
-        // Should parse as 3 + (2 * 5)
         Expression exp = parser.parse("3+2*5");
-        assertEquals(13.0, exp.eval(null));
-        assertEquals("(3+(2*5))", exp.print());
+        assertEquals(13.0, exp.eval(Collections.emptyMap()));
+        assertEquals("( 3 + ( 2 * 5 ) )", exp.print());
     }
 
     @Test
     void testParenthesesOverridePrecedence() {
-        // Should parse as (3 + 2) * 5
         Expression exp = parser.parse("(3+2)*5");
-        assertEquals(25.0, exp.eval(null));
-        assertEquals("((3+2)*5)", exp.print());
+        assertEquals(25.0, exp.eval(Collections.emptyMap()));
+        assertEquals("( ( 3 + 2 ) * 5 )", exp.print());
     }
 
     @Test
@@ -39,16 +43,73 @@ public class ParserTests {
         java.util.Map<String, Double> vars = new java.util.HashMap<>();
         vars.put("x", 10.0);
         assertEquals(5.0, exp.eval(vars));
-        assertEquals("((x*2)/4)", exp.print());
+        assertEquals("( ( x * 2 ) / 4 )", exp.print());
     }
 
     @Test
     void testThrowsExceptionOnMismatchedParentheses() {
-        assertThrows(IllegalArgumentException.class, () -> parser.parse("(3+5))"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("( 3 + 5 ) )"));
     }
 
     @Test
     void testThrowsExceptionOnMissingOperand() {
         assertThrows(IllegalArgumentException.class, () -> parser.parse("5*"));
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<String> invokeProcessUnaryMinus(List<String> tokens) throws Exception {
+        Method method = ExpressionParser.class.getDeclaredMethod("processUnaryMinus", List.class);
+        method.setAccessible(true);
+        return (List<String>) method.invoke(parser, tokens);
+    }
+
+    @Test
+    void testHandlesNegativeNumberAtStart() throws Exception {
+        List<String> initialTokens = List.of("-", "5", "+", "10");
+        List<String> processedTokens = invokeProcessUnaryMinus(initialTokens);
+        assertEquals(List.of("-5", "+", "10"), processedTokens);
+    }
+
+    @Test
+    void testHandlesMultipleNegativeNumbers() throws Exception {
+        List<String> initialTokens = List.of("-", "x", "+", "(", "-", "y", ")");
+        List<String> processedTokens = invokeProcessUnaryMinus(initialTokens);
+        assertEquals(List.of("-x", "+", "(", "-y", ")"), processedTokens);
+    }
+
+    @Test
+    void testParseThrowsOnUnmatchedParentheses() {
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("(x+y"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("x+y)"));
+    }
+
+    @Test
+    void testParseThrowsOnUnknownSymbols() {
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("(x # y)"));
+    }
+
+    @Test
+    void testEvalThrowsOnNonNumericValue() {
+        Expression e = new Variable("x");
+        assertThrows(IllegalArgumentException.class, () -> e.eval("x=abc"));
+    }
+
+    @Test
+    void testParseThrowsOnInvalidSyntax() {
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("()"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("(+)"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parse("(x++)"));
+    }
+
+    @Test
+    void testEvalThrowsOnEmptyValue() {
+        Expression e = new Variable("y");
+        assertThrows(IllegalArgumentException.class, () -> e.eval("x=; y=5"));
+    }
+
+    @Test
+    void testEvalThrowsOnMissingDelimiter() {
+        Expression e = new Add(new Variable("x"), new Variable("y"));
+        assertThrows(IllegalArgumentException.class, () -> e.eval("x=5 y=3"));
     }
 }

@@ -26,6 +26,7 @@ public class Number extends Expression {
      * @return Значение числа.
      */
     public double getValue() {
+
         return value;
     }
 
@@ -37,6 +38,7 @@ public class Number extends Expression {
      */
     @Override
     public Expression funcSimple() {
+
         return this;
     }
 
@@ -49,6 +51,7 @@ public class Number extends Expression {
      */
     @Override
     public Expression derivative(String varName) {
+
         return new Number(0);
     }
 
@@ -60,6 +63,7 @@ public class Number extends Expression {
      */
     @Override
     public double eval(Map<String, Double> variables) {
+
         return value;
     }
 

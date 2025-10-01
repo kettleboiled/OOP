@@ -1,9 +1,11 @@
 package ru.nsu.ryzhneva;
 
-import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Collections;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
-import ru.nsu.ryzhneva.operation.Add;
+import ru.nsu.ryzhneva.operation.types.Add;
 import ru.nsu.ryzhneva.values.Number;
 import ru.nsu.ryzhneva.values.Variable;
 
@@ -25,7 +27,7 @@ public class AddTests {
     void testDifferentiation() {
         // (x + 5)' = 1 + 0 = 1
         Expression exp = new Add(variableX, five);
-        assertEquals(1.0, exp.derivative("x").eval(null));
+        assertEquals(1.0, exp.derivative("x").eval(Collections.emptyMap()));
     }
 
     @Test
@@ -44,12 +46,12 @@ public class AddTests {
         Expression exp = new Add(new Number(3), new Number(8));
         Expression simplified = exp.funcSimple();
         assertEquals(Number.class, simplified.getClass());
-        assertEquals(11.0, simplified.eval(null));
+        assertEquals(11.0, simplified.eval(Collections.emptyMap()));
     }
 
     @Test
     void testToString() {
         Expression exp = new Add(variableX, five);
-        assertEquals("(x+5)", exp.print());
+        assertEquals("( x + 5 )", exp.print());
     }
 }

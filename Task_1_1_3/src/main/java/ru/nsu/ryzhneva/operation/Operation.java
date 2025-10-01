@@ -10,18 +10,18 @@ import ru.nsu.ryzhneva.Expression;
  */
 public abstract class Operation extends Expression {
 
-    protected Expression left;  // Левый операнд операции
-    protected Expression right; // Правый операнд операции
-    protected String operator;  // Оператор операции (например, "+" или "-")
+    protected Expression left;
+    protected Expression right;
+    protected Operator operator;
 
     /**
      * Конструктор для создания операции с двумя операндами.
      *
      * @param left Левый операнд.
      * @param right Правый операнд.
-     * @param operator Оператор операции (например, "+" или "-").
+     * @param operator Оператор операции.
      */
-    public Operation(Expression left, Expression right, String operator) {
+    public Operation(Expression left, Expression right, Operator operator) {
         this.left = left;
         this.right = right;
         this.operator = operator;
@@ -53,7 +53,8 @@ public abstract class Operation extends Expression {
      */
     @Override
     public String print() {
-        return "(" + left.print() + operator + right.print() + ")";
+
+        return "(" + " " + left.print() + " " + operator + " " + right.print() + " " + ")";
     }
 
     /**
@@ -75,8 +76,8 @@ public abstract class Operation extends Expression {
      */
     @Override
     public double eval(Map<String, Double> variables) {
-        double resLeft = left.eval(variables);  // Вычисляем левый операнд
-        double resRight = right.eval(variables); // Вычисляем правый операнд
-        return applyOperation(resLeft, resRight);  // Применяем операцию
+        double resLeft = left.eval(variables);
+        double resRight = right.eval(variables);
+        return applyOperation(resLeft, resRight);
     }
 }

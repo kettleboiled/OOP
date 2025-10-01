@@ -1,8 +1,10 @@
 package ru.nsu.ryzhneva;
 
-import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Collections;
+import java.util.Map;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.values.Variable;
 
@@ -27,12 +29,8 @@ public class VariableTests {
     void testVariableDifferentiation() {
         Expression x = new Variable("x");
         Expression y = new Variable("y");
-
-        // Derivative of x with respect to x is 1
-        assertEquals(1.0, x.derivative("x").eval(null));
-
-        // Derivative of y with respect to x is 0
-        assertEquals(0.0, y.derivative("x").eval(null));
+        assertEquals(1.0, x.derivative("x").eval(Collections.emptyMap()));
+        assertEquals(0.0, y.derivative("x").eval(Collections.emptyMap()));
     }
 
     @Test
@@ -41,4 +39,21 @@ public class VariableTests {
         assertEquals("longVariableName", x.print());
     }
 
+    @Test
+    void testVariableDerivative() {
+        Expression xVar = new Variable("x");
+        Expression derivative1 = xVar.derivative("x");
+        assertEquals(1.0, derivative1.eval(Collections.emptyMap()));
+        Expression derivative2 = xVar.derivative("y");
+        assertEquals(0.0, derivative2.eval(Collections.emptyMap()));
+    }
+
+    @Test
+    void testMultipleDifferentiation() {
+        Expression e = new Variable("x");
+        Expression de1 = e.derivative("x");
+        assertEquals(1.0, de1.eval(Collections.emptyMap()));
+        Expression de2 = de1.derivative("x");
+        assertEquals(0.0, de2.eval(Collections.emptyMap()));
+    }
 }
