@@ -80,7 +80,8 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Variable</span>
 <span class="extends-implements">extends <a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span></div>
 <div class="block">Класс, представляющий переменную в математическом выражении.
- Переменная хранит имя и может быть использована в вычислениях, дифференцировании и упрощении выражений.</div>
+ Переменная хранит имя и может быть использована в вычислениях,
+ дифференцировании и упрощении выражений.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -118,7 +119,8 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eval(java.util.Map)" class="member-name-link">eval</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;variables)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Вычисляет значение переменной, подставив её значение из карты переменных.</div>
+<div class="block">Вычисляет значение переменной,
+ подставив её значение из карты переменных.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#funcSimple()" class="member-name-link">funcSimple</a>()</code></div>
@@ -204,14 +206,17 @@ loadScripts(document, 'script');</script>
 <h3>derivative</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></span>&nbsp;<span class="element-name">derivative</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;varName)</span></div>
 <div class="block">Выполняет дифференцирование переменной по заданному имени.
- Если переменная совпадает с заданным именем, возвращается единица, иначе ноль.</div>
+ Если переменная совпадает с заданным именем,
+ возвращается единица, иначе ноль.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>varName</code> - Имя переменной, по которой производится дифференцирование.</dd>
+<dd><code>varName</code> - Имя переменной, по которой
+ производится дифференцирование.</dd>
 <dt>Returns:</dt>
-<dd>Новое выражение, представляющее собой производную переменной.</dd>
+<dd>Новое выражение,
+ представляющее собой производную переменной.</dd>
 </dl>
 </section>
 </li>
@@ -219,7 +224,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="eval(java.util.Map)">
 <h3>eval</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">eval</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;variables)</span></div>
-<div class="block">Вычисляет значение переменной, подставив её значение из карты переменных.</div>
+<div class="block">Вычисляет значение переменной,
+ подставив её значение из карты переменных.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../Expression.html#eval(java.util.Map)">eval</a></code>&nbsp;in class&nbsp;<code><a href="../Expression.html" title="class in ru.nsu.ryzhneva">Expression</a></code></dd>
@@ -228,7 +234,8 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>Значение переменной.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - Если переменная не найдена в карте.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalArgumentException.html" title="class or interface in java.lang" class="external-link">IllegalArgumentException</a></code> - Если переменная
+ не найдена в карте.</dd>
 </dl>
 </section>
 </li>
