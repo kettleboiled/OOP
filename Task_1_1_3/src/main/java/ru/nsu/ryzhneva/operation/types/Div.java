@@ -29,7 +29,6 @@ public class Div extends Operation {
      */
     @Override
     public double applyOperation(double left, double right) {
-        // Защита от деления на ноль
         if (right == 0) {
             throw new ArithmeticException("Деление на ноль.");
         }
@@ -65,22 +64,18 @@ public class Div extends Operation {
         if (simpleLeft instanceof Number && ((Number) simpleLeft).getValue() == 0) {
             return new Number(0);
         }
-
         if (simpleRight instanceof Number && ((Number) simpleRight).getValue() == 1) {
             return simpleLeft;
         }
-
         if (simpleLeft.equals(simpleRight)) {
             return new Number(1);
         }
-
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
             double rightValue = ((Number) simpleRight).getValue();
-            if (rightValue == 0) {
-                return new Div(simpleLeft, simpleRight);
+            if (rightValue != 0) {
+                double result = ((Number) simpleLeft).getValue() / rightValue;
+                return new Number(result);
             }
-            double result = ((Number) simpleLeft).getValue() / rightValue;
-            return new Number(result);
         }
 
         return new Div(simpleLeft, simpleRight);

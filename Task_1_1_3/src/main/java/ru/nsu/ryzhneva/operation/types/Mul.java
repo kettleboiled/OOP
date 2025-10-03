@@ -59,17 +59,16 @@ public class Mul extends Operation {
                 || (simplifiedRight instanceof Number && ((Number) simplifiedRight).getValue() == 0)) {
             return new Number(0);
         }
-
         if (simplifiedLeft instanceof Number && ((Number) simplifiedLeft).getValue() == 1) {
             return simplifiedRight;
         }
         if (simplifiedRight instanceof Number && ((Number) simplifiedRight).getValue() == 1) {
             return simplifiedLeft;
         }
-
         if (simplifiedLeft instanceof Number && simplifiedRight instanceof Number) {
             return new Number(((Number) simplifiedLeft).getValue() * ((Number) simplifiedRight).getValue());
         }
+
         return new Mul(simplifiedLeft, simplifiedRight);
     }
 }

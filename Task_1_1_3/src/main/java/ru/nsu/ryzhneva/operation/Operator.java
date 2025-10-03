@@ -1,54 +1,29 @@
 package ru.nsu.ryzhneva.operation;
 
-import ru.nsu.ryzhneva.Expression;
-import ru.nsu.ryzhneva.operation.types.Add;
-import ru.nsu.ryzhneva.operation.types.Div;
-import ru.nsu.ryzhneva.operation.types.Mul;
-import ru.nsu.ryzhneva.operation.types.Sub;
-
 /**
  * Перечисление, представляющее математические операторы.
- * Хранит символ оператора и логику для создания соответствующей операции.
+ * Хранит символ оператора и его приоритет.
  */
 public enum Operator {
-    ADD("+") {
-        @Override
-        public Operation createOperation(Expression left, Expression right) {
-            return new Add(left, right);
-        }
-    },
-
-    SUB("-") {
-        @Override
-        public Operation createOperation(Expression left, Expression right) {
-            return new Sub(left, right);
-        }
-    },
-
-    MUL("*") {
-        @Override
-        public Operation createOperation(Expression left, Expression right) {
-            return new Mul(left, right);
-        }
-    },
-
-    DIV("/") {
-        @Override
-        public Operation createOperation(Expression left, Expression right) {
-            return new Div(left, right);
-        }
-    };
-
-    public abstract Operation createOperation(Expression left, Expression right);
+    ADD("+", 1),
+    SUB("-", 1),
+    MUL("*", 2),
+    DIV("/", 2);
 
     private final String symbol;
+    private final int precedence;
 
-    Operator(String symbol) {
+    Operator(String symbol, int precedence) {
         this.symbol = symbol;
+        this.precedence = precedence;
     }
 
     public String getSymbol() {
         return symbol;
+    }
+
+    public int getPrecedence() {
+        return precedence;
     }
 
     @Override
@@ -64,9 +39,9 @@ public enum Operator {
      * @throws IllegalArgumentException если оператор не найден.
      */
     public static Operator fromString(String symbol) {
-        for (Operator operator : Operator.values()) {
-            if (operator.getSymbol().equals(symbol)) {
-                return operator;
+        for (Operator op : Operator.values()) {
+            if (op.getSymbol().equals(symbol)) {
+                return op;
             }
         }
         throw new IllegalArgumentException("Незнакомый оператор: " + symbol);

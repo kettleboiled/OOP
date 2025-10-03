@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
+
+import ru.nsu.ryzhneva.operation.Operator;
 import ru.nsu.ryzhneva.operation.types.Add;
 import ru.nsu.ryzhneva.operation.types.Div;
 import ru.nsu.ryzhneva.operation.types.Mul;
@@ -16,23 +18,21 @@ import ru.nsu.ryzhneva.values.Variable;
  */
 public class ExpressionParser {
 
+    private static final String NUMBER_REGEX = "-?\\d+(\\.\\d+)?";
+    private static final String VARIABLE_REGEX = "[a-zA-Z_][a-zA-Z0-9_]*";
+    private static final String OPERATOR_REGEX = "()+-*/";
+
     /**
-     * Метод для определения приоритета операторов.
+     * Главный публичный метод для парсинга выражения.
      *
-     * @param operator Оператор.
-     * @return Приоритет оператора.
+     * @param expressionString Входная строка, например "3 + 4 * x".
+     * @return Корневой узел дерева выражений.
      */
-    private int getPrecedence(String operator) {
-        switch (operator) {
-            case "+":
-            case "-":
-                return 1;
-            case "*":
-            case "/":
-                return 2;
-            default:
-                return 0;
-        }
+    public Expression parse(String expressionString) {
+        List<String> tokens = tokenize(expressionString);
+        List<String> processedTokens = processUnaryMinus(tokens);
+        List<String> rpn = toRpn(processedTokens);
+        return buildTree(rpn);
     }
 
     /**
@@ -43,7 +43,7 @@ public class ExpressionParser {
      */
     private List<String> tokenize(String expression) {
         List<String> tokens = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(expression, "()+-*/", true);
+        StringTokenizer tokenizer = new StringTokenizer(expression, OPERATOR_REGEX, true);
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken().trim();
             if (!token.isEmpty()) {
@@ -64,34 +64,45 @@ public class ExpressionParser {
         Stack<String> operatorStack = new Stack<>();
 
         for (String token : tokens) {
-            if (token.matches("-?\\d+(\\.\\d+)?")
-                    || token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
+            if (token.matches(NUMBER_REGEX) || token.matches(VARIABLE_REGEX)) {
                 outputQueue.add(token);
-            } else if (token.equals("(")) {
-                operatorStack.push(token);
-            } else if (token.equals(")")) {
-                while (!operatorStack.isEmpty() && !operatorStack.peek().equals("(")) {
-                    outputQueue.add(operatorStack.pop());
+            } else if (OPERATOR_REGEX.contains(token)) { // Проверяем, является ли токен оператором или скобкой
+                switch (token) {
+                    case "(":
+                        operatorStack.push(token);
+                        break;
+                    case ")":
+                        while (!operatorStack.isEmpty() && !"(".equals(operatorStack.peek())) {
+                            outputQueue.add(operatorStack.pop());
+                        }
+                        if (operatorStack.isEmpty()) {
+                            throw new IllegalArgumentException("Ошибка: несогласованные скобки.");
+                        }
+                        operatorStack.pop();
+                        break;
+                    case "+":
+                    case "-":
+                    case "*":
+                    case "/":
+                        while (!operatorStack.isEmpty()
+                                && !"(".equals(operatorStack.peek())
+                                && Operator.fromString(operatorStack.peek()).getPrecedence()
+                                >= Operator.fromString(token).getPrecedence()) {
+                            outputQueue.add(operatorStack.pop());
+                        }
+                        operatorStack.push(token);
+                        break;
                 }
-
-                if (operatorStack.isEmpty()) {
-                    throw new IllegalArgumentException("Ошибка в выражении: несогласованные скобки.");
-                }
-                operatorStack.pop();
             } else {
-                while (!operatorStack.isEmpty()
-                        && getPrecedence(operatorStack.peek()) >= getPrecedence(token)) {
-                    outputQueue.add(operatorStack.pop());
-                }
-                operatorStack.push(token);
+                throw new IllegalArgumentException("Неизвестный символ в выражении: " + token);
             }
         }
-
         while (!operatorStack.isEmpty()) {
-            if (operatorStack.peek().equals("(")) {
-                throw new IllegalArgumentException("Ошибка в выражении: несогласованные скобки.");
+            String op = operatorStack.pop();
+            if ("(".equals(op)) {
+                throw new IllegalArgumentException("Ошибка: несогласованные скобки.");
             }
-            outputQueue.add(operatorStack.pop());
+            outputQueue.add(op);
         }
         return outputQueue;
     }
@@ -105,38 +116,40 @@ public class ExpressionParser {
     private Expression buildTree(List<String> rpn) {
         Stack<Expression> expressionStack = new Stack<>();
         for (String token : rpn) {
-            if (token.matches("-?\\d+(\\.\\d+)?")) {
+            if (token.matches(NUMBER_REGEX)) {
                 expressionStack.push(new Number(Double.parseDouble(token)));
-            } else if (token.matches("[a-zA-Z_][a-zA-Z0-9_]*")) {
+            } else if (token.matches(VARIABLE_REGEX)) {
                 expressionStack.push(new Variable(token));
             } else {
                 if (expressionStack.size() < 2) {
-                    throw new IllegalArgumentException("Ошибка в выражении: "
-                            + "недостаточно операндов для оператора '" + token + "'.");
+                    throw new IllegalArgumentException("Expression error: "
+                            + "there are not enough operands for the operator '" + token + "'.");
                 }
 
                 Expression right = expressionStack.pop();
                 Expression left = expressionStack.pop();
-                switch (token) {
-                    case "+":
+
+                Operator op = Operator.fromString(token);
+                switch (op) {
+                    case ADD:
                         expressionStack.push(new Add(left, right));
                         break;
-                    case "-":
+                    case SUB:
                         expressionStack.push(new Sub(left, right));
                         break;
-                    case "*":
+                    case MUL:
                         expressionStack.push(new Mul(left, right));
                         break;
-                    case "/":
+                    case DIV:
                         expressionStack.push(new Div(left, right));
                         break;
                     default:
-                        throw new IllegalArgumentException("Неизвестный оператор: " + token);
+                        throw new IllegalArgumentException("Unknown operator: " + token);
                 }
             }
         }
         if (expressionStack.size() != 1) {
-            throw new IllegalArgumentException("Ошибка в синтаксисе выражения.");
+            throw new IllegalArgumentException("Syntactic error.");
         }
         return expressionStack.pop();
     }
@@ -162,18 +175,5 @@ public class ExpressionParser {
             }
         }
         return processed;
-    }
-
-    /**
-     * Главный публичный метод для парсинга выражения.
-     *
-     * @param expressionString Входная строка, например "3 + 4 * x".
-     * @return Корневой узел дерева выражений.
-     */
-    public Expression parse(String expressionString) {
-        List<String> tokens = tokenize(expressionString);
-        List<String> processedTokens = processUnaryMinus(tokens);
-        List<String> rpn = toRpn(processedTokens);
-        return buildTree(rpn);
     }
 }

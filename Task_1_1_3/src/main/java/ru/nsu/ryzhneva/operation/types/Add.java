@@ -56,11 +56,9 @@ public class Add extends Operation {
         if (simpleLeft instanceof Number && ((Number) simpleLeft).getValue() == 0) {
             return simpleRight;
         }
-
         if (simpleRight instanceof Number && ((Number) simpleRight).getValue() == 0) {
             return simpleLeft;
         }
-
         if (simpleLeft instanceof Number && simpleRight instanceof Number) {
             double leftValue = ((Number) simpleLeft).getValue();
             double rightValue = ((Number) simpleRight).getValue();

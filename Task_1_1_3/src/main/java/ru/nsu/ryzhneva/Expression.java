@@ -1,5 +1,6 @@
 package ru.nsu.ryzhneva;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,7 +31,7 @@ public abstract class Expression {
      * @return Результат вычисления.
      */
     public double eval(String assignments) {
-        java.util.Map<String, Double> variables = new java.util.HashMap<>();
+        Map<String, Double> variables = new HashMap<>();
         if (assignments != null && !assignments.isEmpty()) {
             String[] pairs = assignments.split(";");
             for (String pair : pairs) {
@@ -52,7 +53,7 @@ public abstract class Expression {
                 try {
                     variables.put(key, Double.parseDouble(value));
                 } catch (NumberFormatException e) {
-                    String errorMessage = "Неверный формат числа в: " + trimmedPair;
+                    String errorMessage = "Incorrect number format in: " + trimmedPair;
                     throw new IllegalArgumentException(errorMessage, e);
                 }
             }
@@ -74,4 +75,20 @@ public abstract class Expression {
      */
     public abstract Expression funcSimple();
 
+    /**
+     * Сравнение операций.
+     *
+     * @param obj Объект для сравнения.
+     * @return {@code true}, если объекты равны, иначе {@code false}.
+     */
+    @Override
+    public abstract boolean equals(Object obj);
+
+    /**
+     * Возвращает хэш-код для данной операции.
+     *
+     * @return Целочисленный хэш-код.
+     */
+    @Override
+    public abstract int hashCode();
 }

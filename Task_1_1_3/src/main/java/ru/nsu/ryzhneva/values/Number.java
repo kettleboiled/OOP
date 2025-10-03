@@ -26,7 +26,6 @@ public class Number extends Expression {
      * @return Значение числа.
      */
     public double getValue() {
-
         return value;
     }
 
@@ -38,7 +37,6 @@ public class Number extends Expression {
      */
     @Override
     public Expression funcSimple() {
-
         return this;
     }
 
@@ -51,7 +49,6 @@ public class Number extends Expression {
      */
     @Override
     public Expression derivative(String varName) {
-
         return new Number(0);
     }
 
@@ -63,7 +60,6 @@ public class Number extends Expression {
      */
     @Override
     public double eval(Map<String, Double> variables) {
-
         return value;
     }
 
@@ -79,5 +75,22 @@ public class Number extends Expression {
             return String.format("%d", (int) value);
         }
         return String.valueOf(value);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Number number = (Number) obj;
+        return Double.compare(number.value, value) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Double.hashCode(value);
     }
 }

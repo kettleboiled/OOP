@@ -83,4 +83,22 @@ public class Variable extends Expression {
     public String print() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Variable variable = (Variable) obj;
+        return name.equals(variable.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
 }
