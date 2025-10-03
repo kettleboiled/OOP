@@ -46,10 +46,8 @@ public class Variable extends Expression {
      * Если переменная совпадает с заданным именем,
      * возвращается единица, иначе ноль.
      *
-     * @param varName Имя переменной, по которой
-     * производится дифференцирование.
-     * @return Новое выражение,
-     * представляющее собой производную переменной.
+     * @param varName Имя переменной
+     * @return Производная переменной.
      */
     @Override
     public Expression derivative(String varName) {
@@ -84,6 +82,12 @@ public class Variable extends Expression {
         return name;
     }
 
+    /**
+     * Сравнение операций.
+     *
+     * @param obj Объект для сравнения.
+     * @return {@code true}, если объекты равны, иначе {@code false}.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -96,6 +100,11 @@ public class Variable extends Expression {
         return name.equals(variable.name);
     }
 
+    /**
+     * Возвращает хэш-код для данной операции.
+     *
+     * @return Целочисленный хэш-код.
+     */
     @Override
     public int hashCode() {
         return name.hashCode();

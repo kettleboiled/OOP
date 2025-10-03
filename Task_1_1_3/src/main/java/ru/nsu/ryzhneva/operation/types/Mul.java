@@ -33,10 +33,10 @@ public class Mul extends Operation {
     }
 
     /**
-     * Выполняет дифференцирование по правилу произведения: (f*g)' = (f'g + fg').
+     * Производная произведения: (f*g)' = (f'g + fg').
      *
-     * @param varName Имя переменной, по которой производится дифференцирование.
-     * @return Новое выражение, представляющее собой производную.
+     * @param varName Имя переменной.
+     * @return Производная.
      */
     @Override
     public Expression derivative(String varName) {
@@ -55,18 +55,24 @@ public class Mul extends Operation {
         Expression simplifiedLeft = left.funcSimple();
         Expression simplifiedRight = right.funcSimple();
 
-        if ((simplifiedLeft instanceof Number && ((Number) simplifiedLeft).getValue() == 0)
-                || (simplifiedRight instanceof Number && ((Number) simplifiedRight).getValue() == 0)) {
+        if ((simplifiedLeft instanceof Number
+                && ((Number) simplifiedLeft).getValue() == 0)
+                || (simplifiedRight instanceof Number
+                && ((Number) simplifiedRight).getValue() == 0)) {
             return new Number(0);
         }
-        if (simplifiedLeft instanceof Number && ((Number) simplifiedLeft).getValue() == 1) {
+        if (simplifiedLeft instanceof Number
+                && ((Number) simplifiedLeft).getValue() == 1) {
             return simplifiedRight;
         }
-        if (simplifiedRight instanceof Number && ((Number) simplifiedRight).getValue() == 1) {
+        if (simplifiedRight instanceof Number
+                && ((Number) simplifiedRight).getValue() == 1) {
             return simplifiedLeft;
         }
-        if (simplifiedLeft instanceof Number && simplifiedRight instanceof Number) {
-            return new Number(((Number) simplifiedLeft).getValue() * ((Number) simplifiedRight).getValue());
+        if (simplifiedLeft instanceof Number
+                && simplifiedRight instanceof Number) {
+            return new Number(((Number) simplifiedLeft).getValue()
+                    * ((Number) simplifiedRight).getValue());
         }
 
         return new Mul(simplifiedLeft, simplifiedRight);

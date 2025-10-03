@@ -43,7 +43,8 @@ public class ExpressionParser {
      */
     private List<String> tokenize(String expression) {
         List<String> tokens = new ArrayList<>();
-        StringTokenizer tokenizer = new StringTokenizer(expression, OPERATOR_REGEX, true);
+        StringTokenizer tokenizer = new StringTokenizer(expression,
+                OPERATOR_REGEX, true);
         while (tokenizer.hasMoreTokens()) {
             String token = tokenizer.nextToken().trim();
             if (!token.isEmpty()) {
@@ -66,7 +67,7 @@ public class ExpressionParser {
         for (String token : tokens) {
             if (token.matches(NUMBER_REGEX) || token.matches(VARIABLE_REGEX)) {
                 outputQueue.add(token);
-            } else if (OPERATOR_REGEX.contains(token)) { // Проверяем, является ли токен оператором или скобкой
+            } else if (OPERATOR_REGEX.contains(token)) {
                 switch (token) {
                     case "(":
                         operatorStack.push(token);

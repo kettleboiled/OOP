@@ -77,6 +77,12 @@ public class Number extends Expression {
         return String.valueOf(value);
     }
 
+    /**
+     * Сравнение операций.
+     *
+     * @param obj Объект для сравнения.
+     * @return {@code true}, если объекты равны, иначе {@code false}.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -89,6 +95,11 @@ public class Number extends Expression {
         return Double.compare(number.value, value) == 0;
     }
 
+    /**
+     * Возвращает хэш-код для данной операции.
+     *
+     * @return Целочисленный хэш-код.
+     */
     @Override
     public int hashCode() {
         return Double.hashCode(value);
