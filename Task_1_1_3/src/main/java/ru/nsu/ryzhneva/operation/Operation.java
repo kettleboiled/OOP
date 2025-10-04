@@ -1,6 +1,8 @@
 package ru.nsu.ryzhneva.operation;
 
 import java.util.Map;
+import java.util.Objects;
+
 import ru.nsu.ryzhneva.Expression;
 
 /**
@@ -111,6 +113,6 @@ public abstract class Operation extends Expression {
      */
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(left, right, operator);
+        return Objects.hash(left, right, operator);
     }
 }
