@@ -1,0 +1,94 @@
+package ru.nsu.ryzhneva;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Абстрактный базовый класс для всех математических выражений.
+ */
+public abstract class Expression {
+
+    /**
+     * Выполняет символьное дифференцирование по указанной переменной.
+     *
+     * @param varName Имя переменной.
+     * @return Новое выражение, представляющее собой производную.
+     */
+    public abstract Expression derivative(String varName);
+
+    /**
+     * Вычисляет значение выражения с заданными значениями переменных.
+     *
+     * @param variables Переменные со своими значениями.
+     * @return Результат вычисления.
+     */
+    public abstract double eval(Map<String, Double> variables);
+
+    /**
+     * Вычисляет значение выражения по строке с переменными.
+     *
+     * @param assignments Строка вида "x=10; y=5"
+     * @return Результат вычисления.
+     */
+    public double eval(String assignments) {
+        Map<String, Double> variables = new HashMap<>();
+        if (assignments != null && !assignments.isEmpty()) {
+            String[] pairs = assignments.split(";");
+            for (String pair : pairs) {
+                String trimmedPair = pair.trim();
+                if (trimmedPair.isEmpty()) {
+                    continue;
+                }
+                String[] parts = trimmedPair.split("=");
+                if (parts.length != 2) {
+                    String errorMessage = "Неверный формат присваивания: " + trimmedPair;
+                    throw new IllegalArgumentException(errorMessage);
+                }
+                String key = parts[0].trim();
+                String value = parts[1].trim();
+                if (key.isEmpty() || value.isEmpty()) {
+                    String errorMessage = "Пустое имя или значение переменной в: " + trimmedPair;
+                    throw new IllegalArgumentException(errorMessage);
+                }
+                try {
+                    variables.put(key, Double.parseDouble(value));
+                } catch (NumberFormatException e) {
+                    String errorMessage = "Incorrect number format in: " + trimmedPair;
+                    throw new IllegalArgumentException(errorMessage, e);
+                }
+            }
+        }
+        return this.eval(variables);
+    }
+
+    /**
+     * Вывод строки.
+     *
+     * @return Выражение в строковом представлении.
+     */
+    public abstract String print();
+
+    /**
+     * Упрощает текущее выражение согласно заданным правилам.
+     *
+     * @return Новое, упрощенное выражение.
+     */
+    public abstract Expression funcSimple();
+
+    /**
+     * Сравнение операций.
+     *
+     * @param obj Объект для сравнения.
+     * @return {@code true}, если объекты равны, иначе {@code false}.
+     */
+    @Override
+    public abstract boolean equals(Object obj);
+
+    /**
+     * Возвращает хэш-код для данной операции.
+     *
+     * @return Целочисленный хэш-код.
+     */
+    @Override
+    public abstract int hashCode();
+}
