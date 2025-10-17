@@ -101,40 +101,4 @@ class AdjacencyListGraphTests {
         graph.addVer("A");
         graph.addVer("B");
         graph.addVer("C");
-        graph.addEdge("A", "B");
-        graph.addEdge("C", "A");
-
-        String result = graph.toString();
-
-        assertTrue(result.contains("AdjacencyListGraph:"));
-        assertTrue(result.contains("A -> [B]"));
-        assertTrue(result.contains("B -> []"));
-        assertTrue(result.contains("C -> [A]"));
-    }
-
-    @Test
-    void testReadFromFile(@TempDir Path tempDir) throws IOException {
-        Path filePath = tempDir.resolve("graph.txt");
-        List<String> lines = List.of(
-                "A B",
-                "B C",
-                "C A"
-        );
-        Files.write(filePath, lines);
-        graph.readFromFile(filePath.toString());
-
-        assertTrue(graph.getVertices().containsAll(Set.of("A", "B", "C")));
-        assertEquals(3, graph.getVertices().size());
-        assertTrue(graph.getNeighbors("A").contains("B"));
-        assertTrue(graph.getNeighbors("B").contains("C"));
-        assertTrue(graph.getNeighbors("C").contains("A"));
-    }
-
-    @Test
-    void testReadFromFile_whenFileNotExists_throwsException() {
-        String nonExistentFilePath = "path/to/non/existent/file.txt";
-        assertThrows(IOException.class, () -> {
-            graph.readFromFile(nonExistentFilePath);
-        });
-    }
-}
+        graph

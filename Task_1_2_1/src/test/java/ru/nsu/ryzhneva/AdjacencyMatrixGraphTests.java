@@ -102,10 +102,10 @@ class AdjacencyMatrixGraphTests {
         String result = graph.toString();
         assertTrue(result.contains("AdjacencyMatrixGraph:"));
 
-        boolean case1 = result.contains("A -> [0, 1]") &&
-                result.contains("B -> [0, 0]"); // A=0, B=1
-        boolean case2 = result.contains("A -> [0, 0]") &&
-                result.contains("B -> [1, 0]"); // B=0, A=1
+        boolean case1 = result.contains("A -> [0, 1]")
+                && result.contains("B -> [0, 0]"); // A=0, B=1
+        boolean case2 = result.contains("A -> [0, 0]")
+                && result.contains("B -> [1, 0]"); // B=0, A=1
         assertTrue(case1 || case2,
                 "Вывод toString не соответствует матрице смежности");
     }

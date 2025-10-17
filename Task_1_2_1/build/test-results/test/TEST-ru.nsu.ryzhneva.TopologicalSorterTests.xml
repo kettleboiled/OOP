@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.nsu.ryzhneva.TopologicalSorterTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-10-16T18:07:55" hostname="DESKTOP-V692J2T" time="0.015">
-  <properties/>
-  <testcase name="testSortOnGraphWithCycleThrowsException()" classname="ru.nsu.ryzhneva.TopologicalSorterTests" time="0.005"/>
-  <testcase name="testValidSort()" classname="ru.nsu.ryzhneva.TopologicalSorterTests" time="0.002"/>
-  <testcase name="testSortOnEmptyGraph()" classname="ru.nsu.ryzhneva.TopologicalSorterTests" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
