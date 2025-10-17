@@ -35,7 +35,6 @@ class TopologicalSorterTests {
 
         List<String> sorted = sorter.sort(graph);
 
-        // Проверяем, что зависимости соблюдены
         assertTrue(sorted.indexOf("A") < sorted.indexOf("B"));
         assertTrue(sorted.indexOf("A") < sorted.indexOf("C"));
         assertTrue(sorted.indexOf("B") < sorted.indexOf("D"));

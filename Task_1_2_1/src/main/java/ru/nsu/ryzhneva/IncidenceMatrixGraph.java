@@ -192,7 +192,6 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
         }
     }
 
-
     /**
      * {@inheritDoc}
      * Реализация O(V + E): столбец удаляемого ребра затирается
@@ -221,7 +220,6 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
             edgeToIndex.put(indexToEdge.get(i), i);
         }
     }
-
 
     /**
      * {@inheritDoc}

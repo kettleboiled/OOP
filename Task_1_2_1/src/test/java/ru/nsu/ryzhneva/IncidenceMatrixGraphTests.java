@@ -85,13 +85,17 @@ class IncidenceMatrixGraphTests {
         graph3.addVer("C");
         graph3.addEdge("A", "C");
 
-        assertEquals(graph1, graph2, "Графы с одинаковой структурой должны быть равны");
-        assertNotEquals(graph1, graph3, "Графы с разной структурой не должны быть равны");
-        assertNotEquals(graph1, null, "Граф не должен быть равен null");
-        assertNotEquals(graph1, new Object(), "Граф не должен быть равен объекту другого класса");
+        assertEquals(graph1, graph2,
+                "Графы с одинаковой структурой должны быть равны");
+        assertNotEquals(graph1, graph3,
+                "Графы с разной структурой не должны быть равны");
+        assertNotEquals(graph1, null,
+                "Граф не должен быть равен null");
+        assertNotEquals(graph1, new Object(),
+                "Граф не должен быть равен объекту другого класса");
 
-        // С корректной реализацией hashCode этот тест пройдет
-        assertEquals(graph1.hashCode(), graph2.hashCode(), "Хеш-коды равных графов должны совпадать");
+        assertEquals(graph1.hashCode(), graph2.hashCode(),
+                "Хеш-коды равных графов должны совпадать");
     }
 
     @Test
@@ -106,7 +110,8 @@ class IncidenceMatrixGraphTests {
         graph2.addVer("B");
         graph2.addEdge("B", "A");
         assertNotEquals(graph1, graph2);
-        assertNotEquals(graph1.hashCode(), graph2.hashCode(), "Хеш-коды разных по структуре графов не должны совпадать");
+        assertNotEquals(graph1.hashCode(), graph2.hashCode(),
+                "Хеш-коды разных по структуре графов не должны совпадать");
     }
 
     @Test

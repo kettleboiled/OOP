@@ -85,9 +85,12 @@ class AdjacencyMatrixGraphTests {
         graph3.addVer("C");
         graph3.addEdge("A", "C");
 
-        assertEquals(graph1, graph2, "Графы с одинаковой структурой должны быть равны");
-        assertNotEquals(graph1, graph3, "Графы с разной структурой не должны быть равны");
-        assertEquals(graph1.hashCode(), graph2.hashCode(), "Хеш-коды равных графов должны совпадать");
+        assertEquals(graph1, graph2,
+                "Графы с одинаковой структурой должны быть равны");
+        assertNotEquals(graph1, graph3,
+                "Графы с разной структурой не должны быть равны");
+        assertEquals(graph1.hashCode(), graph2.hashCode(),
+                "Хеш-коды равных графов должны совпадать");
     }
 
     @Test
@@ -99,9 +102,12 @@ class AdjacencyMatrixGraphTests {
         String result = graph.toString();
         assertTrue(result.contains("AdjacencyMatrixGraph:"));
 
-        boolean case1 = result.contains("A -> [0, 1]") && result.contains("B -> [0, 0]"); // A=0, B=1
-        boolean case2 = result.contains("A -> [0, 0]") && result.contains("B -> [1, 0]"); // B=0, A=1
-        assertTrue(case1 || case2, "Вывод toString не соответствует матрице смежности");
+        boolean case1 = result.contains("A -> [0, 1]") &&
+                result.contains("B -> [0, 0]"); // A=0, B=1
+        boolean case2 = result.contains("A -> [0, 0]") &&
+                result.contains("B -> [1, 0]"); // B=0, A=1
+        assertTrue(case1 || case2,
+                "Вывод toString не соответствует матрице смежности");
     }
 
     @Test
