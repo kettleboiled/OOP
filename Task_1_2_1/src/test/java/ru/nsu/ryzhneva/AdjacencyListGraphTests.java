@@ -60,9 +60,7 @@ class AdjacencyListGraphTests {
         graph.addVer("C");
         graph.addEdge("A", "B");
         graph.addEdge("C", "A");
-
         graph.removeVer("A");
-
         assertFalse(graph.getVertices().contains("A"));
         assertTrue(graph.getNeighbors("C").isEmpty());
         assertEquals(2, graph.getVertices().size());
