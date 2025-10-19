@@ -23,53 +23,20 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
 
     private static final int DEFAULT_CAPACITY = 10;
 
-    private final Map<V, Integer> verToIndex;
-    private final List<V> indexInVer;
-    private final Map<Edge<V>, Integer> edgeToIndex;
-    private final List<Edge<V>> indexToEdge;
+    private final Map<V, Integer> verToIndex; // получение индекса вершины а матрице
+    private final List<V> indexToVer; // получение вершины по индексу матрицы
+    private final Map<Edge<V>, Integer> edgeToIndex; // получение индекса столбца определнного ребра в матрице
+    private final List<Edge<V>> indexToEdge; // получение ребра по индексу столбца матрицы
     private int[][] matrix;
     private int countVer;
     private int countEdge;
-
-    /**
-     * Внутренний класс для представления ребра.
-     * Необходим, так как столбцы матрицы соответствуют рёбрам.
-     *
-     * @param <V> Тип вершин.
-     */
-    private static class Edge<V> {
-        final V start;
-        final V fin;
-
-        Edge(V start, V fin) {
-            this.start = start;
-            this.fin = fin;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            Edge<?> edge = (Edge<?>) o;
-            return start.equals(edge.start) && fin.equals(edge.fin);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(start, fin);
-        }
-    }
 
     /**
      * Создает пустой граф с начальной вместимостью.
      */
     public IncidenceMatrixGraph() {
         verToIndex = new HashMap<>();
-        indexInVer = new ArrayList<>();
+        indexToVer = new ArrayList<>();
         edgeToIndex = new HashMap<>();
         indexToEdge = new ArrayList<>();
         matrix = new int[DEFAULT_CAPACITY][DEFAULT_CAPACITY];
@@ -81,13 +48,13 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
      * {@inheritDoc}
      */
     @Override
-    public void addVer(V ver) {
-        if (!verToIndex.containsKey(ver)) {
+    public void addVer(V vertex) {
+        if (!verToIndex.containsKey(vertex)) {
             if (countVer == matrix.length) {
                 resizeMatrix(matrix.length * 2, matrix.length > 0 ? matrix[0].length : 10);
             }
-            verToIndex.put(ver, countVer);
-            indexInVer.add(ver);
+            verToIndex.put(vertex, countVer);
+            indexToVer.add(vertex);
             countVer++;
         }
     }
@@ -110,19 +77,19 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
      * {@inheritDoc}
      */
     @Override
-    public void addEdge(V source, V destination) {
-        if (!verToIndex.containsKey(source) || !verToIndex.containsKey(destination)) {
+    public void addEdge(V start, V finish) {
+        if (!verToIndex.containsKey(start) || !verToIndex.containsKey(finish)) {
             throw new IllegalArgumentException("The edge vertices are not found in the graph.");
         }
-        Edge<V> newEdge = new Edge<>(source, destination);
+        Edge<V> newEdge = new Edge<>(start, finish);
         if (edgeToIndex.containsKey(newEdge)) {
             return;
         }
         if (countEdge == (matrix.length > 0 ? matrix[0].length : 0)) {
             resizeMatrix(matrix.length, matrix.length > 0 ? matrix[0].length * 2 : 10);
         }
-        int sourceIndex = verToIndex.get(source);
-        int destIndex = verToIndex.get(destination);
+        int sourceIndex = verToIndex.get(start);
+        int destIndex = verToIndex.get(finish);
         matrix[sourceIndex][countEdge] = 1;
         matrix[destIndex][countEdge] = -1;
         edgeToIndex.put(newEdge, countEdge);
@@ -143,7 +110,7 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
         for (int j = 0; j < countEdge; j++) {
             if (matrix[vertexIndex][j] == 1) {
                 Edge<V> edge = indexToEdge.get(j);
-                neighbors.add(edge.fin);
+                neighbors.add(edge.finish);
             }
         }
         return neighbors;
@@ -163,24 +130,24 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
      * затем сама вершина.
      */
     @Override
-    public void removeVer(V ver) {
-        Integer verIndexToRemove = verToIndex.get(ver);
+    public void removeVer(V vertex) {
+        Integer verIndexToRemove = verToIndex.get(vertex);
         if (verIndexToRemove == null) {
             return;
         }
 
         List<Edge<V>> edgesToRemove = new ArrayList<>();
         for (Edge<V> edge : indexToEdge) {
-            if (edge.start.equals(ver) || edge.fin.equals(ver)) {
+            if (edge.start.equals(vertex) || edge.finish.equals(vertex)) {
                 edgesToRemove.add(edge);
             }
         }
         for (Edge<V> edge : edgesToRemove) {
-            removeEdge(edge.start, edge.fin);
+            removeEdge(edge.start, edge.finish);
         }
 
-        verToIndex.remove(ver);
-        indexInVer.remove(ver);
+        verToIndex.remove(vertex);
+        indexToVer.remove((int) verIndexToRemove);
 
         for (int i = verIndexToRemove; i < countVer - 1; i++) {
             matrix[i] = matrix[i + 1];
@@ -188,7 +155,7 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
         countVer--;
 
         for (int i = verIndexToRemove; i < countVer; i++) {
-            verToIndex.put(indexInVer.get(i), i);
+            verToIndex.put(indexToVer.get(i), i);
         }
     }
 
@@ -198,8 +165,8 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
      * сдвигом последующих столбцов.
      */
     @Override
-    public void removeEdge(V start, V fin) {
-        Edge<V> edge = new Edge<>(start, fin);
+    public void removeEdge(V start, V finish) {
+        Edge<V> edge = new Edge<>(start, finish);
         Integer edgeIndexToRemove = edgeToIndex.get(edge);
 
         if (edgeIndexToRemove == null) {
@@ -245,7 +212,7 @@ public class IncidenceMatrixGraph<V> implements Graph<V> {
     public String toString() {
         StringBuilder sb = new StringBuilder("IncidenceMatrixGraph: {\n");
         for (int i = 0; i < countVer; i++) {
-            sb.append("  ").append(indexInVer.get(i)).append(" -> ");
+            sb.append("  ").append(indexToVer.get(i)).append(" -> ");
             sb.append(Arrays.toString(Arrays.copyOf(matrix[i], countEdge))).append("\n");
         }
         sb.append("}");

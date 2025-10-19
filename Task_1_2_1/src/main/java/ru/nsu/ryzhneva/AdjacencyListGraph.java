@@ -18,43 +18,43 @@ import java.util.Set;
  */
 public class AdjacencyListGraph<V> implements Graph<V> {
 
-    private final Map<V, Set<V>> adjacencyList = new HashMap<>();
+    private final Map<V, Set<V>> adjacencyMap = new HashMap<>();
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void addVer(V ver) {
-        adjacencyList.putIfAbsent(ver, new LinkedHashSet<>());
+    public void addVer(V vertex) {
+        adjacencyMap.putIfAbsent(vertex, new LinkedHashSet<>());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removeVer(V ver) {
-        adjacencyList.remove(ver);
-        adjacencyList.values().forEach(neighbors -> neighbors.remove(ver));
+    public void removeVer(V vertex) {
+        adjacencyMap.remove(vertex);
+        adjacencyMap.values().forEach(neighbors -> neighbors.remove(vertex));
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void addEdge(V start, V fin) {
-        if (!adjacencyList.containsKey(start) || !adjacencyList.containsKey(fin)) {
+    public void addEdge(V start, V finish) {
+        if (!adjacencyMap.containsKey(start) || !adjacencyMap.containsKey(finish)) {
             throw new IllegalArgumentException("The edge vertices are not found in the graph.");
         }
-        adjacencyList.get(start).add(fin);
+        adjacencyMap.get(start).add(finish);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removeEdge(V start, V fin) {
-        if (adjacencyList.containsKey(start)) {
-            adjacencyList.get(start).remove(fin);
+    public void removeEdge(V start, V finish) {
+        if (adjacencyMap.containsKey(start)) {
+            adjacencyMap.get(start).remove(finish);
         }
     }
 
@@ -62,8 +62,8 @@ public class AdjacencyListGraph<V> implements Graph<V> {
      * {@inheritDoc}
      */
     @Override
-    public Set<V> getNeighbors(V ver) {
-        return Collections.unmodifiableSet(adjacencyList.getOrDefault(ver, Collections.emptySet()));
+    public Set<V> getNeighbors(V vertex) {
+        return Collections.unmodifiableSet(adjacencyMap.getOrDefault(vertex, Collections.emptySet()));
     }
 
     /**
@@ -71,7 +71,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
      */
     @Override
     public Set<V> getVertices() {
-        return Collections.unmodifiableSet(adjacencyList.keySet());
+        return Collections.unmodifiableSet(adjacencyMap.keySet());
     }
 
     /**
@@ -87,10 +87,10 @@ public class AdjacencyListGraph<V> implements Graph<V> {
                 String[] parts = line.split("\\s+");
                 if (parts.length == 2) {
                     @SuppressWarnings("unchecked") V start = (V) parts[0];
-                    @SuppressWarnings("unchecked") V fin = (V) parts[1];
+                    @SuppressWarnings("unchecked") V finish = (V) parts[1];
                     addVer(start);
-                    addVer(fin);
-                    addEdge(start, fin);
+                    addVer(finish);
+                    addEdge(start, finish);
                 }
             }
         }
@@ -100,7 +100,7 @@ public class AdjacencyListGraph<V> implements Graph<V> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("AdjacencyListGraph: \n");
-        for (Map.Entry<V, Set<V>> entry : adjacencyList.entrySet()) {
+        for (Map.Entry<V, Set<V>> entry : adjacencyMap.entrySet()) {
             sb.append(entry.getKey()).append(" -> ").append(entry.getValue()).append("\n");
         }
         return sb.toString();
@@ -115,11 +115,11 @@ public class AdjacencyListGraph<V> implements Graph<V> {
             return false;
         }
         AdjacencyListGraph<?> that = (AdjacencyListGraph<?>) o;
-        return Objects.equals(adjacencyList, that.adjacencyList);
+        return Objects.equals(adjacencyMap, that.adjacencyMap);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(adjacencyList);
+        return Objects.hash(adjacencyMap);
     }
 }

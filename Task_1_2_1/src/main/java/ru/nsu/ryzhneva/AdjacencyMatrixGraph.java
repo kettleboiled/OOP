@@ -42,13 +42,13 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      * {@inheritDoc}
      */
     @Override
-    public void addVer(V ver) {
-        if (!verToIndex.containsKey(ver)) {
+    public void addVer(V vertex) {
+        if (!verToIndex.containsKey(vertex)) {
             if (countVer == matrix.length) {
                 resizeMatrix();
             }
-            verToIndex.put(ver, countVer);
-            indexInVer.add(ver);
+            verToIndex.put(vertex, countVer);
+            indexInVer.add(vertex);
             countVer++;
         }
     }
@@ -69,8 +69,8 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      * {@inheritDoc}
      */
     @Override
-    public void removeVer(V ver) {
-        Integer indexToRemove = verToIndex.remove(ver);
+    public void removeVer(V vertex) {
+        Integer indexToRemove = verToIndex.remove(vertex);
         if (indexToRemove == null) {
             return;
         }
@@ -97,9 +97,9 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      * {@inheritDoc}
      */
     @Override
-    public void addEdge(V start, V fin) {
+    public void addEdge(V start, V finish) {
         Integer startIndex = verToIndex.get(start);
-        Integer finIndex = verToIndex.get(fin);
+        Integer finIndex = verToIndex.get(finish);
         if (startIndex == null || finIndex == null) {
             throw new IllegalArgumentException("The edge vertices are not found in the graph.");
         }
@@ -110,9 +110,9 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      * {@inheritDoc}
      */
     @Override
-    public void removeEdge(V start, V fin) {
+    public void removeEdge(V start, V finish) {
         Integer startIndex = verToIndex.get(start);
-        Integer finIndex = verToIndex.get(fin);
+        Integer finIndex = verToIndex.get(finish);
         if (startIndex != null && finIndex != null) {
             matrix[startIndex][finIndex] = 0;
         }
@@ -122,8 +122,8 @@ public class AdjacencyMatrixGraph<V> implements Graph<V> {
      * {@inheritDoc}
      */
     @Override
-    public Set<V> getNeighbors(V ver) {
-        Integer verIndex = verToIndex.get(ver);
+    public Set<V> getNeighbors(V vertex) {
+        Integer verIndex = verToIndex.get(vertex);
         if (verIndex == null) {
             return Collections.emptySet();
         }

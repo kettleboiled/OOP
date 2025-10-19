@@ -13,40 +13,40 @@ interface Graph<V> {
     /**
      * Добавляет вершину в граф.
      *
-     * @param ver Вершина.
+     * @param vertex Вершина.
      */
-    void addVer(V ver);
+    void addVer(V vertex);
 
     /**
      * Удаляет вершину и все связанные с ней ребра из графа.
      *
-     * @param ver Вершина.
+     * @param vertex Вершина.
      */
-    void removeVer(V ver);
+    void removeVer(V vertex);
 
     /**
      * Добавляет ориентированное ребро в граф.
      *
      * @param start Начальная вершина.
-     * @param fin Конечная вершина.
+     * @param finish Конечная вершина.
      */
-    void addEdge(V start, V fin);
+    void addEdge(V start, V finish);
 
     /**
      * Удаляет ребро.
      *
      * @param start Начальная вершина.
-     * @param fin Конечная вершина.
+     * @param finish Конечная вершина.
      */
-    void removeEdge(V start, V fin);
+    void removeEdge(V start, V finish);
 
     /**
      * Возващает всех соседей вершины.
      *
-     * @param ver Вершина.
+     * @param vertex Вершина.
      * @return Множество соседей.
      */
-    Set<V> getNeighbors(V ver);
+    Set<V> getNeighbors(V vertex);
 
     /**
      * Считывает граф из файла.
