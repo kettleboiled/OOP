@@ -69,8 +69,8 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
             }
             if (o instanceof HashTable.Entry) {
                 HashTable.Entry<?, ?> e = (HashTable.Entry<?, ?>) o;
-                return Objects.equals(key, e.getKey()) &&
-                        Objects.equals(value, e.getValue());
+                return Objects.equals(key, e.getKey())
+                        && Objects.equals(value, e.getValue());
             }
             return false;
         }
@@ -98,7 +98,9 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
      * @return Улучшенный хеш-код.
      */
     private int hash(K key) {
-        if (key == null) return 0;
+        if (key == null) {
+            return 0;
+        }
         int h = key.hashCode();
         return (h ^ (h >>> 16));
     }

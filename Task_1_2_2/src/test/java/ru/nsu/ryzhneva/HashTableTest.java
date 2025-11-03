@@ -1,15 +1,20 @@
 package ru.nsu.ryzhneva;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Тесты для класса HashTable.
@@ -221,5 +226,10 @@ class HashTableTest {
         String s = table.toString();
         assertTrue(s.equals("{one=1, two=2}") || s.equals("{two=2, one=1}"),
                 "Wrong format toString for a few elements");
+    }
+
+    @Test
+    void testMainRuns() {
+        Main.main(new String[]{});
     }
 }
