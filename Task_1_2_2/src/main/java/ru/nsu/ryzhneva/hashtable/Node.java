@@ -19,7 +19,7 @@ public class Node<K, V> implements Entry<K, V> {
      * @param hash  Предварительно рассчитанный хеш ключа.
      * @param next  Следующий узел в связном списке.
      */
-    Node(K key, V value, int hash, Node<K, V> next) {
+    public Node(K key, V value, int hash, Node<K, V> next) {
         this.key = key;
         this.value = value;
         this.hash = hash;
