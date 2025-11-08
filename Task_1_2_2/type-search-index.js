@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.ryzhneva","l":"HashTable.Entry"},{"p":"ru.nsu.ryzhneva","l":"HashTable"},{"p":"ru.nsu.ryzhneva","l":"Main"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.ryzhneva.hashtable","l":"Entry"},{"p":"ru.nsu.ryzhneva.hashtable","l":"HashTable"},{"p":"ru.nsu.ryzhneva","l":"Main"},{"p":"ru.nsu.ryzhneva.hashtable","l":"Node"}];updateSearchResults();
