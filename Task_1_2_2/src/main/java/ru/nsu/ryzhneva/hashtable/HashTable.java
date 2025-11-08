@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.hashtable;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -11,71 +11,7 @@ import java.util.Objects;
  * @param <K> Тип ключа.
  * @param <V> Тип значения.
  */
-public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
-    /**
-     * Внутренний интерфейс для представления пары ключ-значение.
-     *
-     * @param <K> Тип ключа.
-     * @param <V> Тип значения.
-     */
-    public interface Entry<K, V> {
-        K getKey();
-        V getValue();
-    }
-
-    /**
-     * Внутренний узел хранения данных.
-     */
-    private static class Node<K, V> implements HashTable.Entry<K, V> {
-        final K key;
-        V value;
-        final int hash;
-        Node<K, V> next;
-
-        /**
-         * Конструктор узла.
-         *
-         * @param key   Ключ.
-         * @param value Значение.
-         * @param hash  Предварительно рассчитанный хеш ключа.
-         * @param next  Следующий узел в связном списке.
-         */
-        Node(K key, V value, int hash, Node<K, V> next) {
-            this.key = key;
-            this.value = value;
-            this.hash = hash;
-            this.next = next;
-        }
-
-        @Override
-        public K getKey() {
-            return key;
-        }
-
-        @Override
-        public V getValue() {
-            return value;
-        }
-
-        @Override
-        public final String toString() {
-            return key + "=" + value;
-        }
-
-        @Override
-        public final boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o instanceof HashTable.Entry) {
-                HashTable.Entry<?, ?> e = (HashTable.Entry<?, ?>) o;
-                return Objects.equals(key, e.getKey())
-                        && Objects.equals(value, e.getValue());
-            }
-            return false;
-        }
-    }
-
+public class HashTable<K, V> implements Iterable<Entry<K, V>> {
     private Node<K, V>[] table;
     private int size = 0;
     private int capTable;
@@ -91,6 +27,7 @@ public class HashTable<K, V> implements Iterable<HashTable.Entry<K, V>> {
         this.capTable = DEF_INIT_CAP;
         this.table = (Node<K, V>[]) new Node[capTable];
     }
+
     /**
      * Рассчитывает хеш-код для ключа.
      *

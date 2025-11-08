@@ -15,6 +15,8 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.hashtable.Entry;
+import ru.nsu.ryzhneva.hashtable.HashTable;
 
 /**
  * Тесты для класса HashTable.
@@ -143,7 +145,7 @@ class HashTableTest {
 
     @Test
     void testEmptyIterator() {
-        Iterator<HashTable.Entry<String, Integer>> it = table.iterator();
+        Iterator<Entry<String, Integer>> it = table.iterator();
         assertFalse(it.hasNext(), "hasNext() - false");
         assertThrows(NoSuchElementException.class, it::next,
                 "NoSuchElementException");
@@ -157,7 +159,7 @@ class HashTableTest {
         Set<String> keysFound = new HashSet<>();
         Set<Integer> valuesFound = new HashSet<>();
 
-        for (HashTable.Entry<String, Integer> entry : table) {
+        for (Entry<String, Integer> entry : table) {
             keysFound.add(entry.getKey());
             valuesFound.add(entry.getValue());
         }
@@ -169,7 +171,7 @@ class HashTableTest {
     @Test
     void testConcurrentModificationPut() {
         table.put("one", 1);
-        Iterator<HashTable.Entry<String, Integer>> it = table.iterator();
+        Iterator<Entry<String, Integer>> it = table.iterator();
         assertThrows(ConcurrentModificationException.class, () -> {
             it.next();
             table.put("two", 2);
@@ -183,7 +185,7 @@ class HashTableTest {
         table.put("two", 2);
 
         assertThrows(ConcurrentModificationException.class, () -> {
-            for (HashTable.Entry<String, Integer> entry : table) {
+            for (Entry<String, Integer> entry : table) {
                 if (entry.getKey().equals("one")) {
                     table.remove("two");
                 }

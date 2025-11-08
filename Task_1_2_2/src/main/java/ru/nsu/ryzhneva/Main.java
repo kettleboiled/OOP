@@ -1,5 +1,8 @@
 package ru.nsu.ryzhneva;
 
+import ru.nsu.ryzhneva.hashtable.Entry;
+import ru.nsu.ryzhneva.hashtable.HashTable;
+
 import java.util.ConcurrentModificationException;
 
 /**
@@ -27,12 +30,12 @@ public class Main {
         System.out.println("Check 'nine': " + hashTable.check("nine"));
 
         System.out.println("Iteration:");
-        for (HashTable.Entry<String, Number> entry : hashTable) {
+        for (Entry<String, Number> entry : hashTable) {
             System.out.println("  " + entry.getKey() + " -> " + entry.getValue());
         }
 
         try {
-            for (HashTable.Entry<String, Number> entry : hashTable) {
+            for (Entry<String, Number> entry : hashTable) {
                 hashTable.put("four", 4);
             }
         } catch (ConcurrentModificationException e) {
