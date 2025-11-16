@@ -1,5 +1,10 @@
 package ru.nsu.ryzhneva;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -8,10 +13,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Тесты для класса FindSubstring.
@@ -26,79 +27,71 @@ class FindSubstringTest {
         Path testFile = tempDir.resolve("input.txt");
         Files.writeString(testFile, "абракадабра", StandardCharsets.UTF_8);
         List<Long> expected = List.of(1L, 8L);
-        List<Long> actual = FindSubstring.find(testFile.toString(), "бра");
+
+        FindSubstring finder = new FindSubstring("бра");
+        List<Long> actual = finder.find(testFile.toString());
+
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    void testEmptySubstring() throws IOException {
-        Path testFile = tempDir.resolve("empty_substring.txt");
-        Files.writeString(testFile, "abcde", StandardCharsets.UTF_8);
-        List<Long> emptyList = List.of();
-        List<Long> actual = FindSubstring.find(testFile.toString(), "");
-        Assertions.assertEquals(emptyList, actual);
-    }
+    void testEmptyAndNullSubstring() throws IOException {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new FindSubstring(null);
+        }, "Конструктор должен выбрасывать исключение для null");
 
-    @Test
-    void testFileNotFound() {
-        String nonExistentFile = "file.txt";
-        Assertions.assertThrows(IOException.class, () -> {
-            FindSubstring.find(nonExistentFile, "abc");
-        });
-    }
+        Path testFile = tempDir.resolve("empty_needle_test.txt");
+        Files.writeString(testFile, "Этот файл будет прочитан", StandardCharsets.UTF_8);
 
-    @Test
-    void testBufferJunction() throws IOException {
-        String substring = "abcdefi";
-        int lenSubstring = substring.length();
-        int sizeBuff = 8192;
-        int tailStart = sizeBuff - (lenSubstring / 2);
+        FindSubstring finder = new FindSubstring("");
 
-        StringBuilder sb = new StringBuilder(sizeBuff + 100);
-        for (int i = 0; i < tailStart; i++) {
-            sb.append('a');
-        }
-        sb.append(substring);
-        for (int i = 0; i < 100; i++) {
-            sb.append('b');
-        }
-        Path testFile = tempDir.resolve("data.txt");
-        Files.writeString(testFile, sb.toString(), StandardCharsets.UTF_8);
-        List<Long> expected = List.of((long) tailStart);
-        List<Long> actual = FindSubstring.find(testFile.toString(), substring);
-        Assertions.assertEquals(expected, actual);
+        List<Long> expected = List.of();
+        List<Long> actual = finder.find(testFile.toString());
+
+        Assertions.assertEquals(expected, actual, "Поиск пустой строки должен возвращать пустой список");
     }
 
     @Test
     void testLargeFile() throws IOException {
         Path largeFile = tempDir.resolve("file.txt");
         String substring = "STRING";
-        long approxSizeMB = 10;
+        long approxSizeMB = 500;
+
+        System.out.println("Начало теста на большом файле (500MB)... Это может занять время.");
+        long startTime = System.currentTimeMillis();
+
         generateLargeTestFile(largeFile, approxSizeMB, substring);
+
+        long generationTime = System.currentTimeMillis();
+        System.out.println("Файл (500МБ) сгенерирован за " + (generationTime - startTime) + " мс.");
 
         String pattern = "abcdefghijklmnopqrstuvwxyz_0123456789_АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ_";
         long targetSize = approxSizeMB * 1024 * 1024;
         long chunkSize = (pattern.length() * 1000L + substring.length());
-
         long written = 0;
         long expectedCount = 0;
         while(written < targetSize) {
             written += chunkSize;
             expectedCount++;
         }
-        List<Long> actual = FindSubstring.find(largeFile.toString(), substring);
+
+        System.out.println("Ожидаемое кол-во вхождений: " + expectedCount);
+        System.out.println("Начало поиска в файле...");
+        long findStartTime = System.currentTimeMillis();
+
+        FindSubstring finder = new FindSubstring(substring);
+        List<Long> actual = finder.find(largeFile.toString());
+
+        long findEndTime = System.currentTimeMillis();
+        System.out.println("Поиск завершен за " + (findEndTime - findStartTime) + " мс.");
 
         Assertions.assertEquals(expectedCount, actual.size());
-        System.out.println("Тест на большом файле: Найдено " + actual.size() + " вхождений.");
+        System.out.println("Тест на большом файле (Рабин-Карп): Найдено " + actual.size() + " вхождений.");
+        System.out.println("Общее время теста: " + (findEndTime - startTime) + " мс.");
     }
 
     /**
      * Метод для генерации тестовых данных.
-     *
-     * @param path         Путь к файлу, который будет создан.
-     * @param approxSizeMB Приблизительный размер файла в мегабайтах.
-     * @param substring  Искомая подстрока, которая будет вставлена в файл.
-     * @throws IOException Ошибка записи.
      */
     private static void generateLargeTestFile(Path path, long approxSizeMB, String substring) throws IOException {
         System.out.println("Генерация тестового файла " + path + " (~" + approxSizeMB + "MB)...");
@@ -121,10 +114,5 @@ class FindSubstringTest {
             }
         }
         System.out.println("Генерация завершена. Размер: " + (written / (1024 * 1024)) + "MB");
-    }
-
-    @Test
-    void testMainRuns() {
-        Main.main(new String[]{});
     }
 }

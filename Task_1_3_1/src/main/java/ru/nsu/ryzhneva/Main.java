@@ -8,12 +8,12 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * Класс Main.
+ * Класс Main для ручной проверки StreamSubstringFinder.
  */
 public class Main {
     /**
      * Точка входа.
-     * @param args аргументы.
+     * @param args аргументы (не используются).
      */
     public static void main(String[] args) {
 
@@ -23,18 +23,32 @@ public class Main {
 
         Path filePath = Paths.get(fileName);
 
+        System.out.println("--- Демонстрация StreamSubstringFinder (ООП + Рабин-Карп) ---");
         System.out.println("Файл: " + fileName);
         System.out.println("Содержимое: \"" + content + "\"");
         System.out.println("Ищем: \"" + substring + "\"");
 
         try {
             Files.writeString(filePath, content, StandardCharsets.UTF_8);
-            List<Long> indices = FindSubstring.find(fileName, substring);
-            System.out.println("\nРезультат (найденные индексы): " + indices);
-            System.out.println("Ожидаемый результат: [1, 8, 15, 22, 29, 36, 41, 48, 55, 60, 67, 74]");
 
+            FindSubstring finder = new FindSubstring(substring);
+            List<Long> indices = finder.find(fileName);
+            System.out.println("\nРезультат (найденные индексы): " + indices);
+
+            String expected = "[1, 8, 15, 22, 29, 36, 41, 48, 55, 60, 67, 74]";
+            System.out.println("Ожидаемый результат:        " + expected);
+
+            if (indices.toString().equals(expected)) {
+                System.out.println("Успешно");
+            } else {
+                System.out.println("Ошибка: (ожидаемый и реальный результаты не совпадают)");
+            }
+
+        } catch (IllegalArgumentException e) {
+            System.err.println("Ошибка конфигурации: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("\nПроизошла ошибка во время выполнения:");
+            e.printStackTrace();
         } finally {
             try {
                 if (Files.exists(filePath)) {
