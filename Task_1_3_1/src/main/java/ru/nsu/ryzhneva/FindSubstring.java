@@ -64,7 +64,7 @@ public class FindSubstring {
      * @return Список Long индексов начала каждого вхождения.
      * @throws IOException В случае ошибки чтения файла.
      */
-    public List<Long> find(String fileName) throws IOException{
+    public List<Long> find(String fileName) throws IOException {
         List<Long> indices = new ArrayList<>();
 
         if (this.isEmptySubstring) {

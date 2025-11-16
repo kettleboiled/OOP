@@ -13,6 +13,7 @@ import java.util.List;
 public class Main {
     /**
      * Точка входа.
+     *
      * @param args аргументы (не используются).
      */
     public static void main(String[] args) {

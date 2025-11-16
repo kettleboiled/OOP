@@ -1,10 +1,5 @@
 package ru.nsu.ryzhneva;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +8,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Тесты для класса FindSubstring.
@@ -48,7 +46,8 @@ class FindSubstringTest {
         List<Long> expected = List.of();
         List<Long> actual = finder.find(testFile.toString());
 
-        Assertions.assertEquals(expected, actual, "Поиск пустой строки должен возвращать пустой список");
+        Assertions.assertEquals(expected, actual,
+                "Поиск пустой строки должен возвращать пустой список");
     }
 
     @Test
@@ -57,7 +56,7 @@ class FindSubstringTest {
         String substring = "STRING";
         long approxSizeMB = 500;
 
-        System.out.println("Начало теста на большом файле (500MB)... Это может занять время.");
+        System.out.println("Начало теста на большом файле (500MB)...");
         long startTime = System.currentTimeMillis();
 
         generateLargeTestFile(largeFile, approxSizeMB, substring);
@@ -83,17 +82,21 @@ class FindSubstringTest {
         List<Long> actual = finder.find(largeFile.toString());
 
         long findEndTime = System.currentTimeMillis();
-        System.out.println("Поиск завершен за " + (findEndTime - findStartTime) + " мс.");
+        System.out.println("Поиск завершен за "
+                + (findEndTime - findStartTime) + " мс.");
 
         Assertions.assertEquals(expectedCount, actual.size());
-        System.out.println("Тест на большом файле (Рабин-Карп): Найдено " + actual.size() + " вхождений.");
-        System.out.println("Общее время теста: " + (findEndTime - startTime) + " мс.");
+        System.out.println("Тест на большом файле (Рабин-Карп): Найдено "
+                + actual.size() + " вхождений.");
+        System.out.println("Общее время теста: "
+                + (findEndTime - startTime) + " мс.");
     }
 
     /**
      * Метод для генерации тестовых данных.
      */
-    private static void generateLargeTestFile(Path path, long approxSizeMB, String substring) throws IOException {
+    private static void generateLargeTestFile(Path path,
+                                              long approxSizeMB, String substring) throws IOException {
         System.out.println("Генерация тестового файла " + path + " (~" + approxSizeMB + "MB)...");
         String pattern = "abcdefghijklmnopqrstuvwxyz_0123456789_АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ_";
         long targetSize = approxSizeMB * 1024 * 1024;
@@ -113,6 +116,12 @@ class FindSubstringTest {
                 written += (patternLength * 1000L + targetLength);
             }
         }
-        System.out.println("Генерация завершена. Размер: " + (written / (1024 * 1024)) + "MB");
+        System.out.println("Генерация завершена. Размер: "
+                + (written / (1024 * 1024)) + "MB");
+    }
+
+    @Test
+    void testMainRuns() {
+        Main.main(new String[]{});
     }
 }
