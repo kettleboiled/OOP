@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.ryzhneva"},{"l":"ru.nsu.ryzhneva.gradebook"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.ryzhneva"},{"l":"ru.nsu.ryzhneva.gradebook"},{"l":"ru.nsu.ryzhneva.gradebook.typesandgrades"}];updateSearchResults();
