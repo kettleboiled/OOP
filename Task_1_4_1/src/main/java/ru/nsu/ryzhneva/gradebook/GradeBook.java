@@ -17,6 +17,7 @@ public class GradeBook {
 
     /**
      * Вычисляет текущий средний балл.
+     *
      * @return среднее арифметическое всех оценок.
      */
     public double getAverageScore() {
@@ -44,7 +45,7 @@ public class GradeBook {
      *
      * @return можно или нет.
      */
-    public boolean TransferToBudget() {
+    public boolean transferToBudget() {
         List<Integer> examSemesters = new ArrayList<>();
         for (DisciplineData discipline : grades) {
             if (discipline.getControlType() == TypeOfControl.EXAM) {
@@ -65,11 +66,13 @@ public class GradeBook {
 
         for (DisciplineData discipline : grades) {
             boolean suitableSemesters = false;
-            if (discipline.getSemester() == lastSemester || discipline.getSemester() == prevSemester) {
+            if (discipline.getSemester() == lastSemester
+                    || discipline.getSemester() == prevSemester) {
                 suitableSemesters = true;
             }
 
-            if (suitableSemesters && discipline.getControlType() == TypeOfControl.EXAM) {
+            if (suitableSemesters
+                    && discipline.getControlType() == TypeOfControl.EXAM) {
                 if (discipline.getGrade() == Grade.SATISFACTORY
                 || discipline.getGrade() == Grade.UNSATISFACTORY
                 || discipline.getGrade() == Grade.FAIL) {
@@ -83,6 +86,7 @@ public class GradeBook {
 
     /**
      * Проверяет возможность получения красного диплома.
+     *
      * @return {@code true}, если все критерии выполнены, иначе {@code false}.
      */
     public boolean canGetRedDiploma() {
@@ -123,7 +127,8 @@ public class GradeBook {
 
     /**
      * Проверяет возможность получения
-     * повышенной государственной академической стипендии (ПГАС)
+     * повышенной государственной академической стипендии (ПГАС).
+     *
      * @return {@code true}, все оценки - "Отлично", иначе {@code false}.
      */
     public boolean canGetPGAS() {
@@ -140,7 +145,8 @@ public class GradeBook {
 
         for (DisciplineData discipline : grades) {
             if (discipline.getSemester() == currentSemester) {
-                if (discipline.getGrade() != Grade.EXCELLENT && discipline.getGrade().isGraded()) {
+                if (discipline.getGrade() != Grade.EXCELLENT
+                        && discipline.getGrade().isGraded()) {
                     return false;
                 }
             }

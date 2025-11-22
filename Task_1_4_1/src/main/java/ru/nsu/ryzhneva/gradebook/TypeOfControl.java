@@ -20,7 +20,7 @@ public enum TypeOfControl {
      *
      * @param label текстовое представление вида контроля.
      */
-    TypeOfControl(String label){
+    TypeOfControl(String label) {
         this.label = label;
     }
 }

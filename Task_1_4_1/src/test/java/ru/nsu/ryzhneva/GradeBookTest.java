@@ -1,14 +1,19 @@
 package ru.nsu.ryzhneva;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import ru.nsu.ryzhneva.gradebook.DisciplineData;
 import ru.nsu.ryzhneva.gradebook.Grade;
 import ru.nsu.ryzhneva.gradebook.GradeBook;
 import ru.nsu.ryzhneva.gradebook.TypeOfControl;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Тесты для зачетной книжки.
+ */
 class GradeBookTest {
 
     private GradeBook gradeBook;
@@ -102,7 +107,7 @@ class GradeBookTest {
         gradeBook.grades.add(new DisciplineData("Project",
                 2, TypeOfControl.DIFF_CREDIT, Grade.SATISFACTORY));
 
-        assertTrue(gradeBook.TransferToBudget());
+        assertTrue(gradeBook.transferToBudget());
     }
 
     @Test
@@ -112,7 +117,7 @@ class GradeBookTest {
         gradeBook.grades.add(new DisciplineData("Physics",
                 2, TypeOfControl.EXAM, Grade.SATISFACTORY));
 
-        assertFalse(gradeBook.TransferToBudget());
+        assertFalse(gradeBook.transferToBudget());
     }
 
     @Test

@@ -27,6 +27,7 @@ public class DisciplineData {
 
     /**
      * Получить оценку за предмет.
+     *
      * @return объект перечисления.
      */
     public Grade getGrade() {
@@ -35,6 +36,7 @@ public class DisciplineData {
 
     /**
      * Получить тип контроля по предмету.
+     *
      * @return объект перечисления.
      */
     public TypeOfControl getControlType() {
@@ -43,6 +45,7 @@ public class DisciplineData {
 
     /**
      * Получить номер семестра, в котором сдавался предмет.
+     *
      * @return номер семестра.
      */
     public int getSemester() {

@@ -1,5 +1,10 @@
 package ru.nsu.ryzhneva.gradebook;
 
+/**
+ * Перечисление возможных оценок.
+ * PASS - зачет, FAIL - незачет.
+ * UNDEFINED - нет оценки.
+ */
 public enum Grade {
     EXCELLENT(5),
     GOOD(4),
@@ -16,12 +21,13 @@ public enum Grade {
      *
      * @param grade числовой вес оценки.
      */
-    Grade(int grade){
+    Grade(int grade) {
         this.grade = grade;
     }
 
     /**
      * Возвращает числовое представление оценки.
+     *
      * @return целое число, соответствующее оценке.
      */
     public int getGrade() {
@@ -30,11 +36,13 @@ public enum Grade {
 
     /**
      * Проверяет, является ли оценка дифференцированной.
+     *
      * @return {@code true}, если оценка участвует в расчете среднего балла;
      * {@code false} в противном случае.
      */
     public boolean isGraded() {
-        if (this == EXCELLENT || this == GOOD || this == SATISFACTORY || this == UNSATISFACTORY) {
+        if (this == EXCELLENT || this == GOOD
+                || this == SATISFACTORY || this == UNSATISFACTORY) {
             return true;
         }
         return false;

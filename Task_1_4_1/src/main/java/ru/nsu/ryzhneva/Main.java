@@ -12,7 +12,7 @@ public class Main {
     /**
      * Точка входа.
      *
-     * @param args
+     * @param args аргументы.
      */
     public static void main(String[] args) {
         GradeBook myGradeBook = new GradeBook();
@@ -35,17 +35,17 @@ public class Main {
 
         System.out.printf("1. Average Score: %.2f%n", myGradeBook.getAverageScore());
 
-        System.out.println("2. Transfer to budget? " +
-                (myGradeBook.TransferToBudget() ? "Yes" : "No"));
+        System.out.println("2. Transfer to budget? "
+                + (myGradeBook.transferToBudget() ? "Yes" : "No"));
 
-        System.out.println("3. Is it possible to get PGAS? " +
-                (myGradeBook.canGetPGAS() ? "Yes" : "No"));
+        System.out.println("3. Is it possible to get PGAS? "
+                + (myGradeBook.canGetPGAS() ? "Yes" : "No"));
 
         System.out.println("Diploma defense");
         myGradeBook.grades.add(new DisciplineData("ВКР",
                 8, TypeOfControl.THESIS_DEFENSE, Grade.EXCELLENT));
 
-        System.out.println("4. Is it possible to get RedDiploma? " +
-                (myGradeBook.canGetRedDiploma() ? "Yes" : "No"));
+        System.out.println("4. Is it possible to get RedDiploma? "
+                + (myGradeBook.canGetRedDiploma() ? "Yes" : "No"));
     }
 }
