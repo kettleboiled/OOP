@@ -70,23 +70,23 @@ public class Student {
      * @return {@code true}, если стипендия положена.
      */
     public boolean hasIncreasedScholarship() {
-            if (!isBudget) {
-                return false;
-            }
+        if (!isBudget) {
+            return false;
+        }
 
-            Semester semesterObj = null;
-            for (Semester s : gradeBook.getSemesters()) {
-                if (s.getNumber() == this.currentSemester) {
-                    semesterObj = s;
-                    break;
-                }
+        Semester semesterObj = null;
+        for (Semester s : gradeBook.getSemesters()) {
+            if (s.getNumber() == this.currentSemester) {
+                semesterObj = s;
+                break;
             }
+        }
 
-            if (semesterObj == null) {
-                return false;
-            }
+        if (semesterObj == null) {
+            return false;
+        }
 
-            return semesterObj.isExcellent();
+        return semesterObj.isExcellent();
     }
 
     /**

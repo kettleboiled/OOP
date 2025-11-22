@@ -1,10 +1,9 @@
 package ru.nsu.ryzhneva.gradebook;
 
-import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
-import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
-
 import java.util.ArrayList;
 import java.util.List;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 
 /**
  * Класс, представляющий один семестр обучения.
