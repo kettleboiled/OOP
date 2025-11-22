@@ -4,10 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import ru.nsu.ryzhneva.gradebook.DisciplineData;
-import ru.nsu.ryzhneva.gradebook.Grade;
-import ru.nsu.ryzhneva.gradebook.GradeBook;
-import ru.nsu.ryzhneva.gradebook.TypeOfControl;
+import ru.nsu.ryzhneva.gradebook.Discipline;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
+import ru.nsu.ryzhneva.gradebook.Semester;
+import ru.nsu.ryzhneva.gradebook.Student;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,112 +17,126 @@ import org.junit.jupiter.api.Test;
  */
 class GradeBookTest {
 
-    private GradeBook gradeBook;
+    private Student student;
 
     @BeforeEach
     void setUp() {
-        gradeBook = new GradeBook();
+        student = new Student("Test Student", true, 101);
     }
 
     @Test
     void testAverageScore() {
-        gradeBook.grades.add(new DisciplineData("Math",
-                1, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("OOP",
-                1, TypeOfControl.DIFF_CREDIT, Grade.GOOD));
-        gradeBook.grades.add(new DisciplineData("History",
-                1, TypeOfControl.EXAM, Grade.SATISFACTORY));
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("Math", TypeOfControl.EXAM, Grade.EXCELLENT)); // 5
+        s1.addDiscipline(new Discipline("OOP", TypeOfControl.DIFF_CREDIT, Grade.GOOD)); // 4
+        s1.addDiscipline(new Discipline("History", TypeOfControl.EXAM, Grade.SATISFACTORY)); // 3
+        s1.addDiscipline(new Discipline("PE", TypeOfControl.CREDIT, Grade.PASS)); // не учитывается
 
-        gradeBook.grades.add(new DisciplineData("PE",
-                1, TypeOfControl.CREDIT, Grade.PASS));
-
-        assertEquals(4.0, gradeBook.getAverageScore(), 0.001);
+        student.getGradeBook().addSemester(s1);
+        assertEquals(4.0, student.getGradeBook().getAverageScore(), 0.001);
     }
 
     @Test
-    void testRedDiplomaSuccess() {
-        gradeBook.grades.add(new DisciplineData("S1",
-                1, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("S2",
-                1, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("S3",
-                1, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("S4",
-                1, TypeOfControl.EXAM, Grade.GOOD));
+    void testIncreasedStipendSuccess() {
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("Math", TypeOfControl.EXAM, Grade.EXCELLENT));
+        s1.addDiscipline(new Discipline("History", TypeOfControl.DIFF_CREDIT, Grade.EXCELLENT));
 
-        gradeBook.grades.add(new DisciplineData("Thesis",
-                8, TypeOfControl.THESIS_DEFENSE, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(s1);
 
-        assertTrue(gradeBook.canGetRedDiploma());
+        assertTrue(student.hasIncreasedScholarship());
     }
 
     @Test
-    void testRedDiplomaFailDueToGrade3() {
-        gradeBook.grades.add(new DisciplineData("Math",
-                1, TypeOfControl.EXAM, Grade.SATISFACTORY));
-        gradeBook.grades.add(new DisciplineData("OOP",
-                1, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("Thesis",
-                8, TypeOfControl.THESIS_DEFENSE, Grade.EXCELLENT));
+    void testIncreasedStipendFailDueToGoodGrade() {
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("Math", TypeOfControl.EXAM, Grade.GOOD)); // 4
 
-        assertFalse(gradeBook.canGetRedDiploma());
+        student.getGradeBook().addSemester(s1);
+
+        assertFalse(student.hasIncreasedScholarship());
     }
 
     @Test
-    void testRedDiplomaFailDueToThesis() {
-        gradeBook.grades.add(new DisciplineData("Math",
-                1, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("Thesis",
-                8, TypeOfControl.THESIS_DEFENSE, Grade.GOOD));
+    void testIncreasedStipendFailForPaidStudent() {
+        student.setIsBudget(false); // Платник
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("Math", TypeOfControl.EXAM, Grade.EXCELLENT));
 
-        assertFalse(gradeBook.canGetRedDiploma());
+        student.getGradeBook().addSemester(s1);
+
+        assertFalse(student.hasIncreasedScholarship());
     }
 
     @Test
-    void testIncreasedStipend() {
-        gradeBook.grades.add(new DisciplineData("Math",
-                1, TypeOfControl.EXAM, Grade.GOOD));
+    void testTransferToBudgetSuccess() {
+        student.setIsBudget(false); // Сначала платник
 
-        gradeBook.grades.add(new DisciplineData("Java",
-                2, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("C++",
-                2, TypeOfControl.DIFF_CREDIT, Grade.EXCELLENT));
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("Math", TypeOfControl.EXAM, Grade.GOOD));
+        student.getGradeBook().addSemester(s1);
+        student.moveToNextSemester();
 
-        assertTrue(gradeBook.canGetPGAS());
-    }
+        Semester s2 = new Semester(2);
+        s2.addDiscipline(new Discipline("Physics", TypeOfControl.EXAM, Grade.EXCELLENT));
+        s2.addDiscipline(new Discipline("Project", TypeOfControl.DIFF_CREDIT, Grade.SATISFACTORY));
 
-    @Test
-    void testNoStipendIfGoodGradeInLastSemester() {
-        gradeBook.grades.add(new DisciplineData("Java",
-                2, TypeOfControl.EXAM, Grade.GOOD));
+        student.getGradeBook().addSemester(s2);
 
-        assertFalse(gradeBook.canGetPGAS());
-    }
-
-    @Test
-    void testTransferToBudget() {
-        gradeBook.grades.add(new DisciplineData("Math",
-                1, TypeOfControl.EXAM, Grade.GOOD));
-        gradeBook.grades.add(new DisciplineData("Physics",
-                2, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("Project",
-                2, TypeOfControl.DIFF_CREDIT, Grade.SATISFACTORY));
-
-        assertTrue(gradeBook.transferToBudget());
+        assertTrue(student.transferToBudget());
     }
 
     @Test
     void testTransferToBudgetFail() {
-        gradeBook.grades.add(new DisciplineData("Math",
-                1, TypeOfControl.EXAM, Grade.EXCELLENT));
-        gradeBook.grades.add(new DisciplineData("Physics",
-                2, TypeOfControl.EXAM, Grade.SATISFACTORY));
+        student.setIsBudget(false);
 
-        assertFalse(gradeBook.transferToBudget());
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("Math", TypeOfControl.EXAM, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(s1);
+        student.moveToNextSemester();
+
+        Semester s2 = new Semester(2);
+        s2.addDiscipline(new Discipline("Physics", TypeOfControl.EXAM, Grade.SATISFACTORY));
+        student.getGradeBook().addSemester(s2);
+
+        assertFalse(student.transferToBudget());
     }
 
     @Test
-    void testMainRuns() {
-        Main.main(new String[]{});
+    void testRedDiplomaSuccess() {
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("S1", TypeOfControl.EXAM, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(s1);
+
+        Semester s2 = new Semester(2);
+        s2.addDiscipline(new Discipline("S2", TypeOfControl.EXAM, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(s2);
+
+        Semester s3 = new Semester(3);
+        s3.addDiscipline(new Discipline("S3", TypeOfControl.EXAM, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(s3);
+
+        Semester s4 = new Semester(4);
+        s4.addDiscipline(new Discipline("S4", TypeOfControl.EXAM, Grade.GOOD));
+        student.getGradeBook().addSemester(s4);
+
+        Semester s8 = new Semester(8);
+        s8.addDiscipline(new Discipline("Thesis", TypeOfControl.THESIS_DEFENSE, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(s8);
+
+        assertTrue(student.getGradeBook().canGetRedDiploma());
+    }
+
+    @Test
+    void testRedDiplomaFailDueToThesis() {
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("Math", TypeOfControl.EXAM, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(s1);
+
+        Semester s8 = new Semester(8);
+        s8.addDiscipline(new Discipline("Thesis", TypeOfControl.THESIS_DEFENSE, Grade.GOOD));
+        student.getGradeBook().addSemester(s8);
+
+        assertFalse(student.getGradeBook().canGetRedDiploma());
     }
 }

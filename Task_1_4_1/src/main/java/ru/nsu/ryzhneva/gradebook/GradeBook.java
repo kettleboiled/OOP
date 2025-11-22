@@ -1,19 +1,44 @@
 package ru.nsu.ryzhneva.gradebook;
 
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Класс электронной зачетной книжки студента ФИТ.
- * Реализует логику хранения оценок и вычисления
- * академических показателей:
- * среднего балла, возможности перевода на бюджет,
- * получения красного диплома
- * и повышенной стипендии.
  */
 public class GradeBook {
-    public List<DisciplineData> grades = new ArrayList<>();
+    private List<Semester> semesters = new ArrayList<>();
+    private int id;
+
+    /**
+     * Создает новую зачетную книжку.
+     *
+     * @param id номер зачетной книжки.
+     */
+    public GradeBook(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Добавляет данные о семестре в зачетную книжку.
+     *
+     * @param semester объект семестра.
+     */
+    public void addSemester(Semester semester) {
+        semesters.add(semester);
+    }
+
+    /**
+     * Получить список всех семестров.
+     *
+     * @return список семестров.
+     */
+    public List<Semester> getSemesters() {
+        return semesters;
+    }
 
     /**
      * Вычисляет текущий средний балл.
@@ -25,63 +50,19 @@ public class GradeBook {
         double sum = 0;
 
 
-        for (DisciplineData discipline : grades) {
-            if (discipline.getGrade().isGraded()) {
-                sum += discipline.getGrade().getGrade();
-                count++;
+        for (Semester semester : semesters) {
+            for (Discipline discipline : semester.getDisciplines()) {
+                if (discipline.getGrade().isGraded()) {
+                    sum += discipline.getGrade().getScore();
+                    count++;
+                }
             }
         }
 
         if (count == 0) {
             return 0.0;
         }
-
         return sum / count;
-    }
-
-    /**
-     * Проверяет возможность перевода студента
-     * с платной формы обучения на бюджетную.
-     *
-     * @return можно или нет.
-     */
-    public boolean transferToBudget() {
-        List<Integer> examSemesters = new ArrayList<>();
-        for (DisciplineData discipline : grades) {
-            if (discipline.getControlType() == TypeOfControl.EXAM) {
-                if (!examSemesters.contains(discipline.getSemester())) {
-                    examSemesters.add(discipline.getSemester());
-                }
-            }
-        }
-
-        examSemesters.sort(Collections.reverseOrder());
-
-        if (examSemesters.size() < 2) {
-            return false;
-        }
-
-        int lastSemester = examSemesters.get(0);
-        int prevSemester = examSemesters.get(1);
-
-        for (DisciplineData discipline : grades) {
-            boolean suitableSemesters = false;
-            if (discipline.getSemester() == lastSemester
-                    || discipline.getSemester() == prevSemester) {
-                suitableSemesters = true;
-            }
-
-            if (suitableSemesters
-                    && discipline.getControlType() == TypeOfControl.EXAM) {
-                if (discipline.getGrade() == Grade.SATISFACTORY
-                || discipline.getGrade() == Grade.UNSATISFACTORY
-                || discipline.getGrade() == Grade.FAIL) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 
     /**
@@ -90,29 +71,30 @@ public class GradeBook {
      * @return {@code true}, если все критерии выполнены, иначе {@code false}.
      */
     public boolean canGetRedDiploma() {
-        if (grades.isEmpty()) {
+        if (semesters.isEmpty()) {
             return false;
         }
 
         int countExcellentGrades = 0;
         int countAll = 0;
 
-        for (DisciplineData discipline : grades) {
-
-            if (discipline.getControlType() == TypeOfControl.THESIS_DEFENSE) {
-                if (discipline.getGrade() != Grade.EXCELLENT) {
-                    return false;
-                }
+        for (Semester semester : semesters) {
+            if (semester.hasBadGrades(false)) {
+                return false;
             }
 
-            if (discipline.getGrade().isGraded()) {
-                if (discipline.getGrade() == Grade.SATISFACTORY) {
-                    return false;
+            for (Discipline discipline : semester.getDisciplines()) {
+                if (discipline.getControlType() == TypeOfControl.THESIS_DEFENSE) {
+                    if (discipline.getGrade() != Grade.EXCELLENT) {
+                        return false;
+                    }
                 }
 
-                countAll++;
-                if (discipline.getGrade() == Grade.EXCELLENT) {
-                    countExcellentGrades++;
+                if (discipline.getGrade().isGraded()) {
+                    countAll++;
+                    if (discipline.getGrade() == Grade.EXCELLENT) {
+                        countExcellentGrades++;
+                    }
                 }
             }
         }
@@ -124,34 +106,4 @@ public class GradeBook {
         double res = (double) countExcellentGrades / countAll;
         return res >= 0.75;
     }
-
-    /**
-     * Проверяет возможность получения
-     * повышенной государственной академической стипендии (ПГАС).
-     *
-     * @return {@code true}, все оценки - "Отлично", иначе {@code false}.
-     */
-    public boolean canGetPGAS() {
-        int currentSemester = 0;
-        for (DisciplineData discipline : grades) {
-            if (discipline.getSemester() > currentSemester) {
-                currentSemester = discipline.getSemester();
-            }
-        }
-
-        if (currentSemester == 0) {
-            return false;
-        }
-
-        for (DisciplineData discipline : grades) {
-            if (discipline.getSemester() == currentSemester) {
-                if (discipline.getGrade() != Grade.EXCELLENT
-                        && discipline.getGrade().isGraded()) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
 }

@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva.gradebook;
+package ru.nsu.ryzhneva.gradebook.typesandgrades;
 
 /**
  * Перечисление видов контроля.

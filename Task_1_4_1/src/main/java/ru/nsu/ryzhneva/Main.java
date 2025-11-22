@@ -1,9 +1,10 @@
 package ru.nsu.ryzhneva;
 
-import ru.nsu.ryzhneva.gradebook.DisciplineData;
-import ru.nsu.ryzhneva.gradebook.Grade;
-import ru.nsu.ryzhneva.gradebook.GradeBook;
-import ru.nsu.ryzhneva.gradebook.TypeOfControl;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
+import ru.nsu.ryzhneva.gradebook.Discipline;
+import ru.nsu.ryzhneva.gradebook.Semester;
+import ru.nsu.ryzhneva.gradebook.Student;
 
 /**
  * Класс Main.
@@ -15,37 +16,42 @@ public class Main {
      * @param args аргументы.
      */
     public static void main(String[] args) {
-        GradeBook myGradeBook = new GradeBook();
+        System.out.println("=== Start System ===");
+        Student student = new Student("Ivanov Ivan", true, 12345);
+        System.out.println("Student: Ivanov Ivan, Semester: " + student.getCurrentSemester());
 
-        System.out.println("=== GradeBook ===");
+        Semester sem1 = new Semester(1);
+        sem1.addDiscipline(new Discipline("Math Analysis", TypeOfControl.EXAM, Grade.GOOD)); // 4
+        sem1.addDiscipline(new Discipline("History", TypeOfControl.CREDIT, Grade.PASS));
+        sem1.addDiscipline(new Discipline("Programming", TypeOfControl.DIFF_CREDIT, Grade.EXCELLENT));
 
-        myGradeBook.grades.add(new DisciplineData("Mathematics analise",
-                1, TypeOfControl.EXAM, Grade.GOOD));
-        myGradeBook.grades.add(new DisciplineData("History",
-                1, TypeOfControl.CREDIT, Grade.PASS));
-        myGradeBook.grades.add(new DisciplineData("Programming",
-                1, TypeOfControl.DIFF_CREDIT, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(sem1);
 
-        myGradeBook.grades.add(new DisciplineData("Discrete mathematics",
-                2, TypeOfControl.EXAM, Grade.EXCELLENT));
-        myGradeBook.grades.add(new DisciplineData("Imperative programming",
-                2, TypeOfControl.EXAM, Grade.EXCELLENT));
-        myGradeBook.grades.add(new DisciplineData("Physical culture",
-                2, TypeOfControl.CREDIT, Grade.PASS));
+        System.out.println("Stipend (Sem 1): " + (student.hasIncreasedScholarship() ? "Yes" : "No"));
 
-        System.out.printf("1. Average Score: %.2f%n", myGradeBook.getAverageScore());
+        student.moveToNextSemester();
+        System.out.println("\nMoved to Semester: " + student.getCurrentSemester());
 
-        System.out.println("2. Transfer to budget? "
-                + (myGradeBook.transferToBudget() ? "Yes" : "No"));
+        Semester sem2 = new Semester(2);
+        sem2.addDiscipline(new Discipline("Discrete Math", TypeOfControl.EXAM, Grade.EXCELLENT));
+        sem2.addDiscipline(new Discipline("Imperative Programming", TypeOfControl.EXAM, Grade.EXCELLENT));
+        sem2.addDiscipline(new Discipline("PE", TypeOfControl.CREDIT, Grade.PASS));
 
-        System.out.println("3. Is it possible to get PGAS? "
-                + (myGradeBook.canGetPGAS() ? "Yes" : "No"));
+        student.getGradeBook().addSemester(sem2);
+        System.out.printf("1. Average Score: %.2f%n", student.getGradeBook().getAverageScore());
 
-        System.out.println("Diploma defense");
-        myGradeBook.grades.add(new DisciplineData("ВКР",
-                8, TypeOfControl.THESIS_DEFENSE, Grade.EXCELLENT));
+        System.out.println("2. Is it possible to get Increased Scholarship (Sem 2)? "
+                + (student.hasIncreasedScholarship() ? "Yes" : "No"));
 
-        System.out.println("4. Is it possible to get RedDiploma? "
-                + (myGradeBook.canGetRedDiploma() ? "Yes" : "No"));
+        student.setIsBudget(false);
+        System.out.println("3. Transfer to budget (from paid)? "
+                + (student.transferToBudget() ? "Yes" : "No"));
+
+        Semester sem8 = new Semester(8);
+        sem8.addDiscipline(new Discipline("Final Thesis", TypeOfControl.THESIS_DEFENSE, Grade.EXCELLENT));
+        student.getGradeBook().addSemester(sem8);
+
+        System.out.println("4. Is it possible to get Red Diploma? "
+                + (student.getGradeBook().canGetRedDiploma() ? "Yes" : "No"));
     }
 }

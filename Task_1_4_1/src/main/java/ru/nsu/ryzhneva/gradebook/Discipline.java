@@ -1,12 +1,14 @@
 package ru.nsu.ryzhneva.gradebook;
 
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
+
 /**
  * Класс, представляющий запись об одной дисциплине
  * в зачетной книжке.
  */
-public class DisciplineData {
+public class Discipline {
     private String name;
-    private int semester;
     private TypeOfControl controlType;
     private Grade grade;
 
@@ -14,13 +16,11 @@ public class DisciplineData {
      * Создает новую запись о дисциплине.
      *
      * @param name        название дисциплины.
-     * @param semester    номер семестра.
      * @param controlType вид контроля.
      * @param grade       полученная оценка.
      */
-    public DisciplineData(String name, int semester, TypeOfControl controlType, Grade grade) {
+    public Discipline(String name, TypeOfControl controlType, Grade grade) {
         this.name = name;
-        this.semester = semester;
         this.controlType = controlType;
         this.grade = grade;
     }
@@ -44,11 +44,11 @@ public class DisciplineData {
     }
 
     /**
-     * Получить номер семестра, в котором сдавался предмет.
+     * Получить название дисциплины.
      *
-     * @return номер семестра.
+     * @return строковое название дисциплины.
      */
-    public int getSemester() {
-        return semester;
+    public String getName() {
+        return name;
     }
 }

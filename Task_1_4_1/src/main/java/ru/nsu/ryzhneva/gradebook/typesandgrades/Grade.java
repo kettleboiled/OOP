@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva.gradebook;
+package ru.nsu.ryzhneva.gradebook.typesandgrades;
 
 /**
  * Перечисление возможных оценок.
@@ -14,15 +14,15 @@ public enum Grade {
     FAIL(-1),
     UNDEFINED(0);
 
-    private int grade;
+    private final int score;
 
     /**
      * Конструктор оценки.
      *
-     * @param grade числовой вес оценки.
+     * @param score числовой вес оценки.
      */
-    Grade(int grade) {
-        this.grade = grade;
+    Grade(int score) {
+        this.score = score;
     }
 
     /**
@@ -30,8 +30,8 @@ public enum Grade {
      *
      * @return целое число, соответствующее оценке.
      */
-    public int getGrade() {
-        return grade;
+    public int getScore() {
+        return score;
     }
 
     /**
@@ -43,6 +43,19 @@ public enum Grade {
     public boolean isGraded() {
         if (this == EXCELLENT || this == GOOD
                 || this == SATISFACTORY || this == UNSATISFACTORY) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Проверяет, является ли оценка неудовлетворительной.
+     *
+     * @return {@code true}, если оценка 3, 2 или Незачет.
+     */
+    public boolean isBadGrade() {
+        if (this == SATISFACTORY
+                || this == UNSATISFACTORY || this == FAIL) {
             return true;
         }
         return false;
