@@ -24,6 +24,8 @@ public class FindSubstring {
     private final long substringHash;
     private final long highestPower;
     private final boolean isEmptySubstring;
+    private char[] windowArr;
+    private int windowPos = 0;
 
     /**
      * Конструктор класса с расчетом хэша
@@ -41,12 +43,14 @@ public class FindSubstring {
             this.substringLen = 0;
             this.substringHash = 0;
             this.highestPower = 0;
+            this.windowArr = new char[0];
             return;
         }
 
         this.isEmptySubstring = false;
         this.substring = substring.toCharArray();
         this.substringLen = substring.length();
+        this.windowArr = new char[substringLen];
 
         this.substringHash = calculateHash(this.substring, this.substringLen);
 
@@ -72,34 +76,37 @@ public class FindSubstring {
         }
 
         char[] buffer = new char[DEFAULT_BUFFER_SIZE];
-
-        Deque<Character> window = new ArrayDeque<>(substringLen);
-
         long currentHash = 0;
         long globalIndex = 0;
+        windowPos = 0;
 
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(
                         new FileInputStream(fileName), StandardCharsets.UTF_8))) {
-            int charRead = 0;
+            int charRead;
             while ((charRead = reader.read(buffer)) != -1 ) {
                 for (int i = 0; i < charRead; i++) {
                     char newSym = buffer[i];
 
-                    if (window.size() == substringLen) {
-                        char oldSym= window.removeFirst();
+                    if (globalIndex >= substringLen) {
+                        char oldSym = windowArr[windowPos];
                         currentHash = rollHash(currentHash, oldSym, newSym);
                     } else {
                         currentHash = (d * currentHash + newSym) % PRIME_NUMBER;
                     }
-                    window.addLast(newSym);
 
-                    if (window.size() == substringLen && currentHash == substringHash) {
-                        if (checkEquality(window, substring)) {
-                            indices.add(globalIndex - substringLen + 1);
+                    windowArr[windowPos] = newSym;
+                    windowPos++;
+                    if (windowPos == substringLen) {
+                        windowPos = 0;
+                    }
+
+                    globalIndex++;
+                    if (globalIndex >= substringLen && currentHash == substringHash) {
+                        if (checkEqualityPrimitive(windowArr, windowPos, substring)) {
+                            indices.add(globalIndex - substringLen);
                         }
                     }
-                    globalIndex++;
                 }
             }
             return indices;
@@ -107,12 +114,17 @@ public class FindSubstring {
     }
 
     /**
-     * Посимвольная проверка окна и подстроки.
+     * Посимвольная проверка содержимого кольцевого буфера и подстроки.
+     * Работает без создания новых объектов.
+     *
+     * @param windowArr Массив кольцевого буфера
+     * @param startPos  Индекс в массиве, который является логическим началом окна
+     * @param substring Искомый паттерн
      */
-    private boolean checkEquality(Deque<Character> window, char[] substring) {
-        int k = 0;
-        for (char sym : window) {
-            if (sym != substring[k++]) {
+    private boolean checkEqualityPrimitive(char[] windowArr, int startPos, char[] substring) {
+        int len = substring.length;
+        for (int i = 0; i < len; i++) {
+            if (windowArr[(startPos + i) % len] != substring[i]) {
                 return false;
             }
         }

@@ -54,15 +54,15 @@ class FindSubstringTest {
     void testLargeFile() throws IOException {
         Path largeFile = tempDir.resolve("file.txt");
         String substring = "STRING";
-        long approxSizeMB = 500;
+        long approxSizeMB = 2048;
 
-        System.out.println("Начало теста на большом файле (500MB)...");
+        System.out.println("Начало теста на большом файле (~2ГБ)...");
         long startTime = System.currentTimeMillis();
 
         generateLargeTestFile(largeFile, approxSizeMB, substring);
 
         long generationTime = System.currentTimeMillis();
-        System.out.println("Файл (500МБ) сгенерирован за " + (generationTime - startTime) + " мс.");
+        System.out.println("Файл (~2ГБ) сгенерирован за " + (generationTime - startTime) + " мс.");
 
         String pattern = "abcdefghijklmnopqrstuvwxyz_0123456789_АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ_";
         long targetSize = approxSizeMB * 1024 * 1024;
