@@ -87,6 +87,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Создает новую запись о дисциплине.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/gradebook/Discipline.html#%3Cinit%3E(java.lang.String,ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl,ru.nsu.ryzhneva.gradebook.typesandgrades.Grade,java.time.LocalDate)" class="member-name-link">Discipline(String, TypeOfControl, Grade, LocalDate)</a> - Constructor for class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/Discipline.html" title="class in ru.nsu.ryzhneva.gradebook">Discipline</a></dt>
+<dd>
+<div class="block">Конструктор с указанием конкретной даты первой сдачи.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
@@ -114,6 +118,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Получить номер текущего семестра обучения.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/gradebook/GradeRecord.html#getDate()" class="member-name-link">getDate()</a> - Method in class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/GradeRecord.html" title="class in ru.nsu.ryzhneva.gradebook">GradeRecord</a></dt>
+<dd>
+<div class="block">Возвращает дату.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/gradebook/Semester.html#getDisciplines()" class="member-name-link">getDisciplines()</a> - Method in class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/Semester.html" title="class in ru.nsu.ryzhneva.gradebook">Semester</a></dt>
 <dd>
 <div class="block">Получить список всех дисциплин семестра.</div>
@@ -122,9 +130,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Получить оценку за предмет.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/gradebook/GradeRecord.html#getGrade()" class="member-name-link">getGrade()</a> - Method in class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/GradeRecord.html" title="class in ru.nsu.ryzhneva.gradebook">GradeRecord</a></dt>
+<dd>
+<div class="block">Получить оценку.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/gradebook/Student.html#getGradeBook()" class="member-name-link">getGradeBook()</a> - Method in class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/Student.html" title="class in ru.nsu.ryzhneva.gradebook">Student</a></dt>
 <dd>
 <div class="block">Получить зачетную книжку студента.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/gradebook/Discipline.html#getHistory()" class="member-name-link">getHistory()</a> - Method in class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/Discipline.html" title="class in ru.nsu.ryzhneva.gradebook">Discipline</a></dt>
+<dd>
+<div class="block">Получить историю всех оценок по предмету.</div>
 </dd>
 <dt><a href="ru/nsu/ryzhneva/gradebook/Discipline.html#getName()" class="member-name-link">getName()</a> - Method in class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/Discipline.html" title="class in ru.nsu.ryzhneva.gradebook">Discipline</a></dt>
 <dd>
@@ -155,6 +171,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/ryzhneva/gradebook/GradeBook.html#%3Cinit%3E(int)" class="member-name-link">GradeBook(int)</a> - Constructor for class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/GradeBook.html" title="class in ru.nsu.ryzhneva.gradebook">GradeBook</a></dt>
 <dd>
 <div class="block">Создает новую зачетную книжку.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/gradebook/GradeRecord.html" class="type-name-link" title="class in ru.nsu.ryzhneva.gradebook">GradeRecord</a> - Class in <a href="ru/nsu/ryzhneva/gradebook/package-summary.html">ru.nsu.ryzhneva.gradebook</a></dt>
+<dd>
+<div class="block">Запись для списка оценок с датами.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/gradebook/GradeRecord.html#%3Cinit%3E(ru.nsu.ryzhneva.gradebook.typesandgrades.Grade,java.time.LocalDate)" class="member-name-link">GradeRecord(Grade, LocalDate)</a> - Constructor for class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/GradeRecord.html" title="class in ru.nsu.ryzhneva.gradebook">GradeRecord</a></dt>
+<dd>
+<div class="block">Конструктор записи.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:H">H</h2>
@@ -214,6 +238,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
+<dt><a href="ru/nsu/ryzhneva/gradebook/Discipline.html#retake(ru.nsu.ryzhneva.gradebook.typesandgrades.Grade,java.time.LocalDate)" class="member-name-link">retake(Grade, LocalDate)</a> - Method in class ru.nsu.ryzhneva.gradebook.<a href="ru/nsu/ryzhneva/gradebook/Discipline.html" title="class in ru.nsu.ryzhneva.gradebook">Discipline</a></dt>
+<dd>
+<div class="block">Метод пересдачи.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/package-summary.html">ru.nsu.ryzhneva</a> - package ru.nsu.ryzhneva</dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ryzhneva/gradebook/package-summary.html">ru.nsu.ryzhneva.gradebook</a> - package ru.nsu.ryzhneva.gradebook</dt>

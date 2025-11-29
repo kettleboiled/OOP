@@ -78,7 +78,8 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Discipline</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">Класс, представляющий запись об одной дисциплине
- в зачетной книжке.</div>
+ в зачетной книжке.
+ Хранит историю сдач и текущую актуальную оценку.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -92,9 +93,16 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl,ru.nsu.ryzhneva.gradebook.typesandgrades.Grade)" class="member-name-link">Discipline</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="typesandgrades/TypeOfControl.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">TypeOfControl</a>&nbsp;controlType,
- <a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a>&nbsp;grade)</code></div>
+ <a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a>&nbsp;initialGrade)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Создает новую запись о дисциплине.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl,ru.nsu.ryzhneva.gradebook.typesandgrades.Grade,java.time.LocalDate)" class="member-name-link">Discipline</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="typesandgrades/TypeOfControl.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">TypeOfControl</a>&nbsp;controlType,
+ <a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a>&nbsp;initialGrade,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;date)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Конструктор с указанием конкретной даты первой сдачи.</div>
 </div>
 </div>
 </section>
@@ -120,10 +128,21 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Получить оценку за предмет.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getName()" class="member-name-link">getName</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="GradeRecord.html" title="class in ru.nsu.ryzhneva.gradebook">GradeRecord</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHistory()" class="member-name-link">getHistory</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получить историю всех оценок по предмету.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getName()" class="member-name-link">getName</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Получить название дисциплины.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#retake(ru.nsu.ryzhneva.gradebook.typesandgrades.Grade,java.time.LocalDate)" class="member-name-link">retake</a><wbr>(<a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a>&nbsp;grade,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;date)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Метод пересдачи.</div>
 </div>
 </div>
 </div>
@@ -147,13 +166,29 @@ loadScripts(document, 'script');</script>
 <h3>Discipline</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Discipline</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
  <a href="typesandgrades/TypeOfControl.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">TypeOfControl</a>&nbsp;controlType,
- <a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a>&nbsp;grade)</span></div>
+ <a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a>&nbsp;initialGrade)</span></div>
 <div class="block">Создает новую запись о дисциплине.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>name</code> - название дисциплины.</dd>
 <dd><code>controlType</code> - вид контроля.</dd>
-<dd><code>grade</code> - полученная оценка.</dd>
+<dd><code>initialGrade</code> - начальная оценка.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(java.lang.String,ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl,ru.nsu.ryzhneva.gradebook.typesandgrades.Grade,java.time.LocalDate)">
+<h3>Discipline</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Discipline</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ <a href="typesandgrades/TypeOfControl.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">TypeOfControl</a>&nbsp;controlType,
+ <a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a>&nbsp;initialGrade,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;date)</span></div>
+<div class="block">Конструктор с указанием конкретной даты первой сдачи.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>name</code> - название дисциплины.</dd>
+<dd><code>controlType</code> - вид контроля.</dd>
+<dd><code>initialGrade</code> - начальная оценка.</dd>
 </dl>
 </section>
 </li>
@@ -166,13 +201,38 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="retake(ru.nsu.ryzhneva.gradebook.typesandgrades.Grade,java.time.LocalDate)">
+<h3>retake</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">retake</span><wbr><span class="parameters">(<a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a>&nbsp;grade,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;date)</span></div>
+<div class="block">Метод пересдачи. Добавляет новую оценку в историю.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>grade</code> - новая оценка.</dd>
+<dd><code>date</code> - дата пересдачи.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getGrade()">
 <h3>getGrade</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="typesandgrades/Grade.html" title="enum class in ru.nsu.ryzhneva.gradebook.typesandgrades">Grade</a></span>&nbsp;<span class="element-name">getGrade</span>()</div>
-<div class="block">Получить оценку за предмет.</div>
+<div class="block">Получить оценку за предмет.
+ Возвращает результат последней сдачи или пересдачи.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>объект перечисления.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHistory()">
+<h3>getHistory</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="GradeRecord.html" title="class in ru.nsu.ryzhneva.gradebook">GradeRecord</a>&gt;</span>&nbsp;<span class="element-name">getHistory</span>()</div>
+<div class="block">Получить историю всех оценок по предмету.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>список записей <a href="GradeRecord.html" title="class in ru.nsu.ryzhneva.gradebook"><code>GradeRecord</code></a>.</dd>
 </dl>
 </section>
 </li>
