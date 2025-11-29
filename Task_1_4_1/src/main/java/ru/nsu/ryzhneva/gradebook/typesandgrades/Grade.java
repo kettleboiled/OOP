@@ -4,6 +4,7 @@ package ru.nsu.ryzhneva.gradebook.typesandgrades;
  * Перечисление возможных оценок.
  * PASS - зачет, FAIL - незачет.
  * UNDEFINED - нет оценки.
+ * UNSATISFACTORY - 2 / не сдал.
  */
 public enum Grade {
     EXCELLENT(5),

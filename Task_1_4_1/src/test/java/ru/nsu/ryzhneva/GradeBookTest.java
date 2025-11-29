@@ -159,6 +159,34 @@ class GradeBookTest {
     }
 
     @Test
+    void testRetakeFixesAverageScore() {
+        Semester s1 = new Semester(1);
+        Discipline math = new Discipline("Math", TypeOfControl.EXAM, Grade.UNSATISFACTORY); // 2
+        s1.addDiscipline(math);
+        s1.addDiscipline(new Discipline("OOP", TypeOfControl.EXAM, Grade.EXCELLENT)); // 5
+        student.getGradeBook().addSemester(s1);
+        assertEquals(3.5, student.getGradeBook().getAverageScore(), 0.001);
+        math.retake(Grade.EXCELLENT, java.time.LocalDate.now());
+        assertEquals(5.0, student.getGradeBook().getAverageScore(), 0.001);
+    }
+
+    @Test
+    void testTransferToBudgetAfterRetake() {
+        student.setIsBudget(false);
+        Semester s1 = new Semester(1);
+        s1.addDiscipline(new Discipline("History", TypeOfControl.EXAM, Grade.GOOD));
+        student.getGradeBook().addSemester(s1);
+        student.moveToNextSemester();
+        Semester s2 = new Semester(2);
+        Discipline physics = new Discipline("Physics", TypeOfControl.EXAM, Grade.UNSATISFACTORY); // Провал
+        s2.addDiscipline(physics);
+        student.getGradeBook().addSemester(s2);
+        assertFalse(student.transferToBudget());
+        physics.retake(Grade.GOOD, java.time.LocalDate.now());
+        assertTrue(student.transferToBudget());
+    }
+
+    @Test
     void testMainRuns() {
         Main.main(new String[]{});
     }
