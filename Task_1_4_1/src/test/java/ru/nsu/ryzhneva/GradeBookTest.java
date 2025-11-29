@@ -8,12 +8,12 @@ import ru.nsu.ryzhneva.gradebook.Discipline;
 import ru.nsu.ryzhneva.gradebook.GradeRecord;
 import ru.nsu.ryzhneva.gradebook.Semester;
 import ru.nsu.ryzhneva.gradebook.Student;
-import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
-import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 
 /**
  * Тесты для зачетной книжки.
