@@ -1,7 +1,7 @@
 package ru.nsu.ryzhneva.gradebook;
 
-import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import java.time.LocalDate;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 
 /**
  * Запись для списка оценок с датами.

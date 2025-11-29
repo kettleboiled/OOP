@@ -5,7 +5,6 @@ import ru.nsu.ryzhneva.gradebook.Semester;
 import ru.nsu.ryzhneva.gradebook.Student;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
-
 import java.time.LocalDate;
 
 /**

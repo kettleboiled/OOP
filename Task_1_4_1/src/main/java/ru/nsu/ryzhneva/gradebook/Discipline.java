@@ -3,9 +3,9 @@ package ru.nsu.ryzhneva.gradebook;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 
 /**
  * Класс, представляющий запись об одной дисциплине
