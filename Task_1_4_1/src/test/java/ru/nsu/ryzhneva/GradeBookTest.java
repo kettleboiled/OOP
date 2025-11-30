@@ -4,14 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.gradebook.Discipline;
 import ru.nsu.ryzhneva.gradebook.Semester;
 import ru.nsu.ryzhneva.gradebook.Student;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 
+/**
+ * Тесты для GradeBook.
+ */
 class GradeBookTest {
 
     private Student student;

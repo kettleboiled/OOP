@@ -2,14 +2,17 @@ package ru.nsu.ryzhneva;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import ru.nsu.ryzhneva.gradebook.Discipline;
-import ru.nsu.ryzhneva.gradebook.GradeRecord;
 import java.time.LocalDate;
 import java.util.List;
+import ru.nsu.ryzhneva.gradebook.Discipline;
+import ru.nsu.ryzhneva.gradebook.GradeRecord;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 
+/**
+ * Тесты для класса Discipline.
+ */
 public class DisciplineTest {
     @Test
     void testDisciplineHistoryTracking() {

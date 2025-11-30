@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 
+/**
+ * Тесты для Grade.
+ */
 class GradeTest {
 
     @Test
