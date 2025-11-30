@@ -1,6 +1,7 @@
 package ru.nsu.ryzhneva.gradebook;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
@@ -46,7 +47,7 @@ public class Semester {
      * @return список дисциплин.
      */
     public List<Discipline> getDisciplines() {
-        return disciplines;
+        return Collections.unmodifiableList(disciplines);
     }
 
     /**

@@ -1,6 +1,7 @@
 package ru.nsu.ryzhneva.gradebook;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
@@ -37,7 +38,7 @@ public class GradeBook {
      * @return список семестров.
      */
     public List<Semester> getSemesters() {
-        return semesters;
+        return Collections.unmodifiableList(semesters);
     }
 
     /**
