@@ -73,20 +73,7 @@ public class Student {
         if (!isBudget) {
             return false;
         }
-
-        Semester semesterObj = null;
-        for (Semester s : gradeBook.getSemesters()) {
-            if (s.getNumber() == this.currentSemester) {
-                semesterObj = s;
-                break;
-            }
-        }
-
-        if (semesterObj == null) {
-            return false;
-        }
-
-        return semesterObj.isExcellent();
+        return gradeBook.isSemesterExcellent(this.currentSemester);
     }
 
     /**
@@ -99,25 +86,7 @@ public class Student {
         if (isBudget) {
             return false;
         }
-
-        List<Semester> examSemesters = new ArrayList<>();
-        for (Semester semester : gradeBook.getSemesters()) {
-            if (semester.getNumber() <= currentSemester && semester.hasExams()) {
-                examSemesters.add(semester);
-            }
-        }
-
-        examSemesters.sort(Comparator.comparingInt(Semester::getNumber).reversed());
-
-        if (examSemesters.size() < 2) {
-            return false;
-        }
-
-        if (!examSemesters.get(0).hasBadGrades(true)
-                && !examSemesters.get(1).hasBadGrades(true)) {
-            return true;
-        }
-        return false;
+        return gradeBook.checkBudgetEligibility(this.currentSemester);
     }
 }
 
