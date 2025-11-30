@@ -1,15 +1,14 @@
 package ru.nsu.ryzhneva;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ru.nsu.ryzhneva.gradebook.Discipline;
 import ru.nsu.ryzhneva.gradebook.GradeRecord;
-import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
-import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
-
 import java.time.LocalDate;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 
 public class DisciplineTest {
     @Test

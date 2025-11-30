@@ -91,4 +91,9 @@ class GradeBookTest {
         student.getGradeBook().addSemester(s8);
         assertFalse(student.getGradeBook().canGetRedDiploma());
     }
+
+    @Test
+    void testMainRuns() {
+        Main.main(new String[]{});
+    }
 }

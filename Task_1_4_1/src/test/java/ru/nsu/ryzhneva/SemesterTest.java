@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import ru.nsu.ryzhneva.gradebook.Discipline;
 import ru.nsu.ryzhneva.gradebook.Semester;
-import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
 
 class SemesterTest {

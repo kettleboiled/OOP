@@ -3,10 +3,9 @@ package ru.nsu.ryzhneva;
 import ru.nsu.ryzhneva.gradebook.Discipline;
 import ru.nsu.ryzhneva.gradebook.Semester;
 import ru.nsu.ryzhneva.gradebook.Student;
+import java.time.LocalDate;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.Grade;
 import ru.nsu.ryzhneva.gradebook.typesandgrades.TypeOfControl;
-
-import java.time.LocalDate;
 
 /**
  * Класс Main.
