@@ -117,15 +117,25 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Проверяет возможность получения красного диплома.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAverageScore()" class="member-name-link">getAverageScore</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkBudgetEligibility(int)" class="member-name-link">checkBudgetEligibility</a><wbr>(int&nbsp;currentSemester)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет критерии оценок для перевода на бюджет.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAverageScore()" class="member-name-link">getAverageScore</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Вычисляет текущий средний балл.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Semester.html" title="class in ru.nsu.ryzhneva.gradebook">Semester</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSemesters()" class="member-name-link">getSemesters</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Semester.html" title="class in ru.nsu.ryzhneva.gradebook">Semester</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSemesters()" class="member-name-link">getSemesters</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Получить список всех семестров.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSemesterExcellent(int)" class="member-name-link">isSemesterExcellent</a><wbr>(int&nbsp;semesterNumber)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, закрыт ли конкретный семестр на "Отлично".</div>
 </div>
 </div>
 </div>
@@ -186,6 +196,32 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="isSemesterExcellent(int)">
+<h3>isSemesterExcellent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isSemesterExcellent</span><wbr><span class="parameters">(int&nbsp;semesterNumber)</span></div>
+<div class="block">Проверяет, закрыт ли конкретный семестр на "Отлично".</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>semesterNumber</code> - номер семестра.</dd>
+<dt>Returns:</dt>
+<dd>true, если семестр найден и он отличный.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="checkBudgetEligibility(int)">
+<h3>checkBudgetEligibility</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">checkBudgetEligibility</span><wbr><span class="parameters">(int&nbsp;currentSemester)</span></div>
+<div class="block">Проверяет критерии оценок для перевода на бюджет.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>currentSemester</code> - текущий семестр.</dd>
+<dt>Returns:</dt>
+<dd>true, если последние две сессии сданы без троек.</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="getAverageScore()">
 <h3>getAverageScore</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getAverageScore</span>()</div>
@@ -203,7 +239,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Проверяет возможность получения красного диплома.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd><code>true</code>, если все критерии выполнены, иначе <code>false</code>.</dd>
+<dd><code>true</code>, если все критерии выполнены.</dd>
 </dl>
 </section>
 </li>
