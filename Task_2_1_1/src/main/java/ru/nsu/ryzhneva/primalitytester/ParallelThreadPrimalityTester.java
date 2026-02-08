@@ -81,7 +81,7 @@ public class ParallelThreadPrimalityTester implements PrimalityTester {
         return sharedState.found;
     }
 
-    private static class SharedState{
+    private static class SharedState {
         volatile boolean found = false;
     }
 }

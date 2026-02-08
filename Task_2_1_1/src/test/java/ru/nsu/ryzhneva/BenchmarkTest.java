@@ -1,13 +1,14 @@
 package ru.nsu.ryzhneva;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.primalitytester.ParallelStreamPrimalityTester;
 import ru.nsu.ryzhneva.primalitytester.ParallelThreadPrimalityTester;
 import ru.nsu.ryzhneva.primalitytester.PrimalityTester;
 import ru.nsu.ryzhneva.primalitytester.SequentialPrimalityTester;
 
-import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Основной тест для сравнения производительности
