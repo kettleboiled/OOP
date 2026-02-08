@@ -17,7 +17,7 @@ public class SequentialPrimalityTester implements PrimalityTester {
      */
     @Override
     public boolean hasComposite(int[] arr) {
-        for (int number: arr) {
+        for (int number : arr) {
             if (!isPrime(number)) {
                 return true;
             }

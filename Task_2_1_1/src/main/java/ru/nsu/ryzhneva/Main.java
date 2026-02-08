@@ -1,7 +1,10 @@
 package ru.nsu.ryzhneva;
-import ru.nsu.ryzhneva.primalitytester.*;
 
 import java.util.Arrays;
+import ru.nsu.ryzhneva.primalitytester.ParallelStreamPrimalityTester;
+import ru.nsu.ryzhneva.primalitytester.ParallelThreadPrimalityTester;
+import ru.nsu.ryzhneva.primalitytester.PrimalityTester;
+import ru.nsu.ryzhneva.primalitytester.SequentialPrimalityTester;
 
 /**
  * Класс Main.

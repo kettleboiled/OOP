@@ -35,7 +35,9 @@ public class ParallelThreadPrimalityTester implements PrimalityTester {
      */
     @Override
     public boolean hasComposite(int[] arr) {
-        if (arr.length == 0) return false;
+        if (arr.length == 0) {
+            return false;
+        }
 
         List<Thread> threads = new ArrayList<>(countThreads);
         AtomicBoolean foundComposite = new AtomicBoolean(false);

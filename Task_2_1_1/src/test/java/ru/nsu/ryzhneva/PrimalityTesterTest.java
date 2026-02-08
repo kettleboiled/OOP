@@ -1,12 +1,14 @@
 package ru.nsu.ryzhneva;
-import ru.nsu.ryzhneva.primalitytester.*;
 
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
+import ru.nsu.ryzhneva.primalitytester.ParallelStreamPrimalityTester;
+import ru.nsu.ryzhneva.primalitytester.ParallelThreadPrimalityTester;
+import ru.nsu.ryzhneva.primalitytester.PrimalityTester;
+import ru.nsu.ryzhneva.primalitytester.SequentialPrimalityTester;
 /**
  * Тесты для интерфейса PrimalityTester
  * и наследуемых от него.
@@ -28,7 +30,8 @@ class PrimalityTesterTest {
     void testPromptExample1_True(PrimalityTester tester) {
         int[] input = {6, 8, 7, 13, 5, 9, 4};
         Assertions.assertTrue(tester.hasComposite(input),
-                "Should return true for array with composites " + tester.getClass().getSimpleName());
+                "Should return true for array with composites "
+                        + tester.getClass().getSimpleName());
     }
 
     @ParameterizedTest
