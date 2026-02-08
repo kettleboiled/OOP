@@ -1,13 +1,12 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.primalitytester;
 
-import java.lang.Thread;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Реализация интерфейса {@link PrimalityTester}, использующая явное управление потоками
- * через {@link java.lang.Thread}.
+ * через {@link Thread}.
  */
 public class ParallelThreadPrimalityTester implements PrimalityTester {
     private int countThreads;

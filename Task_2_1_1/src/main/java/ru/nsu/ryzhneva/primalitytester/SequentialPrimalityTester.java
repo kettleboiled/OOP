@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.primalitytester;
 
 /**
  * Рализация интерфейса {@link PrimalityTester},
