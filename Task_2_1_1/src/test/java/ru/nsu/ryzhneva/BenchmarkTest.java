@@ -1,21 +1,23 @@
 package ru.nsu.ryzhneva;
 
-import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.primalitytester.ParallelStreamPrimalityTester;
 import ru.nsu.ryzhneva.primalitytester.ParallelThreadPrimalityTester;
 import ru.nsu.ryzhneva.primalitytester.PrimalityTester;
 import ru.nsu.ryzhneva.primalitytester.SequentialPrimalityTester;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 /**
- * Класс Main.
+ * Основной тест для сравнения производительности
+ * разных методов проверки массива
+ * на наличие составного числа.
  */
-public class Main {
-    /**
-     * Точка входа.
-     *
-     * @param args аргументы.
-     */
-    public static void main(String[] args) {
+public class BenchmarkTest {
+
+    @Test
+    void runBenchmark() throws IOException {
         System.out.println("Preparing data...");
         int arraySize = 5000;
         int[] data = new int[arraySize];
@@ -44,7 +46,7 @@ public class Main {
      * @param tester экземпляр тестируемой стратегии.
      * @param data тестовые данные.
      */
-    private static void measure(String label, PrimalityTester tester, int[] data) {
+    private void measure(String label, PrimalityTester tester, int[] data) {
         System.gc();
 
         long start = System.nanoTime();
@@ -54,6 +56,12 @@ public class Main {
         double ms = (end - start) / 1_000_000.0;
 
         System.out.printf("%-20s | Time: %8.2f ms | Result: %b%n", label, ms, result);
+
+        if (result) {
+            throw new RuntimeException("Test failed for "
+                    + label
+                    + ": found composite number where none expected!");
+        }
     }
 
     /**
@@ -61,7 +69,7 @@ public class Main {
      *
      * @param data данные для прогрева.
      */
-    private static void warmUp(int[] data) {
+    private void warmUp(int[] data) {
         System.out.print("Warming up JVM... ");
         PrimalityTester t1 = new SequentialPrimalityTester();
         PrimalityTester t2 = new ParallelStreamPrimalityTester();

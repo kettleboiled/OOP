@@ -21,9 +21,4 @@ class ParallelThreadPrimalityTesterTest {
             new ParallelThreadPrimalityTester(-5);
         }, "Constructor should throw exception for negative threads");
     }
-
-    @Test
-    void testMainRuns() {
-        Main.main(new String[]{});
-    }
 }

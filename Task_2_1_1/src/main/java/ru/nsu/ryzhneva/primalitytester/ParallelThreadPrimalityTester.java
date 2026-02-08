@@ -2,7 +2,6 @@ package ru.nsu.ryzhneva.primalitytester;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Реализация интерфейса {@link PrimalityTester}, использующая явное управление потоками
@@ -40,7 +39,7 @@ public class ParallelThreadPrimalityTester implements PrimalityTester {
         }
 
         List<Thread> threads = new ArrayList<>(countThreads);
-        AtomicBoolean foundComposite = new AtomicBoolean(false);
+        SharedState sharedState = new SharedState();
 
         int blockSize = (arr.length + countThreads - 1) / countThreads;
 
@@ -54,12 +53,12 @@ public class ParallelThreadPrimalityTester implements PrimalityTester {
 
             Runnable task = () -> {
                 for (int j = start; j <  end; j++) {
-                    if (foundComposite.get()) {
+                    if (sharedState.found) {
                         return;
                     }
 
                     if (!isPrime(arr[j])) {
-                        foundComposite.set(true);
+                        sharedState.found = true;
                         return;
                     }
                 }
@@ -79,6 +78,10 @@ public class ParallelThreadPrimalityTester implements PrimalityTester {
                 throw new RuntimeException("Thread execution interrupted", ex);
             }
         }
-        return foundComposite.get();
+        return sharedState.found;
+    }
+
+    private static class SharedState{
+        volatile boolean found = false;
     }
 }
