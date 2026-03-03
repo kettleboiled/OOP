@@ -1,12 +1,12 @@
 package ru.nsu.ryzhneva;
 
 import com.google.gson.Gson;
-import ru.nsu.ryzhneva.pizzeria.PizzaProcess;
-import ru.nsu.ryzhneva.pizzeria.PizzeriaConfig;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import ru.nsu.ryzhneva.pizzeria.PizzaProcess;
+import ru.nsu.ryzhneva.pizzeria.PizzeriaConfig;
+
 
 /**
  * Класс Main.

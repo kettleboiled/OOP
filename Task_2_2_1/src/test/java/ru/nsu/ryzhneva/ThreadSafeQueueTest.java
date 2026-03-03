@@ -1,14 +1,18 @@
 package ru.nsu.ryzhneva;
 
-import ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Тесты для класса ThreadSafeQueueTest.

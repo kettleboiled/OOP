@@ -1,10 +1,10 @@
 package ru.nsu.ryzhneva.pizzeria.workers;
 
+import java.util.List;
 import ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue;
 import ru.nsu.ryzhneva.pizzeria.order.Order;
 import ru.nsu.ryzhneva.pizzeria.order.OrderState;
 
-import java.util.List;
 
 /**
  * Рабочий поток (Worker), реализующий логику курьера.
@@ -18,7 +18,8 @@ public class Courier implements Runnable {
     public ThreadSafeQueue<Order> warehouse;
 
     /**
-     * Конструктор
+     * Конструктор.
+     *
      * @param number номер курьера.
      * @param trunkVolume вместимость багажника.
      * @param speedCourier скорость доставки курьера.

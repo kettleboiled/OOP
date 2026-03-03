@@ -3,10 +3,10 @@ package ru.nsu.ryzhneva;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
-import org.junit.jupiter.api.Test;
 import java.time.Duration;
-import ru.nsu.ryzhneva.pizzeria.PizzeriaConfig;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.pizzeria.PizzaProcess;
+import ru.nsu.ryzhneva.pizzeria.PizzeriaConfig;
 
 
 /**

@@ -1,12 +1,12 @@
 package ru.nsu.ryzhneva.pizzeria;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import ru.nsu.ryzhneva.pizzeria.order.Order;
 import ru.nsu.ryzhneva.pizzeria.workers.Baker;
 import ru.nsu.ryzhneva.pizzeria.workers.Courier;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Управляющий класс - жизненный цикл симулятора пиццерии.
@@ -48,7 +48,8 @@ public class PizzaProcess {
         }
         for (int i = 0; i < pizzeriaConfig.couriersCount; i++) {
             int trunkVolume =
-                    pizzeriaConfig.couriersTrunkVolume[i % pizzeriaConfig.couriersTrunkVolume.length];
+                    pizzeriaConfig.couriersTrunkVolume
+                            [i % pizzeriaConfig.couriersTrunkVolume.length];
             Thread t = new Thread(new Courier(i, trunkVolume, 2000, warehouse));
             t.start();
             courierThreads.add(t);
@@ -56,7 +57,7 @@ public class PizzaProcess {
 
         orderProcess = new Thread(() -> {
             try {
-                while(!Thread.currentThread().isInterrupted()) {
+                while (!Thread.currentThread().isInterrupted()) {
                     orders.put(new Order(orderIdCreator.getAndIncrement()));
                     Thread.sleep(1000);
                 }

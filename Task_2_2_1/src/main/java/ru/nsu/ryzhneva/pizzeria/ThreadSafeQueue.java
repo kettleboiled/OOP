@@ -31,7 +31,7 @@ public class ThreadSafeQueue<T> {
      * @throws InterruptedException если поток был прерван
      * во время ожидания освобождения места.
      */
-    public synchronized void put(T item) throws InterruptedException{
+    public synchronized void put(T item) throws InterruptedException {
         while (queue.size() >= count) {
             wait();
         }
@@ -47,7 +47,7 @@ public class ThreadSafeQueue<T> {
      * @throws InterruptedException если поток был
      * прерван во время ожидания новых элементов.
      */
-    public synchronized T get() throws InterruptedException{
+    public synchronized T get() throws InterruptedException {
         while (queue.isEmpty()) {
             if (isClosed) {
                 return null;
@@ -74,7 +74,7 @@ public class ThreadSafeQueue<T> {
             wait();
         }
         List<T> items = new ArrayList<>();
-        while(!queue.isEmpty() && items.size() < size) {
+        while (!queue.isEmpty() && items.size() < size) {
             items.add(queue.poll());
         }
         notifyAll();

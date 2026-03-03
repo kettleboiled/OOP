@@ -1,14 +1,16 @@
 package ru.nsu.ryzhneva;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+
+import java.time.Duration;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.pizzeria.workers.Baker;
 import ru.nsu.ryzhneva.pizzeria.workers.Courier;
-import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue;
 import ru.nsu.ryzhneva.pizzeria.order.Order;
 
-import java.time.Duration;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Тесты для классов Baker и Courier.
