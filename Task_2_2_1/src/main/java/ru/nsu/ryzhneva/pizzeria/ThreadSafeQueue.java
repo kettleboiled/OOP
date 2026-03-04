@@ -30,15 +30,17 @@ public class ThreadSafeQueue<T> {
      * @param item элемент для добавления.
      * @throws InterruptedException если поток был прерван
      * во время ожидания освобождения места.
+     * @throws IllegalStateException если попытка добавления
+     * происходит в закрытую очередь.
      */
     public synchronized void put(T item) throws InterruptedException {
         if (isClosed) {
-            throw new IllegalAccessError("Queue is closed for new items.");
+            throw new IllegalStateException("Queue is closed for new items.");
         }
         while (queue.size() >= count) {
             wait();
             if (isClosed) {
-                throw new IllegalAccessError("Queue is closed for new items.");
+                throw new IllegalStateException("Queue is closed for new items.");
             }
         }
         queue.add(item);
@@ -68,7 +70,7 @@ public class ThreadSafeQueue<T> {
     /**
      * Получить список элементов из очереди.
      *
-     * @param size вместимость багажника.
+     * @param size максимальный размер извлекаемого пакета.
      * @return список извлеченных элементов.
      * @throws InterruptedException если поток был прерван во время ожидания.
      */
