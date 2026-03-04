@@ -184,6 +184,8 @@ loadScripts(document, 'script');</script>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - если поток был прерван
  во время ожидания освобождения места.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></code> - если попытка добавления
+ происходит в закрытую очередь.</dd>
 </dl>
 </section>
 </li>
@@ -211,7 +213,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Получить список элементов из очереди.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>size</code> - вместимость багажника.</dd>
+<dd><code>size</code> - максимальный размер извлекаемого пакета.</dd>
 <dt>Returns:</dt>
 <dd>список извлеченных элементов.</dd>
 <dt>Throws:</dt>
