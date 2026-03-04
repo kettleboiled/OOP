@@ -45,7 +45,7 @@ public class Courier implements Runnable {
     public void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
-                List<Order> orders = warehouse.getForCourier(trunkVolume);
+                List<Order> orders = warehouse.getBatch(trunkVolume);
                 if (orders.isEmpty()) {
                     break;
                 }

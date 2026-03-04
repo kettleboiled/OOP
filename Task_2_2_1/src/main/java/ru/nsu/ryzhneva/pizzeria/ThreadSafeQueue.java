@@ -13,7 +13,7 @@ import java.util.Queue;
 public class ThreadSafeQueue<T> {
     private final int count;
     private final Queue<T> queue = new LinkedList<>();
-    private volatile boolean isClosed = false;
+    private boolean isClosed = false;
 
     /**
      * Конструктор.
@@ -32,8 +32,14 @@ public class ThreadSafeQueue<T> {
      * во время ожидания освобождения места.
      */
     public synchronized void put(T item) throws InterruptedException {
+        if (isClosed) {
+            throw new IllegalAccessError("Queue is closed for new items.");
+        }
         while (queue.size() >= count) {
             wait();
+            if (isClosed) {
+                throw new IllegalAccessError("Queue is closed for new items.");
+            }
         }
         queue.add(item);
         notifyAll();
@@ -66,7 +72,7 @@ public class ThreadSafeQueue<T> {
      * @return список извлеченных элементов.
      * @throws InterruptedException если поток был прерван во время ожидания.
      */
-    public synchronized List<T> getForCourier(int size) throws InterruptedException {
+    public synchronized List<T> getBatch(int size) throws InterruptedException {
         while (queue.isEmpty()) {
             if (isClosed) {
                 return new ArrayList<>();

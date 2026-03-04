@@ -45,7 +45,7 @@ class ThreadSafeQueueTest {
         queue.put(20);
         queue.put(30);
 
-        List<Integer> batch = queue.getForCourier(5);
+        List<Integer> batch = queue.getBatch(5);
 
         assertEquals(3, batch.size(),
                 "Курьер должен забрать только доступные элементы");
