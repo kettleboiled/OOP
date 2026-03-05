@@ -15,7 +15,7 @@ public class Courier implements Runnable {
     private final int number;
     private final int trunkVolume;
     private final int speedCourier;
-    private ThreadSafeQueue<Order> warehouse;
+    private final ThreadSafeQueue<Order> warehouse;
 
     /**
      * Конструктор.

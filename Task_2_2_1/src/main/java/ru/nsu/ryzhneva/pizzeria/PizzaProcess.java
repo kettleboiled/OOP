@@ -30,7 +30,7 @@ public class PizzaProcess {
      */
     public PizzaProcess(PizzeriaConfig pizzeriaConfig) {
         this.pizzeriaConfig = pizzeriaConfig;
-        this.warehouse = new ThreadSafeQueue<>(pizzeriaConfig.warehouseSize);
+        this.warehouse = new ThreadSafeQueue<>(pizzeriaConfig.warehouseSize());
     }
 
     /**
@@ -39,17 +39,16 @@ public class PizzaProcess {
      * а также поток-генератор заказов.
      */
     public void work() {
-        for (int i = 0; i < pizzeriaConfig.bakersCount; i++) {
-            int speedBaker =
-                    pizzeriaConfig.bakerSpeeds[i % pizzeriaConfig.bakerSpeeds.length];
+        int[] bSpeeds = pizzeriaConfig.bakerSpeeds();
+        for (int i = 0; i < pizzeriaConfig.bakersCount(); i++) {
+            int speedBaker = bSpeeds[i % bSpeeds.length];
             Thread t = new Thread(new Baker(i, speedBaker, orders, warehouse));
             t.start();
             bakerThreads.add(t);
         }
-        for (int i = 0; i < pizzeriaConfig.couriersCount; i++) {
-            int trunkVolume =
-                    pizzeriaConfig.couriersTrunkVolume
-                            [i % pizzeriaConfig.couriersTrunkVolume.length];
+        int[] cVolumes = pizzeriaConfig.couriersTrunkVolume();
+        for (int i = 0; i < pizzeriaConfig.couriersCount(); i++) {
+            int trunkVolume = cVolumes[i % cVolumes.length];
             Thread t = new Thread(new Courier(i, trunkVolume, 2000, warehouse));
             t.start();
             courierThreads.add(t);
@@ -63,6 +62,8 @@ public class PizzaProcess {
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+            } catch (IllegalStateException e) {
+                System.out.println("Creator of orders stoped: " + e.getMessage());
             }
         });
 

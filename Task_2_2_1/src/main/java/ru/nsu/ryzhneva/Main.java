@@ -12,7 +12,6 @@ import ru.nsu.ryzhneva.pizzeria.PizzeriaConfig;
  * Класс Main.
  */
 public class Main {
-
     /**
      * Точка входа.
      *
@@ -29,7 +28,7 @@ public class Main {
             process.work();
             System.out.println("Pizzeria started working");
 
-            Thread.sleep(config.workTimeMs);
+            Thread.sleep(config.workTimeMs());
 
             System.out.println("Working time is over");
             process.close();

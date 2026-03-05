@@ -2,6 +2,7 @@ package ru.nsu.ryzhneva;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -78,5 +79,17 @@ class ThreadSafeQueueTest {
             queue.close();
             consumer.join();
         }, "Тест завис: метод close() не разбудил ожидающий поток");
+    }
+
+    @Test
+    void testPutThrowsExceptionWhenQueueIsClosed() {
+        queue.close();
+        IllegalStateException exception = assertThrows(
+                IllegalStateException.class,
+                () -> queue.put(100),
+                "Метод put должен выбрасывать IllegalStateException, если очередь закрыта"
+        );
+
+        assertEquals("Queue is closed for new items.", exception.getMessage());
     }
 }

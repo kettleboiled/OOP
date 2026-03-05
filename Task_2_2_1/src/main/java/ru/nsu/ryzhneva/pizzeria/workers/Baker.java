@@ -13,8 +13,8 @@ import ru.nsu.ryzhneva.pizzeria.order.OrderState;
 public class Baker implements Runnable {
     private final int number;
     private final int speed;
-    private ThreadSafeQueue<Order> orders;
-    private ThreadSafeQueue<Order> warehouse;
+    private final ThreadSafeQueue<Order> orders;
+    private final ThreadSafeQueue<Order> warehouse;
 
     /**
      * Инициализирует контекст пекаря.

@@ -16,12 +16,15 @@ class PizzaProcessTest {
 
     @Test
     void testGracefulShutdownPipeline() {
-        PizzeriaConfig config = new PizzeriaConfig();
-        config.bakersCount = 2;
-        config.bakerSpeeds = new int[]{50, 100};
-        config.couriersCount = 2;
-        config.couriersTrunkVolume = new int[]{2, 3};
-        config.warehouseSize = 10;
+        PizzeriaConfig config = new PizzeriaConfig(
+                2,
+                new int[]{50, 100},
+                2,
+                new int[]{2, 3},
+                10,
+                2000
+        );
+
 
         PizzaProcess process = new PizzaProcess(config);
 

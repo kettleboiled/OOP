@@ -4,16 +4,12 @@ package ru.nsu.ryzhneva.pizzeria;
  * Data Transfer Object (DTO)
  * для хранения параметров конфигурации пиццерии.
  */
-public class PizzeriaConfig {
-    public int bakersCount;
-    public int[] bakerSpeeds;
-    public int couriersCount;
-    public int[] couriersTrunkVolume;
-    public int warehouseSize;
-    public int workTimeMs;
-
-    /**
-     * Конструктор.
-     */
-    public PizzeriaConfig() {}
+public record PizzeriaConfig(
+        int bakersCount,
+        int[] bakerSpeeds,
+        int couriersCount,
+        int[] couriersTrunkVolume,
+        int warehouseSize,
+        int workTimeMs
+) {
 }
