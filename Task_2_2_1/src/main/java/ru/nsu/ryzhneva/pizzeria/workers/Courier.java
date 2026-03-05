@@ -12,10 +12,10 @@ import ru.nsu.ryzhneva.pizzeria.order.OrderState;
  * на основе доступного объема багажника.
  */
 public class Courier implements Runnable {
-    public final int number;
-    public final int trunkVolume;
-    public final int speedCourier;
-    public ThreadSafeQueue<Order> warehouse;
+    private final int number;
+    private final int trunkVolume;
+    private final int speedCourier;
+    private ThreadSafeQueue<Order> warehouse;
 
     /**
      * Конструктор.

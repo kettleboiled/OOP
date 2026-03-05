@@ -6,7 +6,7 @@ package ru.nsu.ryzhneva.pizzeria;
  */
 public class PizzeriaConfig {
     public int bakersCount;
-    public int[] bakerSpeeds; // время готовки в мс
+    public int[] bakerSpeeds;
     public int couriersCount;
     public int[] couriersTrunkVolume;
     public int warehouseSize;
