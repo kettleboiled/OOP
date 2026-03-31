@@ -53,6 +53,7 @@ loadScripts(document, 'script');</script>
 <li><a href="ru/nsu/ryzhneva/package-tree.html">ru.nsu.ryzhneva</a>, </li>
 <li><a href="ru/nsu/ryzhneva/pizzeria/package-tree.html">ru.nsu.ryzhneva.pizzeria</a>, </li>
 <li><a href="ru/nsu/ryzhneva/pizzeria/order/package-tree.html">ru.nsu.ryzhneva.pizzeria.order</a>, </li>
+<li><a href="ru/nsu/ryzhneva/pizzeria/queue/package-tree.html">ru.nsu.ryzhneva.pizzeria.queue</a>, </li>
 <li><a href="ru/nsu/ryzhneva/pizzeria/workers/package-tree.html">ru.nsu.ryzhneva.pizzeria.workers</a></li>
 </ul>
 </div>
@@ -62,18 +63,41 @@ loadScripts(document, 'script');</script>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" class="type-name-link external-link" title="class or interface in java.lang">Object</a>
 <ul>
 <li class="circle">ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/Baker.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.workers">Baker</a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>)</li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.queue">BoundedThreadSafeQueue</a>&lt;T&gt; (implements ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BatchConsumerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">BatchConsumerQueue</a>&lt;T&gt;, ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/CloseableQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">CloseableQueue</a>, ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ConsumerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ConsumerQueue</a>&lt;T&gt;, ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ProducerQueue</a>&lt;T&gt;)</li>
 <li class="circle">ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/Courier.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.workers">Courier</a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>)</li>
 <li class="circle">ru.nsu.ryzhneva.<a href="ru/nsu/ryzhneva/Main.html" class="type-name-link" title="class in ru.nsu.ryzhneva">Main</a></li>
 <li class="circle">ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/Order.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.order">Order</a></li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderGenerator.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.order">OrderGenerator</a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>)</li>
 <li class="circle">ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria">PizzaProcess</a></li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" class="type-name-link external-link" title="class or interface in java.lang">Record</a>
 <ul>
 <li class="circle">ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria">PizzeriaConfig</a></li>
 </ul>
 </li>
-<li class="circle">ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria">ThreadSafeQueue</a>&lt;T&gt;</li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/StaffFactory.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.workers">StaffFactory</a></li>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html" class="type-name-link external-link" title="class or interface in java.lang">Throwable</a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
+<ul>
+<li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" class="type-name-link external-link" title="class or interface in java.lang">Exception</a>
+<ul>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/QueueClosedException.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.queue">QueueClosedException</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.queue">UnboundedThreadSafeQueue</a>&lt;T&gt; (implements ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/CloseableQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">CloseableQueue</a>, ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ConsumerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ConsumerQueue</a>&lt;T&gt;, ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ProducerQueue</a>&lt;T&gt;)</li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/WorkerGroup.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.workers">WorkerGroup</a></li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="hierarchy">
+<h2 title="Interface Hierarchy">Interface Hierarchy</h2>
+<ul>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BatchConsumerQueue.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.queue">BatchConsumerQueue</a>&lt;T&gt;</li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/CloseableQueue.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.queue">CloseableQueue</a></li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ConsumerQueue.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ConsumerQueue</a>&lt;T&gt;</li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderStateListener.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.order">OrderStateListener</a></li>
+<li class="circle">ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ProducerQueue</a>&lt;T&gt;</li>
 </ul>
 </section>
 <section class="hierarchy">

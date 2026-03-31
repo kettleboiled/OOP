@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.ryzhneva"},{"l":"ru.nsu.ryzhneva.pizzeria"},{"l":"ru.nsu.ryzhneva.pizzeria.order"},{"l":"ru.nsu.ryzhneva.pizzeria.workers"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.ryzhneva"},{"l":"ru.nsu.ryzhneva.pizzeria"},{"l":"ru.nsu.ryzhneva.pizzeria.order"},{"l":"ru.nsu.ryzhneva.pizzeria.queue"},{"l":"ru.nsu.ryzhneva.pizzeria.workers"}];updateSearchResults();

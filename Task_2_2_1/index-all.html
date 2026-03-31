@@ -49,14 +49,30 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a>
+<h2 class="title" id="I:A">A</h2>
+<dl class="index">
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/WorkerGroup.html#addAndStart(java.lang.Runnable)" class="member-name-link">addAndStart(Runnable)</a> - Method in class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/WorkerGroup.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">WorkerGroup</a></dt>
+<dd>
+<div class="block">Добавляет задачу и запускает в новом потоке.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/Order.html#advanceState()" class="member-name-link">advanceState()</a> - Method in class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/Order.html" title="class in ru.nsu.ryzhneva.pizzeria.order">Order</a></dt>
+<dd>
+<div class="block">Продвигает заказ на следующий этап обработки.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/WorkerGroup.html#awaitTermination()" class="member-name-link">awaitTermination()</a> - Method in class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/WorkerGroup.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">WorkerGroup</a></dt>
+<dd>
+<div class="block">Блокирует выполнение до тех пор,
+ пока все потоки в группе не завершат работу.</div>
+</dd>
+</dl>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
 <dt><a href="ru/nsu/ryzhneva/pizzeria/workers/Baker.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.workers">Baker</a> - Class in <a href="ru/nsu/ryzhneva/pizzeria/workers/package-summary.html">ru.nsu.ryzhneva.pizzeria.workers</a></dt>
 <dd>
 <div class="block">Рабочий поток, реализующий логику пекаря.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/Baker.html#%3Cinit%3E(int,int,ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue,ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue)" class="member-name-link">Baker(int, int, ThreadSafeQueue&lt;Order&gt;, ThreadSafeQueue&lt;Order&gt;)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/Baker.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">Baker</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/Baker.html#%3Cinit%3E(int,ru.nsu.ryzhneva.pizzeria.queue.ConsumerQueue,ru.nsu.ryzhneva.pizzeria.queue.ProducerQueue)" class="member-name-link">Baker(int, ConsumerQueue&lt;Order&gt;, ProducerQueue&lt;Order&gt;)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/Baker.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">Baker</a></dt>
 <dd>
 <div class="block">Инициализирует контекст пекаря.</div>
 </dd>
@@ -68,28 +84,57 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the value of the <code>bakerSpeeds</code> record component.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/BatchConsumerQueue.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.queue">BatchConsumerQueue</a>&lt;<a href="ru/nsu/ryzhneva/pizzeria/queue/BatchConsumerQueue.html" title="type parameter in BatchConsumerQueue">T</a>&gt; - Interface in <a href="ru/nsu/ryzhneva/pizzeria/queue/package-summary.html">ru.nsu.ryzhneva.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Очередь для потребителя
+ с возможностью получения списка элементов.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.queue">BoundedThreadSafeQueue</a>&lt;<a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html" title="type parameter in BoundedThreadSafeQueue">T</a>&gt; - Class in <a href="ru/nsu/ryzhneva/pizzeria/queue/package-summary.html">ru.nsu.ryzhneva.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Потокобезопасная очередь
+ с ограничением в колчестве элементов.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html#%3Cinit%3E(int)" class="member-name-link">BoundedThreadSafeQueue(int)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">BoundedThreadSafeQueue</a></dt>
+<dd>
+<div class="block">Конструктор.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
 <dt><a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html#close()" class="member-name-link">close()</a> - Method in class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzaProcess</a></dt>
 <dd>
-<div class="block">Останавливает работу пиццерии: сначала останавливает
- прием заказов, пекари завешают текущие заказы и
- курьеры их доставляют, все завершают работу.</div>
+<div class="block">Метод завершающий работу пиццерии.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html#close()" class="member-name-link">close()</a> - Method in class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria">ThreadSafeQueue</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html#close()" class="member-name-link">close()</a> - Method in class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">BoundedThreadSafeQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/CloseableQueue.html#close()" class="member-name-link">close()</a> - Method in interface ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/CloseableQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">CloseableQueue</a></dt>
+<dd>
+<div class="block">Метод закрытия очереди.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html#close()" class="member-name-link">close()</a> - Method in interface ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ProducerQueue</a></dt>
 <dd>
 <div class="block">Изменяет состояние монитора на закрытое.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html#close()" class="member-name-link">close()</a> - Method in class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">UnboundedThreadSafeQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/CloseableQueue.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.queue">CloseableQueue</a> - Interface in <a href="ru/nsu/ryzhneva/pizzeria/queue/package-summary.html">ru.nsu.ryzhneva.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Интерфейс для очередей, требующих явного закрытия.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html#COMING" class="member-name-link">COMING</a> - Enum constant in enum class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html" title="enum class in ru.nsu.ryzhneva.pizzeria.order">OrderState</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/ConsumerQueue.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ConsumerQueue</a>&lt;<a href="ru/nsu/ryzhneva/pizzeria/queue/ConsumerQueue.html" title="type parameter in ConsumerQueue">T</a>&gt; - Interface in <a href="ru/nsu/ryzhneva/pizzeria/queue/package-summary.html">ru.nsu.ryzhneva.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Очередь для потребителя
+ с возможностью получения единичного элемента.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html#COOKING" class="member-name-link">COOKING</a> - Enum constant in enum class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html" title="enum class in ru.nsu.ryzhneva.pizzeria.order">OrderState</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/workers/Courier.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.workers">Courier</a> - Class in <a href="ru/nsu/ryzhneva/pizzeria/workers/package-summary.html">ru.nsu.ryzhneva.pizzeria.workers</a></dt>
 <dd>
 <div class="block">Рабочий поток (Worker), реализующий логику курьера.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/Courier.html#%3Cinit%3E(int,int,int,ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue)" class="member-name-link">Courier(int, int, int, ThreadSafeQueue&lt;Order&gt;)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/Courier.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">Courier</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/Courier.html#%3Cinit%3E(int,int,ru.nsu.ryzhneva.pizzeria.queue.BatchConsumerQueue)" class="member-name-link">Courier(int, int, BatchConsumerQueue&lt;Order&gt;)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/Courier.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">Courier</a></dt>
 <dd>
 <div class="block">Конструктор.</div>
 </dd>
@@ -97,9 +142,21 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the value of the <code>couriersCount</code> record component.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html#courierSpeed()" class="member-name-link">courierSpeed()</a> - Method in record class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzeriaConfig</a></dt>
+<dd>
+<div class="block">Returns the value of the <code>courierSpeed</code> record component.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html#couriersTrunkVolume()" class="member-name-link">couriersTrunkVolume()</a> - Method in record class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Returns the value of the <code>couriersTrunkVolume</code> record component.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/StaffFactory.html#createBakers(ru.nsu.ryzhneva.pizzeria.PizzeriaConfig,ru.nsu.ryzhneva.pizzeria.queue.ConsumerQueue,ru.nsu.ryzhneva.pizzeria.queue.ProducerQueue)" class="member-name-link">createBakers(PizzeriaConfig, ConsumerQueue&lt;Order&gt;, ProducerQueue&lt;Order&gt;)</a> - Static method in class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/StaffFactory.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">StaffFactory</a></dt>
+<dd>
+<div class="block">Создает группу пекарей.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/StaffFactory.html#createCouriers(ru.nsu.ryzhneva.pizzeria.PizzeriaConfig,ru.nsu.ryzhneva.pizzeria.queue.BatchConsumerQueue)" class="member-name-link">createCouriers(PizzeriaConfig, BatchConsumerQueue&lt;Order&gt;)</a> - Static method in class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/StaffFactory.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">StaffFactory</a></dt>
+<dd>
+<div class="block">Создает группу курьеров.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
@@ -116,17 +173,27 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
-<dt><a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html#get()" class="member-name-link">get()</a> - Method in class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria">ThreadSafeQueue</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html#get()" class="member-name-link">get()</a> - Method in class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">BoundedThreadSafeQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/ConsumerQueue.html#get()" class="member-name-link">get()</a> - Method in interface ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ConsumerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ConsumerQueue</a></dt>
 <dd>
 <div class="block">Получить элемент (один) из очереди.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html#getBatch(int)" class="member-name-link">getBatch(int)</a> - Method in class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria">ThreadSafeQueue</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html#get()" class="member-name-link">get()</a> - Method in class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">UnboundedThreadSafeQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/BatchConsumerQueue.html#getBatch(int)" class="member-name-link">getBatch(int)</a> - Method in interface ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BatchConsumerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">BatchConsumerQueue</a></dt>
 <dd>
 <div class="block">Получить список элементов из очереди.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html#getBatch(int)" class="member-name-link">getBatch(int)</a> - Method in class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">BoundedThreadSafeQueue</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/order/Order.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/Order.html" title="class in ru.nsu.ryzhneva.pizzeria.order">Order</a></dt>
 <dd>
 <div class="block">Получить номер заказа.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/Order.html#getState()" class="member-name-link">getState()</a> - Method in class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/Order.html" title="class in ru.nsu.ryzhneva.pizzeria.order">Order</a></dt>
+<dd>
+<div class="block">Потокобезопасный метод получения состояния заказа.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:H">H</h2>
@@ -149,21 +216,44 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/ryzhneva/Main.html#%3Cinit%3E()" class="member-name-link">Main()</a> - Constructor for class ru.nsu.ryzhneva.<a href="ru/nsu/ryzhneva/Main.html" title="class in ru.nsu.ryzhneva">Main</a></dt>
 <dd>&nbsp;</dd>
 </dl>
+<h2 class="title" id="I:N">N</h2>
+<dl class="index">
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html#next()" class="member-name-link">next()</a> - Method in enum class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html" title="enum class in ru.nsu.ryzhneva.pizzeria.order">OrderState</a></dt>
+<dd>
+<div class="block">Возвращает следующее состояние в жизненном цикле заказа.</div>
+</dd>
+</dl>
 <h2 class="title" id="I:O">O</h2>
 <dl class="index">
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderStateListener.html#onStateChanged(ru.nsu.ryzhneva.pizzeria.order.Order)" class="member-name-link">onStateChanged(Order)</a> - Method in interface ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderStateListener.html" title="interface in ru.nsu.ryzhneva.pizzeria.order">OrderStateListener</a></dt>
+<dd>
+<div class="block">Метод для изменения состояния заказа.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/order/Order.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.order">Order</a> - Class in <a href="ru/nsu/ryzhneva/pizzeria/order/package-summary.html">ru.nsu.ryzhneva.pizzeria.order</a></dt>
 <dd>
 <div class="block">Сущность заказа.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/order/Order.html#%3Cinit%3E(int)" class="member-name-link">Order(int)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/Order.html" title="class in ru.nsu.ryzhneva.pizzeria.order">Order</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/Order.html#%3Cinit%3E(int,ru.nsu.ryzhneva.pizzeria.order.OrderStateListener)" class="member-name-link">Order(int, OrderStateListener)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/Order.html" title="class in ru.nsu.ryzhneva.pizzeria.order">Order</a></dt>
 <dd>
 <div class="block">Конструктор.</div>
 </dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html#ORDERED" class="member-name-link">ORDERED</a> - Enum constant in enum class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html" title="enum class in ru.nsu.ryzhneva.pizzeria.order">OrderState</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderGenerator.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.order">OrderGenerator</a> - Class in <a href="ru/nsu/ryzhneva/pizzeria/order/package-summary.html">ru.nsu.ryzhneva.pizzeria.order</a></dt>
+<dd>
+<div class="block">Рабочий поток-генератор (Producer).</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderGenerator.html#%3Cinit%3E(ru.nsu.ryzhneva.pizzeria.queue.ProducerQueue,int,ru.nsu.ryzhneva.pizzeria.order.OrderStateListener)" class="member-name-link">OrderGenerator(ProducerQueue&lt;Order&gt;, int, OrderStateListener)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderGenerator.html" title="class in ru.nsu.ryzhneva.pizzeria.order">OrderGenerator</a></dt>
+<dd>
+<div class="block">Конструктор.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderState.html" class="type-name-link" title="enum class in ru.nsu.ryzhneva.pizzeria.order">OrderState</a> - Enum Class in <a href="ru/nsu/ryzhneva/pizzeria/order/package-summary.html">ru.nsu.ryzhneva.pizzeria.order</a></dt>
 <dd>
-<div class="block">Состояния заказа.</div>
+<div class="block">Состояния заказа с инкапсулированной логикой переходов.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderStateListener.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.order">OrderStateListener</a> - Interface in <a href="ru/nsu/ryzhneva/pizzeria/order/package-summary.html">ru.nsu.ryzhneva.pizzeria.order</a></dt>
+<dd>
+<div class="block">Интерфейс для прослушивания изменений состояния заказа.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
@@ -172,23 +262,42 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Управляющий класс - жизненный цикл симулятора пиццерии.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html#%3Cinit%3E(ru.nsu.ryzhneva.pizzeria.PizzeriaConfig)" class="member-name-link">PizzaProcess(PizzeriaConfig)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzaProcess</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html#%3Cinit%3E(ru.nsu.ryzhneva.pizzeria.queue.CloseableQueue,ru.nsu.ryzhneva.pizzeria.queue.CloseableQueue,ru.nsu.ryzhneva.pizzeria.workers.WorkerGroup,ru.nsu.ryzhneva.pizzeria.workers.WorkerGroup,java.lang.Thread)" class="member-name-link">PizzaProcess(CloseableQueue, CloseableQueue, WorkerGroup, WorkerGroup, Thread)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzaProcess</a></dt>
 <dd>
-<div class="block">Инициализирует системные компоненты
- на основе предоставленной конфигурации.</div>
+<div class="block">Конструктор.</div>
 </dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria">PizzeriaConfig</a> - Record Class in <a href="ru/nsu/ryzhneva/pizzeria/package-summary.html">ru.nsu.ryzhneva.pizzeria</a></dt>
 <dd>
 <div class="block">Data Transfer Object (DTO)
  для хранения параметров конфигурации пиццерии.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html#%3Cinit%3E(int,int%5B%5D,int,int%5B%5D,int,int)" class="member-name-link">PizzeriaConfig(int, int[], int, int[], int, int)</a> - Constructor for record class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzeriaConfig</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html#%3Cinit%3E(int,int%5B%5D,int,int%5B%5D,int,int,int)" class="member-name-link">PizzeriaConfig(int, int[], int, int[], int, int, int)</a> - Constructor for record class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Creates an instance of a <code>PizzeriaConfig</code> record class.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria">ThreadSafeQueue</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html" class="type-name-link" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ProducerQueue</a>&lt;<a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html" title="type parameter in ProducerQueue">T</a>&gt; - Interface in <a href="ru/nsu/ryzhneva/pizzeria/queue/package-summary.html">ru.nsu.ryzhneva.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Очередь для производителя.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/BoundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">BoundedThreadSafeQueue</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in interface ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/ProducerQueue.html" title="interface in ru.nsu.ryzhneva.pizzeria.queue">ProducerQueue</a></dt>
 <dd>
 <div class="block">Добавить элемент в очередь.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html#put(T)" class="member-name-link">put(T)</a> - Method in class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">UnboundedThreadSafeQueue</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:Q">Q</h2>
+<dl class="index">
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/QueueClosedException.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.queue">QueueClosedException</a> - Exception in <a href="ru/nsu/ryzhneva/pizzeria/queue/package-summary.html">ru.nsu.ryzhneva.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Исключение, выбрасываемое при попытке извлечь элемент
+ из пустой и закрытой очереди.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/QueueClosedException.html#%3Cinit%3E()" class="member-name-link">QueueClosedException()</a> - Constructor for exception ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/QueueClosedException.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">QueueClosedException</a></dt>
+<dd>
+<div class="block">Конструктор.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
@@ -201,42 +310,42 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/order/package-summary.html">ru.nsu.ryzhneva.pizzeria.order</a> - package ru.nsu.ryzhneva.pizzeria.order</dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/package-summary.html">ru.nsu.ryzhneva.pizzeria.queue</a> - package ru.nsu.ryzhneva.pizzeria.queue</dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/workers/package-summary.html">ru.nsu.ryzhneva.pizzeria.workers</a> - package ru.nsu.ryzhneva.pizzeria.workers</dt>
 <dd>&nbsp;</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/order/OrderGenerator.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/OrderGenerator.html" title="class in ru.nsu.ryzhneva.pizzeria.order">OrderGenerator</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/workers/Baker.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/Baker.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">Baker</a></dt>
-<dd>
-<div class="block">Основной цикл выполнения потока.</div>
-</dd>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/workers/Courier.html#run()" class="member-name-link">run()</a> - Method in class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/Courier.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">Courier</a></dt>
-<dd>
-<div class="block">Основной цикл выполнения потока.</div>
-</dd>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
-<dt><a href="ru/nsu/ryzhneva/pizzeria/order/Order.html#setState(ru.nsu.ryzhneva.pizzeria.order.OrderState)" class="member-name-link">setState(OrderState)</a> - Method in class ru.nsu.ryzhneva.pizzeria.order.<a href="ru/nsu/ryzhneva/pizzeria/order/Order.html" title="class in ru.nsu.ryzhneva.pizzeria.order">Order</a></dt>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/StaffFactory.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.workers">StaffFactory</a> - Class in <a href="ru/nsu/ryzhneva/pizzeria/workers/package-summary.html">ru.nsu.ryzhneva.pizzeria.workers</a></dt>
 <dd>
-<div class="block">Потокобезопасный метод изменения состояния заказа.</div>
+<div class="block">Фабрика для сборки групп сотрудников.</div>
 </dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html#size()" class="member-name-link">size()</a> - Method in class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria">ThreadSafeQueue</a></dt>
-<dd>
-<div class="block">Возвращает текущее количество элементов в очереди.</div>
-</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/StaffFactory.html#%3Cinit%3E()" class="member-name-link">StaffFactory()</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/StaffFactory.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">StaffFactory</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
-<dt><a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria">ThreadSafeQueue</a>&lt;<a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" title="type parameter in ThreadSafeQueue">T</a>&gt; - Class in <a href="ru/nsu/ryzhneva/pizzeria/package-summary.html">ru.nsu.ryzhneva.pizzeria</a></dt>
-<dd>
-<div class="block">Потокобезопасная очередь.</div>
-</dd>
-<dt><a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html#%3Cinit%3E(int)" class="member-name-link">ThreadSafeQueue(int)</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/ThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria">ThreadSafeQueue</a></dt>
-<dd>
-<div class="block">Конструктор.</div>
-</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html#toString()" class="member-name-link">toString()</a> - Method in record class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Returns a string representation of this record class.</div>
 </dd>
+</dl>
+<h2 class="title" id="I:U">U</h2>
+<dl class="index">
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.queue">UnboundedThreadSafeQueue</a>&lt;<a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html" title="type parameter in UnboundedThreadSafeQueue">T</a>&gt; - Class in <a href="ru/nsu/ryzhneva/pizzeria/queue/package-summary.html">ru.nsu.ryzhneva.pizzeria.queue</a></dt>
+<dd>
+<div class="block">Потокобезопасная очередь
+ с неограниченым колчеством элементов.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html#%3Cinit%3E()" class="member-name-link">UnboundedThreadSafeQueue()</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.queue.<a href="ru/nsu/ryzhneva/pizzeria/queue/UnboundedThreadSafeQueue.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">UnboundedThreadSafeQueue</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
@@ -258,14 +367,20 @@ the order they are declared.</div>
 </dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html#work()" class="member-name-link">work()</a> - Method in class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzaProcess.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzaProcess</a></dt>
 <dd>
-<div class="block">Запускает производственный процесс.</div>
+<div class="block">Метод запуска работы пиццерии.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/WorkerGroup.html" class="type-name-link" title="class in ru.nsu.ryzhneva.pizzeria.workers">WorkerGroup</a> - Class in <a href="ru/nsu/ryzhneva/pizzeria/workers/package-summary.html">ru.nsu.ryzhneva.pizzeria.workers</a></dt>
+<dd>
+<div class="block">Универсальная группа рабочих потоков.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/pizzeria/workers/WorkerGroup.html#%3Cinit%3E()" class="member-name-link">WorkerGroup()</a> - Constructor for class ru.nsu.ryzhneva.pizzeria.workers.<a href="ru/nsu/ryzhneva/pizzeria/workers/WorkerGroup.html" title="class in ru.nsu.ryzhneva.pizzeria.workers">WorkerGroup</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html#workTimeMs()" class="member-name-link">workTimeMs()</a> - Method in record class ru.nsu.ryzhneva.pizzeria.<a href="ru/nsu/ryzhneva/pizzeria/PizzeriaConfig.html" title="class in ru.nsu.ryzhneva.pizzeria">PizzeriaConfig</a></dt>
 <dd>
 <div class="block">Returns the value of the <code>workTimeMs</code> record component.</div>
 </dd>
 </dl>
-<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>
 </div>
 </div>
 </body>

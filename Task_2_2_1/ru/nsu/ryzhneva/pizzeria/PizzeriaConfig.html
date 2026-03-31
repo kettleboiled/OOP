@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <hr>
-<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">PizzeriaConfig</span>(int&nbsp;bakersCount, int[]&nbsp;bakerSpeeds, int&nbsp;couriersCount, int[]&nbsp;couriersTrunkVolume, int&nbsp;warehouseSize, int&nbsp;workTimeMs)
+<div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">PizzeriaConfig</span>(int&nbsp;bakersCount, int[]&nbsp;bakerSpeeds, int&nbsp;couriersCount, int[]&nbsp;couriersTrunkVolume, int&nbsp;warehouseSize, int&nbsp;workTimeMs, int&nbsp;courierSpeed)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a></span></div>
 <div class="block">Data Transfer Object (DTO)
  для хранения параметров конфигурации пиццерии.</div>
@@ -92,12 +92,13 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int%5B%5D,int,int%5B%5D,int,int)" class="member-name-link">PizzeriaConfig</a><wbr>(int&nbsp;bakersCount,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int%5B%5D,int,int%5B%5D,int,int,int)" class="member-name-link">PizzeriaConfig</a><wbr>(int&nbsp;bakersCount,
  int[]&nbsp;bakerSpeeds,
  int&nbsp;couriersCount,
  int[]&nbsp;couriersTrunkVolume,
  int&nbsp;warehouseSize,
- int&nbsp;workTimeMs)</code></div>
+ int&nbsp;workTimeMs,
+ int&nbsp;courierSpeed)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Creates an instance of a <code>PizzeriaConfig</code> record class.</div>
 </div>
@@ -130,34 +131,39 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <code>couriersCount</code> record component.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int[]</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#couriersTrunkVolume()" class="member-name-link">couriersTrunkVolume</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#courierSpeed()" class="member-name-link">courierSpeed</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the value of the <code>courierSpeed</code> record component.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int[]</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#couriersTrunkVolume()" class="member-name-link">couriersTrunkVolume</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <code>couriersTrunkVolume</code> record component.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#equals(java.lang.Object)" class="member-name-link">equals</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&nbsp;o)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Indicates whether some other object is "equal to" this one.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a hash code value for this object.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns a string representation of this record class.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#warehouseSize()" class="member-name-link">warehouseSize</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#warehouseSize()" class="member-name-link">warehouseSize</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <code>warehouseSize</code> record component.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#workTimeMs()" class="member-name-link">workTimeMs</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#workTimeMs()" class="member-name-link">workTimeMs</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the value of the <code>workTimeMs</code> record component.</div>
 </div>
 </div>
@@ -178,14 +184,15 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(int,int[],int,int[],int,int)">
+<section class="detail" id="&lt;init&gt;(int,int[],int,int[],int,int,int)">
 <h3>PizzeriaConfig</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PizzeriaConfig</span><wbr><span class="parameters">(int&nbsp;bakersCount,
  int[]&nbsp;bakerSpeeds,
  int&nbsp;couriersCount,
  int[]&nbsp;couriersTrunkVolume,
  int&nbsp;warehouseSize,
- int&nbsp;workTimeMs)</span></div>
+ int&nbsp;workTimeMs,
+ int&nbsp;courierSpeed)</span></div>
 <div class="block">Creates an instance of a <code>PizzeriaConfig</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -195,6 +202,7 @@ loadScripts(document, 'script');</script>
 <dd><code>couriersTrunkVolume</code> - the value for the <code>couriersTrunkVolume</code> record component</dd>
 <dd><code>warehouseSize</code> - the value for the <code>warehouseSize</code> record component</dd>
 <dd><code>workTimeMs</code> - the value for the <code>workTimeMs</code> record component</dd>
+<dd><code>courierSpeed</code> - the value for the <code>courierSpeed</code> record component</dd>
 </dl>
 </section>
 </li>
@@ -310,6 +318,17 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the value of the <code>workTimeMs</code> record component</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="courierSpeed()">
+<h3>courierSpeed</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">courierSpeed</span>()</div>
+<div class="block">Returns the value of the <code>courierSpeed</code> record component.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the value of the <code>courierSpeed</code> record component</dd>
 </dl>
 </section>
 </li>
