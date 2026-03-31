@@ -1,8 +1,9 @@
 package ru.nsu.ryzhneva.pizzeria.workers;
 
-import ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue;
 import ru.nsu.ryzhneva.pizzeria.order.Order;
-import ru.nsu.ryzhneva.pizzeria.order.OrderState;
+import ru.nsu.ryzhneva.pizzeria.queue.ConsumerQueue;
+import ru.nsu.ryzhneva.pizzeria.queue.ProducerQueue;
+import ru.nsu.ryzhneva.pizzeria.queue.QueueClosedException;
 
 /**
  * Рабочий поток, реализующий логику пекаря.
@@ -11,47 +12,40 @@ import ru.nsu.ryzhneva.pizzeria.order.OrderState;
  * и помещает готовый продукт на склад.
  */
 public class Baker implements Runnable {
-    private final int number;
     private final int speed;
-    private final ThreadSafeQueue<Order> orders;
-    private final ThreadSafeQueue<Order> warehouse;
+    private final ConsumerQueue<Order> orders;
+    private final ProducerQueue<Order> warehouse;
 
     /**
      * Инициализирует контекст пекаря.
      *
-     * @param number уникальный идентификатор пекаря
      * @param speed время приготовления одного заказа
      * @param orders разделяемый монитор входной очереди заказов
      * @param warehouse разделяемый монитор склада готовой продукции
      */
-    public Baker(int number, int speed,
-                 ThreadSafeQueue<Order> orders,
-                 ThreadSafeQueue<Order> warehouse) {
-        this.number = number;
+    public Baker(int speed,
+                 ConsumerQueue<Order> orders,
+                 ProducerQueue<Order> warehouse) {
         this.speed = speed;
         this.orders = orders;
         this.warehouse = warehouse;
     }
 
-    /**
-     * Основной цикл выполнения потока.
-     */
     @Override
     public void run() {
         try {
             while (!Thread.currentThread().isInterrupted()) {
                 Order order = orders.get();
-                if (order == null) {
-                    break;
-                }
-                order.setState(OrderState.COOKING);
+
+                order.advanceState();
                 Thread.sleep(speed);
 
                 warehouse.put(order);
-                order.setState(OrderState.READY_SELECT_COURIER);
+                order.advanceState();
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        } catch (QueueClosedException e) {
         }
     }
 }

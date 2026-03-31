@@ -1,109 +1,63 @@
 package ru.nsu.ryzhneva.pizzeria;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import ru.nsu.ryzhneva.pizzeria.order.Order;
-import ru.nsu.ryzhneva.pizzeria.workers.Baker;
-import ru.nsu.ryzhneva.pizzeria.workers.Courier;
-
+import ru.nsu.ryzhneva.pizzeria.queue.CloseableQueue;
+import ru.nsu.ryzhneva.pizzeria.workers.WorkerGroup;
 
 /**
  * Управляющий класс - жизненный цикл симулятора пиццерии.
  */
 public class PizzaProcess {
-    private final PizzeriaConfig pizzeriaConfig;
-    private final ThreadSafeQueue<Order> orders = new ThreadSafeQueue<>(100);
-    private final ThreadSafeQueue<Order> warehouse;
+    private final CloseableQueue orders;
+    private final CloseableQueue warehouse;
 
-    private final List<Thread> bakerThreads = new ArrayList<>();
-    private final List<Thread> courierThreads = new ArrayList<>();
-    private Thread orderProcess;
-
-    private final AtomicInteger orderIdCreator = new AtomicInteger(1);
+    private final WorkerGroup bakers;
+    private final WorkerGroup couriers;
+    private final Thread orderGeneratorThread;
 
     /**
-     * Инициализирует системные компоненты
-     * на основе предоставленной конфигурации.
+     * Конструктор.
      *
-     * @param pizzeriaConfig параметры инициализации.
+     * @param orders очередь заказов.
+     * @param warehouse очередь склада.
+     * @param bakers группа пекарей.
+     * @param couriers группа курьеров.
+     * @param orderGeneratorThread поток генератора заказов.
      */
-    public PizzaProcess(PizzeriaConfig pizzeriaConfig) {
-        this.pizzeriaConfig = pizzeriaConfig;
-        this.warehouse = new ThreadSafeQueue<>(pizzeriaConfig.warehouseSize());
+    public PizzaProcess(CloseableQueue orders,
+                        CloseableQueue warehouse,
+                        WorkerGroup bakers,
+                        WorkerGroup couriers,
+                        Thread orderGeneratorThread) {
+        this.orders = orders;
+        this.warehouse = warehouse;
+        this.bakers = bakers;
+        this.couriers = couriers;
+        this.orderGeneratorThread = orderGeneratorThread;
     }
 
     /**
-     * Запускает производственный процесс.
-     * Инициализирует пулы потоков пекарей и курьеров,
-     * а также поток-генератор заказов.
+     * Метод запуска работы пиццерии.
      */
     public void work() {
-        int[] bSpeeds = pizzeriaConfig.bakerSpeeds();
-        for (int i = 0; i < pizzeriaConfig.bakersCount(); i++) {
-            int speedBaker = bSpeeds[i % bSpeeds.length];
-            Thread t = new Thread(new Baker(i, speedBaker, orders, warehouse));
-            t.start();
-            bakerThreads.add(t);
-        }
-        int[] cVolumes = pizzeriaConfig.couriersTrunkVolume();
-        for (int i = 0; i < pizzeriaConfig.couriersCount(); i++) {
-            int trunkVolume = cVolumes[i % cVolumes.length];
-            Thread t = new Thread(new Courier(i, trunkVolume, 2000, warehouse));
-            t.start();
-            courierThreads.add(t);
-        }
-
-        orderProcess = new Thread(() -> {
-            try {
-                while (!Thread.currentThread().isInterrupted()) {
-                    orders.put(new Order(orderIdCreator.getAndIncrement()));
-                    Thread.sleep(1000);
-                }
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            } catch (IllegalStateException e) {
-                System.out.println("Creator of orders stoped: " + e.getMessage());
-            }
-        });
-
-        orderProcess.start();
+        orderGeneratorThread.start();
+        System.out.println("Pizzeria process coordination started.");
     }
 
     /**
-     * Останавливает работу пиццерии: сначала останавливает
-     * прием заказов, пекари завешают текущие заказы и
-     * курьеры их доставляют, все завершают работу.
+     * Метод завершающий работу пиццерии.
      */
     public void close() {
-        System.out.println("Stop accepting orders");
-
-        if (orderProcess != null) {
-            orderProcess.interrupt();
-        }
+        System.out.println("Stop accepting orders...");
+        orderGeneratorThread.interrupt();
 
         orders.close();
 
-        for (Thread baker : bakerThreads) {
-            try {
-                baker.join();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-
+        bakers.awaitTermination();
         System.out.println("All bakers finished. Closing warehouse...");
 
         warehouse.close();
 
-        for (Thread courier : courierThreads) {
-            try {
-                courier.join();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        System.out.println("All couriers finished");
+        couriers.awaitTermination();
+        System.out.println("All couriers finished.");
     }
 }

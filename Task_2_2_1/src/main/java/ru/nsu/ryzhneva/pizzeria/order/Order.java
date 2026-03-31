@@ -6,15 +6,19 @@ package ru.nsu.ryzhneva.pizzeria.order;
 public class Order {
     private final int numberOrder;
     private OrderState state;
+    private final OrderStateListener stateListener;
 
     /**
      * Конструктор.
      *
      * @param numberOrder номер заказа.
+     * @param stateListener слушатель изменений состояния.
      */
-    public Order(int numberOrder) {
+    public Order(int numberOrder, OrderStateListener stateListener) {
         this.numberOrder = numberOrder;
+        this.stateListener = stateListener;
         this.state = OrderState.ORDERED;
+        notifyListener();
     }
 
     /**
@@ -27,12 +31,31 @@ public class Order {
     }
 
     /**
-     * Потокобезопасный метод изменения состояния заказа.
+     * Потокобезопасный метод получения состояния заказа.
      *
-     * @param state новое целевое состояние заказа.
+     * @return состояние заказа.
      */
-    public synchronized void setState(OrderState state) {
-        this.state = state;
-        System.out.println("[" + numberOrder + "] [" + state + "]");
+    public synchronized OrderState getState() {
+        return state;
+    }
+
+    /**
+     * Продвигает заказ на следующий этап обработки.
+     */
+    public synchronized void advanceState() {
+        if (this.state != OrderState.DELIVERED) {
+            this.state = this.state.next();
+            notifyListener();
+        }
+    }
+
+    /**
+     * Метод, оповещающий пользователя
+     * об изменении состояния заказа.
+     */
+    private void notifyListener() {
+        if (stateListener != null) {
+            stateListener.onStateChanged(this);
+        }
     }
 }

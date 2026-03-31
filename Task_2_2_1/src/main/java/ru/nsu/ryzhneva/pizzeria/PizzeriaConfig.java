@@ -10,6 +10,7 @@ public record PizzeriaConfig(
         int couriersCount,
         int[] couriersTrunkVolume,
         int warehouseSize,
-        int workTimeMs
+        int workTimeMs,
+        int courierSpeed
 ) {
 }

@@ -1,10 +1,9 @@
 package ru.nsu.ryzhneva.pizzeria.workers;
 
 import java.util.List;
-import ru.nsu.ryzhneva.pizzeria.ThreadSafeQueue;
 import ru.nsu.ryzhneva.pizzeria.order.Order;
-import ru.nsu.ryzhneva.pizzeria.order.OrderState;
-
+import ru.nsu.ryzhneva.pizzeria.queue.BatchConsumerQueue;
+import ru.nsu.ryzhneva.pizzeria.queue.QueueClosedException;
 
 /**
  * Рабочий поток (Worker), реализующий логику курьера.
@@ -12,54 +11,50 @@ import ru.nsu.ryzhneva.pizzeria.order.OrderState;
  * на основе доступного объема багажника.
  */
 public class Courier implements Runnable {
-    private final int number;
     private final int trunkVolume;
     private final int speedCourier;
-    private final ThreadSafeQueue<Order> warehouse;
+    private final BatchConsumerQueue<Order> warehouse;
 
     /**
      * Конструктор.
      *
-     * @param number номер курьера.
      * @param trunkVolume вместимость багажника.
      * @param speedCourier скорость доставки курьера.
      * @param warehouse очередь склада.
      */
-    public Courier(int number, int trunkVolume, int speedCourier,
-                 ThreadSafeQueue<Order> warehouse) {
-        this.number = number;
+    public Courier(int trunkVolume, int speedCourier,
+                   BatchConsumerQueue<Order> warehouse) {
         this.trunkVolume = trunkVolume;
         this.speedCourier = speedCourier;
         this.warehouse = warehouse;
     }
 
-    /**
-     * Основной цикл выполнения потока.
-     * Ожидает появления готовой продукции на складе,
-     * извлекает доступный пакет
-     * и имитирует доставку с обновлением состояний заказа.
-     * Завершает работу штатно при опустошении
-     * и закрытии склада.
-     */
     @Override
     public void run() {
+        List<Order> orders = null;
         try {
             while (!Thread.currentThread().isInterrupted()) {
-                List<Order> orders = warehouse.getBatch(trunkVolume);
-                if (orders.isEmpty()) {
-                    break;
-                }
+                orders = warehouse.getBatch(trunkVolume);
+
                 for (Order order : orders) {
-                    order.setState(OrderState.COMING);
+                    order.advanceState();
                 }
+
                 Thread.sleep(speedCourier);
 
                 for (Order order : orders) {
-                    order.setState(OrderState.DELIVERED);
+                    order.advanceState();
                 }
+                orders = null;
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+            if (orders != null) {
+                for (Order order : orders) {
+                    order.advanceState();
+                }
+            }
+        } catch (QueueClosedException e) {
         }
     }
 }
