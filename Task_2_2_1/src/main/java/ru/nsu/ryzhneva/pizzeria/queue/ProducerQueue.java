@@ -13,7 +13,7 @@ public interface ProducerQueue<T> {
      *
      * @param item элемент для добавления.
      * @throws InterruptedException если поток был прерван
-     * во время ожидания.
+     *     во время ожидания.
      */
     void put(T item) throws InterruptedException;
 

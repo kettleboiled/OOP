@@ -11,7 +11,8 @@ import java.util.Queue;
  *
  * @param <T> тип хранимых элементов.
  */
-public class BoundedThreadSafeQueue<T> implements ProducerQueue<T>, ConsumerQueue<T>, BatchConsumerQueue<T>, CloseableQueue {
+public class BoundedThreadSafeQueue<T> 
+        implements ProducerQueue<T>, ConsumerQueue<T>, BatchConsumerQueue<T>, CloseableQueue {
     private final int capacity;
     private final Queue<T> queue = new LinkedList<>();
     private boolean isClosed = false;
@@ -57,7 +58,8 @@ public class BoundedThreadSafeQueue<T> implements ProducerQueue<T>, ConsumerQueu
     }
 
     @Override
-    public synchronized List<T> getBatch(int size) throws InterruptedException, QueueClosedException {
+    public synchronized List<T> getBatch(int size) 
+            throws InterruptedException, QueueClosedException {
         while (queue.isEmpty()) {
             if (isClosed) {
                 throw new QueueClosedException();

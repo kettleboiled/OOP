@@ -20,7 +20,8 @@ public class OrderGenerator implements Runnable {
      * @param generationSpeedMs период создания новых заказов.
      * @param stateListener состояние из наблюдателя.
      */
-    public OrderGenerator(ProducerQueue<Order> orders, int generationSpeedMs, OrderStateListener stateListener) {
+    public OrderGenerator(ProducerQueue<Order> orders, int generationSpeedMs, 
+                          OrderStateListener stateListener) {
         this.orders = orders;
         this.generationSpeedMs = generationSpeedMs;
         this.stateListener = stateListener;

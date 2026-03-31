@@ -9,7 +9,8 @@ import java.util.Queue;
  *
  * @param <T> тип хранимых элементов.
  */
-public class UnboundedThreadSafeQueue<T> implements ProducerQueue<T>, ConsumerQueue<T>, CloseableQueue {
+public class UnboundedThreadSafeQueue<T> 
+        implements ProducerQueue<T>, ConsumerQueue<T>, CloseableQueue {
     private final Queue<T> queue = new LinkedList<>();
     private boolean isClosed = false;
 

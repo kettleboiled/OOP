@@ -6,23 +6,33 @@ package ru.nsu.ryzhneva.pizzeria.order;
 public enum OrderState {
     ORDERED {
         @Override
-        public OrderState next() { return COOKING; }
+        public OrderState next() {
+            return COOKING;
+        }
     },
     COOKING {
         @Override
-        public OrderState next() { return READY_SELECT_COURIER; }
+        public OrderState next() {
+            return READY_SELECT_COURIER;
+        }
     },
     READY_SELECT_COURIER {
         @Override
-        public OrderState next() { return COMING; }
+        public OrderState next() {
+            return COMING;
+        }
     },
     COMING {
         @Override
-        public OrderState next() { return DELIVERED; }
+        public OrderState next() {
+            return DELIVERED;
+        }
     },
     DELIVERED {
         @Override
-        public OrderState next() { return DELIVERED; }
+        public OrderState next() {
+            return DELIVERED;
+        }
     };
 
     /**

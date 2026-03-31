@@ -37,7 +37,6 @@ class WorkersTest {
 
     @Test
     void testCourier() throws Exception {
-        BoundedThreadSafeQueue<Order> warehouse = new BoundedThreadSafeQueue<>(5);
         Order order1 = new Order(1, null);
         Order order2 = new Order(2, null);
         order1.advanceState();
@@ -45,6 +44,7 @@ class WorkersTest {
         order2.advanceState();
         order2.advanceState();
         
+        BoundedThreadSafeQueue<Order> warehouse = new BoundedThreadSafeQueue<>(5);
         warehouse.put(order1);
         warehouse.put(order2);
 

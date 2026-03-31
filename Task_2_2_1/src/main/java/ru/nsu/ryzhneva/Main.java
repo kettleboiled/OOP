@@ -43,7 +43,8 @@ public class Main {
             OrderGenerator generator = new OrderGenerator(ordersQueue, 1000, logger);
             Thread genThread = new Thread(generator);
 
-            PizzaProcess process = new PizzaProcess(ordersQueue, warehouseQueue, bakers, couriers, genThread);
+            PizzaProcess process = new PizzaProcess(
+                    ordersQueue, warehouseQueue, bakers, couriers, genThread);
 
             process.work();
             System.out.println("Pizzeria started working");

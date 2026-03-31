@@ -21,6 +21,7 @@ class OrderGeneratorTest {
             public void put(Order item) {
                 producedOrders.add(item);
             }
+
             @Override
             public void close() {}
         };

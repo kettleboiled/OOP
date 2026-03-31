@@ -13,9 +13,9 @@ public interface ConsumerQueue<T> {
      * Получить элемент (один) из очереди.
      *
      * @return извлеченный элемент, либо {@code null},
-     * если очередь пуста и переведена в закрытое состояние.
+     *     если очередь пуста и переведена в закрытое состояние.
      * @throws InterruptedException если поток был
-     * прерван во время ожидания новых элементов.
+     *     прерван во время ожидания новых элементов.
      */
     T get() throws InterruptedException, QueueClosedException;
 }
