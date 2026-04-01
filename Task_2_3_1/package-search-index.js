@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"ru.nsu.ryzhneva.snake","l":"ru.nsu.ryzhneva.snake"},{"m":"ru.nsu.ryzhneva.snake","l":"ru.nsu.ryzhneva.snake.controller"},{"m":"ru.nsu.ryzhneva.snake","l":"ru.nsu.ryzhneva.snake.model"},{"m":"ru.nsu.ryzhneva.snake","l":"ru.nsu.ryzhneva.snake.model.data"}];updateSearchResults();

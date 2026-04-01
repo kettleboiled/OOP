@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"ru.nsu.ryzhneva.snake"}];updateSearchResults();
