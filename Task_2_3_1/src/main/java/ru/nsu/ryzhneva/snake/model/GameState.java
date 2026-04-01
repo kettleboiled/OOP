@@ -67,24 +67,31 @@ public class GameState {
     public Deque<Coordinates> getSnake() {
         return snake;
     }
+
     public Food getFood() {
         return food;
     }
+
     public GameStatus getStatus() {
         return status;
     }
+
     public int getScore() {
         return score;
     }
+
     public void addScore(int points) {
         this.score += points;
     }
+
     public int getPendingGrowth() {
         return pendingGrowth;
     }
+
     public void addGrowth(int growth) {
         this.pendingGrowth += growth;
     }
+
     public void decrementGrowth() {
         if (this.pendingGrowth > 0) {
             this.pendingGrowth--;
