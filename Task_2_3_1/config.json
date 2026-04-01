@@ -1,0 +1,8 @@
+{
+  "bakersCount": 3,
+  "bakerSpeeds": [1000, 1500, 1200],
+  "couriersCount": 2,
+  "couriersTrunkVolume": [2, 3],
+  "warehouseSize": 5,
+  "workTimeMs": 10000
+}
