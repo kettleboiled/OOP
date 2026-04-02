@@ -98,6 +98,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public enum </span><span class="element-name type-name-label">MoveDirection</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Enum.html" title="class or interface in java.lang" class="external-link">Enum</a>&lt;<a href="MoveDirection.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">MoveDirection</a>&gt;</span></div>
+<div class="block">Перечисление возможных направлений движения для объектов в игре.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -141,14 +142,20 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getX()" class="member-name-link">getX</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDx()" class="member-name-link">getDx</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получить смещение по горизонтали для данного направления.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getY()" class="member-name-link">getY</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDy()" class="member-name-link">getDy</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получить смещение по вертикали для данного направления.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isOpposite(ru.nsu.ryzhneva.snake.model.data.MoveDirection)" class="member-name-link">isOpposite</a><wbr>(<a href="MoveDirection.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">MoveDirection</a>&nbsp;anotherDirection)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, является ли указанное направление строго противоположным (разносмысленным) текущему.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="MoveDirection.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">MoveDirection</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#valueOf(java.lang.String)" class="member-name-link">valueOf</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
@@ -244,21 +251,39 @@ not permitted.)</div>
 </section>
 </li>
 <li>
-<section class="detail" id="getX()">
-<h3>getX</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getX</span>()</div>
+<section class="detail" id="getDx()">
+<h3>getDx</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getDx</span>()</div>
+<div class="block">Получить смещение по горизонтали для данного направления.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>смещение по горизонтали</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getY()">
-<h3>getY</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getY</span>()</div>
+<section class="detail" id="getDy()">
+<h3>getDy</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getDy</span>()</div>
+<div class="block">Получить смещение по вертикали для данного направления.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>смещение по вертикали</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isOpposite(ru.nsu.ryzhneva.snake.model.data.MoveDirection)">
 <h3>isOpposite</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isOpposite</span><wbr><span class="parameters">(<a href="MoveDirection.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">MoveDirection</a>&nbsp;anotherDirection)</span></div>
+<div class="block">Проверяет, является ли указанное направление строго противоположным (разносмысленным) текущему.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>anotherDirection</code> - направление для проверки.</dd>
+<dt>Returns:</dt>
+<dd><code>true</code> если направления противоположны друг другу,
+         иначе <code>false</code>.</dd>
+</dl>
 </section>
 </li>
 </ul>

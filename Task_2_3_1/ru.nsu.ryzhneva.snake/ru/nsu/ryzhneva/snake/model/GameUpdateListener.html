@@ -92,6 +92,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">GameUpdateListener</span></div>
+<div class="block">Интерфейс слушателя для получения уведомлений об обновлениях состояния игры.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -108,10 +109,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onGameEnded(ru.nsu.ryzhneva.snake.model.data.GameStatus)" class="member-name-link">onGameEnded</a><wbr>(<a href="data/GameStatus.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">GameStatus</a>&nbsp;status)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Вызывается, когда игра завершена.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#onGameUpdated()" class="member-name-link">onGameUpdated</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Вызывается каждый раз, когда происходит изменение состояния игры.</div>
+</div>
 </div>
 </div>
 </div>
@@ -130,12 +135,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="onGameUpdated()">
 <h3>onGameUpdated</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onGameUpdated</span>()</div>
+<div class="block">Вызывается каждый раз, когда происходит изменение состояния игры.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="onGameEnded(ru.nsu.ryzhneva.snake.model.data.GameStatus)">
 <h3>onGameEnded</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">onGameEnded</span><wbr><span class="parameters">(<a href="data/GameStatus.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">GameStatus</a>&nbsp;status)</span></div>
+<div class="block">Вызывается, когда игра завершена.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>status</code> - финальный статус игры</dd>
+</dl>
 </section>
 </li>
 </ul>

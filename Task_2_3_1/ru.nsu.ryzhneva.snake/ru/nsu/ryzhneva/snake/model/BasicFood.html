@@ -92,6 +92,12 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Record Components:</dt>
+<dd><code><span id="param-position">position</span></code> - координаты расположения еды на игровом поле</dd>
+<dd><code><span id="param-points">points</span></code> - количество очков, начисляемых за съедение еды</dd>
+<dd><code><span id="param-growth">growth</span></code> - количество сегментов, на которое увеличится змейка</dd>
+</dl>
+<dl class="notes">
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></code></dd>
 </dl>
@@ -99,6 +105,8 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public record </span><span class="element-name type-name-label">BasicFood</span>(<a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a>&nbsp;position, int&nbsp;points, int&nbsp;growth)
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Record.html" title="class or interface in java.lang" class="external-link">Record</a>
 implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></span></div>
+<div class="block">Класс, представляющий еду в игре.
+ Реализует интерфейс <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model"><code>Food</code></a>.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -137,17 +145,23 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGrowth()" class="member-name-link">getGrowth</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Насколько увеличивается змейка.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPoints()" class="member-name-link">getPoints</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получить количество очков, даваемых за съедение еды.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Получить позицию, на которой находится еда.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#growth()" class="member-name-link">growth</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>growth</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-growth"><code>growth</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hashCode()" class="member-name-link">hashCode</a>()</code></div>
@@ -157,12 +171,12 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#points()" class="member-name-link">points</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>points</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-points"><code>points</code></a> record component.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#position()" class="member-name-link">position</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the value of the <code>position</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-position"><code>position</code></a> record component.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -195,9 +209,9 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 <div class="block">Creates an instance of a <code>BasicFood</code> record class.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>position</code> - the value for the <code>position</code> record component</dd>
-<dd><code>points</code> - the value for the <code>points</code> record component</dd>
-<dd><code>growth</code> - the value for the <code>growth</code> record component</dd>
+<dd><code>position</code> - the value for the <a href="#param-position"><code>position</code></a> record component</dd>
+<dd><code>points</code> - the value for the <a href="#param-points"><code>points</code></a> record component</dd>
+<dd><code>growth</code> - the value for the <a href="#param-growth"><code>growth</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -213,9 +227,13 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 <section class="detail" id="getPosition()">
 <h3>getPosition</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a></span>&nbsp;<span class="element-name">getPosition</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="Food.html#getPosition()">Food</a></code></span></div>
+<div class="block">Получить позицию, на которой находится еда.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Food.html#getPosition()">getPosition</a></code>&nbsp;in interface&nbsp;<code><a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></code></dd>
+<dt>Returns:</dt>
+<dd>двухмерные координаты еды</dd>
 </dl>
 </section>
 </li>
@@ -223,9 +241,13 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 <section class="detail" id="getPoints()">
 <h3>getPoints</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getPoints</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="Food.html#getPoints()">Food</a></code></span></div>
+<div class="block">Получить количество очков, даваемых за съедение еды.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Food.html#getPoints()">getPoints</a></code>&nbsp;in interface&nbsp;<code><a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></code></dd>
+<dt>Returns:</dt>
+<dd>число очков</dd>
 </dl>
 </section>
 </li>
@@ -233,9 +255,13 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 <section class="detail" id="getGrowth()">
 <h3>getGrowth</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getGrowth</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="Food.html#getGrowth()">Food</a></code></span></div>
+<div class="block">Насколько увеличивается змейка.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="Food.html#getGrowth()">getGrowth</a></code>&nbsp;in interface&nbsp;<code><a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></code></dd>
+<dt>Returns:</dt>
+<dd>количество сегментов тела, на которое увеличится змейка</dd>
 </dl>
 </section>
 </li>
@@ -284,10 +310,10 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 <section class="detail" id="position()">
 <h3>position</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a></span>&nbsp;<span class="element-name">position</span>()</div>
-<div class="block">Returns the value of the <code>position</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-position"><code>position</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>position</code> record component</dd>
+<dd>the value of the <a href="#param-position"><code>position</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -295,10 +321,10 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 <section class="detail" id="points()">
 <h3>points</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">points</span>()</div>
-<div class="block">Returns the value of the <code>points</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-points"><code>points</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>points</code> record component</dd>
+<dd>the value of the <a href="#param-points"><code>points</code></a> record component</dd>
 </dl>
 </section>
 </li>
@@ -306,10 +332,10 @@ implements <a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">
 <section class="detail" id="growth()">
 <h3>growth</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">growth</span>()</div>
-<div class="block">Returns the value of the <code>growth</code> record component.</div>
+<div class="block">Returns the value of the <a href="#param-growth"><code>growth</code></a> record component.</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>the value of the <code>growth</code> record component</dd>
+<dd>the value of the <a href="#param-growth"><code>growth</code></a> record component</dd>
 </dl>
 </section>
 </li>

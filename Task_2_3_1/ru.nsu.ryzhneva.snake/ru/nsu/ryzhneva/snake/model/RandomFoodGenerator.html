@@ -97,6 +97,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">RandomFoodGenerator</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snake.model">FoodGenerator</a></span></div>
+<div class="block">Класс, реализующий случайную генерацию еды на пустых клетках поля.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -127,7 +128,9 @@ implements <a href="FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snak
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateFood(ru.nsu.ryzhneva.snake.model.data.GameConfig,java.util.Deque)" class="member-name-link">generateFood</a><wbr>(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a>&gt;&nbsp;snake)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Случайным образом генерирует еду на координатах, не занятых змейкой.</div>
+</div>
 </div>
 </div>
 </div>
@@ -164,9 +167,15 @@ implements <a href="FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snak
 <h3>generateFood</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></span>&nbsp;<span class="element-name">generateFood</span><wbr><span class="parameters">(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a>&gt;&nbsp;snake)</span></div>
+<div class="block">Случайным образом генерирует еду на координатах, не занятых змейкой.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="FoodGenerator.html#generateFood(ru.nsu.ryzhneva.snake.model.data.GameConfig,java.util.Deque)">generateFood</a></code>&nbsp;in interface&nbsp;<code><a href="FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snake.model">FoodGenerator</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>config</code> - конфигурация игры</dd>
+<dd><code>snake</code> - список элементов тела змейки</dd>
+<dt>Returns:</dt>
+<dd>случайно сгенерированный элемент, или null, если поле заполнено</dd>
 </dl>
 </section>
 </li>

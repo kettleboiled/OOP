@@ -97,6 +97,7 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">LengthWinCondition</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements <a href="WinCondition.html" title="interface in ru.nsu.ryzhneva.snake.model">WinCondition</a></span></div>
+<div class="block">Класс, определяющий условие победы по достижению змейкой определенной длины.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -127,7 +128,9 @@ implements <a href="WinCondition.html" title="interface in ru.nsu.ryzhneva.snake
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isWin(ru.nsu.ryzhneva.snake.model.GameState,ru.nsu.ryzhneva.snake.model.data.GameConfig)" class="member-name-link">isWin</a><wbr>(<a href="GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;state,
  <a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверяет, удовлетворены ли условия для победы в текущем состоянии игры.</div>
+</div>
 </div>
 </div>
 </div>
@@ -164,9 +167,16 @@ implements <a href="WinCondition.html" title="interface in ru.nsu.ryzhneva.snake
 <h3>isWin</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isWin</span><wbr><span class="parameters">(<a href="GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;state,
  <a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="WinCondition.html#isWin(ru.nsu.ryzhneva.snake.model.GameState,ru.nsu.ryzhneva.snake.model.data.GameConfig)">WinCondition</a></code></span></div>
+<div class="block">Проверяет, удовлетворены ли условия для победы в текущем состоянии игры.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="WinCondition.html#isWin(ru.nsu.ryzhneva.snake.model.GameState,ru.nsu.ryzhneva.snake.model.data.GameConfig)">isWin</a></code>&nbsp;in interface&nbsp;<code><a href="WinCondition.html" title="interface in ru.nsu.ryzhneva.snake.model">WinCondition</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>state</code> - текущее состояние игры</dd>
+<dd><code>config</code> - конфигурация игры</dd>
+<dt>Returns:</dt>
+<dd>true, если условие победы выполнено; иначе false</dd>
 </dl>
 </section>
 </li>

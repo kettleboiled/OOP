@@ -92,6 +92,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">FoodGenerator</span></div>
+<div class="block">Интерфейс, описывающий генератор еды на игровом поле.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,7 +110,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#generateFood(ru.nsu.ryzhneva.snake.model.data.GameConfig,java.util.Deque)" class="member-name-link">generateFood</a><wbr>(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a>&gt;&nbsp;snake)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Создает новую еду на свободном месте поля.</div>
+</div>
 </div>
 </div>
 </div>
@@ -129,6 +132,14 @@ loadScripts(document, 'script');</script>
 <h3>generateFood</h3>
 <div class="member-signature"><span class="return-type"><a href="Food.html" title="interface in ru.nsu.ryzhneva.snake.model">Food</a></span>&nbsp;<span class="element-name">generateFood</span><wbr><span class="parameters">(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Deque.html" title="class or interface in java.util" class="external-link">Deque</a>&lt;<a href="data/Coordinates.html" title="class in ru.nsu.ryzhneva.snake.model.data">Coordinates</a>&gt;&nbsp;snake)</span></div>
+<div class="block">Создает новую еду на свободном месте поля.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - конфигурация игры с размерами поля</dd>
+<dd><code>snake</code> - список координат сегментов змейки</dd>
+<dt>Returns:</dt>
+<dd>сгенерированный объект еды, или null, если свободных клеток нет</dd>
+</dl>
 </section>
 </li>
 </ul>

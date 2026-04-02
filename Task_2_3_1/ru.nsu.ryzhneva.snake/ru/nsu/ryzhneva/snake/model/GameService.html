@@ -92,6 +92,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GameService</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Логический контроллер (сервис) игры "Змейка", управляющий правилами и состояниями.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,7 +108,9 @@ loadScripts(document, 'script');</script>
  <a href="GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a>&nbsp;listener,
  <a href="FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snake.model">FoodGenerator</a>&nbsp;foodGenerator,
  <a href="WinCondition.html" title="interface in ru.nsu.ryzhneva.snake.model">WinCondition</a>&nbsp;winCondition)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает новый сервис игры с заданными правилами.</div>
+</div>
 </div>
 </section>
 </li>
@@ -124,19 +127,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#changeDirection(ru.nsu.ryzhneva.snake.model.data.MoveDirection)" class="member-name-link">changeDirection</a><wbr>(<a href="data/MoveDirection.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">MoveDirection</a>&nbsp;direction)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Изменяет направление движения змеи.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getState()" class="member-name-link">getState</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает текущее состояние игры.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#restart(ru.nsu.ryzhneva.snake.model.data.GameConfig)" class="member-name-link">restart</a><wbr>(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Перезапускает игру.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#start()" class="member-name-link">start</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Запускает игровой цикл.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stop()" class="member-name-link">stop</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Останавливает игровой цикл.</div>
+</div>
 </div>
 </div>
 </div>
@@ -161,6 +174,14 @@ loadScripts(document, 'script');</script>
  <a href="GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a>&nbsp;listener,
  <a href="FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snake.model">FoodGenerator</a>&nbsp;foodGenerator,
  <a href="WinCondition.html" title="interface in ru.nsu.ryzhneva.snake.model">WinCondition</a>&nbsp;winCondition)</span></div>
+<div class="block">Создает новый сервис игры с заданными правилами.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - настройки игры</dd>
+<dd><code>listener</code> - слушатель событий для обновления UI</dd>
+<dd><code>foodGenerator</code> - объект, отвечающий за появление еды</dd>
+<dd><code>winCondition</code> - условие победы</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -175,30 +196,47 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="start()">
 <h3>start</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">start</span>()</div>
+<div class="block">Запускает игровой цикл.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="stop()">
 <h3>stop</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">stop</span>()</div>
+<div class="block">Останавливает игровой цикл.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="restart(ru.nsu.ryzhneva.snake.model.data.GameConfig)">
 <h3>restart</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">restart</span><wbr><span class="parameters">(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config)</span></div>
+<div class="block">Перезапускает игру.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>config</code> - конфигурация</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getState()">
 <h3>getState</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a></span>&nbsp;<span class="element-name">getState</span>()</div>
+<div class="block">Возвращает текущее состояние игры.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>объект <a href="GameState.html" title="class in ru.nsu.ryzhneva.snake.model"><code>GameState</code></a></dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="changeDirection(ru.nsu.ryzhneva.snake.model.data.MoveDirection)">
 <h3>changeDirection</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">changeDirection</span><wbr><span class="parameters">(<a href="data/MoveDirection.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">MoveDirection</a>&nbsp;direction)</span></div>
+<div class="block">Изменяет направление движения змеи.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>direction</code> - новое направление</dd>
+</dl>
 </section>
 </li>
 </ul>

@@ -92,6 +92,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GameRenderer</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Класс, отвечающий за отрисовку игры на компоненте Canvas.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,7 +108,9 @@ loadScripts(document, 'script');</script>
  int&nbsp;sizeCell,
  int&nbsp;columns,
  int&nbsp;rows)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создает новый отрисовщик с заданными параметрами поля.</div>
+</div>
 </div>
 </section>
 </li>
@@ -124,10 +127,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#render(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">render</a><wbr>(<a href="../model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;model)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Отрисовывает все элементы игры.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#renderOverlay()" class="member-name-link">renderOverlay</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Отрисовывает слой поверх игрового поля,
+ используемый после завершения игры.</div>
+</div>
 </div>
 </div>
 </div>
@@ -152,6 +160,14 @@ loadScripts(document, 'script');</script>
  int&nbsp;sizeCell,
  int&nbsp;columns,
  int&nbsp;rows)</span></div>
+<div class="block">Создает новый отрисовщик с заданными параметрами поля.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>canvas</code> - компонент Canvas для вывода графики</dd>
+<dd><code>sizeCell</code> - размер одного блока (клетки) в пикселях</dd>
+<dd><code>columns</code> - количество логических столбцов</dd>
+<dd><code>rows</code> - количество логических строк</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -166,12 +182,19 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="render(ru.nsu.ryzhneva.snake.model.GameState)">
 <h3>render</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">render</span><wbr><span class="parameters">(<a href="../model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;model)</span></div>
+<div class="block">Отрисовывает все элементы игры.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>model</code> - текущее состояние игры для отрисовки</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="renderOverlay()">
 <h3>renderOverlay</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">renderOverlay</span>()</div>
+<div class="block">Отрисовывает слой поверх игрового поля,
+ используемый после завершения игры.</div>
 </section>
 </li>
 </ul>
