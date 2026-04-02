@@ -1,5 +1,9 @@
 package ru.nsu.ryzhneva.snake.model;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Deque;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
@@ -7,23 +11,41 @@ import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.data.MoveDirection;
 
+/**
+ * Тест GameService.
+ */
 class GameServiceTest {
 
     private static class StubListener implements GameUpdateListener {
         boolean updated = false;
         GameStatus endedStatus = null;
-        @Override public void onGameUpdated() { updated = true; }
-        @Override public void onGameEnded(GameStatus status) { endedStatus = status; }
+
+        @Override
+        public void onGameUpdated() {
+            updated = true;
+        }
+
+        @Override
+        public void onGameEnded(GameStatus status) {
+            endedStatus = status;
+        }
     }
+
     private static class FixedFoodGenerator implements FoodGenerator {
         Coordinates fixedPos;
-        public FixedFoodGenerator(Coordinates pos) { this.fixedPos = pos; }
+
+        public FixedFoodGenerator(Coordinates pos) {
+            this.fixedPos = pos;
+        }
+
         @Override
         public Food generateFood(GameConfig config, Deque<Coordinates> snake) {
             return new BasicFood(fixedPos, 10, 1);
         }
     }
-    @Test void testBasicMovementAndListenerUpdate() throws Exception {
+
+    @Test
+    void testBasicMovementAndListenerUpdate() throws Exception {
         GameConfig config = new GameConfig(10, 10, 5, 100.0);
         StubListener listener = new StubListener();
         FixedFoodGenerator foodGen = new FixedFoodGenerator(new Coordinates(8, 8));
@@ -44,7 +66,9 @@ class GameServiceTest {
         assertEquals(6, head.x());
         assertEquals(6, head.y());
     }
-    @Test void testEatFoodAndWin() throws Exception {
+
+    @Test
+    void testEatFoodAndWin() throws Exception {
         GameConfig configWin =
                 new GameConfig(10, 10, 2, 100.0);
         StubListener listener = new StubListener();
@@ -58,7 +82,9 @@ class GameServiceTest {
         assertEquals(GameStatus.WIN, listener.endedStatus);
         assertEquals(10, service.getState().getScore());
     }
-    @Test void testWallCollision() throws Exception {
+
+    @Test
+    void testWallCollision() throws Exception {
         GameConfig config = new GameConfig(6, 6, 10, 100.0);
         StubListener listener = new StubListener();
         FixedFoodGenerator foodGen = new FixedFoodGenerator(new Coordinates(1, 1));
@@ -73,7 +99,9 @@ class GameServiceTest {
         }
         assertEquals(GameStatus.LOSE, listener.endedStatus);
     }
-    @Test void testSelfCollisionAndGameEndedDoNotAdvance() throws Exception {
+
+    @Test
+    void testSelfCollisionAndGameEndedDoNotAdvance() throws Exception {
         GameConfig config = new GameConfig(10, 10, 10, 100.0);
         StubListener listener = new StubListener();
         GameService service = new GameService(config, listener,

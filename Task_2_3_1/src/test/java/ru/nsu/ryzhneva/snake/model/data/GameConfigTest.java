@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Тест GameConfig.
+ */
 class GameConfigTest {
 
     @Test
@@ -46,4 +49,3 @@ class GameConfigTest {
                 new GameConfig(30, 20, 50, -50.0));
     }
 }
-

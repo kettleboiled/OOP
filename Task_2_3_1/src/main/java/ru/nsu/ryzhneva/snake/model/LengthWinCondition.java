@@ -2,6 +2,9 @@ package ru.nsu.ryzhneva.snake.model;
 
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 
+/**
+ * Класс, определяющий условие победы по достижению змейкой определенной длины.
+ */
 public class LengthWinCondition implements WinCondition {
 
     @Override
@@ -9,4 +12,3 @@ public class LengthWinCondition implements WinCondition {
         return state.getSnake().size() >= config.lengthWin();
     }
 }
-

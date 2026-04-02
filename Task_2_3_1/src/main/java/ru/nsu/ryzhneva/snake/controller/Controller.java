@@ -15,6 +15,10 @@ import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.data.MoveDirection;
 
+/**
+ * Контроллер слоя пользовательского интерфейса для взаимодействия
+ * пользователя с бизнес логикой.
+ */
 public class Controller implements GameUpdateListener {
     private GameService gameService;
     private GameRenderer renderer;
@@ -36,6 +40,18 @@ public class Controller implements GameUpdateListener {
     private final FoodGenerator foodGenerator;
     private final WinCondition winCondition;
 
+    /**
+     * Создает контроллер с установленными правилами и конфигурацией по умолчанию,
+     * внедряя в себя генератор еды и условие победы.
+     *
+     * @param columns ширина поля
+     * @param rows высота поля
+     * @param sizeCell размер клетки в пикселях
+     * @param lengthWin количество сегментов, при котором засчитывается победа
+     * @param tickMs длительность одного хода (скорость игры)
+     * @param foodGenerator генератор еды на поле
+     * @param winCondition класс, проверяющий условия победы
+     */
     public Controller(int columns, int rows,
                       int sizeCell, int lengthWin, double tickMs,
                       FoodGenerator foodGenerator,
@@ -49,13 +65,17 @@ public class Controller implements GameUpdateListener {
         this.winCondition = winCondition;
     }
 
+    /**
+     * Инициализация контроллера после загрузки FXML.
+     * Запускает инициализацию доски, событий клавиатуры и игрового цикла.
+     */
     @FXML
     public void initialize() {
         GameConfig config = new GameConfig(columns, rows, lengthWin, tickMs);
 
         canvas.setWidth(columns * sizeCell);
         canvas.setHeight(rows * sizeCell);
-        
+
         renderer = new GameRenderer(canvas, sizeCell, columns, rows);
 
         root.setFocusTraversable(true);
@@ -68,11 +88,21 @@ public class Controller implements GameUpdateListener {
         gameService.start();
     }
 
+    /**
+     * Событие, вызываемое игрой при каждом успешном игровом тике.
+     * Обновляет интерфейс.
+     */
     @Override
     public void onGameUpdated() {
         updateUI();
     }
 
+    /**
+     * Событие, вызываемое игрой при ее окончании.
+     * Отображает экран победы или поражения.
+     *
+     * @param status статус окончания игры
+     */
     @Override
     public void onGameEnded(GameStatus status) {
         if (status == GameStatus.WIN) {
@@ -82,6 +112,12 @@ public class Controller implements GameUpdateListener {
         }
     }
 
+    /**
+     * Метод для завершения игры.
+     *
+     * @param message сообщение (выигрыш/проигрыш)
+     * @param color цвет сообщения
+     */
     private void endGame(String message, Color color) {
         gameService.stop();
         updateUI();
@@ -91,7 +127,12 @@ public class Controller implements GameUpdateListener {
         messageLabel.setVisible(true);
     }
 
-
+    /**
+     * Обрабатывает нажатия клавиш пользователя
+     * и передает их в сервис игры.
+     *
+     * @param event событие нажатия клавиши
+     */
     private void handleKeyPress(KeyEvent event) {
         if (gameService.getState().getStatus() != GameStatus.PLAYING) {
             if (event.getCode() == KeyCode.ENTER) {
@@ -109,12 +150,17 @@ public class Controller implements GameUpdateListener {
         }
     }
 
-
+    /**
+     * Передает текущее состояние игры сервису отрисовки и обновляет счет.
+     */
     private void updateUI() {
         renderer.render(gameService.getState());
         scoreLabel.setText("Score: " + gameService.getState().getScore());
     }
 
+    /**
+     * Перезапускает игру, сбрасывая состояние в начальное.
+     */
     private void restartGame() {
         GameConfig config = new GameConfig(columns, rows, lengthWin, tickMs);
 

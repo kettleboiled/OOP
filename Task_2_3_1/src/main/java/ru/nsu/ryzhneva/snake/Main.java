@@ -10,8 +10,17 @@ import ru.nsu.ryzhneva.snake.model.RandomFoodGenerator;
 
 import java.io.IOException;
 
+/**
+ * Точка входа.
+ */
 public class Main extends Application {
 
+    /**
+     * Основной метод запуска окна и сцены JavaFX.
+     *
+     * @param stage первичные подмостки для графического интерфейса
+     * @throws IOException если файл FXML не может быть загружен
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("snake-view.fxml"));
@@ -32,6 +41,11 @@ public class Main extends Application {
         stage.show();
     }
 
+    /**
+     * Точка входа.
+     *
+     * @param args параметры командной строки
+     */
     public static void main(String[] args) {
         launch(args);
     }

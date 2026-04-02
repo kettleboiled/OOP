@@ -17,6 +17,9 @@ import java.util.concurrent.CountDownLatch;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Тест контроллера.
+ */
 class ControllerTest {
 
     @BeforeAll
@@ -26,6 +29,9 @@ class ControllerTest {
             Platform.startup(latch::countDown);
             latch.await();
         } catch (IllegalStateException e) {
+        } catch (UnsupportedOperationException e) {
+            org.junit.jupiter.api.Assumptions.assumeTrue(false,
+                    "JavaFX is not supported in this environment. Skipping tests.");
         }
     }
 
@@ -38,6 +44,7 @@ class ControllerTest {
     @Test
     void testControllerFlow() throws Exception {
         CountDownLatch latch = new CountDownLatch(1);
+        java.util.concurrent.atomic.AtomicReference<Throwable> error = new java.util.concurrent.atomic.AtomicReference<>();
         Platform.runLater(() -> {
             try {
                 Controller controller = new Controller(
@@ -60,6 +67,12 @@ class ControllerTest {
 
                 controller.onGameUpdated();
                 assertTrue(scoreLabel.getText().startsWith("Score:"));
+
+                Field gsField = Controller.class.getDeclaredField("gameService");
+                gsField.setAccessible(true);
+                Object gameService = gsField.get(controller);
+                ru.nsu.ryzhneva.snake.model.GameState state = ((ru.nsu.ryzhneva.snake.model.GameService) gameService).getState();
+                state.setStatus(GameStatus.LOSE);
 
                 controller.onGameEnded(GameStatus.LOSE);
                 assertTrue(messageLabel.isVisible());
@@ -88,12 +101,17 @@ class ControllerTest {
                 controller.onGameEnded(GameStatus.WIN);
                 assertEquals("YOU WIN!\nНажмите ENTER для перезапуска", messageLabel.getText());
 
-            } catch (Exception e) {
-                fail(e);
+            } catch (Throwable e) {
+                error.set(e);
             } finally {
                 latch.countDown();
             }
         });
         latch.await();
+        if (error.get() != null) {
+            if (error.get() instanceof Error) throw (Error) error.get();
+            if (error.get() instanceof Exception) throw (Exception) error.get();
+            throw new RuntimeException(error.get());
+        }
     }
 }

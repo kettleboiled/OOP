@@ -12,7 +12,9 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 
-
+/**
+ * Тест RandomFoodGenerator.
+ */
 class RandomFoodGeneratorTest {
 
     @Test
@@ -51,4 +53,3 @@ class RandomFoodGeneratorTest {
         assertNull(food);
     }
 }
-

@@ -7,9 +7,23 @@ import java.util.Random;
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 
+/**
+ * Класс, реализующий случайную генерацию еды на пустых клетках поля.
+ */
 public class RandomFoodGenerator implements FoodGenerator {
     private final Random random = new Random();
 
+    private static final int DEFAULT_FOOD_POINTS = 10;
+    private static final int DEFAULT_FOOD_GROWTH = 1;
+
+    /**
+     * Случайным образом генерирует еду на координатах, не занятых змейкой.
+     *
+     * @param config конфигурация игры
+     * @param snake список элементов тела змейки
+     * @return случайно сгенерированный элемент {@link BasicFood},
+     * либо {@code null}, если поле заполнено
+     */
     @Override
     public Food generateFood(GameConfig config, Deque<Coordinates> snake) {
         int width = config.width();
@@ -33,7 +47,7 @@ public class RandomFoodGenerator implements FoodGenerator {
 
         if (!free.isEmpty()) {
             return new BasicFood(free.get(random.nextInt(free.size())),
-                    10, 1);
+                    DEFAULT_FOOD_POINTS, DEFAULT_FOOD_GROWTH);
         }
         
         return null;

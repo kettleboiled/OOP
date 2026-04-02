@@ -9,6 +9,9 @@ import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.data.MoveDirection;
 
+/**
+ * Тест GameState.
+ */
 class GameStateTest {
     @Test
     void testInitialState() {
@@ -23,6 +26,7 @@ class GameStateTest {
         assertEquals(5, head.x());
         assertEquals(5, head.y());
     }
+
     @Test
     void testChangeDirection() {
         GameConfig config = new GameConfig(10, 10, 5, 100.0);
@@ -37,6 +41,7 @@ class GameStateTest {
         state.applyPendingDirection();
         assertEquals(6, state.getNextHeadPosition().y()); 
     }
+
     @Test
     void testScoreAndGrowth() {
         GameConfig config = new GameConfig(10, 10, 5, 100.0);
