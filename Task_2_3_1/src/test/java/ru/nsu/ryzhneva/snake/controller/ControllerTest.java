@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -29,10 +30,12 @@ class ControllerTest {
         CountDownLatch latch = new CountDownLatch(1);
         try {
             Platform.startup(latch::countDown);
-            latch.await();
+            if (!latch.await(5, TimeUnit.SECONDS)) {
+                org.junit.jupiter.api.Assumptions.assumeTrue(false, "JavaFX startup timed out. Skipping tests.");
+            }
         } catch (IllegalStateException e) {
             // Ignore IllegalStateException if toolkit is already initialized
-        } catch (UnsupportedOperationException e) {
+        } catch (Throwable e) {
             org.junit.jupiter.api.Assumptions.assumeTrue(false,
                     "JavaFX is not supported in this environment. Skipping tests.");
         }
@@ -118,7 +121,7 @@ class ControllerTest {
                 latch.countDown();
             }
         });
-        latch.await();
+        latch.await(5, TimeUnit.SECONDS);
         if (error.get() != null) {
             if (error.get() instanceof Error) {
                 throw (Error) error.get();

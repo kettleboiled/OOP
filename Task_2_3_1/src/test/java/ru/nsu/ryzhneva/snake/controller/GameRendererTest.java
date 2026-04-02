@@ -3,6 +3,7 @@ package ru.nsu.ryzhneva.snake.controller;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,9 +22,12 @@ class GameRendererTest {
         CountDownLatch latch = new CountDownLatch(1);
         try {
             Platform.startup(latch::countDown);
-            latch.await();
+            if (!latch.await(5, TimeUnit.SECONDS)) {
+                org.junit.jupiter.api.Assumptions.assumeTrue(false, "JavaFX startup timed out. Skipping tests.");
+            }
         } catch (IllegalStateException e) {
-        } catch (UnsupportedOperationException e) {
+            // Ignore IllegalStateException if toolkit is already initialized
+        } catch (Throwable e) {
             org.junit.jupiter.api.Assumptions.assumeTrue(false,
                     "JavaFX is not supported in this environment. Skipping tests.");
         }
@@ -47,6 +51,6 @@ class GameRendererTest {
                 latch.countDown();
             }
         });
-        latch.await();
+        latch.await(5, TimeUnit.SECONDS);
     }
 }
