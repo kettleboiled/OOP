@@ -1,5 +1,6 @@
 package ru.nsu.ryzhneva.snake;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,7 +9,6 @@ import ru.nsu.ryzhneva.snake.controller.Controller;
 import ru.nsu.ryzhneva.snake.model.LengthWinCondition;
 import ru.nsu.ryzhneva.snake.model.RandomFoodGenerator;
 
-import java.io.IOException;
 
 /**
  * Точка входа.

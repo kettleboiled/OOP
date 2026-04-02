@@ -81,7 +81,8 @@ public class GameRenderer {
         Coordinates head = model.getSnake().peekFirst();
         if (head != null) {
             gc.setFill(COLOR_SNAKE_HEAD);
-            gc.fillRect(head.x() * sizeCell + 1, head.y() * sizeCell + 1, sizeCell - 2, sizeCell - 2);
+            gc.fillRect(head.x() * sizeCell + 1, head.y() * sizeCell + 1,
+                    sizeCell - 2, sizeCell - 2);
         }
     }
 

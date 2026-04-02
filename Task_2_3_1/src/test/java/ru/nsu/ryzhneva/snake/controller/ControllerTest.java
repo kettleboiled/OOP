@@ -1,5 +1,12 @@
 package ru.nsu.ryzhneva.snake.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.lang.reflect.Field;
+import java.util.concurrent.CountDownLatch;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -12,13 +19,8 @@ import ru.nsu.ryzhneva.snake.model.LengthWinCondition;
 import ru.nsu.ryzhneva.snake.model.RandomFoodGenerator;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 
-import java.lang.reflect.Field;
-import java.util.concurrent.CountDownLatch;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
- * Тест контроллера.
+ * Тест Controller.
  */
 class ControllerTest {
 
@@ -29,6 +31,7 @@ class ControllerTest {
             Platform.startup(latch::countDown);
             latch.await();
         } catch (IllegalStateException e) {
+            // Ignore IllegalStateException if toolkit is already initialized
         } catch (UnsupportedOperationException e) {
             org.junit.jupiter.api.Assumptions.assumeTrue(false,
                     "JavaFX is not supported in this environment. Skipping tests.");
@@ -44,7 +47,8 @@ class ControllerTest {
     @Test
     void testControllerFlow() throws Exception {
         CountDownLatch latch = new CountDownLatch(1);
-        java.util.concurrent.atomic.AtomicReference<Throwable> error = new java.util.concurrent.atomic.AtomicReference<>();
+        java.util.concurrent.atomic.AtomicReference<Throwable> error =
+                new java.util.concurrent.atomic.AtomicReference<>();
         Platform.runLater(() -> {
             try {
                 Controller controller = new Controller(
@@ -56,7 +60,7 @@ class ControllerTest {
                 VBox root = new VBox();
                 Canvas canvas = new Canvas();
                 Label scoreLabel = new Label();
-                Label messageLabel = new Label();
+                final Label messageLabel = new Label();
 
                 setField(controller, "root", root);
                 setField(controller, "canvas", canvas);
@@ -70,16 +74,20 @@ class ControllerTest {
 
                 Field gsField = Controller.class.getDeclaredField("gameService");
                 gsField.setAccessible(true);
-                Object gameService = gsField.get(controller);
-                ru.nsu.ryzhneva.snake.model.GameState state = ((ru.nsu.ryzhneva.snake.model.GameService) gameService).getState();
+                Object gameServiceObj = gsField.get(controller);
+                ru.nsu.ryzhneva.snake.model.GameService gameService =
+                        (ru.nsu.ryzhneva.snake.model.GameService) gameServiceObj;
+                ru.nsu.ryzhneva.snake.model.GameState state = gameService.getState();
                 state.setStatus(GameStatus.LOSE);
 
                 controller.onGameEnded(GameStatus.LOSE);
                 assertTrue(messageLabel.isVisible());
                 assertEquals("YOU LOSE\nНажмите ENTER для перезапуска", messageLabel.getText());
 
-                KeyEvent enterEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.ENTER, false, false, false, false);
-                java.lang.reflect.Method handleKeyPress = Controller.class.getDeclaredMethod("handleKeyPress", KeyEvent.class);
+                KeyEvent enterEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.ENTER,
+                        false, false, false, false);
+                java.lang.reflect.Method handleKeyPress = Controller.class.getDeclaredMethod(
+                        "handleKeyPress", KeyEvent.class);
                 handleKeyPress.setAccessible(true);
                 handleKeyPress.invoke(controller, enterEvent);
 
@@ -88,12 +96,15 @@ class ControllerTest {
                 KeyEvent upEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "",
                         KeyCode.UP, false, false, false, false);
                 handleKeyPress.invoke(controller, upEvent);
+
                 KeyEvent downEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "",
                         KeyCode.DOWN, false, false, false, false);
                 handleKeyPress.invoke(controller, downEvent);
+
                 KeyEvent leftEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "",
                         KeyCode.LEFT, false, false, false, false);
                 handleKeyPress.invoke(controller, leftEvent);
+
                 KeyEvent rightEvent = new KeyEvent(KeyEvent.KEY_PRESSED, "", "",
                         KeyCode.RIGHT, false, false, false, false);
                 handleKeyPress.invoke(controller, rightEvent);
@@ -109,8 +120,12 @@ class ControllerTest {
         });
         latch.await();
         if (error.get() != null) {
-            if (error.get() instanceof Error) throw (Error) error.get();
-            if (error.get() instanceof Exception) throw (Exception) error.get();
+            if (error.get() instanceof Error) {
+                throw (Error) error.get();
+            }
+            if (error.get() instanceof Exception) {
+                throw (Exception) error.get();
+            }
             throw new RuntimeException(error.get());
         }
     }

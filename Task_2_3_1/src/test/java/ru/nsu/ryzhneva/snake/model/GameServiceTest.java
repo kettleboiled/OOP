@@ -93,9 +93,11 @@ class GameServiceTest {
         java.lang.reflect.Method tickMethod =
                 GameService.class.getDeclaredMethod("gameTick");
         tickMethod.setAccessible(true);
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             tickMethod.invoke(service);
-            if (listener.endedStatus != null) break;
+            if (listener.endedStatus != null) {
+                break;
+            }
         }
         assertEquals(GameStatus.LOSE, listener.endedStatus);
     }

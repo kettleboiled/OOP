@@ -1,13 +1,13 @@
 package ru.nsu.ryzhneva.snake.model;
 
 import ru.nsu.ryzhneva.snake.controller.GameLoop;
+import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.data.MoveDirection;
-import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 
 /**
- * Контроллер, управляющий правилами и состояниями.
+ * Логический контроллер (сервис) игры "Змейка", управляющий правилами и состояниями.
  */
 public class GameService {
     private GameState state;

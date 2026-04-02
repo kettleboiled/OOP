@@ -1,10 +1,10 @@
 package ru.nsu.ryzhneva.snake.controller;
 
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import ru.nsu.ryzhneva.snake.model.FoodGenerator;
@@ -71,7 +71,7 @@ public class Controller implements GameUpdateListener {
      */
     @FXML
     public void initialize() {
-        GameConfig config = new GameConfig(columns, rows, lengthWin, tickMs);
+        final GameConfig config = new GameConfig(columns, rows, lengthWin, tickMs);
 
         canvas.setWidth(columns * sizeCell);
         canvas.setHeight(rows * sizeCell);
@@ -94,7 +94,7 @@ public class Controller implements GameUpdateListener {
      */
     @Override
     public void onGameUpdated() {
-        updateUI();
+        updateUi();
     }
 
     /**
@@ -120,7 +120,7 @@ public class Controller implements GameUpdateListener {
      */
     private void endGame(String message, Color color) {
         gameService.stop();
-        updateUI();
+        updateUi();
         renderer.renderOverlay();
         messageLabel.setText(message);
         messageLabel.setTextFill(color);
@@ -146,14 +146,14 @@ public class Controller implements GameUpdateListener {
             case DOWN, S -> gameService.changeDirection(MoveDirection.DOWN);
             case LEFT, A -> gameService.changeDirection(MoveDirection.LEFT);
             case RIGHT, D -> gameService.changeDirection(MoveDirection.RIGHT);
-            default -> {}
+            default -> { }
         }
     }
 
     /**
      * Передает текущее состояние игры сервису отрисовки и обновляет счет.
      */
-    private void updateUI() {
+    private void updateUi() {
         renderer.render(gameService.getState());
         scoreLabel.setText("Score: " + gameService.getState().getScore());
     }
@@ -162,7 +162,7 @@ public class Controller implements GameUpdateListener {
      * Перезапускает игру, сбрасывая состояние в начальное.
      */
     private void restartGame() {
-        GameConfig config = new GameConfig(columns, rows, lengthWin, tickMs);
+        final GameConfig config = new GameConfig(columns, rows, lengthWin, tickMs);
 
         messageLabel.setVisible(false);
 

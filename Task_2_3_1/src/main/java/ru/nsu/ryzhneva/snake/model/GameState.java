@@ -1,12 +1,11 @@
 package ru.nsu.ryzhneva.snake.model;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.data.MoveDirection;
-
-import java.util.Deque;
-import java.util.LinkedList;
 
 /**
  * Класс, представляющий текущее состояние игры.
@@ -86,8 +85,8 @@ public class GameState {
     public Coordinates getNextHeadPosition() {
         Coordinates head = snake.getFirst();
         return new Coordinates(
-                head.x() + currentDirection.getX(),
-                head.y() + currentDirection.getY()
+                head.x() + currentDirection.getDx(),
+                head.y() + currentDirection.getDy()
         );
     }
 

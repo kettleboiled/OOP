@@ -14,6 +14,7 @@ public class RandomFoodGenerator implements FoodGenerator {
     private final Random random = new Random();
 
     private static final int DEFAULT_FOOD_POINTS = 10;
+    /** Значение длины по умолчанию, на которое увеличивается змейка. */
     private static final int DEFAULT_FOOD_GROWTH = 1;
 
     /**
@@ -21,8 +22,7 @@ public class RandomFoodGenerator implements FoodGenerator {
      *
      * @param config конфигурация игры
      * @param snake список элементов тела змейки
-     * @return случайно сгенерированный элемент {@link BasicFood},
-     * либо {@code null}, если поле заполнено
+     * @return случайно сгенерированный элемент, или null, если поле заполнено
      */
     @Override
     public Food generateFood(GameConfig config, Deque<Coordinates> snake) {

@@ -9,44 +9,48 @@ public enum MoveDirection {
     LEFT(-1, 0),
     RIGHT(1, 0);
 
-    private final int x;
-    private final int y;
+    private final int dx;
+    private final int dy;
 
     /**
      * Конструктор с инициализацией векторов направлений.
      *
-     * @param x смещение по оси абсцисс
-     * @param y смещение по оси ординат
+     * @param dx смещение по оси абсцисс
+     * @param dy смещение по оси ординат
      */
-    MoveDirection(int x, int y) {
-        this.x = x;
-        this.y = y;
+    MoveDirection(int dx, int dy) {
+        this.dx = dx;
+        this.dy = dy;
     }
 
     /**
-     * @return смещение по горизонтали для данного направления.
+     * Получить смещение по горизонтали для данного направления.
+     *
+     * @return смещение по горизонтали
      */
-    public int getX() {
-        return x;
+    public int getDx() {
+        return dx;
     }
 
     /**
-     * @return смещение по вертикали для данного направления.
+     * Получить смещение по вертикали для данного направления.
+     *
+     * @return смещение по вертикали
      */
-    public int getY() {
-        return y;
+    public int getDy() {
+        return dy;
     }
 
     /**
-     * Проверяет, является ли указанное направление противоположным текущему.
+     * Проверяет, является ли указанное направление строго противоположным (разносмысленным) текущему.
      *
      * @param anotherDirection направление для проверки.
      * @return {@code true} если направления противоположны друг другу,
-     * иначе {@code false}.
+     *         иначе {@code false}.
      */
     public boolean isOpposite(MoveDirection anotherDirection) {
-        return ((this.x == anotherDirection.x && this.y != anotherDirection.y)
-                || (this.y == anotherDirection.y && this.x != anotherDirection.x));
+        return ((this.dx == anotherDirection.dx && this.dy != anotherDirection.dy)
+                || (this.dy == anotherDirection.dy && this.dx != anotherDirection.dx));
 
     }
 }
