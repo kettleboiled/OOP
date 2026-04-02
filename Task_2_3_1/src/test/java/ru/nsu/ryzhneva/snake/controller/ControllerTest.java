@@ -3,6 +3,7 @@ package ru.nsu.ryzhneva.snake.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
@@ -32,13 +33,12 @@ class ControllerTest {
         try {
             Platform.startup(latch::countDown);
             if (!latch.await(5, TimeUnit.SECONDS)) {
-                org.junit.jupiter.api.Assumptions.assumeTrue(false, "JavaFX startup timed out. Skipping tests.");
+                assumeTrue(false, "JavaFX startup timed out.");
             }
         } catch (IllegalStateException e) {
-            // Ignore IllegalStateException if toolkit is already initialized
         } catch (Throwable e) {
-            org.junit.jupiter.api.Assumptions.assumeTrue(false,
-                    "JavaFX is not supported in this environment. Skipping tests.");
+            assumeTrue(false,
+                    "JavaFX is not supported in this environment.");
         }
     }
 

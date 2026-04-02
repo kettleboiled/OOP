@@ -1,6 +1,7 @@
 package ru.nsu.ryzhneva.snake.controller;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -25,13 +26,12 @@ class GameRendererTest {
         try {
             Platform.startup(latch::countDown);
             if (!latch.await(5, TimeUnit.SECONDS)) {
-                org.junit.jupiter.api.Assumptions.assumeTrue(false,
+                assumeTrue(false,
                         "JavaFX startup timed out. Skipping tests.");
             }
         } catch (IllegalStateException e) {
-            // Ignore IllegalStateException if toolkit is already initialized
         } catch (Throwable e) {
-            org.junit.jupiter.api.Assumptions.assumeTrue(false,
+            assumeTrue(false,
                     "JavaFX is not supported in this environment. " +
                             "Skipping tests.");
         }
