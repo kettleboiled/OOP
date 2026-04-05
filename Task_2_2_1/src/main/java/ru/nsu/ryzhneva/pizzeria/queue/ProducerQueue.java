@@ -16,9 +16,4 @@ public interface ProducerQueue<T> {
      *     во время ожидания.
      */
     void put(T item) throws InterruptedException;
-
-    /**
-     * Изменяет состояние монитора на закрытое.
-     */
-    void close();
 }
