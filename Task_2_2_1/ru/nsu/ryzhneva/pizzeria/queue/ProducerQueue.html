@@ -119,7 +119,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="put(T)">
 <h3 id="put(java.lang.Object)">put</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">put</span><wbr><span class="parameters">(<a href="ProducerQueue.html" title="type parameter in ProducerQueue">T</a>&nbsp;item)</span>
-  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a>,
+<a href="QueueClosedException.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">QueueClosedException</a></span></div>
 <div class="block">Добавить элемент в очередь.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -127,6 +128,7 @@ loadScripts(document, 'script');</script>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - если поток был прерван
      во время ожидания.</dd>
+<dd><code><a href="QueueClosedException.html" title="class in ru.nsu.ryzhneva.pizzeria.queue">QueueClosedException</a></code> - если очередь закрыта.</dd>
 </dl>
 </section>
 </li>
