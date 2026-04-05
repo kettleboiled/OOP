@@ -15,7 +15,7 @@ public class UnboundedThreadSafeQueue<T>
     private boolean isClosed = false;
 
     @Override
-    public synchronized void put(T item) throws InterruptedException, QueueClosedException {
+    public synchronized void put(T item) throws QueueClosedException {
         if (isClosed) {
             throw new QueueClosedException();
         }
