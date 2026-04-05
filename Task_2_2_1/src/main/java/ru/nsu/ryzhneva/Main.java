@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.Reader;
 import ru.nsu.ryzhneva.pizzeria.PizzaProcess;
 import ru.nsu.ryzhneva.pizzeria.PizzeriaConfig;
+import ru.nsu.ryzhneva.pizzeria.order.Order;
 import ru.nsu.ryzhneva.pizzeria.order.OrderGenerator;
 import ru.nsu.ryzhneva.pizzeria.order.OrderStateListener;
 import ru.nsu.ryzhneva.pizzeria.queue.BoundedThreadSafeQueue;
@@ -29,9 +30,9 @@ public class Main {
             PizzeriaConfig config = gson.fromJson(reader, PizzeriaConfig.class);
             System.out.println("Configuration successful loaded");
 
-            UnboundedThreadSafeQueue<ru.nsu.ryzhneva.pizzeria.order.Order> ordersQueue
+            UnboundedThreadSafeQueue<Order> ordersQueue
                     = new UnboundedThreadSafeQueue<>();
-            BoundedThreadSafeQueue<ru.nsu.ryzhneva.pizzeria.order.Order> warehouseQueue
+            BoundedThreadSafeQueue<Order> warehouseQueue
                     = new BoundedThreadSafeQueue<>(config.warehouseSize());
 
             WorkerGroup bakers = StaffFactory.createBakers(config, ordersQueue, warehouseQueue);
