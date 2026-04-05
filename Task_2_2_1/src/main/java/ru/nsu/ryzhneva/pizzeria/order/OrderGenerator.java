@@ -3,6 +3,7 @@ package ru.nsu.ryzhneva.pizzeria.order;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import ru.nsu.ryzhneva.pizzeria.queue.ProducerQueue;
+import ru.nsu.ryzhneva.pizzeria.queue.QueueClosedException;
 
 /**
  * Рабочий поток-генератор (Producer).
@@ -36,7 +37,7 @@ public class OrderGenerator implements Runnable {
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-        } catch (IllegalStateException e) {
+        } catch (QueueClosedException e) {
             System.out.println("Order generation stopped: " + e.getMessage());
         }
     }

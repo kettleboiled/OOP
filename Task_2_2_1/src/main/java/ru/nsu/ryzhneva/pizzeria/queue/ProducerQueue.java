@@ -14,6 +14,7 @@ public interface ProducerQueue<T> {
      * @param item элемент для добавления.
      * @throws InterruptedException если поток был прерван
      *     во время ожидания.
+     * @throws QueueClosedException если очередь закрыта.
      */
-    void put(T item) throws InterruptedException;
+    void put(T item) throws InterruptedException, QueueClosedException;
 }

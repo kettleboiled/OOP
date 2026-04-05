@@ -30,14 +30,14 @@ public class BoundedThreadSafeQueue<T>
     }
 
     @Override
-    public synchronized void put(T item) throws InterruptedException {
+    public synchronized void put(T item) throws InterruptedException, QueueClosedException {
         if (isClosed) {
-            throw new IllegalStateException("Queue is closed for new items.");
+            throw new QueueClosedException();
         }
         while (queue.size() >= capacity) {
             wait();
             if (isClosed) {
-                throw new IllegalStateException("Queue is closed for new items.");
+                throw new QueueClosedException();
             }
         }
         queue.add(item);

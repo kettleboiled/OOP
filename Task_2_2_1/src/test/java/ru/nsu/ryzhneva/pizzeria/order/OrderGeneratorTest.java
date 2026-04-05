@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.pizzeria.queue.ProducerQueue;
+import ru.nsu.ryzhneva.pizzeria.queue.QueueClosedException;
 
 /**
  * Тест класса OrderGenerator.
@@ -18,7 +19,7 @@ class OrderGeneratorTest {
         List<Order> producedOrders = new ArrayList<>();
         ProducerQueue<Order> fakeQueue = new ProducerQueue<Order>() {
             @Override
-            public void put(Order item) {
+            public void put(Order item) throws QueueClosedException {
                 producedOrders.add(item);
             }
         };

@@ -41,7 +41,7 @@ class BoundedThreadSafeQueueTest {
     void testClose() throws Exception {
         BoundedThreadSafeQueue<String> queue = new BoundedThreadSafeQueue<>(5);
         queue.close();
-        assertThrows(IllegalStateException.class, () -> queue.put("item"));
+        assertThrows(QueueClosedException.class, () -> queue.put("item"));
         assertThrows(QueueClosedException.class, () -> queue.get());
     }
 }

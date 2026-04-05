@@ -23,7 +23,7 @@ class UnboundedThreadSafeQueueTest {
     void testClose() throws Exception {
         UnboundedThreadSafeQueue<String> queue = new UnboundedThreadSafeQueue<>();
         queue.close();
-        assertThrows(IllegalStateException.class, () -> queue.put("item"));
+        assertThrows(QueueClosedException.class, () -> queue.put("item"));
         assertThrows(QueueClosedException.class, () -> queue.get());
     }
 }
