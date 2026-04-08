@@ -10,6 +10,7 @@ import ru.nsu.ryzhneva.snake.model.GameService;
 import ru.nsu.ryzhneva.snake.model.GameUpdateListener;
 import ru.nsu.ryzhneva.snake.model.LengthWinCondition;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
+import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator;
 
 /**
