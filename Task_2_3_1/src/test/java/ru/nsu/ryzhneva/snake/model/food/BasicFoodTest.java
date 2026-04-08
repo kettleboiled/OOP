@@ -1,5 +1,7 @@
 package ru.nsu.ryzhneva.snake.model.food;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 

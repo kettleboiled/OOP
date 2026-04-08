@@ -59,10 +59,10 @@ class GameViewTest {
                         new LengthWinCondition()
                 );
 
-                VBox root = new VBox();
-                Canvas canvas = new Canvas();
-                Label scoreLabel = new Label();
-                Label messageLabel = new Label();
+                final VBox root = new VBox();
+                final Canvas canvas = new Canvas();
+                final Label scoreLabel = new Label();
+                final Label messageLabel = new Label();
 
                 setField(gameView, "root", root);
                 setField(gameView, "canvas", canvas);
@@ -97,10 +97,10 @@ class GameViewTest {
                         new LengthWinCondition()
                 );
 
-                VBox root = new VBox();
-                Canvas canvas = new Canvas();
-                Label scoreLabel = new Label();
-                Label messageLabel = new Label();
+                final VBox root = new VBox();
+                final Canvas canvas = new Canvas();
+                final Label scoreLabel = new Label();
+                final Label messageLabel = new Label();
 
                 setField(gameView, "root", root);
                 setField(gameView, "canvas", canvas);

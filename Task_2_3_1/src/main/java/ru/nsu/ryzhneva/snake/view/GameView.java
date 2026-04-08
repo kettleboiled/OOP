@@ -8,11 +8,13 @@ import javafx.scene.paint.Color;
 import ru.nsu.ryzhneva.snake.controller.Controller;
 import ru.nsu.ryzhneva.snake.model.GameService;
 import ru.nsu.ryzhneva.snake.model.GameUpdateListener;
-import ru.nsu.ryzhneva.snake.model.WinCondition;
+import ru.nsu.ryzhneva.snake.model.LengthWinCondition;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
-import ru.nsu.ryzhneva.snake.model.data.GameStatus;
-import ru.nsu.ryzhneva.snake.model.food.FoodGenerator;
+import ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator;
 
+/**
+ * Класс, отвечающий за отображение игрового интерфейса.
+ */
 public class GameView implements GameUpdateListener {
     private GameRenderer renderer;
     private GameService gameService;
@@ -32,8 +34,8 @@ public class GameView implements GameUpdateListener {
     private final int sizeCell;
     private final int lengthWin;
     private final double tickMs;
-    private final FoodGenerator foodGenerator;
-    private final WinCondition winCondition;
+    private final RandomFoodGenerator foodGenerator;
+    private final LengthWinCondition winCondition;
 
     /**
      * Конструктор.
@@ -47,7 +49,7 @@ public class GameView implements GameUpdateListener {
      * @param winCondition класс, проверяющий условия победы
      */
     public GameView(int columns, int rows, int sizeCell, int lengthWin, double tickMs,
-                    FoodGenerator foodGenerator, WinCondition winCondition) {
+                    RandomFoodGenerator foodGenerator, LengthWinCondition winCondition) {
         this.columns = columns;
         this.rows = rows;
         this.sizeCell = sizeCell;
@@ -148,7 +150,7 @@ public class GameView implements GameUpdateListener {
             return;
         }
 
-        int newSizeCell = (int)Math.min(availableWidth / columns, availableHeight / rows);
+        int newSizeCell = (int) Math.min(availableWidth / columns, availableHeight / rows);
 
         renderer.setSizeCell(newSizeCell);
         canvas.setHeight(rows * newSizeCell);
