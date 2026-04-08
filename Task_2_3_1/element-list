@@ -3,3 +3,5 @@ ru.nsu.ryzhneva.snake
 ru.nsu.ryzhneva.snake.controller
 ru.nsu.ryzhneva.snake.model
 ru.nsu.ryzhneva.snake.model.data
+ru.nsu.ryzhneva.snake.model.food
+ru.nsu.ryzhneva.snake.view

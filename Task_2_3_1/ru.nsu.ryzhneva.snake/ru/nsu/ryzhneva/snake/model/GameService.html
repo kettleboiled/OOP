@@ -92,7 +92,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GameService</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
-<div class="block">Логический контроллер (сервис) игры "Змейка", управляющий правилами и состояниями.</div>
+<div class="block">Сервис.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -104,9 +104,9 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.ryzhneva.snake.model.data.GameConfig,ru.nsu.ryzhneva.snake.model.GameUpdateListener,ru.nsu.ryzhneva.snake.model.FoodGenerator,ru.nsu.ryzhneva.snake.model.WinCondition)" class="member-name-link">GameService</a><wbr>(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.ryzhneva.snake.model.data.GameConfig,ru.nsu.ryzhneva.snake.model.GameUpdateListener,ru.nsu.ryzhneva.snake.model.food.FoodGenerator,ru.nsu.ryzhneva.snake.model.WinCondition)" class="member-name-link">GameService</a><wbr>(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config,
  <a href="GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a>&nbsp;listener,
- <a href="FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snake.model">FoodGenerator</a>&nbsp;foodGenerator,
+ <a href="food/FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snake.model.food">FoodGenerator</a>&nbsp;foodGenerator,
  <a href="WinCondition.html" title="interface in ru.nsu.ryzhneva.snake.model">WinCondition</a>&nbsp;winCondition)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Создает новый сервис игры с заданными правилами.</div>
@@ -168,11 +168,11 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(ru.nsu.ryzhneva.snake.model.data.GameConfig,ru.nsu.ryzhneva.snake.model.GameUpdateListener,ru.nsu.ryzhneva.snake.model.FoodGenerator,ru.nsu.ryzhneva.snake.model.WinCondition)">
+<section class="detail" id="&lt;init&gt;(ru.nsu.ryzhneva.snake.model.data.GameConfig,ru.nsu.ryzhneva.snake.model.GameUpdateListener,ru.nsu.ryzhneva.snake.model.food.FoodGenerator,ru.nsu.ryzhneva.snake.model.WinCondition)">
 <h3>GameService</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GameService</span><wbr><span class="parameters">(<a href="data/GameConfig.html" title="class in ru.nsu.ryzhneva.snake.model.data">GameConfig</a>&nbsp;config,
  <a href="GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a>&nbsp;listener,
- <a href="FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snake.model">FoodGenerator</a>&nbsp;foodGenerator,
+ <a href="food/FoodGenerator.html" title="interface in ru.nsu.ryzhneva.snake.model.food">FoodGenerator</a>&nbsp;foodGenerator,
  <a href="WinCondition.html" title="interface in ru.nsu.ryzhneva.snake.model">WinCondition</a>&nbsp;winCondition)</span></div>
 <div class="block">Создает новый сервис игры с заданными правилами.</div>
 <dl class="notes">
