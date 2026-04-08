@@ -5,9 +5,11 @@ import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.data.MoveDirection;
+import ru.nsu.ryzhneva.snake.model.food.Food;
+import ru.nsu.ryzhneva.snake.model.food.FoodGenerator;
 
 /**
- * Логический контроллер (сервис) игры "Змейка", управляющий правилами и состояниями.
+ * Сервис.
  */
 public class GameService {
     private GameState state;
@@ -42,6 +44,7 @@ public class GameService {
      * Запускает игровой цикл.
      */
     public void start() {
+        state.setStatus(GameStatus.PLAYING);
         gameLoop.start();
     }
 
@@ -60,7 +63,10 @@ public class GameService {
     public void restart(GameConfig config) {
         this.state = new GameState(config);
         generateInitialFood();
-        gameLoop.restart();
+
+        gameLoop.stop();
+        start();
+        listener.onGameUpdated();
     }
 
     /**
@@ -165,6 +171,7 @@ public class GameService {
         if (status == GameStatus.PLAYING) {
             listener.onGameUpdated();
         } else {
+            stop();
             listener.onGameEnded(status);
         }
     }

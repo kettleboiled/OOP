@@ -6,6 +6,7 @@ import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.data.MoveDirection;
+import ru.nsu.ryzhneva.snake.model.food.Food;
 
 /**
  * Класс, представляющий текущее состояние игры.
@@ -44,7 +45,7 @@ public class GameState {
                 config.height() / 2));
         currentDirection = MoveDirection.RIGHT;
         pendingDirection = MoveDirection.RIGHT;
-        status = GameStatus.PLAYING;
+        status = GameStatus.READY;
         score = 0;
         pendingGrowth = 0;
     }
@@ -102,7 +103,7 @@ public class GameState {
     /**
      * Возвращает очередь координат сегментов змеи.
      *
-     * @return змея в виде двусторонней очереди (Deque) координат
+     * @return змея в виде двусторонней очереди координат
      */
     public Deque<Coordinates> getSnake() {
         return snake;

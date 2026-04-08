@@ -10,6 +10,9 @@ import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.data.MoveDirection;
+import ru.nsu.ryzhneva.snake.model.food.BasicFood;
+import ru.nsu.ryzhneva.snake.model.food.Food;
+import ru.nsu.ryzhneva.snake.model.food.FoodGenerator;
 
 /**
  * Тест GameService.
@@ -51,6 +54,7 @@ class GameServiceTest {
         FixedFoodGenerator foodGen = new FixedFoodGenerator(new Coordinates(8, 8));
         WinCondition winCond = new LengthWinCondition();
         GameService service = new GameService(config, listener, foodGen, winCond);
+        service.getState().setStatus(GameStatus.PLAYING);
         java.lang.reflect.Method tickMethod =
                 GameService.class.getDeclaredMethod("gameTick");
         tickMethod.setAccessible(true);
@@ -75,6 +79,7 @@ class GameServiceTest {
         FixedFoodGenerator foodGen = new FixedFoodGenerator(new Coordinates(6, 5));
         WinCondition winCond = new LengthWinCondition();
         GameService service = new GameService(configWin, listener, foodGen, winCond);
+        service.getState().setStatus(GameStatus.PLAYING);
         java.lang.reflect.Method tickMethod =
                 GameService.class.getDeclaredMethod("gameTick");
         tickMethod.setAccessible(true);
@@ -90,6 +95,7 @@ class GameServiceTest {
         FixedFoodGenerator foodGen = new FixedFoodGenerator(new Coordinates(1, 1));
         WinCondition winCond = new LengthWinCondition();
         GameService service = new GameService(config, listener, foodGen, winCond);
+        service.getState().setStatus(GameStatus.PLAYING);
         java.lang.reflect.Method tickMethod =
                 GameService.class.getDeclaredMethod("gameTick");
         tickMethod.setAccessible(true);

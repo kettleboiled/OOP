@@ -8,11 +8,12 @@ import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.snake.model.GameState;
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
+import ru.nsu.ryzhneva.snake.view.GameRenderer;
 
 /**
  * Тест GameRenderer.

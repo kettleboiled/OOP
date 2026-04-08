@@ -9,4 +9,7 @@ module ru.nsu.ryzhneva.snake {
     exports ru.nsu.ryzhneva.snake.controller;
     exports ru.nsu.ryzhneva.snake.model;
     exports ru.nsu.ryzhneva.snake.model.data;
+    exports ru.nsu.ryzhneva.snake.model.food;
+    exports ru.nsu.ryzhneva.snake.view;
+    opens ru.nsu.ryzhneva.snake.view to javafx.fxml;
 }

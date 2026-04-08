@@ -38,7 +38,7 @@ class GameConfigTest {
         assertThrows(IllegalArgumentException.class, () ->
                 new GameConfig(5, 5, 1, 150.0));
         assertThrows(IllegalArgumentException.class, () ->
-                new GameConfig(5, 5, 30, 150.0)); // 5*5 = 25
+                new GameConfig(5, 5, 30, 150.0));
     }
 
     @Test

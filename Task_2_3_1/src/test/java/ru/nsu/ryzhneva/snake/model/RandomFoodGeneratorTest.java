@@ -10,6 +10,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
+import ru.nsu.ryzhneva.snake.model.food.Food;
+import ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 
 /**

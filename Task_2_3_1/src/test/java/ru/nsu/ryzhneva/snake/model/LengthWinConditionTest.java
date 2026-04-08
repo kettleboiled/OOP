@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 

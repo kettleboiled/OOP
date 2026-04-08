@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva.snake.controller;
+package ru.nsu.ryzhneva.snake.view;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,7 +11,7 @@ import ru.nsu.ryzhneva.snake.model.data.Coordinates;
  */
 public class GameRenderer {
     private final Canvas canvas;
-    private final int sizeCell;
+    private int sizeCell;
     private final int columns;
     private final int rows;
 
@@ -32,7 +32,7 @@ public class GameRenderer {
      * Создает новый отрисовщик с заданными параметрами поля.
      *
      * @param canvas компонент Canvas для вывода графики
-     * @param sizeCell размер одного блока (клетки) в пикселях
+     * @param sizeCell размер одной клетки в пикселях
      * @param columns количество логических столбцов
      * @param rows количество логических строк
      */
@@ -49,39 +49,39 @@ public class GameRenderer {
      * @param model текущее состояние игры для отрисовки
      */
     public void render(GameState model) {
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
 
         for (int x = 0; x < columns; x++) {
             for (int y = 0; y < rows; y++) {
                 if ((x + y) % 2 == 0) {
-                    gc.setFill(COLOR_FIELD_NORMAL);
+                    graphicsContext.setFill(COLOR_FIELD_NORMAL);
                 } else {
-                    gc.setFill(COLOR_FIELD_ALTERNATE);
+                    graphicsContext.setFill(COLOR_FIELD_ALTERNATE);
                 }
-                gc.fillRect(x * sizeCell, y * sizeCell, sizeCell, sizeCell);
+                graphicsContext.fillRect(x * sizeCell, y * sizeCell, sizeCell, sizeCell);
             }
         }
 
         if (model.getFood() != null) {
             Coordinates food = model.getFood().getPosition();
-            gc.setFill(COLOR_FOOD);
+            graphicsContext.setFill(COLOR_FOOD);
             int foodPadding = 5;
             int foodSize = sizeCell - (foodPadding * 2);
-            gc.fillRect(food.x() * sizeCell + foodPadding,
+            graphicsContext.fillRect(food.x() * sizeCell + foodPadding,
                     food.y() * sizeCell + foodPadding,
                     foodSize, foodSize);
         }
 
-        gc.setFill(COLOR_SNAKE_BODY);
+        graphicsContext.setFill(COLOR_SNAKE_BODY);
         for (Coordinates o : model.getSnake()) {
-            gc.fillRect(o.x() * sizeCell + 1, o.y() * sizeCell + 1,
+            graphicsContext.fillRect(o.x() * sizeCell + 1, o.y() * sizeCell + 1,
                     sizeCell - 2, sizeCell - 2);
         }
 
         Coordinates head = model.getSnake().peekFirst();
         if (head != null) {
-            gc.setFill(COLOR_SNAKE_HEAD);
-            gc.fillRect(head.x() * sizeCell + 1, head.y() * sizeCell + 1,
+            graphicsContext.setFill(COLOR_SNAKE_HEAD);
+            graphicsContext.fillRect(head.x() * sizeCell + 1, head.y() * sizeCell + 1,
                     sizeCell - 2, sizeCell - 2);
         }
     }
@@ -94,5 +94,12 @@ public class GameRenderer {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(COLOR_OVERLAY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+
+    /**
+     * Меняет размер клетки поля.
+     */
+    public void setSizeCell(int newSizeCell) {
+        this.sizeCell = newSizeCell;
     }
 }

@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva.snake.model;
+package ru.nsu.ryzhneva.snake.model.food;
 
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 

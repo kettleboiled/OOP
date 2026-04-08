@@ -17,7 +17,7 @@ class GameStateTest {
     void testInitialState() {
         GameConfig config = new GameConfig(10, 10, 5, 100.0);
         GameState state = new GameState(config);
-        assertEquals(GameStatus.PLAYING, state.getStatus());
+        assertEquals(GameStatus.READY, state.getStatus());
         assertEquals(0, state.getScore());
         assertEquals(0, state.getPendingGrowth());
         assertNull(state.getFood());
