@@ -6,20 +6,15 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
-import javafx.scene.canvas.Canvas;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import ru.nsu.ryzhneva.snake.model.GameState;
-import ru.nsu.ryzhneva.snake.model.data.Coordinates;
-import ru.nsu.ryzhneva.snake.model.data.GameConfig;
-import ru.nsu.ryzhneva.snake.view.GameRenderer;
 
 /**
- * Тест GameRenderer.
+ * Тесты для GameLoop.
  */
 @Disabled("Проблемы с запуском JavaFX в CI")
-class GameRendererTest {
+class GameLoopTest {
 
     @BeforeAll
     static void initJfx() throws InterruptedException {
@@ -27,31 +22,24 @@ class GameRendererTest {
         try {
             Platform.startup(latch::countDown);
             if (!latch.await(5, TimeUnit.SECONDS)) {
-                assumeTrue(false,
-                        "JavaFX startup timed out. Skipping tests.");
+                assumeTrue(false, "JavaFX startup timed out");
             }
         } catch (IllegalStateException e) {
+            // JVM already initialized JavaFX
         } catch (Throwable e) {
-            assumeTrue(false,
-                    "JavaFX is not supported in this environment. " +
-                            "Skipping tests.");
+            assumeTrue(false, "JavaFX not supported");
         }
     }
 
     @Test
-    void testRender() throws InterruptedException {
+    void testGameLoop() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         Platform.runLater(() -> {
             try {
-                Canvas canvas = new Canvas(100, 100);
-                GameRenderer renderer = new GameRenderer(canvas, 10, 10, 10);
-
-                GameState state = new GameState(new GameConfig(10, 10, 100, 1.0));
-                state.getSnake().add(new Coordinates(5, 5));
-                state.getSnake().add(new Coordinates(5, 6));
-
-                assertDoesNotThrow(() -> renderer.render(state));
-                assertDoesNotThrow(() -> renderer.renderOverlay());
+                GameLoop loop = new GameLoop(() -> {}, 100);
+                assertDoesNotThrow(loop::start);
+                assertDoesNotThrow(loop::stop);
+                assertDoesNotThrow(loop::restart);
             } finally {
                 latch.countDown();
             }

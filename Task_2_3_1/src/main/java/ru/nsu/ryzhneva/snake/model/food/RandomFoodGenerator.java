@@ -14,7 +14,6 @@ public class RandomFoodGenerator implements FoodGenerator {
     private final Random random = new Random();
 
     private static final int DEFAULT_FOOD_POINTS = 10;
-    /** Значение длины по умолчанию, на которое увеличивается змейка. */
     private static final int DEFAULT_FOOD_GROWTH = 1;
 
     /**
