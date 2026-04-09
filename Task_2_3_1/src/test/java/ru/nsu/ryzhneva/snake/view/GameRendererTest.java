@@ -32,8 +32,8 @@ class GameRendererTest {
         } catch (IllegalStateException e) {
         } catch (Throwable e) {
             assumeTrue(false,
-                    "JavaFX is not supported in this environment. " +
-                            "Skipping tests.");
+                    "JavaFX is not supported in this environment. "
+                            + "Skipping tests.");
         }
     }
 

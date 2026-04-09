@@ -1,12 +1,12 @@
 package ru.nsu.ryzhneva.snake.view;
 
+import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import java.util.function.Consumer;
-import javafx.scene.input.KeyEvent;
 import ru.nsu.ryzhneva.snake.model.GameState;
 import ru.nsu.ryzhneva.snake.model.GameUpdateListener;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
