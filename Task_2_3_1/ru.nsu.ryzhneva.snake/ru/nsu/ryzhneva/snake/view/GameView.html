@@ -109,13 +109,9 @@ implements <a href="../model/GameUpdateListener.html" title="interface in ru.nsu
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,int,int,double,ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator,ru.nsu.ryzhneva.snake.model.LengthWinCondition)" class="member-name-link">GameView</a><wbr>(int&nbsp;columns,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,int,int)" class="member-name-link">GameView</a><wbr>(int&nbsp;columns,
  int&nbsp;rows,
- int&nbsp;sizeCell,
- int&nbsp;lengthWin,
- double&nbsp;tickMs,
- <a href="../model/food/RandomFoodGenerator.html" title="class in ru.nsu.ryzhneva.snake.model.food">RandomFoodGenerator</a>&nbsp;foodGenerator,
- <a href="../model/LengthWinCondition.html" title="class in ru.nsu.ryzhneva.snake.model">LengthWinCondition</a>&nbsp;winCondition)</code></div>
+ int&nbsp;sizeCell)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Конструктор.</div>
 </div>
@@ -139,14 +135,24 @@ implements <a href="../model/GameUpdateListener.html" title="interface in ru.nsu
 <div class="block">Инициализация после загрузки FXML.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onGameEnded(ru.nsu.ryzhneva.snake.model.data.GameStatus)" class="member-name-link">onGameEnded</a><wbr>(<a href="../model/data/GameStatus.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">GameStatus</a>&nbsp;status)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onGameEnded(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">onGameEnded</a><wbr>(<a href="../model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;gameState)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Событие, вызываемое игрой при ее окончании.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onGameUpdated()" class="member-name-link">onGameUpdated</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onGameUpdated(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">onGameUpdated</a><wbr>(<a href="../model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;gameState)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Событие, вызываемое игрой при каждом успешном игровом тике.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInitialState(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">setInitialState</a><wbr>(<a href="../model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;state)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Устанавливает начальное состояние и отрисовывает его.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setKeyPressHandler(java.util.function.Consumer)" class="member-name-link">setKeyPressHandler</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;javafx.scene.input.KeyEvent&gt;&nbsp;handler)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Устанавливает слушатель для нажатий клавиш.</div>
 </div>
 </div>
 </div>
@@ -166,25 +172,17 @@ implements <a href="../model/GameUpdateListener.html" title="interface in ru.nsu
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(int,int,int,int,double,ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator,ru.nsu.ryzhneva.snake.model.LengthWinCondition)">
+<section class="detail" id="&lt;init&gt;(int,int,int)">
 <h3>GameView</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GameView</span><wbr><span class="parameters">(int&nbsp;columns,
  int&nbsp;rows,
- int&nbsp;sizeCell,
- int&nbsp;lengthWin,
- double&nbsp;tickMs,
- <a href="../model/food/RandomFoodGenerator.html" title="class in ru.nsu.ryzhneva.snake.model.food">RandomFoodGenerator</a>&nbsp;foodGenerator,
- <a href="../model/LengthWinCondition.html" title="class in ru.nsu.ryzhneva.snake.model">LengthWinCondition</a>&nbsp;winCondition)</span></div>
+ int&nbsp;sizeCell)</span></div>
 <div class="block">Конструктор.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>columns</code> - ширина поля</dd>
 <dd><code>rows</code> - высота поля</dd>
 <dd><code>sizeCell</code> - размер клетки в пикселях</dd>
-<dd><code>lengthWin</code> - количество сегментов, при котором засчитывается победа</dd>
-<dd><code>tickMs</code> - длительность одного хода</dd>
-<dd><code>foodGenerator</code> - генератор еды на поле</dd>
-<dd><code>winCondition</code> - класс, проверяющий условия победы</dd>
 </dl>
 </section>
 </li>
@@ -197,6 +195,28 @@ implements <a href="../model/GameUpdateListener.html" title="interface in ru.nsu
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="setKeyPressHandler(java.util.function.Consumer)">
+<h3>setKeyPressHandler</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setKeyPressHandler</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html" title="class or interface in java.util.function" class="external-link">Consumer</a>&lt;javafx.scene.input.KeyEvent&gt;&nbsp;handler)</span></div>
+<div class="block">Устанавливает слушатель для нажатий клавиш.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>handler</code> - обработчик</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setInitialState(ru.nsu.ryzhneva.snake.model.GameState)">
+<h3>setInitialState</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setInitialState</span><wbr><span class="parameters">(<a href="../model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;state)</span></div>
+<div class="block">Устанавливает начальное состояние и отрисовывает его.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>state</code> - начальное состояние</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="initialize()">
 <h3>initialize</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initialize</span>()</div>
@@ -206,28 +226,28 @@ implements <a href="../model/GameUpdateListener.html" title="interface in ru.nsu
 </section>
 </li>
 <li>
-<section class="detail" id="onGameUpdated()">
+<section class="detail" id="onGameUpdated(ru.nsu.ryzhneva.snake.model.GameState)">
 <h3>onGameUpdated</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onGameUpdated</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onGameUpdated</span><wbr><span class="parameters">(<a href="../model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;gameState)</span></div>
 <div class="block">Событие, вызываемое игрой при каждом успешном игровом тике.
  Обновляет интерфейс.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../model/GameUpdateListener.html#onGameUpdated()">onGameUpdated</a></code>&nbsp;in interface&nbsp;<code><a href="../model/GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a></code></dd>
+<dd><code><a href="../model/GameUpdateListener.html#onGameUpdated(ru.nsu.ryzhneva.snake.model.GameState)">onGameUpdated</a></code>&nbsp;in interface&nbsp;<code><a href="../model/GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="onGameEnded(ru.nsu.ryzhneva.snake.model.data.GameStatus)">
+<section class="detail" id="onGameEnded(ru.nsu.ryzhneva.snake.model.GameState)">
 <h3>onGameEnded</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onGameEnded</span><wbr><span class="parameters">(<a href="../model/data/GameStatus.html" title="enum class in ru.nsu.ryzhneva.snake.model.data">GameStatus</a>&nbsp;status)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onGameEnded</span><wbr><span class="parameters">(<a href="../model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a>&nbsp;gameState)</span></div>
 <div class="block">Событие, вызываемое игрой при ее окончании.
  Отображает экран победы или поражения.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../model/GameUpdateListener.html#onGameEnded(ru.nsu.ryzhneva.snake.model.data.GameStatus)">onGameEnded</a></code>&nbsp;in interface&nbsp;<code><a href="../model/GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a></code></dd>
+<dd><code><a href="../model/GameUpdateListener.html#onGameEnded(ru.nsu.ryzhneva.snake.model.GameState)">onGameEnded</a></code>&nbsp;in interface&nbsp;<code><a href="../model/GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a></code></dd>
 <dt>Parameters:</dt>
-<dd><code>status</code> - статус окончания игры</dd>
+<dd><code>gameState</code> - финальное состояние игры</dd>
 </dl>
 </section>
 </li>

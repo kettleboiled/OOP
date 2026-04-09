@@ -193,7 +193,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Класс, отвечающий за отображение игрового интерфейса.</div>
 </dd>
-<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html#%3Cinit%3E(int,int,int,int,double,ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator,ru.nsu.ryzhneva.snake.model.LengthWinCondition)" class="member-name-link">GameView(int, int, int, int, double, RandomFoodGenerator, LengthWinCondition)</a> - Constructor for class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html" title="class in ru.nsu.ryzhneva.snake.view">GameView</a></dt>
+<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html#%3Cinit%3E(int,int,int)" class="member-name-link">GameView(int, int, int)</a> - Constructor for class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html" title="class in ru.nsu.ryzhneva.snake.view">GameView</a></dt>
 <dd>
 <div class="block">Конструктор.</div>
 </dd>
@@ -343,19 +343,19 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:O">O</h2>
 <dl class="index">
-<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameUpdateListener.html#onGameEnded(ru.nsu.ryzhneva.snake.model.data.GameStatus)" class="member-name-link">onGameEnded(GameStatus)</a> - Method in interface ru.nsu.ryzhneva.snake.model.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a></dt>
+<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameUpdateListener.html#onGameEnded(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">onGameEnded(GameState)</a> - Method in interface ru.nsu.ryzhneva.snake.model.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a></dt>
 <dd>
 <div class="block">Вызывается, когда игра завершена.</div>
 </dd>
-<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html#onGameEnded(ru.nsu.ryzhneva.snake.model.data.GameStatus)" class="member-name-link">onGameEnded(GameStatus)</a> - Method in class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html" title="class in ru.nsu.ryzhneva.snake.view">GameView</a></dt>
+<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html#onGameEnded(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">onGameEnded(GameState)</a> - Method in class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html" title="class in ru.nsu.ryzhneva.snake.view">GameView</a></dt>
 <dd>
 <div class="block">Событие, вызываемое игрой при ее окончании.</div>
 </dd>
-<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameUpdateListener.html#onGameUpdated()" class="member-name-link">onGameUpdated()</a> - Method in interface ru.nsu.ryzhneva.snake.model.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a></dt>
+<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameUpdateListener.html#onGameUpdated(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">onGameUpdated(GameState)</a> - Method in interface ru.nsu.ryzhneva.snake.model.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameUpdateListener.html" title="interface in ru.nsu.ryzhneva.snake.model">GameUpdateListener</a></dt>
 <dd>
 <div class="block">Вызывается каждый раз, когда происходит изменение состояния игры.</div>
 </dd>
-<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html#onGameUpdated()" class="member-name-link">onGameUpdated()</a> - Method in class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html" title="class in ru.nsu.ryzhneva.snake.view">GameView</a></dt>
+<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html#onGameUpdated(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">onGameUpdated(GameState)</a> - Method in class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html" title="class in ru.nsu.ryzhneva.snake.view">GameView</a></dt>
 <dd>
 <div class="block">Событие, вызываемое игрой при каждом успешном игровом тике.</div>
 </dd>
@@ -422,6 +422,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameState.html#setFood(ru.nsu.ryzhneva.snake.model.food.Food)" class="member-name-link">setFood(Food)</a> - Method in class ru.nsu.ryzhneva.snake.model.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/model/GameState.html" title="class in ru.nsu.ryzhneva.snake.model">GameState</a></dt>
 <dd>
 <div class="block">Устанавливает еду на поле.</div>
+</dd>
+<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html#setInitialState(ru.nsu.ryzhneva.snake.model.GameState)" class="member-name-link">setInitialState(GameState)</a> - Method in class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html" title="class in ru.nsu.ryzhneva.snake.view">GameView</a></dt>
+<dd>
+<div class="block">Устанавливает начальное состояние и отрисовывает его.</div>
+</dd>
+<dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html#setKeyPressHandler(java.util.function.Consumer)" class="member-name-link">setKeyPressHandler(Consumer&lt;KeyEvent&gt;)</a> - Method in class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameView.html" title="class in ru.nsu.ryzhneva.snake.view">GameView</a></dt>
+<dd>
+<div class="block">Устанавливает слушатель для нажатий клавиш.</div>
 </dd>
 <dt><a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameRenderer.html#setSizeCell(int)" class="member-name-link">setSizeCell(int)</a> - Method in class ru.nsu.ryzhneva.snake.view.<a href="ru.nsu.ryzhneva.snake/ru/nsu/ryzhneva/snake/view/GameRenderer.html" title="class in ru.nsu.ryzhneva.snake.view">GameRenderer</a></dt>
 <dd>
