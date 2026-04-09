@@ -10,12 +10,12 @@ public interface GameUpdateListener {
     /**
      * Вызывается каждый раз, когда происходит изменение состояния игры.
      */
-    void onGameUpdated();
+    void onGameUpdated(GameState gameState);
 
     /**
      * Вызывается, когда игра завершена.
      *
-     * @param status финальный статус игры
+     * @param gameState финальное состояние игры
      */
-    void onGameEnded(GameStatus status);
+    void onGameEnded(GameState gameState);
 }

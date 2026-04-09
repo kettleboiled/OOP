@@ -5,21 +5,19 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import ru.nsu.ryzhneva.snake.controller.Controller;
-import ru.nsu.ryzhneva.snake.model.GameService;
+import java.util.function.Consumer;
+import javafx.scene.input.KeyEvent;
+import ru.nsu.ryzhneva.snake.model.GameState;
 import ru.nsu.ryzhneva.snake.model.GameUpdateListener;
-import ru.nsu.ryzhneva.snake.model.LengthWinCondition;
-import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
-import ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator;
 
 /**
  * Класс, отвечающий за отображение игрового интерфейса.
  */
 public class GameView implements GameUpdateListener {
     private GameRenderer renderer;
-    private GameService gameService;
-    private Controller inputController;
+    private GameState currentState;
+    private Consumer<KeyEvent> keyPressHandler;
 
     @FXML
     private VBox root;
@@ -33,10 +31,6 @@ public class GameView implements GameUpdateListener {
     private final int columns;
     private final int rows;
     private final int sizeCell;
-    private final int lengthWin;
-    private final double tickMs;
-    private final RandomFoodGenerator foodGenerator;
-    private final LengthWinCondition winCondition;
 
     /**
      * Конструктор.
@@ -44,20 +38,38 @@ public class GameView implements GameUpdateListener {
      * @param columns ширина поля
      * @param rows высота поля
      * @param sizeCell размер клетки в пикселях
-     * @param lengthWin количество сегментов, при котором засчитывается победа
-     * @param tickMs длительность одного хода
-     * @param foodGenerator генератор еды на поле
-     * @param winCondition класс, проверяющий условия победы
      */
-    public GameView(int columns, int rows, int sizeCell, int lengthWin, double tickMs,
-                    RandomFoodGenerator foodGenerator, LengthWinCondition winCondition) {
+    public GameView(int columns, int rows, int sizeCell) {
         this.columns = columns;
         this.rows = rows;
         this.sizeCell = sizeCell;
-        this.lengthWin = lengthWin;
-        this.tickMs = tickMs;
-        this.foodGenerator = foodGenerator;
-        this.winCondition = winCondition;
+    }
+
+    /**
+     * Устанавливает слушатель для нажатий клавиш.
+     * 
+     * @param handler обработчик
+     */
+    public void setKeyPressHandler(Consumer<KeyEvent> handler) {
+        this.keyPressHandler = handler;
+        if (root != null && handler != null) {
+            root.setOnKeyPressed(event -> keyPressHandler.accept(event));
+        }
+    }
+
+    /**
+     * Устанавливает начальное состояние и отрисовывает его.
+     * 
+     * @param state начальное состояние
+     */
+    public void setInitialState(GameState state) {
+        this.currentState = state;
+        if (renderer != null && state != null) {
+            renderer.render(currentState);
+            renderer.renderOverlay();
+            showMessage("Нажмите ENTER для запуска");
+            scoreLabel.setText("Score: " + currentState.getScore());
+        }
     }
 
     /**
@@ -67,25 +79,23 @@ public class GameView implements GameUpdateListener {
      */
     @FXML
     public void initialize() {
-        final GameConfig config = new GameConfig(columns, rows, lengthWin, tickMs);
-
         canvas.setWidth(columns * sizeCell);
         canvas.setHeight(rows * sizeCell);
         renderer = new GameRenderer(canvas, sizeCell, columns, rows);
 
-        gameService = new GameService(config, this, foodGenerator, winCondition);
-
-        inputController = new Controller(gameService, config);
-
         root.setFocusTraversable(true);
         root.setOnMouseClicked(event -> root.requestFocus());
-        root.setOnKeyPressed(inputController::handleKeyPress);
+        
+        if (keyPressHandler != null) {
+            root.setOnKeyPressed(event -> keyPressHandler.accept(event));
+        }
 
-        renderer.render(gameService.getState());
-        renderer.renderOverlay();
-        showMessage("Нажмите ENTER для запуска");
-
-        scoreLabel.setText("Score: " + gameService.getState().getScore());
+        if (currentState != null) {
+            renderer.render(currentState);
+            renderer.renderOverlay();
+            showMessage("Нажмите ENTER для запуска");
+            scoreLabel.setText("Score: " + currentState.getScore());
+        }
 
         root.widthProperty().addListener((obs, oldVal, newVal) -> resizeCanvas());
         root.heightProperty().addListener((obs, oldVal, newVal) -> resizeCanvas());
@@ -96,11 +106,12 @@ public class GameView implements GameUpdateListener {
      * Обновляет интерфейс.
      */
     @Override
-    public void onGameUpdated() {
-        renderer.render(gameService.getState());
-        scoreLabel.setText("Score: " + gameService.getState().getScore());
+    public void onGameUpdated(GameState gameState) {
+        this.currentState = gameState;
+        renderer.render(gameState);
+        scoreLabel.setText("Score: " + gameState.getScore());
 
-        if (gameService.getState().getStatus() == GameStatus.READY) {
+        if (gameState.getStatus() == GameStatus.READY) {
             renderer.renderOverlay();
             showMessage("Нажмите ENTER для запуска");
         } else {
@@ -114,13 +125,15 @@ public class GameView implements GameUpdateListener {
      * Событие, вызываемое игрой при ее окончании.
      * Отображает экран победы или поражения.
      *
-     * @param status статус окончания игры
+     * @param gameState финальное состояние игры
      */
     @Override
-    public void onGameEnded(GameStatus status) {
-        renderer.render(gameService.getState());
+    public void onGameEnded(GameState gameState) {
+        this.currentState = gameState;
+        renderer.render(gameState);
         renderer.renderOverlay();
 
+        GameStatus status = gameState.getStatus();
         if (status == GameStatus.WIN) {
             showMessage("YOU WIN!\nНажмите ENTER для запуска");
         } else if (status == GameStatus.LOSE) {
@@ -157,10 +170,10 @@ public class GameView implements GameUpdateListener {
         canvas.setHeight(rows * newSizeCell);
         canvas.setWidth(columns * newSizeCell);
 
-        if (gameService != null && gameService.getState() != null) {
-            renderer.render(gameService.getState());
+        if (currentState != null) {
+            renderer.render(currentState);
 
-            if (gameService.getState().getStatus() != GameStatus.PLAYING) {
+            if (currentState.getStatus() != GameStatus.PLAYING) {
                 renderer.renderOverlay();
             }
         }

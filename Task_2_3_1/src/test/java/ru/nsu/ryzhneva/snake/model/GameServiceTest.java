@@ -24,13 +24,13 @@ class GameServiceTest {
         GameStatus endedStatus = null;
 
         @Override
-        public void onGameUpdated() {
+        public void onGameUpdated(GameState gameState) {
             updated = true;
         }
 
         @Override
-        public void onGameEnded(GameStatus status) {
-            endedStatus = status;
+        public void onGameEnded(GameState gameState) {
+            endedStatus = gameState.getStatus();
         }
     }
 

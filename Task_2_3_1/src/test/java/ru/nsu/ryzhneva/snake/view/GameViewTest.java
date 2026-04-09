@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
+
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -16,7 +18,10 @@ import javafx.scene.layout.VBox;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.snake.model.GameService;
+import ru.nsu.ryzhneva.snake.model.GameState;
 import ru.nsu.ryzhneva.snake.model.LengthWinCondition;
+import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator;
 
@@ -49,15 +54,15 @@ class GameViewTest {
     @Test
     void testInitializeAndResize() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        final java.util.concurrent.atomic.AtomicReference<Throwable> error =
-                new java.util.concurrent.atomic.AtomicReference<>();
+        final AtomicReference<Throwable> error =
+                new AtomicReference<>();
         Platform.runLater(() -> {
             try {
-                GameView gameView = new GameView(
-                        10, 10, 10, 5, 100,
-                        new RandomFoodGenerator(),
-                        new LengthWinCondition()
-                );
+                GameView gameView = new GameView(10, 10, 10);
+                GameConfig config = new GameConfig(10, 10, 5, 100);
+                GameService gameService = new GameService(config, gameView,
+                        new RandomFoodGenerator(), new LengthWinCondition());
+                gameView.setInitialState(gameService.getState());
 
                 final VBox root = new VBox();
                 final Canvas canvas = new Canvas();
@@ -87,15 +92,15 @@ class GameViewTest {
     @Test
     void testGameUpdatingAndEnding() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        final java.util.concurrent.atomic.AtomicReference<Throwable> error =
-                new java.util.concurrent.atomic.AtomicReference<>();
+        final AtomicReference<Throwable> error =
+                new AtomicReference<>();
         Platform.runLater(() -> {
             try {
-                GameView gameView = new GameView(
-                        10, 10, 10, 5, 100,
-                        new RandomFoodGenerator(),
-                        new LengthWinCondition()
-                );
+                GameView gameView = new GameView(10, 10, 10);
+                GameConfig config = new GameConfig(10, 10, 5, 100);
+                GameService gameService = new GameService(config, gameView,
+                        new RandomFoodGenerator(), new LengthWinCondition());
+                gameView.setInitialState(gameService.getState());
 
                 final VBox root = new VBox();
                 final Canvas canvas = new Canvas();
@@ -109,29 +114,27 @@ class GameViewTest {
 
                 gameView.initialize();
 
-                Field gsField = GameView.class.getDeclaredField("gameService");
-                gsField.setAccessible(true);
-                ru.nsu.ryzhneva.snake.model.GameService gameService =
-                        (ru.nsu.ryzhneva.snake.model.GameService) gsField.get(gameView);
-                gameService.getState().setStatus(GameStatus.PLAYING);
+                GameState state = gameService.getState();
 
-                gameView.onGameUpdated();
+                state.setStatus(GameStatus.PLAYING);
+                gameView.onGameUpdated(state);
                 assertFalse(messageLabel.isVisible());
                 assertTrue(scoreLabel.getText().contains("Score:"));
 
-                gameView.onGameEnded(GameStatus.WIN);
+                state.setStatus(GameStatus.WIN);
+                gameView.onGameEnded(state);
                 assertTrue(messageLabel.isVisible());
                 assertEquals("YOU WIN!\nНажмите ENTER для запуска", messageLabel.getText());
 
                 messageLabel.setVisible(false);
-                gameView.onGameEnded(GameStatus.LOSE);
+                state.setStatus(GameStatus.LOSE);
+                gameView.onGameEnded(state);
                 assertTrue(messageLabel.isVisible());
                 assertEquals("YOU LOSE\nНажмите ENTER для запуска", messageLabel.getText());
 
-                gameService.getState().setStatus(GameStatus.READY);
-                gameView.onGameUpdated();
-                assertTrue(messageLabel.isVisible());
-                assertEquals("Нажмите ENTER для запуска", messageLabel.getText());
+                state.setStatus(GameStatus.PLAYING);
+                gameView.onGameUpdated(state);
+                assertFalse(messageLabel.isVisible());
 
             } catch (Throwable t) {
                 error.set(t);

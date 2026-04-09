@@ -66,7 +66,7 @@ public class GameService {
 
         gameLoop.stop();
         start();
-        listener.onGameUpdated();
+        listener.onGameUpdated(state);
     }
 
     /**
@@ -169,10 +169,10 @@ public class GameService {
         GameStatus status = state.getStatus();
 
         if (status == GameStatus.PLAYING) {
-            listener.onGameUpdated();
+            listener.onGameUpdated(state);
         } else {
             stop();
-            listener.onGameEnded(status);
+            listener.onGameEnded(state);
         }
     }
 }
