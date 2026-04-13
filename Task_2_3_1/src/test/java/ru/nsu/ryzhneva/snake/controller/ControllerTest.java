@@ -33,17 +33,13 @@ import ru.nsu.ryzhneva.snake.view.GameView;
 class ControllerTest {
 
     @BeforeAll
-    static void initJfx() throws InterruptedException {
+    static void initJavaFx() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         try {
             Platform.startup(latch::countDown);
-            if (!latch.await(5, TimeUnit.SECONDS)) {
-                assumeTrue(false, "JavaFX startup timed out.");
-            }
-        } catch (IllegalStateException e) {
-        } catch (Throwable e) {
-            assumeTrue(false,
-                    "JavaFX is not supported in this environment.");
+            latch.await(5, TimeUnit.SECONDS);
+        } catch (IllegalStateException | UnsupportedOperationException e) {
+            // Игнорируем исключение, если JavaFX уже инициализирован
         }
     }
 

@@ -25,7 +25,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("snake-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("snake-view1.fxml"));
 
             GameView view = new GameView(30, 20, 20);
 

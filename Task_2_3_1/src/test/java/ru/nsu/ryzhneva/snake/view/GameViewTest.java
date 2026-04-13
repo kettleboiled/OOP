@@ -1,20 +1,22 @@
 package ru.nsu.ryzhneva.snake.view;
 
-import static org.mockito.Mockito.*;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.application.Platform;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.beans.property.ReadOnlyDoubleProperty;
-import javafx.beans.property.DoubleProperty;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,12 +34,12 @@ import ru.nsu.ryzhneva.snake.model.food.Food;
 class GameViewTest {
 
     @BeforeAll
-    static void initJFX() throws InterruptedException {
+    static void initJavaFx() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         try {
             Platform.startup(latch::countDown);
             latch.await(5, TimeUnit.SECONDS);
-        } catch (IllegalStateException e) {
+        } catch (IllegalStateException | UnsupportedOperationException e) {
         }
     }
 
@@ -69,7 +71,8 @@ class GameViewTest {
         lenient().when(canvas.getGraphicsContext2D()).thenReturn(graphicsContext);
         lenient().when(gameState.getSnake()).thenReturn(new java.util.ArrayDeque<>());
         lenient().when(gameState.getFood()).thenReturn(mockFood);
-        lenient().when(mockFood.getPosition()).thenReturn(new ru.nsu.ryzhneva.snake.model.data.Coordinates(0, 0));
+        lenient().when(mockFood.getPosition())
+                .thenReturn(new ru.nsu.ryzhneva.snake.model.data.Coordinates(0, 0));
 
         lenient().when(root.widthProperty()).thenReturn(rootWidthProperty);
         lenient().when(root.heightProperty()).thenReturn(rootHeightProperty);

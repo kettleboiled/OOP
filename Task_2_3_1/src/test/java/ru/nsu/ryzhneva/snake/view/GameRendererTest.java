@@ -21,19 +21,12 @@ import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 class GameRendererTest {
 
     @BeforeAll
-    static void initJfx() throws InterruptedException {
+    static void initJavaFx() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         try {
             Platform.startup(latch::countDown);
-            if (!latch.await(5, TimeUnit.SECONDS)) {
-                assumeTrue(false,
-                        "JavaFX startup timed out. Skipping tests.");
-            }
-        } catch (IllegalStateException e) {
-        } catch (Throwable e) {
-            assumeTrue(false,
-                    "JavaFX is not supported in this environment. "
-                            + "Skipping tests.");
+            latch.await(5, TimeUnit.SECONDS);
+        } catch (IllegalStateException | UnsupportedOperationException e) {
         }
     }
 
