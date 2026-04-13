@@ -1,7 +1,5 @@
 package ru.nsu.ryzhneva.snake.model;
 
-import ru.nsu.ryzhneva.snake.model.data.GameStatus;
-
 /**
  * Интерфейс слушателя для получения уведомлений об обновлениях состояния игры.
  */

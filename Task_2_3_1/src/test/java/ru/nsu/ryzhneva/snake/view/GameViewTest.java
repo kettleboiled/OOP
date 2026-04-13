@@ -1,10 +1,8 @@
 package ru.nsu.ryzhneva.snake.view;
 
+import static org.mockito.Mockito.*;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.CountDownLatch;
@@ -12,36 +10,71 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.DoubleProperty;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.nsu.ryzhneva.snake.model.GameService;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.nsu.ryzhneva.snake.model.GameState;
-import ru.nsu.ryzhneva.snake.model.LengthWinCondition;
-import ru.nsu.ryzhneva.snake.model.data.GameConfig;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
-import ru.nsu.ryzhneva.snake.model.food.RandomFoodGenerator;
+import ru.nsu.ryzhneva.snake.model.food.Food;
 
 /**
  * Тесты для {@link GameView}.
  */
-@Disabled("Проблемы с запуском JavaFX в CI")
+@ExtendWith(MockitoExtension.class)
 class GameViewTest {
 
     @BeforeAll
-    static void initJfx() throws InterruptedException {
+    static void initJFX() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         try {
             Platform.startup(latch::countDown);
-            if (!latch.await(5, TimeUnit.SECONDS)) {
-                assumeTrue(false, "JavaFX startup timed out.");
-            }
+            latch.await(5, TimeUnit.SECONDS);
         } catch (IllegalStateException e) {
-        } catch (Throwable e) {
-            assumeTrue(false, "JavaFX is not supported in this environment.");
         }
+    }
+
+    @Mock private Canvas canvas;
+    @Mock private GraphicsContext graphicsContext;
+    @Mock private Label scoreLabel;
+    @Mock private Label messageLabel;
+    @Mock private VBox root;
+
+    @Mock private ReadOnlyDoubleProperty rootWidthProperty;
+    @Mock private ReadOnlyDoubleProperty rootHeightProperty;
+    @Mock private DoubleProperty canvasWidthProperty;
+    @Mock private DoubleProperty canvasHeightProperty;
+
+    @Mock private GameState gameState;
+    @Mock private Food mockFood;
+
+    private GameView gameView;
+
+    @BeforeEach
+    void setUp() throws Exception {
+        gameView = new GameView(30, 20, 20);
+
+        setField(gameView, "root", root);
+        setField(gameView, "canvas", canvas);
+        setField(gameView, "scoreLabel", scoreLabel);
+        setField(gameView, "messageLabel", messageLabel);
+
+        lenient().when(canvas.getGraphicsContext2D()).thenReturn(graphicsContext);
+        lenient().when(gameState.getSnake()).thenReturn(new java.util.ArrayDeque<>());
+        lenient().when(gameState.getFood()).thenReturn(mockFood);
+        lenient().when(mockFood.getPosition()).thenReturn(new ru.nsu.ryzhneva.snake.model.data.Coordinates(0, 0));
+
+        lenient().when(root.widthProperty()).thenReturn(rootWidthProperty);
+        lenient().when(root.heightProperty()).thenReturn(rootHeightProperty);
+        lenient().when(canvas.widthProperty()).thenReturn(canvasWidthProperty);
+        lenient().when(canvas.heightProperty()).thenReturn(canvasHeightProperty);
     }
 
     private void setField(Object obj, String fieldName, Object value) throws Exception {
@@ -57,25 +90,12 @@ class GameViewTest {
                 new AtomicReference<>();
         Platform.runLater(() -> {
             try {
-                GameView gameView = new GameView(10, 10, 10);
-                GameConfig config = new GameConfig(10, 10, 5, 100);
-                GameService gameService = new GameService(config, gameView,
-                        new RandomFoodGenerator(), new LengthWinCondition());
-                gameView.setInitialState(gameService.getState());
-
-                final VBox root = new VBox();
-                final Canvas canvas = new Canvas();
-                final Label scoreLabel = new Label();
-                final Label messageLabel = new Label();
-
-                setField(gameView, "root", root);
-                setField(gameView, "canvas", canvas);
-                setField(gameView, "scoreLabel", scoreLabel);
-                setField(gameView, "messageLabel", messageLabel);
+                when(gameState.getScore()).thenReturn(0);
+                gameView.setInitialState(gameState);
 
                 assertDoesNotThrow(gameView::initialize);
                 root.resize(400, 400);
-                
+
             } catch (Throwable t) {
                 error.set(t);
             } finally {
@@ -95,45 +115,30 @@ class GameViewTest {
                 new AtomicReference<>();
         Platform.runLater(() -> {
             try {
-                GameView gameView = new GameView(10, 10, 10);
-                GameConfig config = new GameConfig(10, 10, 5, 100);
-                GameService gameService = new GameService(config, gameView,
-                        new RandomFoodGenerator(), new LengthWinCondition());
-                gameView.setInitialState(gameService.getState());
+                when(gameState.getScore()).thenReturn(10);
+                when(gameState.getStatus()).thenReturn(GameStatus.READY);
 
-                final VBox root = new VBox();
-                final Canvas canvas = new Canvas();
-                final Label scoreLabel = new Label();
-                final Label messageLabel = new Label();
-
-                setField(gameView, "root", root);
-                setField(gameView, "canvas", canvas);
-                setField(gameView, "scoreLabel", scoreLabel);
-                setField(gameView, "messageLabel", messageLabel);
-
+                gameView.setInitialState(gameState);
                 gameView.initialize();
 
-                GameState state = gameService.getState();
+                when(messageLabel.isVisible()).thenReturn(true);
+                when(gameState.getStatus()).thenReturn(GameStatus.PLAYING);
+                gameView.onGameUpdated(gameState);
 
-                state.setStatus(GameStatus.PLAYING);
-                gameView.onGameUpdated(state);
-                assertFalse(messageLabel.isVisible());
-                assertTrue(scoreLabel.getText().contains("Score:"));
+                verify(messageLabel).setVisible(false);
+                verify(scoreLabel, atLeastOnce()).setText("Score: 10");
 
-                state.setStatus(GameStatus.WIN);
-                gameView.onGameEnded(state);
-                assertTrue(messageLabel.isVisible());
-                assertEquals("YOU WIN!\nНажмите ENTER для запуска", messageLabel.getText());
+                when(gameState.getStatus()).thenReturn(GameStatus.WIN);
+                gameView.onGameEnded(gameState);
+                
+                verify(messageLabel, atLeastOnce()).setVisible(true);
+                verify(messageLabel).setText("YOU WIN!\nНажмите ENTER для запуска");
 
-                messageLabel.setVisible(false);
-                state.setStatus(GameStatus.LOSE);
-                gameView.onGameEnded(state);
-                assertTrue(messageLabel.isVisible());
-                assertEquals("YOU LOSE\nНажмите ENTER для запуска", messageLabel.getText());
-
-                state.setStatus(GameStatus.PLAYING);
-                gameView.onGameUpdated(state);
-                assertFalse(messageLabel.isVisible());
+                when(gameState.getStatus()).thenReturn(GameStatus.LOSE);
+                gameView.onGameEnded(gameState);
+                
+                verify(messageLabel, atLeastOnce()).setVisible(true);
+                verify(messageLabel).setText("YOU LOSE\nНажмите ENTER для запуска");
 
             } catch (Throwable t) {
                 error.set(t);
