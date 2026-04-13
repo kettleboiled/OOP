@@ -2,7 +2,6 @@ package ru.nsu.ryzhneva.snake.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -39,7 +38,6 @@ class ControllerTest {
             Platform.startup(latch::countDown);
             latch.await(5, TimeUnit.SECONDS);
         } catch (IllegalStateException | UnsupportedOperationException e) {
-            // Игнорируем исключение, если JavaFX уже инициализирован
         }
     }
 

@@ -25,7 +25,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("snake-view1.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("snake-view.fxml"));
 
             GameView view = new GameView(30, 20, 20);
 
@@ -48,16 +48,36 @@ public class Main extends Application {
             stage.setMinHeight(400);
             stage.setScene(scene);
             stage.show();
+        } catch (java.io.IOException e) {
+            showError("Ошибка загрузки интерфейса",
+                    "Не удалось найти или прочитать файл snake-view.fxml.\n" +
+                            "Убедитесь, что ресурсы игры установлены корректно.", e);
+        } catch (IllegalStateException e) {
+            showError("Внутренняя ошибка JavaFX",
+                    "Проблема с инициализацией графической среды. " +
+                            "Возможно, отсутствует корректный файл FXML.", e);
         } catch (Exception e) {
-            System.err.println("Ошибка при запуске приложения: " + e.getMessage());
-            e.printStackTrace();
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Ошибка запуска");
-            alert.setHeaderText("Не удалось запустить игру");
-            alert.setContentText("Произошла ошибка: " + e.getMessage());
-            alert.showAndWait();
+            showError("Неизвестная ошибка запуска",
+                    "Произошла непредвиденная ошибка при старте игры.", e);
         }
+    }
+
+    /**
+     * Показывает окно с ошибкой и выводит ее в лог.
+     *
+     * @param header  заголовок ошибки
+     * @param content понятное описание ошибки
+     * @param e       исключение
+     */
+    private void showError(String header, String content, Exception e) {
+        System.err.println(header + ": " + e.getMessage());
+        e.printStackTrace();
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Ошибка");
+        alert.setHeaderText(header);
+        alert.setContentText(content + "\n\nДетали: " + e.getMessage());
+        alert.showAndWait();
     }
 
     /**
@@ -66,6 +86,11 @@ public class Main extends Application {
      * @param args параметры командной строки
      */
     public static void main(String[] args) {
-        launch(args);
+        try {
+            launch(args);
+        } catch (Exception e) {
+            System.err.println("Критическая ошибка приложения: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

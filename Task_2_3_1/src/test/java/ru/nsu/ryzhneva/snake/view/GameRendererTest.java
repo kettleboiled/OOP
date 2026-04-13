@@ -1,7 +1,6 @@
 package ru.nsu.ryzhneva.snake.view;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

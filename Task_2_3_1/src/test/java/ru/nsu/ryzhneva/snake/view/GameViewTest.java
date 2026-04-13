@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Field;
+import java.util.ArrayDeque;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -25,6 +26,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.nsu.ryzhneva.snake.model.GameState;
+import ru.nsu.ryzhneva.snake.model.data.Coordinates;
 import ru.nsu.ryzhneva.snake.model.data.GameStatus;
 import ru.nsu.ryzhneva.snake.model.food.Food;
 
@@ -71,10 +73,10 @@ class GameViewTest {
         setField(gameView, "messageLabel", messageLabel);
 
         lenient().when(canvas.getGraphicsContext2D()).thenReturn(graphicsContext);
-        lenient().when(gameState.getSnake()).thenReturn(new java.util.ArrayDeque<>());
+        lenient().when(gameState.getSnake()).thenReturn(new ArrayDeque<>());
         lenient().when(gameState.getFood()).thenReturn(mockFood);
         lenient().when(mockFood.getPosition())
-                .thenReturn(new ru.nsu.ryzhneva.snake.model.data.Coordinates(0, 0));
+                .thenReturn(new Coordinates(0, 0));
 
         lenient().when(root.widthProperty()).thenReturn(rootWidthProperty);
         lenient().when(root.heightProperty()).thenReturn(rootHeightProperty);
