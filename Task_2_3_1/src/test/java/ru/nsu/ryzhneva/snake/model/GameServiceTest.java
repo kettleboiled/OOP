@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.lang.reflect.Method;
 import java.util.Deque;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.snake.model.data.Coordinates;
@@ -55,7 +56,7 @@ class GameServiceTest {
         WinCondition winCond = new LengthWinCondition();
         GameService service = new GameService(config, listener, foodGen, winCond);
         service.getState().setStatus(GameStatus.PLAYING);
-        java.lang.reflect.Method tickMethod =
+        Method tickMethod =
                 GameService.class.getDeclaredMethod("gameTick");
         tickMethod.setAccessible(true);
         tickMethod.invoke(service);
@@ -80,7 +81,7 @@ class GameServiceTest {
         WinCondition winCond = new LengthWinCondition();
         GameService service = new GameService(configWin, listener, foodGen, winCond);
         service.getState().setStatus(GameStatus.PLAYING);
-        java.lang.reflect.Method tickMethod =
+        Method tickMethod =
                 GameService.class.getDeclaredMethod("gameTick");
         tickMethod.setAccessible(true);
         tickMethod.invoke(service);
@@ -96,7 +97,7 @@ class GameServiceTest {
         WinCondition winCond = new LengthWinCondition();
         GameService service = new GameService(config, listener, foodGen, winCond);
         service.getState().setStatus(GameStatus.PLAYING);
-        java.lang.reflect.Method tickMethod =
+        Method tickMethod =
                 GameService.class.getDeclaredMethod("gameTick");
         tickMethod.setAccessible(true);
         for (int i = 0; i < 10; i++) {
@@ -114,7 +115,7 @@ class GameServiceTest {
         StubListener listener = new StubListener();
         GameService service = new GameService(config, listener,
                 new FixedFoodGenerator(new Coordinates(1, 1)), new LengthWinCondition());
-        java.lang.reflect.Method tickMethod = GameService.class.getDeclaredMethod("gameTick");
+        Method tickMethod = GameService.class.getDeclaredMethod("gameTick");
         tickMethod.setAccessible(true);
         service.getState().setStatus(GameStatus.LOSE);
         listener.endedStatus = null;

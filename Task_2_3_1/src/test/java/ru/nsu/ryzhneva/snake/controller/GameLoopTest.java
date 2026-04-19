@@ -25,7 +25,6 @@ class GameLoopTest {
                 assumeTrue(false, "JavaFX startup timed out");
             }
         } catch (IllegalStateException e) {
-            // JVM already initialized JavaFX
         } catch (Throwable e) {
             assumeTrue(false, "JavaFX not supported");
         }

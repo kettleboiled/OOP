@@ -1,5 +1,6 @@
 package ru.nsu.ryzhneva.snake;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,7 +26,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("snake-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("snake-view1.fxml"));
 
             GameView view = new GameView(30, 20, 20);
 
@@ -48,7 +49,7 @@ public class Main extends Application {
             stage.setMinHeight(400);
             stage.setScene(scene);
             stage.show();
-        } catch (java.io.IOException e) {
+        } catch (IOException e) {
             showError("Ошибка загрузки интерфейса",
                     "Не удалось найти или прочитать файл snake-view.fxml.\n" +
                             "Убедитесь, что ресурсы игры установлены корректно.", e);
