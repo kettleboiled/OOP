@@ -49,14 +49,10 @@ public class Main extends Application {
             stage.setMinHeight(400);
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
+        } catch (IllegalStateException | IOException e) {
             showError("Ошибка загрузки интерфейса",
                     "Не удалось найти или прочитать файл snake-view.fxml.\n" +
                             "Убедитесь, что ресурсы игры установлены корректно.", e);
-        } catch (IllegalStateException e) {
-            showError("Внутренняя ошибка JavaFX",
-                    "Проблема с инициализацией графической среды. " +
-                            "Возможно, отсутствует корректный файл FXML.", e);
         } catch (Exception e) {
             showError("Неизвестная ошибка запуска",
                     "Произошла непредвиденная ошибка при старте игры.", e);
