@@ -1,17 +1,16 @@
 package ru.nsu.ryzhneva;
 
 import groovy.lang.GroovyShell;
-import ru.nsu.ryzhneva.dsl.CourseDSLScript;
-import ru.nsu.ryzhneva.domain.CourseConfig;
-import org.codehaus.groovy.control.CompilerConfiguration;
-import ru.nsu.ryzhneva.results.TargetResolver;
-
 import java.io.File;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import org.codehaus.groovy.control.CompilerConfiguration;
+import ru.nsu.ryzhneva.domain.CourseConfig;
+import ru.nsu.ryzhneva.dsl.CourseDSLScript;
+import ru.nsu.ryzhneva.results.TargetResolver;
 
 /**
- * Главный класс и точка входа в приложение.
+ * Главный класс и точка входа в приложение (автоматическая проверка задач по ООП).
  * Инициализирует консольные потоки, загружает DSL-конфигурационный файл,
  * разрешает требуемые зависимости из него и запускает {@link AssessmentService}.
  */
@@ -64,6 +63,7 @@ public class Main {
      * и базовый скрипт {@link CourseDSLScript}.
      *
      * @param configFile файл конфигурации
+     *
      * @return объект {@link CourseConfig}, заполненный данными из DSL, или null в случае ошибки
      */
     private static CourseConfig parseConfig(File configFile) {

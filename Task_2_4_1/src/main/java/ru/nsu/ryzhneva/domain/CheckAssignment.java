@@ -13,6 +13,7 @@ public class CheckAssignment {
     private List<String> targetIdentifiers = new ArrayList<>();
 
     /**
+     *
      * @return список идентификаторов задач для проверки
      */
     public List<String> getTaskIds() {
@@ -21,6 +22,7 @@ public class CheckAssignment {
 
     /**
      * Добавляет идентификатор задачи в пул проверки.
+     *
      * @param taskId уникальный идентификатор задачи, существующий в конфигурации
      */
     public void addTask(String taskId) {
@@ -28,6 +30,7 @@ public class CheckAssignment {
     }
 
     /**
+     *
      * @return список целевых идентификаторов для проверки
      */
     public List<String> getTargetIdentifiers() {

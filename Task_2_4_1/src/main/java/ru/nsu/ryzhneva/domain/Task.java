@@ -14,6 +14,7 @@ public class Task {
     private LocalDate hardDeadline;
 
     /**
+     *
      * @return строковый идентификатор задачи
      */
     public String getId() {
@@ -21,6 +22,7 @@ public class Task {
     }
 
     /**
+     *
      * @param id уникальный идентификатор задачи
      */
     public void setId(String id) {
@@ -28,6 +30,7 @@ public class Task {
     }
 
     /**
+     *
      * @return наименование задачи
      */
     public String getName() {
@@ -35,6 +38,7 @@ public class Task {
     }
 
     /**
+     *
      * @param name имя задачи
      */
     public void setName(String name) {
@@ -42,6 +46,7 @@ public class Task {
     }
 
     /**
+     *
      * @return максимальное количество баллов, которое можно заработать за эту задачу
      */
     public int getMaxPoints() {
@@ -50,6 +55,7 @@ public class Task {
 
     /**
      * Задает максимальное количество баллов за эту задачу.
+     *
      * @param maxPoints верхний порог баллов при успешной проверке
      */
     public void setMaxPoints(int maxPoints) {
@@ -57,6 +63,7 @@ public class Task {
     }
 
     /**
+     *
      * @return отражающий мягкий дедлайн
      */
     public LocalDate getSoftDeadline() {
@@ -64,16 +71,19 @@ public class Task {
     }
 
     /**
+     *
      * @param softDeadline дата мягкого дедлайна
      */
     public void setSoftDeadline(LocalDate softDeadline) {
         this.softDeadline = softDeadline;
     }
-    public void setSoftDeadline(String softDeadline) {
-        this.softDeadline = LocalDate.parse(softDeadline);
+
+    public void setSoftDeadline(String date) {
+        this.softDeadline = LocalDate.parse(date);
     }
 
     /**
+     *
      * @return объект {@link LocalDate}, отражающий жесткий дедлайн (хард)
      */
     public LocalDate getHardDeadline() {
@@ -81,11 +91,13 @@ public class Task {
     }
 
     /**
+     *
      * @param hardDeadline дата жесткого дедлайна
      */
     public void setHardDeadline(LocalDate hardDeadline) {
         this.hardDeadline = hardDeadline;
     }
+
     public void setHardDeadline(String date) {
         this.hardDeadline = LocalDate.parse(date);
     }

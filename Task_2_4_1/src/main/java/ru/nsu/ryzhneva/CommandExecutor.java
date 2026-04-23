@@ -14,7 +14,9 @@ public class CommandExecutor {
      * Выполняет заданную консольную команду.
      *
      * @param directory директория, где будет выполнена команда
+     *
      * @param command сама команда и ее аргументы
+     *
      * @return true - если команда завершилась с кодом 0, иначе false
      */
     public boolean execute(File directory, String... command) {

@@ -13,6 +13,7 @@ public interface BuildRunner {
      * Выполняет компиляцию исходного кода проекта.
      * 
      * @param projectDir корневая директория задачи
+     *
      * @return true, если компиляция прошла успешно, иначе false
      */
     boolean compile(File projectDir);
@@ -21,6 +22,7 @@ public interface BuildRunner {
      * Запускает проверку стиля кода в проекте.
      * 
      * @param projectDir корневая директория собираемого проекта
+     *
      * @return true, если проверка стиля завершилась без критических ошибок, иначе false
      */
     boolean checkStyle(File projectDir);
@@ -29,6 +31,7 @@ public interface BuildRunner {
      * Запускает набор автоматических модульных тестов проекта.
      * 
      * @param projectDir корневая директория собираемого проекта
+     *
      * @return true, если процесс тестирования успешно завершился, иначе false
      */
     boolean runTests(File projectDir);
@@ -37,6 +40,7 @@ public interface BuildRunner {
      * Генерирует техническую документацию (Javadoc) по исходному коду проекта.
      * 
      * @param projectDir корневая директория собираемого проекта
+     *
      * @return true, если генерация документации прошла успешно, иначе false
      */
     boolean generateJavadoc(File projectDir);

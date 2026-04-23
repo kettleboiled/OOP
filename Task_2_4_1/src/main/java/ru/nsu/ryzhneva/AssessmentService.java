@@ -33,9 +33,13 @@ public class AssessmentService {
      *
      * @param resolver переводит строковые значения
      * данных в объектны соответствующего типа
+     *
      * @param gitService работа с гитом
+     *
      * @param buildRunner раннер для сборки и тестирования задачи
+     *
      * @param workingDirectory рабочая директория
+     *
      * @param config конфигурация
      */
     public AssessmentService(TargetResolver resolver,
@@ -116,6 +120,7 @@ public class AssessmentService {
      * Записывает количество успешных/проваленных/пропущенных тестов в объект {@link TaskResult}.
      * 
      * @param taskDir директория задачи с собранным проектом и выполненными тестами
+     *
      * @param taskResult модель результатов проверки, куда записывается статистика выполнения тестов
      */
     private void parseTestResults(File taskDir, TaskResult taskResult) {

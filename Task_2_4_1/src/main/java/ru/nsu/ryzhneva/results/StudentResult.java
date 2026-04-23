@@ -24,6 +24,7 @@ public class StudentResult {
     }
 
     /**
+     *
      * @return модель {@link Student}, хранящая имя и GitHub логин
      */
     public Student getStudent() {
@@ -31,6 +32,7 @@ public class StudentResult {
     }
 
     /**
+     *
      * @return ассоциативный массив или словарь-отображение (Map) результатов
      * прохождения задач для текущего студента.
      * Ключом выступает идентификатор (id) задачи.
@@ -41,7 +43,9 @@ public class StudentResult {
 
     /**
      * Запоминает и сохраняет данные проверки для отдельной задачи в словарь-карту.
+     *
      * @param taskId строковое представление ID задачи
+     *
      * @param result данные: сколько прошло тестов, checkstyle
      */
     public void addTaskResult(String taskId, TaskResult result) {
@@ -49,6 +53,7 @@ public class StudentResult {
     }
 
     /**
+     *
      * @return численное значение активности как десятичная дробь (от 0.0 до 1.0)
      */
     public double getActivityPercentage() {
@@ -57,6 +62,7 @@ public class StudentResult {
 
     /**
      * Устанавливает вычисленное из Git-репозитория значение "активности".
+     *
      * @param activityPercentage коэффициент от 0.0 до 1.0 включительно
      */
     public void setActivityPercentage(double activityPercentage) {

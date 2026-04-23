@@ -13,6 +13,7 @@ public class Group {
 
     /**
      * Создает новую группу с заданным названием.
+     *
      * @param name Название группы
      */
     public Group(String name) {
@@ -21,6 +22,7 @@ public class Group {
 
     /**
      * Возвращает название этой группы.
+     *
      * @return название
      */
     public String getName() {
@@ -29,6 +31,7 @@ public class Group {
 
     /**
      * Задает название этой группы.
+     *
      * @param name новое название группы
      */
     public void setName(String name) {
@@ -37,6 +40,7 @@ public class Group {
 
     /**
      * Добавляет студента в список этой группы.
+     *
      * @param student объект {@link Student}
      */
     public void addStudent(Student student) {
@@ -45,6 +49,7 @@ public class Group {
 
     /**
      * Возвращает список всех студентов, состоящих в данной группе.
+     *
      * @return список студентов
      */
     public List<Student> getStudents() {

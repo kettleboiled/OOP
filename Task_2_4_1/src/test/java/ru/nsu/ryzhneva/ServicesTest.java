@@ -11,6 +11,9 @@ import ru.nsu.ryzhneva.domain.CourseConfig;
 import ru.nsu.ryzhneva.domain.Task;
 import ru.nsu.ryzhneva.results.StudentResult;
 
+/**
+ * Tests for system services.
+ */
 public class ServicesTest {
 
     @Test
@@ -45,4 +48,3 @@ public class ServicesTest {
         assertDoesNotThrow(() -> gen.generateReport(results, tasks, config));
     }
 }
-

@@ -10,6 +10,7 @@ public class Checkpoint {
     private LocalDate date;
 
     /**
+     *
      * @return название контрольной точки
      */
     public String getName() {
@@ -17,6 +18,7 @@ public class Checkpoint {
     }
 
     /**
+     *
      * @param name название контрольной точки для установки
      */
     public void setName(String name) {
@@ -24,6 +26,7 @@ public class Checkpoint {
     }
 
     /**
+     *
      * @return дата контрольной точки в формате {@link LocalDate}
      */
     public LocalDate getDate() {
@@ -32,6 +35,7 @@ public class Checkpoint {
 
     /**
      * Устанавливает дату дедлайна чеклоинта как объект типа {@link LocalDate}.
+     *
      * @param date дата
      */
     public void setDate(LocalDate date) {
@@ -40,6 +44,7 @@ public class Checkpoint {
 
     /**
      * Парсит и устанавливает дату контрольной точки из строки.
+     *
      * @param date строка в формате ISO (например YYYY-MM-DD)
      */
     public void setDate(String date) {

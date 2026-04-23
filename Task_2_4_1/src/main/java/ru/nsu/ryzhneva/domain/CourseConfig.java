@@ -20,6 +20,7 @@ public class CourseConfig {
     private int scoreSatisfactory;
 
     /**
+     *
      * @return полный список задач
      */
     public List<Task> getTasks() {
@@ -28,6 +29,7 @@ public class CourseConfig {
 
     /**
      * Регистрация задачи.
+     *
      * @param task настроенный объект {@link Task}
      */
     public void addTask(Task task) {
@@ -35,6 +37,7 @@ public class CourseConfig {
     }
 
     /**
+     *
      * @return полный список групп в текущей конфигурации
      */
     public List<Group> getGroups() {
@@ -43,6 +46,7 @@ public class CourseConfig {
 
     /**
      * Добавляет академическую группу.
+     *
      * @param group сконфигурированная группа {@link Group}
      */
     public void addGroup(Group group) {
@@ -50,6 +54,7 @@ public class CourseConfig {
     }
 
     /**
+     *
      * @return список контрольных точек курса
      */
     public List<Checkpoint> getCheckpoints() {
@@ -58,6 +63,7 @@ public class CourseConfig {
 
     /**
      * Добавление контрольной точки (дедлайна или рубежного контроля).
+     *
      * @param checkpoint объект {@link Checkpoint}
      */
     public void addCheckpoint(Checkpoint checkpoint) {
@@ -69,7 +75,9 @@ public class CourseConfig {
      * (с учетом активности), необходимых для получения той или иной оценки.
      *
      * @param exc минимальный балл для оценки "Отлично"
+     *
      * @param good минимальный балл для оценки "Хорошо"
+     *
      * @param sat минимальный балл для оценки "Удовлетворительно"
      */
     public void setGradeCriteria(int exc, int good, int sat) {
@@ -79,6 +87,7 @@ public class CourseConfig {
     }
 
     /**
+     *
      * @return нижний балльный порог оценки "Отлично"
      */
     public int getScoreExcellent() {
@@ -86,6 +95,7 @@ public class CourseConfig {
     }
 
     /**
+     *
      * @return нижний балльный порог оценки "Хорошо"
      */
     public int getScoreGood() {
@@ -93,6 +103,7 @@ public class CourseConfig {
     }
 
     /**
+     *
      * @return нижний балльный порог оценки "Удовлетворительно"
      */
     public int getScoreSatisfactory() {
@@ -111,6 +122,7 @@ public class CourseConfig {
 
     /**
      * Привязывает настройки сеанса проверки.
+     *
      * @param checkAssignment Задание проверки
      */
     public void setCheckAssignment(CheckAssignment checkAssignment) {

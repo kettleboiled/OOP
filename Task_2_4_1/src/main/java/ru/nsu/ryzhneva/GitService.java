@@ -32,7 +32,9 @@ public class GitService {
      * Если директория уже существует, считает клонирование успешным.
      *
      * @param repoUrl ссылка на репозиторий
+     *
      * @param targetDir директория, куда репозиторий будет склонирован
+     *
      * @return true - клонирование завершено успешно
      */
     public boolean clone(String repoUrl, File targetDir) {
@@ -50,6 +52,7 @@ public class GitService {
      * если он сделал хотя бы один коммит.
      *
      * @param repoDir директория с репозиторием
+     *
      * @return коэффициент активности: от 0.0 до 1.0
      */
     public double calculateActivityPercentage(File repoDir) {
@@ -89,14 +92,11 @@ public class GitService {
             }
             process.waitFor();
             
-            if (firstCommit == null || lastCommit == null) {
-                return 0.0;
-            }
+            if (firstCommit == null || lastCommit == null) return 0.0;
             
-            long weeksTotal = ChronoUnit.WEEKS.between(firstCommit, lastCommit) + 1;
-            if (weeksTotal <= 0) {
-                weeksTotal = 1;
-            }
+            long weeksTotal = ChronoUnit.WEEKS.between(firstCommit, lastCommit)
+                    + 1;
+            if (weeksTotal <= 0) weeksTotal = 1;
 
             return Math.min(1.0, (double) weeksWithCommits.size() / weeksTotal);
         } catch (Exception e) {

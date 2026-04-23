@@ -11,6 +11,7 @@ public class Student {
     private String repositoryUrl;
 
     /**
+     *
      * @return логин студента на площадке GitHub
      */
     public String getGithubUsername() {
@@ -19,6 +20,7 @@ public class Student {
 
     /**
      * Устанавливает GitHub-логин данного студента.
+     *
      * @param githubUsername логин
      */
     public void setGithubUsername(String githubUsername) {
@@ -26,6 +28,7 @@ public class Student {
     }
 
     /**
+     *
      * @return полное имя (ФИО) студента, используемое при формировании отчетов
      */
     public String getFullName() {
@@ -34,6 +37,7 @@ public class Student {
 
     /**
      * Устанавливает ФИО студента.
+     *
      * @param fullName полное имя студента
      */
     public void setFullName(String fullName) {
@@ -41,6 +45,7 @@ public class Student {
     }
 
     /**
+     *
      * @return ссылка на git-репозиторий студента для проверки задач
      */
     public String getRepositoryUrl() {
@@ -49,6 +54,7 @@ public class Student {
 
     /**
      * Устанавливает ссылку на репозиторий.
+     *
      * @param repositoryUrl URL репозитория студента
      */
     public void setRepositoryUrl(String repositoryUrl) {
@@ -57,10 +63,10 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "githubUsername='" + githubUsername + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", repositoryUrl='" + repositoryUrl + '\'' +
-                '}';
+        return "Student{"
+                + "githubUsername='" + githubUsername + '\''
+                + ", fullName='" + fullName + '\''
+                + ", repositoryUrl='" + repositoryUrl + '\''
+                + '}';
     }
 }
