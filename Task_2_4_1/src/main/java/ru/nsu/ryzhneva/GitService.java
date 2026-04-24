@@ -86,8 +86,8 @@ public class GitService {
                     int week = date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
                     weeksWithCommits.add(weekYear + "-" + week);
                 } catch (DateTimeParseException e) {
-                    System.err.println("Предупреждение: невозможно распарсить " +
-                            "дату коммита '" + line + "' в директории " + repoDir.getName());
+                    System.err.println("Предупреждение: невозможно распарсить "
+                            + "дату коммита '" + line + "' в директории " + repoDir.getName());
                 }
             }
             process.waitFor();
@@ -120,7 +120,8 @@ public class GitService {
         try {
             String markerPath = taskDirName + "/build.gradle";
             ProcessBuilder pb = new ProcessBuilder(
-                    "git", "log", "--reverse", "--pretty=format:%cd", "--date=short", "--", markerPath);
+                    "git", "log", "--reverse",
+                    "--pretty=format:%cd", "--date=short", "--", markerPath);
             pb.directory(repoDir);
             Process process = pb.start();
             try (BufferedReader reader = new BufferedReader(

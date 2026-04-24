@@ -1,4 +1,5 @@
 package ru.nsu.ryzhneva;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -53,7 +54,8 @@ public class AssessmentServiceTest {
         assertTrue(testResultsDir.mkdirs());
         Path xml = testResultsDir.toPath().resolve("TEST-sample.xml");
         Files.writeString(xml,
-                "<testsuite tests=\"5\" failures=\"1\" skipped=\"1\" errors=\"1\" name=\"x\"></testsuite>");
+                "<testsuite tests=\"5\" failures=\"1\" " +
+                        "skipped=\"1\" errors=\"1\" name=\"x\"></testsuite>");
 
         GitService gitService = new GitService(new CommandExecutor()) {
             @Override
@@ -109,7 +111,8 @@ public class AssessmentServiceTest {
         Path report = Path.of("report.html");
         Files.deleteIfExists(report);
         try {
-            AssessmentService service = new AssessmentService(resolver, gitService, buildRunner, workDir.toFile(), config);
+            AssessmentService service =
+                    new AssessmentService(resolver, gitService, buildRunner, workDir.toFile(), config);
             service.run();
 
             assertTrue(Files.exists(report));
@@ -201,7 +204,8 @@ public class AssessmentServiceTest {
         Path report = Path.of("report.html");
         Files.deleteIfExists(report);
         try {
-            AssessmentService service = new AssessmentService(resolver, gitService, buildRunner, workDir.toFile(), config);
+            AssessmentService service =
+                    new AssessmentService(resolver, gitService, buildRunner, workDir.toFile(), config);
             service.run();
             assertTrue(Files.exists(report));
             String html = Files.readString(report);

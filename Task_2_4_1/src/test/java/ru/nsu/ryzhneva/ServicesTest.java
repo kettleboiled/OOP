@@ -72,7 +72,7 @@ public class ServicesTest {
         Path projectDir = Files.createTempDirectory("gradlerunner");
         Path gradlew = projectDir.resolve("gradlew");
         Files.writeString(gradlew, "#!/bin/sh\necho ok\n");
-        gradlew.toFile().setExecutable(false);
+        assertTrue(gradlew.toFile().setExecutable(false));
 
         final StringBuilder invoked = new StringBuilder();
         CommandExecutor executor = new CommandExecutor() {
@@ -87,6 +87,31 @@ public class ServicesTest {
         assertTrue(gradlew.toFile().canExecute());
         assertTrue(invoked.toString().contains("./gradlew"));
         assertTrue(invoked.toString().contains("classes"));
+    }
+
+    @Test
+    void testGradleRunnerCallsExpectedTasks() throws Exception {
+        Path projectDir = Files.createTempDirectory("gradlerunner_tasks");
+        
+        final List<String> commands = new ArrayList<>();
+        CommandExecutor executor = new CommandExecutor() {
+            @Override
+            public boolean execute(File dir, String... cmd) {
+                commands.add(String.join(" ", cmd));
+                return true;
+            }
+        };
+
+        GradleRunner runner = new GradleRunner(executor);
+        assertTrue(runner.compile(projectDir.toFile()));
+        assertTrue(runner.checkStyle(projectDir.toFile()));
+        assertTrue(runner.runTests(projectDir.toFile()));
+        assertTrue(runner.generateJavadoc(projectDir.toFile()));
+
+        assertTrue(commands.contains("./gradlew classes"));
+        assertTrue(commands.contains("./gradlew checkstyleMain"));
+        assertTrue(commands.contains("./gradlew test"));
+        assertTrue(commands.contains("./gradlew javadoc"));
     }
 
     @Test
