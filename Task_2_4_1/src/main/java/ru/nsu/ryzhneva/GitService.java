@@ -91,16 +91,49 @@ public class GitService {
                 }
             }
             process.waitFor();
-            
-            if (firstCommit == null || lastCommit == null) return 0.0;
-            
+
+            if (firstCommit == null) {
+                return 0.0;
+            }
+
             long weeksTotal = ChronoUnit.WEEKS.between(firstCommit, lastCommit)
                     + 1;
-            if (weeksTotal <= 0) weeksTotal = 1;
+            if (weeksTotal <= 0) {
+                weeksTotal = 1;
+            }
 
             return Math.min(1.0, (double) weeksWithCommits.size() / weeksTotal);
         } catch (Exception e) {
             return 0.0;
+        }
+    }
+
+    /**
+     * Возвращает дату первого коммита, после которого задачу можно считать "сданной".
+     *
+     * @param repoDir директория локального git-репозитория
+     * @param taskDirName имя директории задачи (например, {@code Task_2_3_1})
+     *
+     * @return дата потенциальной "сдачи" или {@code null}
+     */
+    public LocalDate getFirstCommitWhenBuildBecameOk(File repoDir, String taskDirName) {
+        try {
+            String markerPath = taskDirName + "/build.gradle";
+            ProcessBuilder pb = new ProcessBuilder(
+                    "git", "log", "--reverse", "--pretty=format:%cd", "--date=short", "--", markerPath);
+            pb.directory(repoDir);
+            Process process = pb.start();
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()))) {
+                String line = reader.readLine();
+                process.waitFor();
+                if (line == null || line.trim().isEmpty()) {
+                    return null;
+                }
+                return LocalDate.parse(line.trim());
+            }
+        } catch (Exception e) {
+            return null;
         }
     }
 }

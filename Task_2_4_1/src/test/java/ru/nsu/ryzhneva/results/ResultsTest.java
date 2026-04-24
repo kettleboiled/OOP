@@ -11,6 +11,10 @@ import ru.nsu.ryzhneva.domain.Group;
 import ru.nsu.ryzhneva.domain.Student;
 import ru.nsu.ryzhneva.domain.Task;
 
+/**
+ * Набор unit-тестов для пакета {@code ru.nsu.ryzhneva.results}.
+ * Проверяет корректность DTO-моделей результатов и работы {@link TargetResolver}.
+ */
 public class ResultsTest {
 
     @Test
@@ -45,13 +49,17 @@ public class ResultsTest {
     void testTargetResolver() {
         CourseConfig config = new CourseConfig();
         
-        Task t1 = new Task(); t1.setId("Task_2_3_1");
-        Task t2 = new Task(); t2.setId("T2");
+        Task t1 = new Task();
+        t1.setId("Task_2_3_1");
+        Task t2 = new Task();
+        t2.setId("T2");
         config.addTask(t1);
         config.addTask(t2);
 
-        Student s1 = new Student(); s1.setGithubUsername("kettleboiled");
-        Student s2 = new Student(); s2.setGithubUsername("s2");
+        Student s1 = new Student();
+        s1.setGithubUsername("kettleboiled");
+        Student s2 = new Student();
+        s2.setGithubUsername("s2");
         
         Group g1 = new Group("24216");
         g1.addStudent(s1);

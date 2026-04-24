@@ -16,6 +16,13 @@ import ru.nsu.ryzhneva.results.TaskResult;
  */
 public class HtmlReportGenerator {
 
+    private static String formatPoints(double points) {
+        if (points == Math.rint(points)) {
+            return String.valueOf((int) points);
+        }
+        return String.valueOf(points);
+    }
+
     /**
      * Генерирует HTML-файл на основе собранных результатов и конфигурации курса.
      * Отчет сохраняется в файл report.html.
@@ -54,7 +61,8 @@ public class HtmlReportGenerator {
                     .append("Общий балл</th></tr>\n");
 
             for (StudentResult studentRes : results) {
-                TaskResult tr = studentRes.getTaskResults().getOrDefault(task.getId(), new TaskResult());
+                TaskResult tr = studentRes.getTaskResults()
+                        .getOrDefault(task.getId(), new TaskResult());
 
                 html.append("<tr>")
                         .append("<td class=\"left-align\">")
@@ -63,8 +71,8 @@ public class HtmlReportGenerator {
                         .append("<td>").append(tr.docsGenerated ? "+" : "-").append("</td>")
                         .append("<td>").append(tr.styleOk ? "+" : "-").append("</td>")
                         .append("<td>").append(tr.getTestsString()).append("</td>")
-                        .append("<td>").append(tr.bonusPoints).append("</td>")
-                        .append("<td>").append(tr.totalPoints).append("</td>")
+                        .append("<td>").append(formatPoints(tr.bonusPoints)).append("</td>")
+                        .append("<td>").append(formatPoints(tr.totalPoints)).append("</td>")
                         .append("</tr>\n");
             }
             html.append("</table>\n");
@@ -85,17 +93,18 @@ public class HtmlReportGenerator {
             html.append("<tr><td class=\"left-align\">")
                     .append(studentRes.getStudent().getFullName()).append("</td>");
 
-            int totalSum = 0;
+            double totalSum = 0.0;
             for (Task task : tasks) {
-                TaskResult tr = studentRes.getTaskResults().getOrDefault(task.getId(), new TaskResult());
-                html.append("<td>").append(tr.totalPoints).append("</td>");
+                TaskResult tr = studentRes.getTaskResults()
+                        .getOrDefault(task.getId(), new TaskResult());
+                html.append("<td>").append(formatPoints(tr.totalPoints)).append("</td>");
                 totalSum += tr.totalPoints;
             }
 
             String activityStr = (int) (studentRes.getActivityPercentage() * 100) + "%";
             String finalGrade = "-";
             
-            if (totalSum > 0) {
+            if (totalSum > 0.0) {
                 double score = totalSum * studentRes.getActivityPercentage();
                 if (score >= config.getScoreExcellent()) {
                     finalGrade = "Отлично";
@@ -108,7 +117,7 @@ public class HtmlReportGenerator {
                 }
             }
 
-            html.append("<td>").append(totalSum).append("</td>")
+            html.append("<td>").append(formatPoints(totalSum)).append("</td>")
                     .append("<td>").append(activityStr).append("</td>")
                     .append("<td>").append(finalGrade).append("</td>")
                     .append("</tr>\n");

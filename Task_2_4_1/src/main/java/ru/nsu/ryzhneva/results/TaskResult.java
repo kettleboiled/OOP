@@ -13,13 +13,14 @@ public class TaskResult {
     public int testsFailed = 0;
     public int testsSkipped = 0;
 
-    public int bonusPoints = 0;
-    public int totalPoints = 0;
+    public double bonusPoints = 0.0;
+    public double totalPoints = 0.0;
 
     /**
      * Форматирует строку пройденных/проваленных тестов для генерации отчета HTML.
      * Если не скомпилировалось или тестов не было, возвращает 0/0/0.
      * 
+     *
      * @return формат: "{успешные}/{упавшие}/{пропущенные}"
      */
     public String getTestsString() {

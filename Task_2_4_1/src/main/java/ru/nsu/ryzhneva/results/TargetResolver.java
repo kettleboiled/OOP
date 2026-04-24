@@ -30,7 +30,7 @@ public class TargetResolver {
      * все студенты этой группы. Если это никнейм на Github, то находится только он.
      *
      * @return финальный список всех студентов,
-     * чьи репозитории необходимо склонировать
+     *     чьи репозитории необходимо склонировать
      */
     public List<Student> resolveStudents() {
         List<Student> result = new ArrayList<>();

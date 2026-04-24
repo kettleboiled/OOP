@@ -1,6 +1,7 @@
 package ru.nsu.ryzhneva;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -31,8 +32,8 @@ public class AssessmentService {
     /**
      * Конструктор.
      *
-     * @param resolver переводит строковые значения
-     * данных в объектны соответствующего типа
+     * @param resolver переводит строковые значения данных
+     *     в объекты соответствующего типа
      *
      * @param gitService работа с гитом
      *
@@ -103,8 +104,22 @@ public class AssessmentService {
                             + taskResult.testsSkipped;
                     if (totalTests > 0) {
                         double fraction = (double) taskResult.testsPassed / totalTests;
-                        taskResult.totalPoints = (int) Math.round(task.getMaxPoints() * fraction)
-                                + taskResult.bonusPoints;
+                        double points = Math.round(task.getMaxPoints() * fraction);
+                        points += taskResult.bonusPoints;
+
+                        LocalDate submitDate = gitService.getFirstCommitWhenBuildBecameOk(
+                                studentDir, task.getId());
+                        if (submitDate != null) {
+                            if (task.getHardDeadline() != null
+                                    && submitDate.isAfter(task.getHardDeadline())) {
+                                points = 0.0;
+                            } else if (task.getSoftDeadline() != null
+                                    && submitDate.isAfter(task.getSoftDeadline())) {
+                                points = Math.max(0.0, points - 0.5);
+                            }
+                        }
+
+                        taskResult.totalPoints = points;
                     }
                 }
                 studentResult.addTaskResult(task.getId(), taskResult);
@@ -119,6 +134,7 @@ public class AssessmentService {
      * Анализирует XML-результаты запущенных JUnit-тестов (директория build/test-results/test/).
      * Записывает количество успешных/проваленных/пропущенных тестов в объект {@link TaskResult}.
      * 
+     *
      * @param taskDir директория задачи с собранным проектом и выполненными тестами
      *
      * @param taskResult модель результатов проверки, куда записывается статистика выполнения тестов

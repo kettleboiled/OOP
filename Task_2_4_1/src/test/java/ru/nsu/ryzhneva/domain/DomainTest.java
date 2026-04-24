@@ -31,6 +31,11 @@ public class DomainTest {
 
         assertEquals("Ryzhneva Anastasia Victorovna", s.getFullName());
         assertEquals("kettleboiled", s.getGithubUsername());
+        assertEquals("https://github.com/kettleboiled/OOP", s.getRepositoryUrl());
+
+        String text = s.toString();
+        assertTrue(text.contains("kettleboiled"));
+        assertTrue(text.contains("Ryzhneva Anastasia Victorovna"));
         
         Group g = new Group("24216");
         g.addStudent(s);

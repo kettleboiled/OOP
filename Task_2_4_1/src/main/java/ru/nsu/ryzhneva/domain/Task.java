@@ -14,6 +14,7 @@ public class Task {
     private LocalDate hardDeadline;
 
     /**
+     * Возвращает идентификатор задачи.
      *
      * @return строковый идентификатор задачи
      */
@@ -22,6 +23,7 @@ public class Task {
     }
 
     /**
+     * Устанавливает идентификатор задачи.
      *
      * @param id уникальный идентификатор задачи
      */
@@ -30,6 +32,7 @@ public class Task {
     }
 
     /**
+     * Возвращает наименование задачи.
      *
      * @return наименование задачи
      */
@@ -38,6 +41,7 @@ public class Task {
     }
 
     /**
+     * Устанавливает наименование задачи.
      *
      * @param name имя задачи
      */
@@ -46,6 +50,7 @@ public class Task {
     }
 
     /**
+     * Возвращает максимальное количество баллов.
      *
      * @return максимальное количество баллов, которое можно заработать за эту задачу
      */
@@ -63,6 +68,7 @@ public class Task {
     }
 
     /**
+     * Возвращает дату мягкого дедлайна.
      *
      * @return отражающий мягкий дедлайн
      */
@@ -71,6 +77,7 @@ public class Task {
     }
 
     /**
+     * Устанавливает дату мягкого дедлайна.
      *
      * @param softDeadline дата мягкого дедлайна
      */
@@ -78,11 +85,17 @@ public class Task {
         this.softDeadline = softDeadline;
     }
 
+    /**
+     * Парсит и устанавливает мягкий дедлайн из строки.
+     *
+     * @param date строка в формате ISO (например YYYY-MM-DD)
+     */
     public void setSoftDeadline(String date) {
         this.softDeadline = LocalDate.parse(date);
     }
 
     /**
+     * Возвращает дату жесткого дедлайна.
      *
      * @return объект {@link LocalDate}, отражающий жесткий дедлайн (хард)
      */
@@ -91,6 +104,7 @@ public class Task {
     }
 
     /**
+     * Устанавливает дату жесткого дедлайна.
      *
      * @param hardDeadline дата жесткого дедлайна
      */
@@ -98,6 +112,11 @@ public class Task {
         this.hardDeadline = hardDeadline;
     }
 
+    /**
+     * Парсит и устанавливает жесткий дедлайн из строки.
+     *
+     * @param date строка в формате ISO (например YYYY-MM-DD)
+     */
     public void setHardDeadline(String date) {
         this.hardDeadline = LocalDate.parse(date);
     }
