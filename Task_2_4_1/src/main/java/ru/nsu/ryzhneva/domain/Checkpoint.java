@@ -10,6 +10,7 @@ public class Checkpoint {
     private LocalDate date;
 
     /**
+     * Возвращает название контрольной точки.
      *
      * @return название контрольной точки
      */
@@ -18,6 +19,7 @@ public class Checkpoint {
     }
 
     /**
+     * Изменяет название контрольной точки.
      *
      * @param name название контрольной точки для установки
      */
@@ -26,6 +28,7 @@ public class Checkpoint {
     }
 
     /**
+     * Возвращает дату контрольной точки.
      *
      * @return дата контрольной точки в формате {@link LocalDate}
      */

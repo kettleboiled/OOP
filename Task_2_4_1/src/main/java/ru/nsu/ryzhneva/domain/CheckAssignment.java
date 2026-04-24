@@ -13,6 +13,7 @@ public class CheckAssignment {
     private List<String> targetIdentifiers = new ArrayList<>();
 
     /**
+     * Возвращает список идентификаторов задач для проверки
      *
      * @return список идентификаторов задач для проверки
      */
@@ -30,6 +31,7 @@ public class CheckAssignment {
     }
 
     /**
+     * Возвращает список целевых идентификаторов для проверки
      *
      * @return список целевых идентификаторов для проверки
      */
