@@ -1,7 +1,5 @@
 package ru.nsu.ryzhneva.services;
 
-import ru.nsu.ryzhneva.CommandExecutor;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -11,6 +9,8 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.IsoFields;
 import java.util.HashSet;
 import java.util.Set;
+
+import ru.nsu.ryzhneva.CommandExecutor;
 
 /**
  * Сервис для взаимодействия с системой контроля версий Git. 

@@ -50,7 +50,14 @@ public class Main {
 
         File workspaceDir = new File(System.getProperty("user.dir"), "check_workspace");
         if (!workspaceDir.exists()) {
-            workspaceDir.mkdirs();
+            boolean created = workspaceDir.mkdirs();
+            if (!created) {
+                System.err.println(
+                        "Не удалось создать рабочую директорию: "
+                                + workspaceDir.getAbsolutePath()
+                );
+                return;
+            }
         }
 
         CommandExecutor commandExecutor = new CommandExecutor();

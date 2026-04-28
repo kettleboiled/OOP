@@ -182,22 +182,30 @@ public class HtmlReportGenerator {
             rows.append(renderSummaryRow(studentRes, tasks, config));
         }
 
-        return SUMMARY_TABLE_TEMPLATE.formatted(colspan, taskHeaders.toString(), rows.toString());
+        return SUMMARY_TABLE_TEMPLATE.formatted(
+                colspan,
+                taskHeaders.toString(),
+                rows.toString()
+        );
     }
 
-    private static String renderSummaryRow(StudentResult studentRes, List<Task> tasks, CourseConfig config) {
+    private static String renderSummaryRow(StudentResult studentRes,
+                                          List<Task> tasks,
+                                          CourseConfig config) {
         double totalSum = 0.0;
         StringBuilder taskCells = new StringBuilder();
         for (Task task : tasks) {
-            TaskResult tr = studentRes
-                    .getTaskResults().
-                    getOrDefault(task.getId(), new TaskResult());
+            TaskResult tr = studentRes.getTaskResults().getOrDefault(task.getId(), new TaskResult());
             taskCells.append("<td>").append(formatPoints(tr.totalPoints)).append("</td>\n");
             totalSum += tr.totalPoints;
         }
 
         String activityStr = (int) (studentRes.getActivityPercentage() * 100) + "%";
-        String finalGrade = calculateFinalGrade(totalSum, studentRes.getActivityPercentage(), config);
+        String finalGrade = calculateFinalGrade(
+                totalSum,
+                studentRes.getActivityPercentage(),
+                config
+        );
 
         return SUMMARY_ROW_TEMPLATE.formatted(
                 studentRes.getStudent().getFullName(),

@@ -1,6 +1,7 @@
 package ru.nsu.ryzhneva;
 
 import java.io.File;
+
 import groovy.lang.GroovyShell;
 import org.codehaus.groovy.control.CompilerConfiguration;
 import ru.nsu.ryzhneva.domain.CourseConfig;
@@ -33,7 +34,10 @@ public class ParseCourseConfig {
             throw new ConfigParseException("Config file is null");
         }
         if (!configFile.exists()) {
-            throw new ConfigParseException("Файл конфигурации не найден: " + configFile.getAbsolutePath());
+            throw new ConfigParseException(
+                    "Файл конфигурации не найден: "
+                            + configFile.getAbsolutePath()
+            );
         }
 
         CompilerConfiguration compilerConfig = new CompilerConfiguration();

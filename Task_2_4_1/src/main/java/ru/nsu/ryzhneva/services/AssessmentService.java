@@ -9,7 +9,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import ru.nsu.ryzhneva.runner.BuildRunner;
 import ru.nsu.ryzhneva.HtmlReportGenerator;
 import ru.nsu.ryzhneva.domain.CourseConfig;
 import ru.nsu.ryzhneva.domain.Student;
@@ -17,6 +16,7 @@ import ru.nsu.ryzhneva.domain.Task;
 import ru.nsu.ryzhneva.results.StudentResult;
 import ru.nsu.ryzhneva.results.TargetResolver;
 import ru.nsu.ryzhneva.results.TaskResult;
+import ru.nsu.ryzhneva.runner.BuildRunner;
 
 /**
  * Основной класс системы проверки задач.
