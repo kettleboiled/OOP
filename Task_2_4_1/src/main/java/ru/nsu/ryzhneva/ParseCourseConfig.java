@@ -1,8 +1,7 @@
 package ru.nsu.ryzhneva;
 
-import java.io.File;
-
 import groovy.lang.GroovyShell;
+import java.io.File;
 import org.codehaus.groovy.control.CompilerConfiguration;
 import ru.nsu.ryzhneva.domain.CourseConfig;
 import ru.nsu.ryzhneva.dsl.CourseDSLScript;

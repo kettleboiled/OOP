@@ -37,7 +37,9 @@ public class AssessmentServiceTest {
         private CourseConfig capturedConfig;
 
         @Override
-        public void generateReport(List<StudentResult> results, List<Task> tasks, CourseConfig config) {
+        public void generateReport(List<StudentResult> results,
+                                   List<Task> tasks,
+                                   CourseConfig config) {
             this.capturedResults = results;
             this.capturedTasks = tasks;
             this.capturedConfig = config;
@@ -45,7 +47,7 @@ public class AssessmentServiceTest {
     }
 
     @Test
-    void runParsesJUnitXmlAndComputesPoints() throws Exception {
+    void runParsesJunitXmlAndComputesPoints() throws Exception {
         CourseConfig config = new CourseConfig();
         config.setGradeCriteria(8, 6, 4);
 
@@ -77,7 +79,8 @@ public class AssessmentServiceTest {
         Path xml = testResultsDir.toPath().resolve("TEST-sample.xml");
         Files.writeString(
                 xml,
-                "<testsuite tests=\"5\" failures=\"1\" skipped=\"1\" errors=\"1\" name=\"x\"></testsuite>"
+                "<testsuite tests=\"5\" failures=\"1\" skipped=\"1\" errors=\"1\" name=\"x\">"
+                        + "</testsuite>"
         );
 
         GitService gitService = new GitService(new CommandExecutor()) {
@@ -162,12 +165,12 @@ public class AssessmentServiceTest {
 
     @Test
     void runDoesNotComputePointsWhenNoTestReports() throws Exception {
-        CourseConfig config = new CourseConfig();
-
         Task t = new Task();
         t.setId("Task_2_3_1");
         t.setName("Змейка");
         t.setMaxPoints(10);
+
+        final CourseConfig config = new CourseConfig();
         config.addTask(t);
 
         Student s = new Student();

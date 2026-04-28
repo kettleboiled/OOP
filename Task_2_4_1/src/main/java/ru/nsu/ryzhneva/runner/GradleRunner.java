@@ -1,8 +1,8 @@
 package ru.nsu.ryzhneva.runner;
 
-import ru.nsu.ryzhneva.CommandExecutor;
-
 import java.io.File;
+
+import ru.nsu.ryzhneva.CommandExecutor;
 
 /**
  * Реализация {@link BuildRunner} для проектов, использующих систему сборки Gradle.
@@ -23,7 +23,13 @@ public class GradleRunner implements BuildRunner {
     private void ensureExecutable(File dir) {
         File gradlew = new File(dir, "gradlew");
         if (gradlew.exists()) {
-            gradlew.setExecutable(true);
+            boolean ok = gradlew.setExecutable(true);
+            if (!ok) {
+                System.err.println(
+                        "Не удалось выдать права на исполнение файлу: "
+                                + gradlew.getAbsolutePath()
+                );
+            }
         }
     }
 

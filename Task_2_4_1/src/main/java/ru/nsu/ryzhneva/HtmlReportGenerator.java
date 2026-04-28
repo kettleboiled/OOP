@@ -195,7 +195,10 @@ public class HtmlReportGenerator {
         double totalSum = 0.0;
         StringBuilder taskCells = new StringBuilder();
         for (Task task : tasks) {
-            TaskResult tr = studentRes.getTaskResults().getOrDefault(task.getId(), new TaskResult());
+            TaskResult tr = studentRes.getTaskResults().getOrDefault(
+                    task.getId(),
+                    new TaskResult()
+            );
             taskCells.append("<td>").append(formatPoints(tr.totalPoints)).append("</td>\n");
             totalSum += tr.totalPoints;
         }
