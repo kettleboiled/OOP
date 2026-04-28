@@ -1,4 +1,4 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.services;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -9,6 +9,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import ru.nsu.ryzhneva.runner.BuildRunner;
+import ru.nsu.ryzhneva.HtmlReportGenerator;
 import ru.nsu.ryzhneva.domain.CourseConfig;
 import ru.nsu.ryzhneva.domain.Student;
 import ru.nsu.ryzhneva.domain.Task;
@@ -28,6 +30,7 @@ public class AssessmentService {
     private final TargetResolver resolver;
     private final File workingDirectory;
     private final CourseConfig config;
+    private final HtmlReportGenerator reportGenerator;
 
     /**
      * Конструктор.
@@ -47,17 +50,19 @@ public class AssessmentService {
                              GitService gitService,
                              BuildRunner buildRunner,
                              File workingDirectory,
-                             CourseConfig config) {
+                             CourseConfig config,
+                             HtmlReportGenerator reportGenerator) {
         this.resolver = resolver;
         this.gitService = gitService;
         this.buildRunner = buildRunner;
         this.workingDirectory = workingDirectory;
         this.config = config;
+        this.reportGenerator = reportGenerator;
     }
 
     /**
      * Основной метод запуска системы оценивания.
-     * Резолвит студентов и задачи, а затем последовательно применяет к ним BuildRunner.
+     * Резолвит студентов и задачи, последовательно применяет к ним BuildRunner.
      * В конце генерирует итоговый HTML отчет.
      */
     public void run() {
@@ -126,7 +131,6 @@ public class AssessmentService {
             }
             courseResults.add(studentResult);
         }
-        HtmlReportGenerator reportGenerator = new HtmlReportGenerator();
         reportGenerator.generateReport(courseResults, tasks, config);
     }
 

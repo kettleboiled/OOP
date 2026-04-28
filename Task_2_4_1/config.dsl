@@ -5,7 +5,7 @@ task("Task_2_3_1") {
     hardDeadline = "2026-04-13"
 }
 
-task("Task_2_2_1") {
+task("Task_2_2_1"){
     name = "Пиццерия"
     maxPoints = 1
     softDeadline = "2026-03-07"

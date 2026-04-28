@@ -1,4 +1,6 @@
-package ru.nsu.ryzhneva;
+package ru.nsu.ryzhneva.runner;
+
+import ru.nsu.ryzhneva.CommandExecutor;
 
 import java.io.File;
 

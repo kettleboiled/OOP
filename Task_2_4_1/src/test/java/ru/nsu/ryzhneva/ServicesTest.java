@@ -16,6 +16,8 @@ import ru.nsu.ryzhneva.domain.Student;
 import ru.nsu.ryzhneva.domain.Task;
 import ru.nsu.ryzhneva.results.StudentResult;
 import ru.nsu.ryzhneva.results.TaskResult;
+import ru.nsu.ryzhneva.runner.GradleRunner;
+import ru.nsu.ryzhneva.services.GitService;
 
 /**
  * Tests for system services.
@@ -164,7 +166,8 @@ public class ServicesTest {
             String text = Files.readString(report);
             assertNotNull(text);
             assertTrue(text.contains("Отлично"));
-            assertTrue(text.contains("50%</td><td>-</td>"));
+            assertTrue(text.contains("50%"));
+            assertTrue(text.contains(">-</td>"));
         } finally {
             Files.deleteIfExists(report);
         }

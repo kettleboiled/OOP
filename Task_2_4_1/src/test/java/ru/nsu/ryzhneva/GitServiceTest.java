@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
+import ru.nsu.ryzhneva.services.GitService;
 
 /**
  * Тесты для {@link GitService}.
