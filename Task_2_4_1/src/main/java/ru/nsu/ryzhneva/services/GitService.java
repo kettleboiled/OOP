@@ -58,6 +58,19 @@ public class GitService {
      * @return коэффициент активности: от 0.0 до 1.0
      */
     public double calculateActivityPercentage(File repoDir) {
+        return calculateActivityPercentage(repoDir, null, null);
+    }
+
+    /**
+     * Вычисляет процент активности студента в рамках заданного учебного окна.
+     * Неделя считается активной, если в ней был хотя бы один коммит.
+     *
+     * @param repoDir директория с репозиторием
+     * @param start начало окна (включительно) или {@code null}
+     * @param end конец окна (включительно) или {@code null}
+     * @return коэффициент активности: от 0.0 до 1.0
+     */
+    public double calculateActivityPercentage(File repoDir, LocalDate start, LocalDate end) {
         try {
             ProcessBuilder pb = new ProcessBuilder(
                     "git", "log", "--pretty=format:%cd", "--date=short");
@@ -83,6 +96,13 @@ public class GitService {
                     if (lastCommit == null || date.isAfter(lastCommit)) {
                         lastCommit = date;
                     }
+
+                    if (start != null && date.isBefore(start)) {
+                        continue;
+                    }
+                    if (end != null && date.isAfter(end)) {
+                        continue;
+                    }
                     
                     int weekYear = date.get(IsoFields.WEEK_BASED_YEAR);
                     int week = date.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR);
@@ -98,8 +118,14 @@ public class GitService {
                 return 0.0;
             }
 
-            long weeksTotal = ChronoUnit.WEEKS.between(firstCommit, lastCommit)
-                    + 1;
+            LocalDate startDate = start != null ? start : firstCommit;
+            LocalDate endDate = end != null ? end : lastCommit;
+
+            if (endDate.isBefore(startDate)) {
+                return 0.0;
+            }
+
+            long weeksTotal = ChronoUnit.WEEKS.between(startDate, endDate) + 1;
             if (weeksTotal <= 0) {
                 weeksTotal = 1;
             }
@@ -114,7 +140,7 @@ public class GitService {
      * Возвращает дату первого коммита, после которого задачу можно считать "сданной".
      *
      * @param repoDir директория локального git-репозитория
-     * @param taskDirName имя директории задачи (например, {@code Task_2_3_1})
+     * @param taskDirName имя директории задачи
      *
      * @return дата потенциальной "сдачи" или {@code null}
      */

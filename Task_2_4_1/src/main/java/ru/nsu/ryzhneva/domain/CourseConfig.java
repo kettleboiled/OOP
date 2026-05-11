@@ -1,5 +1,6 @@
 package ru.nsu.ryzhneva.domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,9 @@ public class CourseConfig {
     private List<Group> groups = new ArrayList<>();
     private List<Checkpoint> checkpoints = new ArrayList<>();
     private CheckAssignment checkAssignment = new CheckAssignment();
+
+    private LocalDate activityStart;
+    private LocalDate activityEnd;
 
     private int scoreExcellent;
     private int scoreGood;
@@ -133,6 +137,36 @@ public class CourseConfig {
      */
     public void setCheckAssignment(CheckAssignment checkAssignment) {
         this.checkAssignment = checkAssignment;
+    }
+
+    /**
+     * Возвращает начало интервала учебного семестра,
+     * в рамках которого считается активность.
+     *
+     * @return дата начала семестра, если задана
+     */
+    public LocalDate getActivityStart() {
+        return activityStart;
+    }
+
+    /**
+     * Возвращает конец интервала учебного семестра, в рамках которого считается активность.
+     *
+     * @return дата окончания семестра или {@code null}, если не задана
+     */
+    public LocalDate getActivityEnd() {
+        return activityEnd;
+    }
+
+    /**
+     * Устанавливает интервал семестра для расчета активности.
+     *
+     * @param activityStart дата начала (включительно)
+     * @param activityEnd дата окончания (включительно)
+     */
+    public void setActivityWindow(LocalDate activityStart, LocalDate activityEnd) {
+        this.activityStart = activityStart;
+        this.activityEnd = activityEnd;
     }
 
 }

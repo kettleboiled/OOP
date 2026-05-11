@@ -50,6 +50,10 @@ public class AssessmentServiceTest {
     void runParsesJunitXmlAndComputesPoints() throws Exception {
         CourseConfig config = new CourseConfig();
         config.setGradeCriteria(8, 6, 4);
+        config.setActivityWindow(
+                LocalDate.parse("2025-09-01"),
+                LocalDate.parse("2025-12-31")
+        );
 
         Task t = new Task();
         t.setId("Task_2_3_1");
@@ -95,7 +99,7 @@ public class AssessmentServiceTest {
             }
 
             @Override
-            public double calculateActivityPercentage(File repoDir) {
+            public double calculateActivityPercentage(File repoDir, LocalDate start, LocalDate end) {
                 return 1.0;
             }
         };

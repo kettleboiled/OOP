@@ -9,6 +9,9 @@ import ru.nsu.ryzhneva.domain.Task;
 import ru.nsu.ryzhneva.results.StudentResult;
 import ru.nsu.ryzhneva.results.TaskResult;
 
+import static java.lang.Math.rint;
+import static java.lang.String.valueOf;
+
 /**
  * Генератор HTML-отчета о проверках студенческих работ.
  * Формирует визуальное представление статистики выполненных заданий, 
@@ -97,10 +100,10 @@ public class HtmlReportGenerator {
             """;
 
     private static String formatPoints(double points) {
-        if (points == Math.rint(points)) {
-            return String.valueOf((int) points);
+        if (points == rint(points)) {
+            return valueOf((int) points);
         }
-        return String.valueOf(points);
+        return valueOf(points);
     }
 
     /**

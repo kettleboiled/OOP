@@ -1,10 +1,10 @@
 package ru.nsu.ryzhneva.dsl
 
+import java.time.LocalDate
 import ru.nsu.ryzhneva.dsl.builders.TaskBuilder
 import ru.nsu.ryzhneva.dsl.builders.GroupBuilder
 import ru.nsu.ryzhneva.dsl.builders.CheckAssignmentBuilder
 import ru.nsu.ryzhneva.dsl.builders.CheckpointBuilder
-
 import ru.nsu.ryzhneva.domain.CourseConfig
 
 /**
@@ -63,6 +63,16 @@ abstract class CourseDSLScript extends Script {
      */
     void gradeCriteria(int excellent, int good, int satisfactory) {
         config.setGradeCriteria(excellent, good, satisfactory)
+    }
+
+    /**
+     * Задает период учебного семестра, в рамках которого считается еженедельная активность.
+     *
+     * @param start дата начала интервала
+     * @param end дата окончания интервала
+     */
+    void activityWindow(String start, String end) {
+        config.setActivityWindow(LocalDate.parse(start), LocalDate.parse(end))
     }
 
     /**

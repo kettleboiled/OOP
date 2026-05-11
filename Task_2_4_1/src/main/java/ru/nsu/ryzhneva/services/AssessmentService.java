@@ -80,7 +80,11 @@ public class AssessmentService {
                 continue;
             }
 
-            double activity = gitService.calculateActivityPercentage(studentDir);
+            double activity = gitService.calculateActivityPercentage(
+                    studentDir,
+                    config.getActivityStart(),
+                    config.getActivityEnd()
+            );
             studentResult.setActivityPercentage(activity);
 
             for (Task task : tasks) {
@@ -168,7 +172,7 @@ public class AssessmentService {
                     int failures = Integer.parseInt(suite.getAttribute("failures"));
                     int skipped = Integer.parseInt(suite.getAttribute("skipped"));
                     int errors = Integer.parseInt(suite.getAttribute("errors"));
-                    
+
                     taskResult.testsPassed += (tests - failures - skipped - errors);
                     taskResult.testsFailed += (failures + errors);
                     taskResult.testsSkipped += skipped;

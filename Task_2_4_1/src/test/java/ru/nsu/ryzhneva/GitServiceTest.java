@@ -30,6 +30,27 @@ public class GitServiceTest {
     }
 
     @Test
+    void calculateActivityPercentageInWindowCountsOnlySemesterWeeks() throws Exception {
+        Path repo = Files.createTempDirectory("gitrepo_activity_window");
+        exec(repo, "git", "init");
+        exec(repo, "git", "config", "user.email", "test@example.com");
+        exec(repo, "git", "config", "user.name", "Test User");
+
+        commitWithDate(repo, "2025-09-01", "c1");
+        commitWithDate(repo, "2025-09-02", "c2");
+        commitWithDate(repo, "2025-09-09", "c3");
+        commitWithDate(repo, "2026-01-10", "c4");
+
+        GitService service = new GitService(new CommandExecutor());
+        LocalDate start = LocalDate.parse("2025-09-01");
+        LocalDate end = LocalDate.parse("2025-12-31");
+        double activity = service.calculateActivityPercentage(repo.toFile(), start, end);
+
+        long weeksTotal = java.time.temporal.ChronoUnit.WEEKS.between(start, end) + 1;
+        assertEquals(2.0 / weeksTotal, activity);
+    }
+
+    @Test
     void getFirstCommitWhenBuildBecameOkFindsFirstMarkerCommit() throws Exception {
         Path repo = Files.createTempDirectory("gitrepo_marker");
         exec(repo, "git", "init");
@@ -77,6 +98,22 @@ public class GitServiceTest {
         Process p = pb.start();
         if (p.waitFor() != 0) {
             throw new IllegalStateException("Command failed: " + String.join(" ", cmd));
+        }
+    }
+
+    private static void commitWithDate(Path repo, String isoDate, String message) throws Exception {
+        Path file = repo.resolve("f_" + message + ".txt");
+        Files.writeString(file, message);
+        exec(repo, "git", "add", ".");
+
+        ProcessBuilder pb = new ProcessBuilder("git", "commit", "-m", message);
+        pb.directory(repo.toFile());
+        pb.redirectErrorStream(true);
+        pb.environment().put("GIT_AUTHOR_DATE", isoDate + "T12:00:00");
+        pb.environment().put("GIT_COMMITTER_DATE", isoDate + "T12:00:00");
+        Process p = pb.start();
+        if (p.waitFor() != 0) {
+            throw new IllegalStateException("Commit failed for " + isoDate);
         }
     }
 
