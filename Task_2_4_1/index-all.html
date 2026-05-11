@@ -105,6 +105,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Вычисляет процент активности студента.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/services/GitService.html#calculateActivityPercentage(java.io.File,java.time.LocalDate,java.time.LocalDate)" class="member-name-link">calculateActivityPercentage(File, LocalDate, LocalDate)</a> - Method in class ru.nsu.ryzhneva.services.<a href="ru/nsu/ryzhneva/services/GitService.html" title="class in ru.nsu.ryzhneva.services">GitService</a></dt>
+<dd>
+<div class="block">Вычисляет процент активности студента в рамках заданного учебного окна.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/domain/CheckAssignment.html" class="type-name-link" title="class in ru.nsu.ryzhneva.domain">CheckAssignment</a> - Class in <a href="ru/nsu/ryzhneva/domain/package-summary.html">ru.nsu.ryzhneva.domain</a></dt>
 <dd>
 <div class="block">Объектная модель конфигурации задания на проверку.</div>
@@ -184,9 +188,18 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Генерирует HTML-файл на основе собранных результатов и конфигурации курса.</div>
 </dd>
+<dt><a href="ru/nsu/ryzhneva/domain/CourseConfig.html#getActivityEnd()" class="member-name-link">getActivityEnd()</a> - Method in class ru.nsu.ryzhneva.domain.<a href="ru/nsu/ryzhneva/domain/CourseConfig.html" title="class in ru.nsu.ryzhneva.domain">CourseConfig</a></dt>
+<dd>
+<div class="block">Возвращает конец интервала учебного семестра, в рамках которого считается активность.</div>
+</dd>
 <dt><a href="ru/nsu/ryzhneva/results/StudentResult.html#getActivityPercentage()" class="member-name-link">getActivityPercentage()</a> - Method in class ru.nsu.ryzhneva.results.<a href="ru/nsu/ryzhneva/results/StudentResult.html" title="class in ru.nsu.ryzhneva.results">StudentResult</a></dt>
 <dd>
 <div class="block">Возвращает вычисленную активность студента.</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/domain/CourseConfig.html#getActivityStart()" class="member-name-link">getActivityStart()</a> - Method in class ru.nsu.ryzhneva.domain.<a href="ru/nsu/ryzhneva/domain/CourseConfig.html" title="class in ru.nsu.ryzhneva.domain">CourseConfig</a></dt>
+<dd>
+<div class="block">Возвращает начало интервала учебного семестра,
+ в рамках которого считается активность.</div>
 </dd>
 <dt><a href="ru/nsu/ryzhneva/domain/CourseConfig.html#getCheckAssignment()" class="member-name-link">getCheckAssignment()</a> - Method in class ru.nsu.ryzhneva.domain.<a href="ru/nsu/ryzhneva/domain/CourseConfig.html" title="class in ru.nsu.ryzhneva.domain">CourseConfig</a></dt>
 <dd>
@@ -384,6 +397,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="ru/nsu/ryzhneva/results/StudentResult.html#setActivityPercentage(double)" class="member-name-link">setActivityPercentage(double)</a> - Method in class ru.nsu.ryzhneva.results.<a href="ru/nsu/ryzhneva/results/StudentResult.html" title="class in ru.nsu.ryzhneva.results">StudentResult</a></dt>
 <dd>
 <div class="block">Устанавливает вычисленное из Git-репозитория значение "активности".</div>
+</dd>
+<dt><a href="ru/nsu/ryzhneva/domain/CourseConfig.html#setActivityWindow(java.time.LocalDate,java.time.LocalDate)" class="member-name-link">setActivityWindow(LocalDate, LocalDate)</a> - Method in class ru.nsu.ryzhneva.domain.<a href="ru/nsu/ryzhneva/domain/CourseConfig.html" title="class in ru.nsu.ryzhneva.domain">CourseConfig</a></dt>
+<dd>
+<div class="block">Устанавливает интервал семестра для расчета активности.</div>
 </dd>
 <dt><a href="ru/nsu/ryzhneva/domain/CourseConfig.html#setCheckAssignment(ru.nsu.ryzhneva.domain.CheckAssignment)" class="member-name-link">setCheckAssignment(CheckAssignment)</a> - Method in class ru.nsu.ryzhneva.domain.<a href="ru/nsu/ryzhneva/domain/CourseConfig.html" title="class in ru.nsu.ryzhneva.domain">CourseConfig</a></dt>
 <dd>

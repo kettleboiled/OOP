@@ -137,6 +137,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Регистрация задачи.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getActivityEnd()" class="member-name-link">getActivityEnd</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает конец интервала учебного семестра, в рамках которого считается активность.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getActivityStart()" class="member-name-link">getActivityStart</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает начало интервала учебного семестра,
+ в рамках которого считается активность.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="CheckAssignment.html" title="class in ru.nsu.ryzhneva.domain">CheckAssignment</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCheckAssignment()" class="member-name-link">getCheckAssignment</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -173,15 +184,21 @@ loadScripts(document, 'script');</script>
 <div class="block">Возвращает список задач.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCheckAssignment(ru.nsu.ryzhneva.domain.CheckAssignment)" class="member-name-link">setCheckAssignment</a><wbr>(<a href="CheckAssignment.html" title="class in ru.nsu.ryzhneva.domain">CheckAssignment</a>&nbsp;checkAssignment)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setActivityWindow(java.time.LocalDate,java.time.LocalDate)" class="member-name-link">setActivityWindow</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;activityStart,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;activityEnd)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Привязывает настройки сеанса проверки.</div>
+<div class="block">Устанавливает интервал семестра для расчета активности.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGradeCriteria(int,int,int)" class="member-name-link">setGradeCriteria</a><wbr>(int&nbsp;exc,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCheckAssignment(ru.nsu.ryzhneva.domain.CheckAssignment)" class="member-name-link">setCheckAssignment</a><wbr>(<a href="CheckAssignment.html" title="class in ru.nsu.ryzhneva.domain">CheckAssignment</a>&nbsp;checkAssignment)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Привязывает настройки сеанса проверки.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGradeCriteria(int,int,int)" class="member-name-link">setGradeCriteria</a><wbr>(int&nbsp;exc,
  int&nbsp;good,
  int&nbsp;sat)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Конфигурирует критерии оценки, задавая нижние пороги накопленных баллов
  (с учетом активности), необходимых для получения той или иной оценки.</div>
 </div>
@@ -351,6 +368,42 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>checkAssignment</code> - Задание проверки</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getActivityStart()">
+<h3>getActivityStart</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a></span>&nbsp;<span class="element-name">getActivityStart</span>()</div>
+<div class="block">Возвращает начало интервала учебного семестра,
+ в рамках которого считается активность.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>дата начала семестра, если задана</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getActivityEnd()">
+<h3>getActivityEnd</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a></span>&nbsp;<span class="element-name">getActivityEnd</span>()</div>
+<div class="block">Возвращает конец интервала учебного семестра, в рамках которого считается активность.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>дата окончания семестра или <code>null</code>, если не задана</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setActivityWindow(java.time.LocalDate,java.time.LocalDate)">
+<h3>setActivityWindow</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setActivityWindow</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;activityStart,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/LocalDate.html" title="class or interface in java.time" class="external-link">LocalDate</a>&nbsp;activityEnd)</span></div>
+<div class="block">Устанавливает интервал семестра для расчета активности.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>activityStart</code> - дата начала (включительно)</dd>
+<dd><code>activityEnd</code> - дата окончания (включительно)</dd>
 </dl>
 </section>
 </li>
