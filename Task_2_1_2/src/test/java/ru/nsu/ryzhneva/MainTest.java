@@ -53,8 +53,8 @@ class MainTest {
                 "parseNumbers", String[].class, int.class);
         parseNumbers.setAccessible(true);
         int[] numbers = (int[]) parseNumbers.invoke(null, new Object[]{
-                new String[]{"master", "127.0.0.1:8081", "6", "8"},
-                2
+            new String[]{"master", "127.0.0.1:8081", "6", "8"},
+            2
         });
         Assertions.assertArrayEquals(new int[]{6, 8}, numbers);
     }
