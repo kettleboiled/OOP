@@ -57,7 +57,7 @@ public class Master implements PrimalityTester {
         Queue<TaskRequest> taskQueue = new ConcurrentLinkedQueue<>();
         long taskIdCounter = 0;
 
-        for (int i = 0; i < arr.length; i+= chunkSize) {
+        for (int i = 0; i < arr.length; i += chunkSize) {
             int end = Math.min(arr.length, i + chunkSize);
             int[] chunk = Arrays.copyOfRange(arr, i, end);
             taskQueue.add(new TaskRequest(++taskIdCounter, chunk));
@@ -73,7 +73,7 @@ public class Master implements PrimalityTester {
             executorService.submit(() -> {
                 int consecutiveFailures = 0;
 
-                while(pendingTasks.get() > 0 && !foundComposite.get()) {
+                while (pendingTasks.get() > 0 && !foundComposite.get()) {
                     TaskRequest task = taskQueue.poll();
 
                     if (task == null) {
@@ -89,7 +89,7 @@ public class Master implements PrimalityTester {
                         socket.connect(nodeAddress, CONNECT_TIMEOUT_MS);
                         socket.setSoTimeout(READ_TIMEOUT_MS);
 
-                        ObjectOutputStream out  = new ObjectOutputStream(socket.getOutputStream());
+                        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                         out.flush();
 
                         ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
@@ -106,7 +106,7 @@ public class Master implements PrimalityTester {
                         pendingTasks.decrementAndGet();
                         consecutiveFailures = 0;
 
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         System.err.printf("Узел %s недоступен. Переназначаем задачу ID: %d%n",
                                 nodeAddress, task.getTaskId());
                         taskQueue.offer(task);
@@ -128,10 +128,11 @@ public class Master implements PrimalityTester {
         }
 
         try {
-            while(pendingTasks.get() > 0 && !foundComposite.get()) {
+            while (pendingTasks.get() > 0 && !foundComposite.get()) {
                 if (activeWorkers.get() == 0) {
                     executorService.shutdownNow();
-                    throw new IllegalStateException("Критический сбой: Все вычислительные узлы недоступны.");
+                    throw new IllegalStateException(
+                            "Критический сбой: Все вычислительные узлы недоступны.");
                 }
                 Thread.sleep(50);
             }

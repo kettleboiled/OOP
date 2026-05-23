@@ -18,7 +18,7 @@ public class TaskResponse implements Serializable {
      * @param taskId идентификатор исходной задачи
      * @param hasCompositeNumber признак наличия составного числа в чанке
      */
-    public TaskResponse (long taskId, boolean hasCompositeNumber) {
+    public TaskResponse(long taskId, boolean hasCompositeNumber) {
         this.taskId = taskId;
         this.hasCompositeNumber = hasCompositeNumber;
     }

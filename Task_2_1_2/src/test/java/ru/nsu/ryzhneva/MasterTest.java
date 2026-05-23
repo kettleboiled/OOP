@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.primalitytester.Master;
 
+/**
+ * Тесты для Master.
+ */
 class MasterTest {
 
     @Test

@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.primalitytester.Main;
 
+/**
+ * Тесты для точки входа.
+ */
 class MainTest {
 
     @Test
@@ -46,10 +49,12 @@ class MainTest {
                 null, "127.0.0.1:8081,localhost:8082");
         Assertions.assertEquals(2, workers.size());
 
-        Method parseNumbers = Main.class.getDeclaredMethod("parseNumbers", String[].class, int.class);
+        Method parseNumbers = Main.class.getDeclaredMethod(
+                "parseNumbers", String[].class, int.class);
         parseNumbers.setAccessible(true);
         int[] numbers = (int[]) parseNumbers.invoke(null, new Object[]{
-                new String[]{"master", "127.0.0.1:8081", "6", "8"}, 2
+                new String[]{"master", "127.0.0.1:8081", "6", "8"},
+                2
         });
         Assertions.assertArrayEquals(new int[]{6, 8}, numbers);
     }
@@ -67,4 +72,3 @@ class MainTest {
         });
     }
 }
-

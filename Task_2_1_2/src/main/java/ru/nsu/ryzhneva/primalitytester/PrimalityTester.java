@@ -11,8 +11,8 @@ public interface PrimalityTester {
      *
      * @param number число для проверки.
      * @return true, если число простое;
-     * false, если число составное,
-     * либо меньше 2 (0, 1, отрицательные).
+     *     false, если число составное,
+     *     либо меньше 2 (0, 1, отрицательные).
      */
     default boolean isPrime(int number) {
         if (number < 2) {
@@ -39,7 +39,7 @@ public interface PrimalityTester {
      *
      * @param arr входной массив целых чисел.
      * @return true, если найдено число, не являющееся простым;
-     * false, если все числа в массиве простые или массив пуст.
+     *     false, если все числа в массиве простые или массив пуст.
      */
     boolean hasComposite(int[] arr);
 }

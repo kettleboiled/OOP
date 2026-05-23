@@ -17,7 +17,7 @@ public class TaskRequest implements Serializable {
      * @param taskId уникальный идентификатор задачи
      * @param numberChunk массив чисел для проверки
      */
-    public TaskRequest (long taskId, int[] numberChunk) {
+    public TaskRequest(long taskId, int[] numberChunk) {
         this.taskId = taskId;
         this.numberChunk = numberChunk;
     }

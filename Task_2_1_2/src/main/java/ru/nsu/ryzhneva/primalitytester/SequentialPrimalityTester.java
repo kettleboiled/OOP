@@ -13,7 +13,7 @@ public class SequentialPrimalityTester implements PrimalityTester {
      *
      * @param arr массив.
      * @return true - найдено составное число,
-     * иначе false.
+     *     иначе false.
      */
     @Override
     public boolean hasComposite(int[] arr) {

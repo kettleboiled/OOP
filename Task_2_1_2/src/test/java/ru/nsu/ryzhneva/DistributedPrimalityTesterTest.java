@@ -7,7 +7,6 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.primalitytester.Main;
@@ -98,4 +97,3 @@ class DistributedPrimalityTesterTest {
         throw new IllegalStateException("Worker did not start in time");
     }
 }
-

@@ -29,10 +29,10 @@ public class Worker {
      * Запускает цикл приема соединений и обработки задач.
      */
     public void start() {
-        try (ServerSocket serverSocket= new ServerSocket(port)) {
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Worker запущен на порту " + port + " и ожидает задач...");
 
-            while(true) {
+            while (true) {
                 try (Socket clientSocket = serverSocket.accept()) {
 
                     ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -53,13 +53,16 @@ public class Worker {
                     System.out.printf("Задача ID: %d выполнена. Результат: %b%n",
                             request.getTaskId(), hasComposite);
                 } catch (ClassNotFoundException e) {
-                    System.err.println("Ошибка сериализации: получен неизвестный класс. " + e.getMessage());
+                    System.err.println("Ошибка сериализации: получен неизвестный класс. "
+                            + e.getMessage());
                 } catch (IOException e) {
-                    System.err.println("Ошибка ввода-вывода при связи с Master-узлом: " + e.getMessage());
+                    System.err.println("Ошибка ввода-вывода при связи с Master-узлом: "
+                            + e.getMessage());
                 }
             }
         } catch (IOException e) {
-            System.err.println("Критическая ошибка: невозможно запустить Worker на порту " + port);
+            System.err.println("Критическая ошибка: невозможно запустить Worker на порту "
+                    + port);
             e.printStackTrace();
         }
     }

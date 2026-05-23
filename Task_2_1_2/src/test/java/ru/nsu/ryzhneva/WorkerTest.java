@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.ryzhneva.primalitytester.SequentialPrimalityTester;
 import ru.nsu.ryzhneva.primalitytester.Worker;
 
+/**
+ * Тесты для Worker.
+ */
 class WorkerTest {
 
     @Test
@@ -59,4 +62,3 @@ class WorkerTest {
         throw new IllegalStateException("Worker did not start in time");
     }
 }
-
