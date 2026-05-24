@@ -40,8 +40,8 @@ class DistributedPrimalityTesterTest {
         Master master = new Master(List.of(
                 new InetSocketAddress("127.0.0.1", port)));
         int[] input = {
-                20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
-                6998009, 6998029, 6998039, 20165149, 6998051, 6998053
+            20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
+            6998009, 6998029, 6998039, 20165149, 6998051, 6998053
         };
 
         Assertions.assertFalse(master.hasComposite(input));
@@ -52,11 +52,8 @@ class DistributedPrimalityTesterTest {
         int port = findFreePort();
         startWorker(port);
 
-        String[] args = {
-                "master",
-                "127.0.0.1:" + port,
-                "6", "8", "7", "13", "5", "9", "4"
-        };
+        String[] args = { "master", "127.0.0.1:" + port,
+            "6", "8", "7", "13", "5", "9", "4" };
 
         PrintStream originalOut = System.out;
         ByteArrayOutputStream out = new ByteArrayOutputStream();

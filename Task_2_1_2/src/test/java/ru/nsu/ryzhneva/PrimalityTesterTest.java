@@ -37,10 +37,8 @@ class PrimalityTesterTest {
     @ParameterizedTest
     @MethodSource("getTesters")
     void testPromptExample2_False(PrimalityTester tester) {
-        int[] input = {
-                20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
-                6998009, 6998029, 6998039, 20165149, 6998051, 6998053
-        };
+        int[] input = { 20319251, 6997901, 6997927, 6997937, 17858849, 6997967,
+            6998009, 6998029, 6998039, 20165149, 6998051, 6998053 };
         Assertions.assertFalse(tester.hasComposite(input),
                 "Should return false for array of primes " + tester.getClass().getSimpleName());
     }
